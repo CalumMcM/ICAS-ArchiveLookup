@@ -352,7 +352,12 @@ a:focus {
 }
 
 img {
+display: flex;
   vertical-align: middle;
+  margin-left: auto;
+  margin-right: 10px;
+  height:20%;
+  width:20%
 }
 
 .img-responsive {
@@ -2095,6 +2100,8 @@ fieldset[disabled] .btn-default.active {
   background-color: #ffffff;
   border-color: #cccccc;
 }
+
+
 .addBtn{
 	background-color: teal;
 	color: #ffffff;
@@ -2108,6 +2115,7 @@ fieldset[disabled] .btn-default.active {
   color: #ffffff;
   background-color: #428bca;
   border-color: #357ebd;
+  margin-top: 10px;
 }
 
 .btn-primary:hover,
