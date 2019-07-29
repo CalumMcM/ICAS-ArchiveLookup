@@ -352,7 +352,7 @@ a:focus {
 }
 
 img {
-display: flex;
+  display: flex;
   vertical-align: middle;
   margin-left: auto;
   margin-right: 10px;
@@ -1419,15 +1419,24 @@ pre code {
 table {
   max-width: 100%;
   background-color: transparent;
+  border-spacing: 40px;
 }
 
 th {
   text-align: left;
+  padding: 10px;
+
+}
+
+td {
+	padding:10px;
 }
 
 .table {
   width: 100%;
   margin-bottom: 20px;
+  padding: 40px;
+
 }
 
 .table thead > tr > th,
@@ -4960,6 +4969,7 @@ a.list-group-item.active > .badge,
   background-color: #eeeeee;
 }
 
+
 .jumbotron h1 {
   line-height: 1;
   color: inherit;
@@ -4986,6 +4996,18 @@ a.list-group-item.active > .badge,
   .jumbotron h1 {
     font-size: 63px;
   }
+}
+
+.minotron{
+	display: none;
+}
+
+.resultsTable{
+	display:none;
+	text-align:left;
+	border-bottom:1px solid #ddd;
+	-webkit-column-gap:40px;
+	column-gap:40px;
 }
 
 .thumbnail {

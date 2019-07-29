@@ -1,34 +1,57 @@
 ﻿@{
-    ViewBag.Title = "Query";
+    ViewBag.Title = "Archive Lookup";
 }
 
 <div class="jumbotron">
-	<img class="ICASlogo" src="ICAS Master Logo_L.png">
+	<img src="ICASLogo.png">
     <h1>Archive Lookup</h1>
     <p id="forenameInputText" class="lead"> Forename:
 	<button id="forenameInputButton" onclick="showInput('forenameInput')" class="addBtn">+</button>
 	</p>
 	<input type="text" id="forenameInput" class="input-lookup" name="forename">
+
 	<p class="lead">Surname:
 	<button id="surnameInputButton" onclick="showInput('surnameInput')" class="addBtn">+</button>
 	</p>
 	<input id = "surnameInput" type="text" class="input-lookup" name="surname">
-	<p class="lead">ID:
-	<button id="idInputButton" onclick="showInput('idInput')" class="addBtn">+</button>
-	</p>
-	<input id="idInput" type="text" class="input-lookup" name="id">
+
 	<p class="lead">Subject:
 	<button id="subjectInputButton" onclick="showInput('subjectInput')" class="addBtn">+</button>
 	</p>
 	<input id="subjectInput" type="text" class="input-lookup" name="subject">
-	<p><button onClick="sendAlert()" class="btn btn-primary btn-lg">Submit &raquo;</button></p>
+
+	<p class="lead">Firm:
+	<button id="firmInputButton" onclick="showInput('firmInput')" class="addBtn">+</button>
+	</p>
+	<input id="firmInput" type="text" class="input-lookup" name="id">
+
+	<p class="lead">ID:
+	<button id="idInputButton" onclick="showInput('idInput')" class="addBtn">+</button>
+	</p>
+	<input type="text" id="idInput" class="input-lookup" name="forename">
+
+	<p><button onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
+	
+	<div id="ResultsContainer" class="minotron">
+		<h1 id="ResultsHeader">Results</h1>
+		<table id="ResultsTable" class="resultsTable">
+			<tr>
+				<th>Forename</th>
+				<th>Surname</th>
+				<th>Subject</th>
+				<th>Firm</th>
+				<th>ID</th>
+			</tr>
+		</table>
+	</div>
+
 </div>
 
 <script>
 	function showInput(input){
-		var inputText = document.getElementById(input);
-		var button = document.getElementById(input + "Button");
-		if (inputText.style.display === "none") {
+		let inputText = document.getElementById(input);
+		let button = document.getElementById(input + "Button");
+		if (inputText.style.display == "none") {
 			inputText.style.display = "block";
 			button.style.backgroundColor = "red"
 			button.innerHTML = "-";
@@ -38,7 +61,25 @@
 			button.innerHTML = "+";
 		}
 	}
-	function sendAlert() {
-		alert("Function not implemented");
+	function processQuery() {
+		document.getElementById("ResultsContainer").style.display = "block";
+		document.getElementById("ResultsHeader").style.display = "block";
+		let resultsTable = document.getElementById("ResultsTable")
+		resultsTable.style.display = "block";
+		let formattedResults = [["John", "Smith", "Accounting", "RBS", "9090"], ["Mary", "Jane", "Accounting", "Natwest", "8080"]];
+		for (let result in formattedResults) {
+			let newRow = resultsTable.insertRow(-1);
+			let foreName = newRow.insertCell(0);
+			let surName = newRow.insertCell(1);
+			let subject = newRow.insertCell(2);
+			let firm = newRow.insertCell(3);
+			let id = newRow.insertCell(4);
+			
+			foreName.innerHTML = formattedResults[result][0];
+			surName.innerHTML = formattedResults[result][1];
+			subject.innerHTML = formattedResults[result][2];
+			firm.innerHTML = formattedResults[result][3];
+			id.innerHTML = formattedResults[result][4];
+		}
 	}
 </script>
