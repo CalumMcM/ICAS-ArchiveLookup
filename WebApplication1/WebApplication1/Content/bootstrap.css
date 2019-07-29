@@ -405,10 +405,17 @@ p {
 }
 
 .lead {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-size: 16.099999999999998px;
   font-weight: 200;
   line-height: 1.4;
+}
+
+.input-lookup {
+	width: 300px;
+	height: 30px;
+	-webkit-border-radius: 4px;
+	display: none;
 }
 
 @media (min-width: 768px) {
@@ -2087,6 +2094,14 @@ fieldset[disabled] .btn-default:active,
 fieldset[disabled] .btn-default.active {
   background-color: #ffffff;
   border-color: #cccccc;
+}
+.addBtn{
+	background-color: teal;
+	color: #ffffff;
+	padding: 0;
+	border: none;
+	width: 30px;
+	border-radius: 50%;
 }
 
 .btn-primary {
@@ -4506,7 +4521,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse .navbar-brand {
-  color: #999999;
+  color: #ffffff;
 }
 
 .navbar-inverse .navbar-brand:hover,
@@ -4958,6 +4973,7 @@ a.list-group-item.active > .badge,
   .container .jumbotron {
     padding-right: 60px;
     padding-left: 60px;
+	margin-top:10px;
   }
   .jumbotron h1 {
     font-size: 63px;
