@@ -414,6 +414,7 @@ p {
   font-size: 16.099999999999998px;
   font-weight: 200;
   line-height: 1.4;
+  display:none;
 }
 
 .input-lookup {
@@ -2110,16 +2111,6 @@ fieldset[disabled] .btn-default.active {
   border-color: #cccccc;
 }
 
-
-.addBtn{
-	background-color: teal;
-	color: #ffffff;
-	padding: 0;
-	border: none;
-	width: 30px;
-	border-radius: 50%;
-}
-
 .btn-primary {
   color: #ffffff;
   background-color: #428bca;
@@ -2324,6 +2315,15 @@ fieldset[disabled] .btn-info:active,
 fieldset[disabled] .btn-info.active {
   background-color: #5bc0de;
   border-color: #46b8da;
+}
+
+.addBtn{
+	background-color: teal;
+	color: #ffffff;
+	padding: 0;
+	border: none;
+	width: 14vmin;
+	-webkit-border-radius: 10px;
 }
 
 .btn-link {

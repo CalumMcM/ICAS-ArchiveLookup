@@ -5,30 +5,31 @@
 <div class="jumbotron">
 	<img src="ICASLogo.png">
     <h1>Archive Lookup</h1>
+	<button id="forenameInputButton" onclick="showInput('forenameInput')" class="addBtn">Forename</button>
+	<button id="surnameInputButton" onclick="showInput('surnameInput')" class="addBtn">Surname</button>
+	<button id="subjectInputButton" onclick="showInput('subjectInput')" class="addBtn">Subject</button>
+	<button id="firmInputButton" onclick="showInput('firmInput')" class="addBtn">Firm</button>
+	<button id="idInputButton" onclick="showInput('idInput')" class="addBtn">ID</button>
+
     <p id="forenameInputText" class="lead"> Forename:
-	<button id="forenameInputButton" onclick="showInput('forenameInput')" class="addBtn">+</button>
-	</p>
 	<input type="text" id="forenameInput" class="input-lookup" name="forename">
-
-	<p class="lead">Surname:
-	<button id="surnameInputButton" onclick="showInput('surnameInput')" class="addBtn">+</button>
 	</p>
+
+	<p id="surnameInputText" class="lead">Surname:
 	<input id = "surnameInput" type="text" class="input-lookup" name="surname">
-
-	<p class="lead">Subject:
-	<button id="subjectInputButton" onclick="showInput('subjectInput')" class="addBtn">+</button>
 	</p>
+
+	<p id="subjectInputText" class="lead">Subject:
 	<input id="subjectInput" type="text" class="input-lookup" name="subject">
-
-	<p class="lead">Firm:
-	<button id="firmInputButton" onclick="showInput('firmInput')" class="addBtn">+</button>
 	</p>
+
+	<p id="firmInputText" class="lead">Firm:
 	<input id="firmInput" type="text" class="input-lookup" name="id">
-
-	<p class="lead">ID:
-	<button id="idInputButton" onclick="showInput('idInput')" class="addBtn">+</button>
 	</p>
+
+	<p id="idInputText" class="lead">ID:
 	<input type="text" id="idInput" class="input-lookup" name="forename">
+	</p>
 
 	<p><button onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
 	
@@ -50,15 +51,18 @@
 <script>
 	function showInput(input){
 		let inputText = document.getElementById(input);
+		let inputTextTitle = document.getElementById(input + "Text");
 		let button = document.getElementById(input + "Button");
 		if (inputText.style.display == "none") {
 			inputText.style.display = "block";
+			inputTextTitle.style.display = "block";
 			button.style.backgroundColor = "red"
-			button.innerHTML = "-";
+			//button.innerHTML = "-";
 		} else {
 			inputText.style.display = "none";
+			inputTextTitle.style.display = "none";
 			button.style.backgroundColor = "teal"
-			button.innerHTML = "+";
+			//button.innerHTML = "+";
 		}
 	}
 	function processQuery() {
