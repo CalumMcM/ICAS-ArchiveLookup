@@ -114,9 +114,10 @@
 				inputs[btnNames[button]] = document.getElementById(btnNames[button] + "Input").value;
 			}
 		}
-		//Create API call to lookupController.cs which will make the call to the database 
+		response = getJSON('lookupController/person?inputs', function (data) { });
+		//Create API call to personController.cs which will make the call to the database 
 		//documentation for this can be found in RestAccess/Services/EnvironemntService.cs
-	//and also RestAccess/Controllers/EnvironemntController
+		//and also RestAccess/Controllers/EnvironemntController
 		displayResults(inputs);
 	}
 	function displayResults(inputs) {
