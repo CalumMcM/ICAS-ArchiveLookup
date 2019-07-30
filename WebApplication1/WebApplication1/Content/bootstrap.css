@@ -409,6 +409,22 @@ p {
   margin: 0 0 10px;
 }
 
+.underline{
+	width:42%;
+	height:3px;
+	background-color: #575656;
+	margin-top: -5px;
+	margin-bottom:10px;
+}
+
+.underlineResults{
+	width:42%;
+	height:3px;
+	background-color: #575656;
+	margin-top: -5px;
+	margin-bottom:10px;
+	display: none;
+}
 .lead {
   margin-bottom: 10px;
   font-size: 16.099999999999998px;
@@ -2116,6 +2132,7 @@ fieldset[disabled] .btn-default.active {
   background-color: #428bca;
   border-color: #357ebd;
   margin-top: 10px;
+  display: none;
 }
 
 .btn-primary:hover,
@@ -2318,7 +2335,7 @@ fieldset[disabled] .btn-info.active {
 }
 
 .addBtn{
-	background-color: teal;
+	background-color: #C00A27;
 	color: #ffffff;
 	padding: 0;
 	border: none;

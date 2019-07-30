@@ -4,7 +4,11 @@
 
 <div class="jumbotron">
 	<img src="ICASLogo.png">
-    <h1>Archive Lookup</h1>
+	<h1>
+		Archive Lookup
+		<div class="underline"></div>
+	</h1>
+	<p>Select the criteria for your search: </p>
 	<button id="forenameInputButton" onclick="showInput('forenameInput')" class="addBtn">Forename</button>
 	<button id="surnameInputButton" onclick="showInput('surnameInput')" class="addBtn">Surname</button>
 	<button id="subjectInputButton" onclick="showInput('subjectInput')" class="addBtn">Subject</button>
@@ -31,10 +35,13 @@
 	<input type="text" id="idInput" class="input-lookup" name="forename">
 	</p>
 
-	<p><button onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
+	<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
 	
 	<div id="ResultsContainer" class="minotron">
-		<h1 id="ResultsHeader">Results</h1>
+		<h1 id="ResultsHeader">
+		Results
+		<div id="resultsUnderline" class="underlineResults"></div>
+		</h1>
 		<table id="ResultsTable" class="resultsTable">
 			<tr>
 				<th>Forename</th>
@@ -54,36 +61,78 @@
 		let inputTextTitle = document.getElementById(input + "Text");
 		let button = document.getElementById(input + "Button");
 		if (inputText.style.display == "none") {
+			inputText.value = "";
 			inputText.style.display = "block";
 			inputTextTitle.style.display = "block";
-			button.style.backgroundColor = "red"
-			//button.innerHTML = "-";
+			button.style.backgroundColor = "#20A64B"
 		} else {
 			inputText.style.display = "none";
 			inputTextTitle.style.display = "none";
-			button.style.backgroundColor = "teal"
+			button.style.backgroundColor = "#C00A27";
 			//button.innerHTML = "+";
+		}
+		showSubmit();
+	}
+	function showSubmit() {
+		let active = 0;
+		if (document.getElementById("forenameInputButton").style.backgroundColor === "rgb(32, 166, 75)") {
+			active++;
+		}
+		if (document.getElementById("surnameInputButton").style.backgroundColor === "rgb(32, 166, 75)") {
+			active++;
+		}
+		if (document.getElementById("subjectInputButton").style.backgroundColor === "rgb(32, 166, 75)") {
+			active++;
+		}
+		if (document.getElementById("firmInputButton").style.backgroundColor === "rgb(32, 166, 75)") {
+			active++;
+		}
+		if (document.getElementById("idInputButton").style.backgroundColor === "rgb(32, 166, 75)") {
+			active++;
+		}
+		if (active > 0) {
+			document.getElementById("submitButton").style.display = "block";
+		} else {
+			document.getElementById("submitButton").style.display = "none";
 		}
 	}
 	function processQuery() {
+		let inputs = {"forename":"","surname":"","subject":"","firm":"","id":""};
+		console.log(document.getElementById("forenameInputButton").style.backgroundColor)
+		if (document.getElementById("forenameInputButton").style.backgroundColor === "rgb(32, 166, 75)") {
+			inputs["forename"] = document.getElementById("forenameInput").value;
+		}
+		if (document.getElementById("surnameInputButton").style.backgroundColor === "rgb(32, 166, 75)") {
+			inputs["surname"] = document.getElementById("surnameInput").value
+		}
+		if (document.getElementById("subjectInputButton").style.backgroundColor === "rgb(32, 166, 75)") {
+			inputs["subject"] = document.getElementById("subjectInput").value
+		}
+		if (document.getElementById("firmInputButton").style.backgroundColor === "rgb(32, 166, 75)") {
+			inputs["firm"] = document.getElementById("firmInput").value
+		}
+		if (document.getElementById("idInputButton").style.backgroundColor === "rgb(32, 166, 75)") {
+			inputs["id"] = document.getElementById("idInput").value
+		}
+		displayResults(inputs);
+	}
+	function displayResults(inputs) {
 		document.getElementById("ResultsContainer").style.display = "block";
 		document.getElementById("ResultsHeader").style.display = "block";
+		document.getElementById("resultsUnderline").style.display = "block";
 		let resultsTable = document.getElementById("ResultsTable")
 		resultsTable.style.display = "block";
-		let formattedResults = [["John", "Smith", "Accounting", "RBS", "9090"], ["Mary", "Jane", "Accounting", "Natwest", "8080"]];
-		for (let result in formattedResults) {
-			let newRow = resultsTable.insertRow(-1);
-			let foreName = newRow.insertCell(0);
-			let surName = newRow.insertCell(1);
-			let subject = newRow.insertCell(2);
-			let firm = newRow.insertCell(3);
-			let id = newRow.insertCell(4);
-			
-			foreName.innerHTML = formattedResults[result][0];
-			surName.innerHTML = formattedResults[result][1];
-			subject.innerHTML = formattedResults[result][2];
-			firm.innerHTML = formattedResults[result][3];
-			id.innerHTML = formattedResults[result][4];
-		}
+		let newRow = resultsTable.insertRow(-1);
+		let foreName = newRow.insertCell(0);
+		let surName = newRow.insertCell(1);
+		let subject = newRow.insertCell(2);
+		let firm = newRow.insertCell(3);
+		let id = newRow.insertCell(4);
+		console.log(inputs);
+		foreName.innerHTML = inputs["forename"];
+		surName.innerHTML = inputs["surname"];
+		subject.innerHTML = inputs["subject"];
+		firm.innerHTML = inputs["firm"];
+		id.innerHTML = inputs["id"];
 	}
 </script>
