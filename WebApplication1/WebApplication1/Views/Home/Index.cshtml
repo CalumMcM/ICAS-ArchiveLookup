@@ -3,18 +3,20 @@
 }
 
 <div class="jumbotron">
+
 	<img src="ICASLogo.png">
 	<h1>
 		Archive Lookup
 		<div class="underline"></div>
 	</h1>
 	<p>Select the criteria for your search: </p>
+
 	<button id="forenameInputButton" onclick="showInput('forenameInput')" class="addBtn">Forename</button>
 	<button id="surnameInputButton" onclick="showInput('surnameInput')" class="addBtn">Surname</button>
 	<button id="emailInputButton" onclick="showInput('emailInput')" class="addBtn">Email</button>
 	<button id="firmInputButton" onclick="showInput('firmInput')" class="addBtn">Firm</button>
 	<button id="idInputButton" onclick="showInput('idInput')" class="addBtn">ID</button>
-	<button id="membertypeInputButton" onclick="showInput('membertypeInput')" class="addBtn">MT</button>
+	<button id="dateInputButton" onclick="showInput('dateInput')" class="addBtn">Date</button>
 
     <p id="forenameInputText" class="lead"> Forename:
 	<input type="text" id="forenameInput" class="input-lookup" name="forename">
@@ -36,8 +38,8 @@
 	<input type="text" id="idInput" class="input-lookup" name="id">
 	</p>
 
-	<p id="membertypeInputText" class="lead">Member Type:
-		<input type="text" id="membertypeInput" class="input-lookup" name="membertype">
+	<p id="dateInputText" class="lead">Date:
+		<input type="text" id="dateInput" class="input-lookup" name="date">
 	</p>
 
 	<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
@@ -45,7 +47,6 @@
 	<div id="ResultsContainer" class="minotron">
 		<h1 id="ResultsHeader">
 		Results
-		
 		<div id="resultsUnderline" class="underlineResults"></div>
 		</h1>
 		<table id="ResultsTable" class="resultsTable">
@@ -64,7 +65,7 @@
 <script>
 	//WHEN ADDING A NEW BUTTON ADD THE NAME OF IT HERE \/
 	function buttonNames() {
-		let btnNames = ["forename", "surname", "email", "firm", "id", "membertype"];
+		let btnNames = ["forename", "surname", "email", "firm", "id", "date"];
 		return btnNames
 }
 	function showInput(input) {
@@ -113,6 +114,9 @@
 				inputs[btnNames[button]] = document.getElementById(btnNames[button] + "Input").value;
 			}
 		}
+		//Create API call to lookupController.cs which will make the call to the database 
+		//documentation for this can be found in RestAccess/Services/EnvironemntService.cs
+	//and also RestAccess/Controllers/EnvironemntController
 		displayResults(inputs);
 	}
 	function displayResults(inputs) {
