@@ -2339,10 +2339,20 @@ fieldset[disabled] .btn-info.active {
 	color: #ffffff;
 	padding: 0;
 	border: none;
-	width: 14vmin;
+	width: 5em;
+	margin-top: 0.2em;
 	-webkit-border-radius: 10px;
 }
 
+.copyBtn{
+	border: none;
+	background-color: #0078BE;
+	-webkit-border-radius:20px;
+	margin-left: 5px;
+	height:40px;
+	width: 40px;
+	text-size-adjust: 10px;
+}
 .btn-link {
   font-weight: normal;
   color: #428bca;
