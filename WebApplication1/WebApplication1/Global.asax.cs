@@ -8,7 +8,7 @@ using System.Web.Routing;
 using System.Web.Http;
 using System.Web.Routing;
 
-namespace WebApplication1
+namespace ArchiveLookup.ICAS.com
 {
     public class MvcApplication : System.Web.HttpApplication
     {

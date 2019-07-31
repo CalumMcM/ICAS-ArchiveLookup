@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using WebApplication1.Models;
+using ArchiveLookup.ICAS.com.Models;
 
-namespace WebApplication1
+namespace ArchiveLookup.ICAS.com
 {
     public partial class Startup
     {

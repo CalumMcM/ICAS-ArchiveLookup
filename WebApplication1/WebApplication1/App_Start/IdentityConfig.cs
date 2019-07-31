@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using WebApplication1.Models;
+using ArchiveLookup.ICAS.com.Models;
 
-namespace WebApplication1
+namespace ArchiveLookup.ICAS.com
 {
     public class EmailService : IIdentityMessageService
     {
