@@ -34,7 +34,7 @@ namespace WebApplication1.Controllers
 								on n.id = a.id
 								JOIN Member_Types as mt
 								on n.MEMBER_TYPE  = mt.MEMBER_TYPE
-								WHERE a.id = @query"; //Will this use the string query variable?
+								WHERE n.FIRST_NAME = @query"; //Will this use the string query variable?
 				persons = connection.Query<Person>(sql, new { query = query }).ToList();
 			}
 			return persons;
