@@ -18,11 +18,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		public List<Person> Post([FromBody]PersonQuery query)
 		{
 			var persons = new List<Person>();
-			//var querySQL = queryGenerator(query, true);
-			/*
-			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
-			{
-				var queryBase = @"SELECT	n.[ID]
+			var queryBase = @"SELECT TOP (1000)	n.[ID]
 						,n.[MAJOR_KEY]
 						,n.[FULL_NAME]
 						,n.[FIRST_NAME]
@@ -35,10 +31,13 @@ namespace ArchiveLookup.ICAS.com.Controllers
 						JOIN activity as a
 						on n.id = a.id
 						JOIN Member_Types as mt
-						on n.MEMBER_TYPE  = mt.MEMBER_TYPE";
-				persons = connection.Query<Person>(querySQL, queryBase+querySQL).ToList();
+						on n.MEMBER_TYPE  = mt.MEMBER_TYPE WHERE n.ID='259365'"; //+ queryGenerator(query, true);
+			
+			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
+			{
+				persons = connection.Query<Person>(queryBase, query).ToList();
 			}
-			*/
+			
 			return persons;
 		}
 		
