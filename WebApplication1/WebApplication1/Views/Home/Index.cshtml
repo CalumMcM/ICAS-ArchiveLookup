@@ -108,16 +108,40 @@
 	}
 	function processQuery() {
 		let btnNames = buttonNames();
-		let inputs = {}
+		//using WebApplication1.Models;
+		//var newPerson = new PersonQuery;
+		var inputs = {}
 		for (let button in btnNames) {
 			if (document.getElementById(btnNames[button] + "InputButton").style.backgroundColor === "rgb(32, 166, 75)") {
 				inputs[btnNames[button]] = document.getElementById(btnNames[button] + "Input").value;
 			}
 		}
-		response = getJSON('lookupController/person?inputs', function (data) { });
+
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("GET", "/api/person/128754", true);
+		xhttp.send();
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				let response = this.reponseText;
+				console.log(this.responseText);
+			}
+		};
+		/*
+		let xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				let queryResults = this.responseText;
+				console.log(queryResults);
+			}
+		};
+		let uri = 'api/person/query';
+		xhr.open("POST", 'api/person/', true);
+		xhr.setRequestHeader('Content-Type', 'application/json');
+		xhr.send(JSON.stringify(inputs));
 		//Create API call to personController.cs which will make the call to the database 
 		//documentation for this can be found in RestAccess/Services/EnvironemntService.cs
 		//and also RestAccess/Controllers/EnvironemntController
+		*/
 		displayResults(inputs);
 	}
 	function displayResults(inputs) {
