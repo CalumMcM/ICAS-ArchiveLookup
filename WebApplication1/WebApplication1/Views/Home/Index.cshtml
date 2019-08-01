@@ -217,6 +217,10 @@
 		
 	}
 	function displayResults(inputs) {
+		//Delete previous table if it exists:
+		for (var i = document.getElementById("ResultsTable").rows.length; i > 0; i--) {
+			document.getElementById("ResultsTable").deleteRow(i - 1);
+		}
 		document.getElementById("ResultsContainer").style.display = "block";
 		document.getElementById("ResultsHeader").style.display = "block";
 		document.getElementById("resultsUnderline").style.display = "block";
