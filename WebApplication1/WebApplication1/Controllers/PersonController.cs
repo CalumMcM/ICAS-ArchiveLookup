@@ -18,20 +18,40 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		public List<Person> Post([FromBody]PersonQuery query)
 		{
 			var persons = new List<Person>();
-			var queryBase = @"SELECT TOP (1000)	n.[ID]
-						,n.[ID]
-						,n.[FULL_NAME]
-						,n.[FIRST_NAME]
-						,n.[LAST_FIRST]
-						,n.[COMPANY]
-						,n.[MEMBER_TYPE]
-						,mt.[DESCRIPTION]
-						,n.[EMAIL]
-						FROM [imis].[dbo].[Name] as n
-						JOIN activity as a
-						on n.id = a.id
-						JOIN Member_Types as mt
-						on n.MEMBER_TYPE  = mt.MEMBER_TYPE " + queryGenerator(query, true);
+			var queryBase = @"SELECT TOP (1000) n.[ID]
+								,n.[MAJOR_KEY]
+								,n.[FIRST_NAME]
+								,n.[MIDDLE_NAME]
+								,n.[LAST_NAME]
+								,n.[FUNCTIONAL_TITLE]
+								,n.[STATUS]
+								,si.[INTAKE_YEAR]
+								,si.[TPCE_STUDENT]
+								,si.[TRE_STUDENT]
+								,si.[CONTRACT_START_DATE]
+								,si.[CONTRACT_END_DATE]
+								,si.[FIRM_ID]
+								,si.[FIRM_NAME]
+								,si.[FINAL_CERTIFICATE_DATE]
+								,si.[EXAM_CERTIFICATE_DATE]
+								,si.[BE_PASS]
+								,si.[LOGBOOK_VERIFIED]
+								,si.[LOGBOOK_VERIFIED_DATE]
+								,si.[ITP_STUDENT]
+								,si.[ITP_Passed]
+								,ec.[EVENT_ATTENDEES]
+								,g.[TP_Monthly]
+								FROM [imis].[dbo].[Name] as n
+								JOIN activity as a
+								on n.id = a.id
+								JOIN Member_Types as mt
+								on n.MEMBER_TYPE  = mt.MEMBER_TYPE
+								JOIN Student_Info as si
+								on n.ID = si.ID
+								JOIN Groups as g
+								on n.ID = g.ID
+								JOIN exclude_comms as ec
+								on n.ID = ec.ID " + queryGenerator(query, true);
 			
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
 			{

@@ -5028,17 +5028,13 @@ a.list-group-item.active > .badge,
 
 .minotron{
 	display: none;
-}
-
-.scrollmenu{
-	text-align:left;
-	border-bottom:1px solid #ddd;
-	-webkit-column-gap:40px;
-	column-gap:40px;
-	overflow: auto;
+	height: 80vmin;
+	overflow-x: auto;
+	overflow-y: auto;
 	white-space: nowrap;
 }
-.scrollmenu a {
+
+.minotron a {
   display: inline-block;
   color: white;
   text-align: center;
@@ -5046,8 +5042,15 @@ a.list-group-item.active > .badge,
   text-decoration: none;
 }
 
-.scrollmenu a:hover {
+.minotron a:hover {
 	background-color: #777;
+}
+
+.resultsTable {
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+	-webkit-column-gap: 40px;
+	column-gap: 40px;
 }
 
 .thumbnail {
