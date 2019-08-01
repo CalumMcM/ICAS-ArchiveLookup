@@ -1447,6 +1447,7 @@ th {
 
 td {
 	padding:10px;
+	width: auto;
 }
 
 .table {
@@ -5029,12 +5030,24 @@ a.list-group-item.active > .badge,
 	display: none;
 }
 
-.resultsTable{
-	display:none;
+.scrollmenu{
 	text-align:left;
 	border-bottom:1px solid #ddd;
 	-webkit-column-gap:40px;
 	column-gap:40px;
+	overflow: auto;
+	white-space: nowrap;
+}
+.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+.scrollmenu a:hover {
+	background-color: #777;
 }
 
 .thumbnail {

@@ -21,5 +21,18 @@ namespace ArchiveLookup.ICAS.com.test
 			//Assert
 			Assert.AreEqual("WHERE n.FIRST_NAME = @FIRST_NAME AND n.LAST_NAME = @LAST_NAME", response, "Query Generator failed to generate the correct query");
 		}
+		[TestMethod]
+		public void PersonControllerReturnsCorrectResultFromQueryOnDatabase()
+		{
+			//Arrange
+			PersonQuery criteria = new PersonQuery();
+			criteria.FIRST_NAME = "Calum";
+			criteria.ID = "259365";
+			PersonController personController = new PersonController();
+			//Act
+			var response = personController.Post(criteria);
+			//Assert
+			//Assert.AreEqual("");
+		}
 	}
 }

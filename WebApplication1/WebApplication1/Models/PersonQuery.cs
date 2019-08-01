@@ -15,5 +15,10 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string MEMBER_TYPE;
 		public string DESCRIPTION;
 		public string EMAIL;
+		public Object ToDapperParameter()
+		{
+			return new { ID = ID, FIRST_NAME = FIRST_NAME, LAST_NAME = LAST_NAME };
+		}
 	}
+
 }
