@@ -17,6 +17,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		//rename query in paramters to criteria here and in WebAPICONfig.cs
 		public List<Person> Post([FromBody]PersonQuery query)
 		{
+			string[] databasePrefix = new string[23] { "n.", "n.", "n.", "n.", "n.", "n.", "n.","si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "ec.", "g." };
 			var persons = new List<Person>();
 			var queryBase = @"SELECT TOP (1000) n.[ID]
 								,n.[MAJOR_KEY]
@@ -51,17 +52,17 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								JOIN Groups as g
 								on n.ID = g.ID
 								JOIN exclude_comms as ec
-								on n.ID = ec.ID " + queryGenerator(query, true);
+								on n.ID = ec.ID " + queryGenerator(query, databasePrefix, true);
 			
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
 			{
 				persons = connection.Query<Person>(queryBase, query.ToDapperParameter()).ToList();
 			}
-			
+
 			return persons;
 		}
 		
-		public string queryGenerator(PersonQuery criteriaFull, bool areYouSure)
+		public string queryGenerator(PersonQuery criteriaFull, string[] databasePrefix, bool areYouSure)
 		{
 			var properties = criteriaFull.GetType().GetFields();
 
@@ -69,14 +70,14 @@ namespace ArchiveLookup.ICAS.com.Controllers
 			bool began = false;
 			for (var i =0; i < properties.Length; i++)
 			{
-				if (properties[i].GetValue(criteriaFull) != null && !began)
+				if (properties[i].GetValue(criteriaFull) != "" && !began)
 				{
-					query = query + "WHERE n." + properties[i].Name + " = @" + properties[i].Name;
+					query = query + "WHERE " + databasePrefix[i] + properties[i].Name + " = @" + properties[i].Name;
 					began = true;
 				}
-				else if (properties[i].GetValue(criteriaFull) != null )
+				else if (properties[i].GetValue(criteriaFull) != "" )
 				{
-					query = query + " AND n." + properties[i].Name + " = @" + properties[i].Name;
+					query = query + " AND " + databasePrefix[i] + properties[i].Name + " = @" + properties[i].Name;
 				}
 				
 			}

@@ -16,8 +16,9 @@ namespace ArchiveLookup.ICAS.com.test
 			criteria.FIRST_NAME = "Calum";
 			criteria.LAST_NAME = "McMeekin";
 			PersonController personController = new PersonController();
+			string[] databasePrefix = new string[23] { "n.", "n.", "n.", "n.", "n.", "n.", "n.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "ec.", "g." };
 			//Act
-			var response = personController.queryGenerator(criteria, true);
+			var response = personController.queryGenerator(criteria, databasePrefix, true);
 			//Assert
 			Assert.AreEqual("WHERE n.FIRST_NAME = @FIRST_NAME AND n.LAST_NAME = @LAST_NAME", response, "Query Generator failed to generate the correct query");
 		}
