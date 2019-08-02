@@ -64,7 +64,6 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		public string queryGenerator(PersonQuery criteriaFull, bool areYouSure)
 		{
 			//WHEN ADDING NEW CRITERIA ADD DATABSE PREFIX HERE IN SAME POSITION AS IT IS IN getClassNames();
-			string[] databasePrefix = new string[23] { "n.", "n.", "n.", "n.", "n.", "n.", "n.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "si.", "ec.", "g." };
 			var properties = criteriaFull.GetType().GetFields();
 			var query = "";
 			bool began = false;
@@ -72,12 +71,12 @@ namespace ArchiveLookup.ICAS.com.Controllers
 			{
 				if (properties[i].GetValue(criteriaFull) != "" && !began)
 				{
-					query = query + "WHERE " + databasePrefix[i] + properties[i].Name + " = @" + properties[i].Name;
+					query = query + "WHERE " + criteriaFull.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
 					began = true;
 				}
 				else if (properties[i].GetValue(criteriaFull) != "" )
 				{
-					query = query + " AND " + databasePrefix[i] + properties[i].Name + " = @" + properties[i].Name;
+					query = query + " AND " + criteriaFull.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
 				}
 				
 			}

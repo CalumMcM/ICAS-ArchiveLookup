@@ -58,6 +58,35 @@ namespace ArchiveLookup.ICAS.com.Models
 				TP_Monthly = TP_Monthly
 			};
 		}
+		public string getDatabasePrefix(string header)
+		{
+			switch (header)
+			{
+				case "ID": return "n.";
+				case "MAJOR_KEY": return "n.";
+				case "FIRST_NAME": return "n.";
+				case "MIDDLE_NAME": return "n.";
+				case "LAST_NAME": return "n.";
+				case "FUNCTIONAL_TITLE": return "n.";
+				case "STATUS": return "n.";
+				case "INTAKE_YEAR": return "si.";
+				case "TPCE_STUDENT": return "si.";
+				case "TRE_STUDENT": return "si.";
+				case "CONTRACT_START_DATE": return "si.";
+				case "CONTRACT_END_DATE": return "si.";
+				case "FIRM_ID": return "si.";
+				case "FIRM_NAME": return "si.";
+				case "FINAL_CERTIFICATE_DATE": return "si.";
+				case "EXAM_CERTIFICATE_DATE": return "si.";
+				case "BE_PASS": return "si.";
+				case "LOGBOOK_VERIFIED_DATE": return "si.";
+				case "ITP_STUDENT": return "si.";
+				case "ITP_Passed": return "si.";
+				case "EVENT_ATTENDEES": return "ec.";
+				case "TP_Monthly": return "g.";
+			}
+			return "";
+		}
 	}
 
 }
