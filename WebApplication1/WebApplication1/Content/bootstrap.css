@@ -1447,6 +1447,7 @@ th {
 
 td {
 	padding:10px;
+	width: auto;
 }
 
 .table {
@@ -2339,19 +2340,25 @@ fieldset[disabled] .btn-info.active {
 	color: #ffffff;
 	padding: 0;
 	border: none;
-	width: 5em;
+	width: 10em;
 	margin-top: 0.2em;
 	-webkit-border-radius: 10px;
 }
 
 .copyBtn{
+	display: none;
 	border: none;
+	color: white;
+	text-align: center;
 	background-color: #0078BE;
 	-webkit-border-radius:20px;
 	margin-left: 5px;
 	height:40px;
 	width: 40px;
 	text-size-adjust: 10px;
+}
+.clipboard{
+	display: none;
 }
 .btn-link {
   font-weight: normal;
@@ -5027,14 +5034,34 @@ a.list-group-item.active > .badge,
 
 .minotron{
 	display: none;
+	height: 80vmin;
+	overflow-x: auto;
+	overflow-y: auto;
+	white-space: nowrap;
 }
 
-.resultsTable{
-	display:none;
-	text-align:left;
-	border-bottom:1px solid #ddd;
-	-webkit-column-gap:40px;
-	column-gap:40px;
+.minotron a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+.minotron a:hover {
+	background-color: #777;
+}
+
+.minotron tr:first-child>td{
+	background-color: #575656;
+	color: #ffffff;
+	position: sticky;
+}
+.resultsTable {
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+	-webkit-column-gap: 40px;
+	column-gap: 40px;
 }
 
 .thumbnail {

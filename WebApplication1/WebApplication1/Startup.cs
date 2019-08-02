@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(WebApplication1.Startup))]
-namespace WebApplication1
+[assembly: OwinStartupAttribute(typeof(ArchiveLookup.ICAS.com.Startup))]
+namespace ArchiveLookup.ICAS.com
 {
     public partial class Startup
     {

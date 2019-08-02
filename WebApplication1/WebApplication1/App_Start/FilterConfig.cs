@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace WebApplication1
+namespace ArchiveLookup.ICAS.com
 {
 	public class FilterConfig
 	{
