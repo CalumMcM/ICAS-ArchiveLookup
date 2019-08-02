@@ -197,16 +197,10 @@
 		let btnNames = getBtnNames();
 		let classNames = getClassNames();
 		let inputs = {}
-		let dateTypesObjects = $('input[type=date]');
-		let dateTypeIDs = [];
-		for (let object in dateTypesObjects) {
-			dateTypeIDs.push(dateTypesObjects[object]["id"]);
-		}
-		console.log(dateTypeIDs);
+		let dateTypesObjects = $('input[type=date]').map(function () { return this.id; }).get();
 		for (let button in classNames) {
 			if (document.getElementById(btnNames[button] + "InputButton").style.backgroundColor != null) {
-				if (dateTypeIDs.includes(btnNames[button] + "input")) {
-					console.log("made it here");
+				if (dateTypesObjects.includes(btnNames[button] + "input")) {
 					inputs[classNames[button]] = moment(document.getElementById(btnNames[button] + "Input").value).format('YYYY-MM-DDT00:00:00');
 				}
 				else {
