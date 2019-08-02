@@ -5,17 +5,17 @@ using System.Web.Http;
 
 namespace ArchiveLookup.ICAS.com
 {
-    public static class WebApiConfig
-    {
-        public static void Register(HttpConfiguration config)
-        {
-            config.MapHttpAttributeRoutes();
+	public static class WebApiConfig
+	{
+		public static void Register(HttpConfiguration config)
+		{
+			config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{query}",
-                defaults: new {query = RouteParameter.Optional }
-            );
-        }
-    }
+			config.Routes.MapHttpRoute(
+				name: "DefaultApi",
+				routeTemplate: "api/{controller}/{query}",
+				defaults: new {query = RouteParameter.Optional }
+			);
+		}
+	}
 }
