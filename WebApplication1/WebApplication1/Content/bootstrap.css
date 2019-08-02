@@ -2344,7 +2344,9 @@ fieldset[disabled] .btn-info.active {
 	margin-top: 0.2em;
 	-webkit-border-radius: 10px;
 }
-
+.resultsHeader{
+	display: none;
+}
 .copyBtn{
 	display: none;
 	border: none;
