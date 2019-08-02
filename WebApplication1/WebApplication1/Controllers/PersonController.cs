@@ -80,16 +80,15 @@ namespace ArchiveLookup.ICAS.com.Controllers
 			bool began = false;
 			for (var i =0; i < properties.Length; i++)
 			{
-				if (properties[i].GetValue(criteriaFull) != "" && !began)
+				if (properties[i].GetValue(criteriaFull) != "" && properties[i].GetValue(criteriaFull) != null && !began)
 				{
 					query = query + "WHERE " + criteriaFull.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
 					began = true;
 				}
-				else if (properties[i].GetValue(criteriaFull) != "" )
+				else if (properties[i].GetValue(criteriaFull) != "" && properties[i].GetValue(criteriaFull) != null)
 				{
 					query = query + " AND " + criteriaFull.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
 				}
-				
 			}
 			
 			return query;
