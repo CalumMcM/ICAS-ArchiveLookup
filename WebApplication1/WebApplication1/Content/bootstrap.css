@@ -2358,6 +2358,7 @@ fieldset[disabled] .btn-info.active {
 	height:40px;
 	width: 40px;
 	text-size-adjust: 10px;
+	margin-bottom: 5px;
 }
 .clipboard{
 	display: none;
