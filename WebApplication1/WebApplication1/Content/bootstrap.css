@@ -2346,6 +2346,7 @@ fieldset[disabled] .btn-info.active {
 }
 
 .copyBtn{
+	display: none;
 	border: none;
 	color: white;
 	text-align: center;
