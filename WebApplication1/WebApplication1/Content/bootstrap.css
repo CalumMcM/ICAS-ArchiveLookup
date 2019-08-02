@@ -5046,6 +5046,11 @@ a.list-group-item.active > .badge,
 	background-color: #777;
 }
 
+.minotron tr:first-child>td{
+	background-color: #575656;
+	color: #ffffff;
+	position: sticky;
+}
 .resultsTable {
 	text-align: left;
 	border-bottom: 1px solid #ddd;
