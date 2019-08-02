@@ -2347,12 +2347,17 @@ fieldset[disabled] .btn-info.active {
 
 .copyBtn{
 	border: none;
+	color: white;
+	text-align: center;
 	background-color: #0078BE;
 	-webkit-border-radius:20px;
 	margin-left: 5px;
 	height:40px;
 	width: 40px;
 	text-size-adjust: 10px;
+}
+.clipboard{
+	display: none;
 }
 .btn-link {
   font-weight: normal;

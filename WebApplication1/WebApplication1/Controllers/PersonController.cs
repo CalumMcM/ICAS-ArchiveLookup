@@ -55,7 +55,18 @@ namespace ArchiveLookup.ICAS.com.Controllers
 			
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
 			{
-				persons = connection.Query<Person>(queryBase, criteria.ToDapperParameter()).ToList();
+				try
+				{
+					persons = connection.Query<Person>(queryBase, criteria.ToDapperParameter()).ToList();
+				}
+				catch (SqlException e)
+				{
+					switch (e.Number)
+					{
+						case 2601: return persons;
+						default: return persons;
+					}
+				}
 			}
 
 			return persons;

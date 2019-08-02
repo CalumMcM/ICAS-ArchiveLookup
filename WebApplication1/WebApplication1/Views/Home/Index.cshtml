@@ -62,7 +62,7 @@
 	</p>
 
 	<p id="intakeyearInputText" class="lead">Intake Year:
-		<input id="intakeyearInput" type="text" class="input-lookup" name="intakeyear">
+		<input id="intakeyearInput" type="text" class="input-lookup" name="intakeyear" placeholder="EG: 1990/1991">
 	</p>
 
 	<p id="statusInputText" class="lead">Status:
@@ -135,6 +135,7 @@
 		Results
 		<div id="resultsUnderline" class="underlineResults"></div>
 	</h1>
+	<button id="copyButton" onclick="copy()" class="copyBtn">&#x270E</button>
 	<div id="ResultsHeaders"></div>
 	<div id="ResultsContainer" class="minotron">
 		<table id="ResultsTable">
@@ -143,7 +144,7 @@
 			</tr>
 		</table>
 	</div>
-
+	<p id="clipboard" class="clipboard"></p>
 </div>
 
 <script>
@@ -168,14 +169,17 @@
 		}
 		showSubmit();
 	}
-	function copy(item) {
-		let itemsToCopy = document.createElement("textToCopy");
+	function copy() {
+		let clipboardContents = document.getElementById("clipboard").innerHTML;
+		console.log(typeof(clipboardContents));
+		let itemsToCopy = document.createElement("textarea");
 		document.body.appendChild(itemsToCopy);
-		itemsToCopy.value = "Hedgehogs, why don't they share the hedge?";
-		itemsToCopy.select;
+		itemsToCopy.value = clipboardContents;
+		itemsToCopy.select();
 		document.execCommand("copy");
-		console.log("copied " + item);
+		console.log("copied ");
 		document.body.removeChild(itemsToCopy);
+		document.getElementById("copyButton").innerHTML = '✔';
 	}
 	function showSubmit() {
 		let btnNames = getBtnNames();
@@ -200,17 +204,15 @@
 
 			}
 		}
-		console.log(inputs)
 		let xhttp = new XMLHttpRequest();
 		xhttp.open("POST", 'api/person', true);
 		let MOCKqueryResults;
 		xhttp.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				var queryResults = this.response
-				console.log(queryResults);
 				queryResults = $.parseJSON(queryResults);
-				console.log(queryResults);
 				displayResults(queryResults);
+				constructClipboard(queryResults);
 			}
 		};
 		xhttp.setRequestHeader('Content-Type', 'application/json');
@@ -222,6 +224,7 @@
 		for (var i = document.getElementById("ResultsTable").rows.length; i > 0; i--) {
 			document.getElementById("ResultsTable").deleteRow(i - 1);
 		}
+		//Display and Construct new table:
 		document.getElementById("ResultsContainer").style.display = "block";
 		document.getElementById("ResultsHeader").style.display = "block";
 		document.getElementById("resultsUnderline").style.display = "block";
@@ -235,7 +238,6 @@
 			let headers = Object.keys(inputs[0]);
 			for (let i = 0; i < headers.length; ++i) {
 				let curHeaderCell = headerRowTable.insertCell(-1);
-				console.log(headers[i]);
 				curHeaderCell.innerHTML = headers[i];
 			}
 			for (let record in inputs) {
@@ -249,4 +251,18 @@
 			}
 		}
 	}
+	function constructClipboard(queryResult){
+		let clipboardContents = "";
+		for (let record in queryResult) {
+			let curRecord = queryResult[record];
+			let recordValues = Object.values(queryResult[record]);
+			recordValues.forEach(function (element) {
+				clipboardContents = clipboardContents + "\t" + element
+			});
+			clipboardContents = clipboardContents + "\n";
+		}
+		console.log(clipboardContents);
+		document.getElementById("clipboard").innerHTML = clipboardContents;
+	}
+
 </script>
