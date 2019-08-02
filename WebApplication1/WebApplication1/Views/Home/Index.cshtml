@@ -145,6 +145,7 @@
 	<p id="clipboard" class="clipboard"></p>
 </div>
 <script src="~/Scripts/moment.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script>
 	//WHEN ADDING A NEW BUTTON ADD THE NAME OF IT HERE \/
 	const getBtnNames = () => ["id", "mk", "forename", "middlename", "surname", "functionaltitle", "status", "intakeyear", "tpce", "tre", "csd", "ced", "firmid", "firmname", "fcd", "ecd", "bp", "lbv", "lbvd", "itps", "itp", "ea", "tpm"];
@@ -196,12 +197,20 @@
 		let btnNames = getBtnNames();
 		let classNames = getClassNames();
 		let inputs = {}
+		let dateTypesObjects = $('input[type=date]');
+		let dateTypeIDs = [];
+		for (let object in dateTypesObjects) {
+			dateTypeIDs.push(dateTypesObjects[object]["id"]);
+		}
+		console.log(dateTypeIDs);
 		for (let button in classNames) {
 			if (document.getElementById(btnNames[button] + "InputButton").style.backgroundColor != null) {
-				if (!isNaN(Date.parse(document.getElementById(btnNames[button] + "Input").value))) {
+				if (dateTypeIDs.includes(btnNames[button] + "input")) {
+					console.log("made it here");
 					inputs[classNames[button]] = moment(document.getElementById(btnNames[button] + "Input").value).format('YYYY-MM-DDT00:00:00');
 				}
 				else {
+					if (btnNames[button] + "Input")
 					inputs[classNames[button]] = document.getElementById(btnNames[button] + "Input").value;
 				}	
 			}
