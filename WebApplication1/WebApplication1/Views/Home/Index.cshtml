@@ -256,6 +256,7 @@
 	}
 	function copySelectButton(buttonID) {
 		currentColour = document.getElementById(buttonID + "Button").style.backgroundColor;
+		document.getElementById("copyButton").innerHTML = '&#x270E';
 		if (currentColour == "rgb(192, 10, 39)" || currentColour == "") {
 			document.getElementById(buttonID + "Button").style.backgroundColor = "#20A64B";
 		}
