@@ -103,5 +103,18 @@ namespace ArchiveLookup.ICAS.com.test
 				Assert.AreEqual("g.", criteria.getDatabasePrefix(header));
 			}
 		}
+		[TestMethod]
+		public void PersonQueryReturnsCorrectDatabasePrefixFora()
+		{
+			//Arrange
+			PersonQuery criteria = new PersonQuery();
+			//Act
+			var aHeaders = new string[5] { "DESCRIPTION", "TRANSACTION_DATE", "EFFECTIVE_DATE", "PRODUCT_CODE", "ACTIVITY_TYPE" };
+			//Assert
+			foreach(string header in aHeaders)
+			{
+				Assert.AreEqual("a.", criteria.getDatabasePrefix(header));
+			}
+		}
 	}
 }

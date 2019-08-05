@@ -12,6 +12,11 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string FIRST_NAME { get; set; }
 		public string MIDDLE_NAME { get; set; }
 		public string LAST_NAME { get; set; }
+		public string DESCRIPTION { get; set; }
+		public string TRANSACTION_DATE { get; set; }
+		public string EFFECTIVE_DATE { get; set; }
+		public string PRODUCT_CODE { get; set; }
+		public string ACTIVITY_TYPE { get; set; }
 		public string FUNCTIONAL_TITLE { get; set; }
 		public string STATUS { get; set; }
 		public string INTAKE_YEAR{ get; set; }

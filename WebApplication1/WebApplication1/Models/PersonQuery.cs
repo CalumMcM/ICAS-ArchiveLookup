@@ -30,6 +30,11 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string ITP_Passed;
 		public string EVENT_ATTENDEES;
 		public string TP_Monthly;
+		public string DESCRIPTION;
+		public Nullable<DateTime> TRANSACTION_DATE;
+		public Nullable<DateTime> EFFECTIVE_DATE;
+		public string PRODUCT_CODE;
+		public string ACTIVITY_TYPE;
 		public Object ToDapperParameter()
 		{
 			return new {
@@ -55,7 +60,12 @@ namespace ArchiveLookup.ICAS.com.Models
 				ITP_STUDENT = ITP_STUDENT,
 				ITP_Passed  = ITP_Passed,
 				EVENT_ATTENDEES = EVENT_ATTENDEES,
-				TP_Monthly = TP_Monthly
+				TP_Monthly = TP_Monthly,
+				DESCRIPTION = DESCRIPTION,
+				TRANSACTION_DATE = TRANSACTION_DATE,
+				EFFECTIVE_DATE = EFFECTIVE_DATE,
+				PRODUCT_CODE = PRODUCT_CODE,
+				ACTIVITY_TYPE = ACTIVITY_TYPE
 			};
 		}
 		public string getDatabasePrefix(string header)
@@ -84,6 +94,11 @@ namespace ArchiveLookup.ICAS.com.Models
 				case "ITP_Passed": return "si.";
 				case "EVENT_ATTENDEES": return "ec.";
 				case "TP_Monthly": return "g.";
+				case "DESCRIPTION": return "a.";
+				case "TRANSACTION_DATE": return "a.";
+				case "EFFECTIVE_DATE": return "a.";
+				case "PRODUCT_CODE": return "a.";
+				case "ACTIVITY_TYPE": return "a.";
 			}
 			return "";
 		}
