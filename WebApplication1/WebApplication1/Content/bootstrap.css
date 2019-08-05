@@ -2360,7 +2360,42 @@ fieldset[disabled] .btn-info.active {
 	text-size-adjust: 10px;
 	margin-bottom: 5px;
 }
+
+.dropbtn:hover, .dropbtn:focus {
+	background-color: #2980B9;
+}
+
+.copySelectDropdown {
+	position: relative;
+	display: flex;
+	align-content: flex-start;
+}
+
+.copySelectDropdown-content {
+	margin-top:40px;
+	display: none;
+	position: absolute;
+	width: 41em;
+	overflow: auto;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+
+.copySelectDropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.copySelectDropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
 .clipboard{
+	display: none;
+}
+.queryResults{
 	display: none;
 }
 .btn-link {
@@ -5041,6 +5076,11 @@ a.list-group-item.active > .badge,
 	overflow-x: auto;
 	overflow-y: auto;
 	white-space: nowrap;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .minotron a {
@@ -5065,6 +5105,11 @@ a.list-group-item.active > .badge,
 	border-bottom: 1px solid #ddd;
 	-webkit-column-gap: 40px;
 	column-gap: 40px;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .thumbnail {
