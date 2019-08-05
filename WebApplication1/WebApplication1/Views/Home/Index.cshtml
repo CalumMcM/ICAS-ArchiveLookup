@@ -169,7 +169,7 @@
 	</div>
 	<div class="dropdown">
 		<button id="copyButton" onclick="copy()" class="copyBtn">&#x270E</button>
-		<button id="copySelectButton" onclick="myFunction()" class="copyBtn">+</button>
+		<button id="copySelectButton" onclick="showCopyDropdown()" class="copyBtn">+</button>
 		<div id="myDropdown" class="dropdown-content">
 			<button id="idCopyButton" onclick="copySelectButton('idCopy')" class="addBtn">ID</button>
 			<button id="mkCopyButton" onclick="copySelectButton('mkCopy')" class="addBtn">Major Key</button>
@@ -178,7 +178,7 @@
 			<button id="surnameCopyButton" onclick="copySelectButton('surnameCopy')" class="addBtn">Last Name</button>
 			<button id="descCopyButton" onclick="copySelectButton('descCopy')" class="addBtn">Description</button>
 			<button id="transCopyButton" onclick="copySelectButton('transCopy')" class="addBtn">Transaction Date</button>
-			<button id="effecICopyButton" onclick="copySelectButton('effecCopy')" class="addBtn">Effective Date</button>
+			<button id="effecCopyButton" onclick="copySelectButton('effecCopy')" class="addBtn">Effective Date</button>
 			<button id="prodCopyButton" onclick="copySelectButton('prodCopy')" class="addBtn">Product Code</button>
 			<button id="actCopyButton" onclick="copySelectButton('actCopy')" class="addBtn">Activity Type</button>
 			<button id="functionaltitleCopyButton" onclick="copySelectButton('functionaltitleCopy')" class="addBtn">Functional Title</button>
@@ -195,7 +195,7 @@
 			<button id="bpCopyButton" onclick="copySelectButton('bpCopy')" class="addBtn">Be Pass</button>
 			<button id="lbvCopyButton" onclick="copySelectButton('lbvCopy')" class="addBtn">Logbook Verified</button>
 			<button id="lbvdCopyButton" onclick="copySelectButton('lbvdCopy')" class="addBtn">Logbook Verified Date</button>
-			<button id="itpsICopyButton" onclick="copySelectButton('itpsCopy')" class="addBtn">ITP Student</button>
+			<button id="itpsCopyButton" onclick="copySelectButton('itpsCopy')" class="addBtn">ITP Student</button>
 			<button id="itpCopyButton" onclick="copySelectButton('itpCopy')" class="addBtn">ITP Passed</button>
 			<button id="eaCopyButton" onclick="copySelectButton('eaCopy')" class="addBtn">Event Attendees</button>
 			<button id="tpmCopyButton" onclick="copySelectButton('tpmCopy')" class="addBtn">TP Monthly</button>
@@ -208,6 +208,7 @@
 		</table>
 	</div>
 	<p id="clipboard" class="clipboard"></p>
+	<p id="queryResults" class="queryResults"></p>
 </div>
 <script src="~/Scripts/moment.js" type="text/javascript"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
@@ -234,8 +235,16 @@
 		showSubmit();
 	}
 	function copy() {
+		let btnNames = getBtnNames();
+		let classNames = getClassNames();
+		let chosenFields = [];
+		for (let button in classNames) {
+			if (document.getElementById(btnNames[button]+"CopyButton").style.backgroundColor == "rgb(32, 166, 75)") {
+				chosenFields.push(classNames[button]);
+			}
+		}
+		constructClipboard(chosenFields);
 		let clipboardContents = document.getElementById("clipboard").innerHTML;
-		console.log(typeof(clipboardContents));
 		let itemsToCopy = document.createElement("textarea");
 		document.body.appendChild(itemsToCopy);
 		itemsToCopy.value = clipboardContents;
@@ -247,7 +256,6 @@
 	}
 	function copySelectButton(buttonID) {
 		currentColour = document.getElementById(buttonID + "Button").style.backgroundColor;
-		console.log(currentColour)
 		if (currentColour == "rgb(192, 10, 39)" || currentColour == "") {
 			document.getElementById(buttonID + "Button").style.backgroundColor = "#20A64B";
 		}
@@ -255,7 +263,7 @@
 			document.getElementById(buttonID + "Button").style.backgroundColor = "#C00A27";
 		}
 	}
-	function myFunction() {
+	function showCopyDropdown() {
 		document.getElementById("myDropdown").classList.toggle("show");
 	}
 	function showSubmit() {
@@ -295,7 +303,7 @@
 				var queryResults = this.response
 				queryResults = $.parseJSON(queryResults);
 				displayResults(queryResults);
-				constructClipboard(queryResults);
+				document.getElementById("queryResults").innerHTML = JSON.stringify(queryResults);
 			}
 		};
 		xhttp.setRequestHeader('Content-Type', 'application/json');
@@ -337,15 +345,29 @@
 			}
 		}
 	}
-	function constructClipboard(queryResult){
+	function constructClipboard(chosenFields) {
+		let queryResults = JSON.parse(document.getElementById("queryResults").innerHTML);
 		let clipboardContents = "";
-		for (let record in queryResult) {
-			let curRecord = queryResult[record];
-			let recordValues = Object.values(queryResult[record]);
-			recordValues.forEach(function (element) {
-				clipboardContents = clipboardContents + "\t" + element
-			});
-			clipboardContents = clipboardContents + "\n";
+		if (chosenFields.length == 0) {
+			for (let record in queryResults) {
+				let curRecord = queryResults[record];
+				let recordValues = Object.values(queryResults[record]);
+				recordValues.forEach(function (element) {
+					clipboardContents += "\t" + element
+				});
+				clipboardContents += "\n";
+			}
+		}
+		else
+		{
+			console.log(chosenFields);
+			for (let curRecord in queryResults) {
+				let record = queryResults[curRecord];
+				for (let chosenField in chosenFields) {
+					clipboardContents += "\t" + record[chosenFields[chosenField]];
+				}
+				clipboardContents += "\n";
+			}
 		}
 		console.log(clipboardContents);
 		document.getElementById("clipboard").innerHTML = clipboardContents;
