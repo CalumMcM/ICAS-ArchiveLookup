@@ -359,7 +359,6 @@
 		}
 		else
 		{
-			console.log(chosenFields);
 			for (let curRecord in queryResults) {
 				let record = queryResults[curRecord];
 				for (let chosenField in chosenFields) {
@@ -368,7 +367,6 @@
 				clipboardContents += "\n";
 			}
 		}
-		console.log(clipboardContents);
 		document.getElementById("clipboard").innerHTML = clipboardContents;
 	}
 
