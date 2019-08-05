@@ -167,7 +167,40 @@
 			<div id="resultsUnderline" class="underlineResults"></div>
 		</h1>
 	</div>
-	<button id="copyButton" onclick="copy()" class="copyBtn">&#x270E</button>
+	<div class="dropdown">
+		<button id="copyButton" onclick="copy()" class="copyBtn">&#x270E</button>
+		<button id="copySelectButton" onclick="myFunction()" class="copyBtn">+</button>
+		<div id="myDropdown" class="dropdown-content">
+			<button id="idCopyButton" onclick="copySelectButton('idCopy')" class="addBtn">ID</button>
+			<button id="mkCopyButton" onclick="copySelectButton('mkCopy')" class="addBtn">Major Key</button>
+			<button id="forenameCopyButton" onclick="copySelectButton('forenameCopy')" class="addBtn">First Name</button>
+			<button id="middlenameCopyButton" onclick="copySelectButton('middlenameCopy')" class="addBtn">Middle Name</button>
+			<button id="surnameCopyButton" onclick="copySelectButton('surnameCopy')" class="addBtn">Last Name</button>
+			<button id="descCopyButton" onclick="copySelectButton('descCopy')" class="addBtn">Description</button>
+			<button id="transCopyButton" onclick="copySelectButton('transCopy')" class="addBtn">Transaction Date</button>
+			<button id="effecICopyButton" onclick="copySelectButton('effecCopy')" class="addBtn">Effective Date</button>
+			<button id="prodCopyButton" onclick="copySelectButton('prodCopy')" class="addBtn">Product Code</button>
+			<button id="actCopyButton" onclick="copySelectButton('actCopy')" class="addBtn">Activity Type</button>
+			<button id="functionaltitleCopyButton" onclick="copySelectButton('functionaltitleCopy')" class="addBtn">Functional Title</button>
+			<button id="statusCopyButton" onclick="copySelectButton('statusCopy')" class="addBtn">Status</button>
+			<button id="intakeyearCopyButton" onclick="copySelectButton('intakeyearCopy')" class="addBtn">Intake Year</button>
+			<button id="tpceCopyButton" onclick="copySelectButton('tpceCopy')" class="addBtn">TPCE STUDENT</button>
+			<button id="treCopyButton" onclick="copySelectButton('treCopy')" class="addBtn">TRE Student</button>
+			<button id="csdCopyButton" onclick="copySelectButton('csdCopy')" class="addBtn">Contract Start Date</button>
+			<button id="cedCopyButton" onclick="copySelectButton('cedCopy')" class="addBtn">Contract End Date</button>
+			<button id="firmidCopyButton" onclick="copySelectButton('firmidCopy')" class="addBtn">Firm ID</button>
+			<button id="firmnameCopyButton" onclick="copySelectButton('firmnameCopy')" class="addBtn">Firm Name</button>
+			<button id="fcdCopyButton" onclick="copySelectButton('fcdCopy')" class="addBtn">Final Certificate Date</button>
+			<button id="ecdCopyButton" onclick="copySelectButton('ecdCopy')" class="addBtn">Exam Certificate Date</button>
+			<button id="bpCopyButton" onclick="copySelectButton('bpCopy')" class="addBtn">Be Pass</button>
+			<button id="lbvCopyButton" onclick="copySelectButton('lbvCopy')" class="addBtn">Logbook Verified</button>
+			<button id="lbvdCopyButton" onclick="copySelectButton('lbvdCopy')" class="addBtn">Logbook Verified Date</button>
+			<button id="itpsICopyButton" onclick="copySelectButton('itpsCopy')" class="addBtn">ITP Student</button>
+			<button id="itpCopyButton" onclick="copySelectButton('itpCopy')" class="addBtn">ITP Passed</button>
+			<button id="eaCopyButton" onclick="copySelectButton('eaCopy')" class="addBtn">Event Attendees</button>
+			<button id="tpmCopyButton" onclick="copySelectButton('tpmCopy')" class="addBtn">TP Monthly</button>
+		</div>
+	</div>
 	<div id="ResultsHeaders"></div>
 	<div id="ResultsContainer" class="minotron">
 		<table id="ResultsTable">
@@ -188,7 +221,7 @@
 		let inputText = document.getElementById(input);
 		let inputTextTitle = document.getElementById(input + "Text");
 		let button = document.getElementById(input + "Button");
-		if (inputText.style.display == "none") {
+		if (inputText.style.display == "none" || button.style.backgroundColor == "") {
 			inputText.value = "";
 			inputText.style.display = "block";
 			inputTextTitle.style.display = "block";
@@ -211,6 +244,19 @@
 		console.log("copied!");
 		document.body.removeChild(itemsToCopy);
 		document.getElementById("copyButton").innerHTML = '&#10004';
+	}
+	function copySelectButton(buttonID) {
+		currentColour = document.getElementById(buttonID + "Button").style.backgroundColor;
+		console.log(currentColour)
+		if (currentColour == "rgb(192, 10, 39)" || currentColour == "") {
+			document.getElementById(buttonID + "Button").style.backgroundColor = "#20A64B";
+		}
+		else {
+			document.getElementById(buttonID + "Button").style.backgroundColor = "#C00A27";
+		}
+	}
+	function myFunction() {
+		document.getElementById("myDropdown").classList.toggle("show");
 	}
 	function showSubmit() {
 		let btnNames = getBtnNames();
@@ -267,6 +313,7 @@
 		document.getElementById("resultsUnderline").style.display = "block";
 		document.getElementById("copyButton").innerHTML = '&#x270E';
 		document.getElementById("copyButton").style.display = "block";
+		document.getElementById("copySelectButton").style.display = "block";
 		let resultsTable = document.getElementById("ResultsTable");
 		let headerTable = resultsTable.createTHead();
 		let headerRowTable = resultsTable.insertRow(0);
