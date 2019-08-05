@@ -226,7 +226,7 @@
 		let inputs = {}
 		let dateTypesObjects = $('input[type=date]').map(function () { return this.id; }).get();
 		for (let button in classNames) {
-			if (document.getElementById(btnNames[button] + "InputButton").style.backgroundColor != null) {
+			if (document.getElementById(btnNames[button] + "InputButton").style.backgroundColor == "rgb(32, 166, 75)") {
 				if (dateTypesObjects.includes(btnNames[button] + "input")) {
 					inputs[classNames[button]] = moment(document.getElementById(btnNames[button] + "Input").value).format('YYYY-MM-DDT00:00:00');
 				}
