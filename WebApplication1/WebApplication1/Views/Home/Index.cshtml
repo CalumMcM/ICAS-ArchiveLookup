@@ -34,6 +34,11 @@
 	<button id="itpInputButton" onclick="showInput('itpInput')" class="addBtn">ITP Passed</button>
 	<button id="eaInputButton" onclick="showInput('eaInput')" class="addBtn">Event Attendees</button>
 	<button id="tpmInputButton" onclick="showInput('tpmInput')" class="addBtn">TP Monthly</button>
+	<button id="descInputButton" onclick="showInput('descInput')" class="addBtn">Description</button>
+	<button id="transInputButton" onclick="showInput('transInput')" class="addBtn">Transaction Date</button>
+	<button id="effecInputButton" onclick="showInput('effecInput')" class="addBtn">Effective Date</button>
+	<button id="prodInputButton" onclick="showInput('prodInput')" class="addBtn">Product Code</button>
+	<button id="actInputButton" onclick="showInput('actInput')" class="addBtn">Activity Type</button>
 
 
 
@@ -129,6 +134,26 @@
 		<input type="text" id="tpmInput" class="input-lookup" name="tpm">
 	</p>
 
+	<p id="descInputText" class="lead">Description:
+		<input type="text" id="descInput" class="input-lookup" name="desc">
+	</p>
+
+	<p id="transInputText" class="lead">Transaction Date:
+		<input type="date" id="transInput" class="input-lookup" name="trans">
+	</p>
+
+	<p id="effecInputText" class="lead">Effective Date:
+		<input type="date" id="effecInput" class="input-lookup" name="effec">
+	</p>
+
+	<p id="prodInputText" class="lead">Product Code:
+		<input type="text" id="prodInput" class="input-lookup" name="prod">
+	</p>
+
+	<p id="actInputText" class="lead">Activity Type: 
+		<input type="text" id="actInput" class="input-lookup" name="act">
+	</p>
+
 	<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
 	<div id="ResultsHeader" class="resultsHeader">
 		<h1 id="ResultsHeader">
@@ -150,9 +175,9 @@
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script>
 	//WHEN ADDING A NEW BUTTON ADD THE NAME OF IT HERE \/
-	const getBtnNames = () => ["id", "mk", "forename", "middlename", "surname", "functionaltitle", "status", "intakeyear", "tpce", "tre", "csd", "ced", "firmid", "firmname", "fcd", "ecd", "bp", "lbv", "lbvd", "itps", "itp", "ea", "tpm"];
+	const getBtnNames = () =>["id", "mk", "forename", "middlename", "surname", "desc", "trans", "effec", "prod", "act", "functionaltitle", "status", "intakeyear", "tpce", "tre", "csd", "ced", "firmid", "firmname", "fcd", "ecd", "bp", "lbv", "lbvd", "itps", "itp", "ea", "tpm"];
 	//ADD NAME OF NEW FIELD HERE \/
-	const getClassNames = () => ["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "FUNCTIONAL_TITLE", "STATUS", "INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", "FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "LOGBOOK_VERIFIED", "LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed", "EVENT_ATTENDEES", "TP_Monthly"];
+	const getClassNames = () => ["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "DESCRIPTION", "TRANSACTION_DATE", "EFFECTIVE_DATE","PRODUCT_CODE","ACTIVITY_TYPE","FUNCTIONAL_TITLE", "STATUS", "INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", "FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "LOGBOOK_VERIFIED", "LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed", "EVENT_ATTENDEES", "TP_Monthly"];
 	
 	function showInput(input) {
 		let inputText = document.getElementById(input);
@@ -178,7 +203,7 @@
 		itemsToCopy.value = clipboardContents;
 		itemsToCopy.select();
 		document.execCommand("copy");
-		console.log("copied ");
+		console.log("copied!");
 		document.body.removeChild(itemsToCopy);
 		document.getElementById("copyButton").innerHTML = '&#10004';
 	}
