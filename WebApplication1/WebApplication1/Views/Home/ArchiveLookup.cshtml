@@ -236,8 +236,14 @@
 <script src="~/Scripts/moment.js" type="text/javascript"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script>
-	const getBtnNames = () =>["id", "mk", "forename", "middlename", "surname", "desc", "trans", "effec", "prod", "act", "functionaltitle", "status", "intakeyear", "tpce", "tre", "csd", "ced", "firmid", "firmname", "fcd", "ecd", "bp", "lbv", "lbvd", "itps", "itp", "ea", "tpm"];
-	const getClassNames = () => ["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "DESCRIPTION", "TRANSACTION_DATE", "EFFECTIVE_DATE","PRODUCT_CODE","ACTIVITY_TYPE","FUNCTIONAL_TITLE", "STATUS", "INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", "FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "LOGBOOK_VERIFIED", "LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed", "EVENT_ATTENDEES", "TP_Monthly"];
+	const getBtnNames = () =>["id", "mk", "forename", "middlename", "surname", "desc", "trans", "effec", 
+	"prod", "act", "functionaltitle", "status", "intakeyear", "tpce", "tre", "csd", "ced", "firmid", 
+	"firmname", "fcd", "ecd", "bp", "lbv", "lbvd", "itps", "itp", "ea", "tpm"];
+	const getClassNames = () => ["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "DESCRIPTION", 
+	"TRANSACTION_DATE", "EFFECTIVE_DATE","PRODUCT_CODE","ACTIVITY_TYPE","FUNCTIONAL_TITLE", "STATUS", 
+	"INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", 
+	"FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "LOGBOOK_VERIFIED", 
+	"LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed", "EVENT_ATTENDEES", "TP_Monthly"];
 
 	function showInput(input) {
 		let inputText = document.getElementById(input);
@@ -344,29 +350,43 @@
 		document.getElementById("copyButton").innerHTML = '&#x1F4CB';
 		document.getElementById("copyButton").style.display = "block";
 		document.getElementById("copySelectButton").style.display = "block";
-		let resultsTable = document.getElementById("ResultsTable");
-		let headerTable = resultsTable.createTHead();
-		let headerRowTable = resultsTable.insertRow(0);
+		let resultsTableHeaders = ["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "DESCRIPTION", 
+		"TRANSACTION_DATE", "EFFECTIVE_DATE", "PRODUCT_CODE", "ACTIVITY_TYPE", "FUNCTIONAL_TITLE", "STATUS", 
+		"INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", 
+		"FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "LOGBOOK_VERIFIED",
+		"LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed", "EVENT_ATTENDEES", "TP_Monthly"];
+		tableBuilder(inputs, "ResultsTable", resultsTableHeaders);
+	}
+	function tableBuilder(inputs, tableName, headers) {
+		let table = document.getElementById(tableName);
+		let headerTable = table.createTHead();
+		let headerRowTable = table.insertRow(0);
 		if (inputs.length == 0) {
 			let curHeaderCell = headerRowTable.insertCell(-1);
 			curHeaderCell.innerHTML = "The query failed to return any results";
-		} else {
-			let headers = Object.keys(inputs[0]);
-			for (let i = 0; i < headers.length; ++i) {
+		}
+		else {
+			let tableHeaders = Object.keys(inputs[0]).filter(word => headers.includes(word));
+			let discardedHeaders = Object.keys(inputs[0]).filter(word => !headers.includes(word));
+			console.log(tableHeaders);
+			console.log(discardedHeaders);
+			for (let i = 0; i < tableHeaders.length; ++i) {
 				let curHeaderCell = headerRowTable.insertCell(-1);
-				curHeaderCell.innerHTML = headers[i];
+				curHeaderCell.innerHTML = tableHeaders[i];
+			}
+			for (let header in discardedHeaders) {
+				inputs.map(record => delete record[discardedHeaders[header]]);
 			}
 			for (let record in inputs) {
 				let curRecord = inputs[record];
 				let recordValues = Object.values(inputs[record]);
-				let curRecordRow = resultsTable.insertRow(-1);
-				for (let i = 0; i < headers.length - 1; ++i) {
+				let curRecordRow = table.insertRow(-1);
+				for (let i = 0; i < tableHeaders.length; ++i) {
 					let curRecordCell = curRecordRow.insertCell(-1);
 					curRecordCell.innerHTML = recordValues[i];
 				}
 			}
 		}
-	}
 	function constructClipboard(chosenFields) {
 		let queryResults = JSON.parse(document.getElementById("queryResults").innerHTML);
 		let clipboardContents = "";

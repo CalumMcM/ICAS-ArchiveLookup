@@ -44,6 +44,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								,si.[LOGBOOK_VERIFIED_DATE]
 								,si.[ITP_STUDENT]
 								,si.[ITP_Passed]
+								,si.[COMMENTS]
 								,ec.[EVENT_ATTENDEES]
 								,g.[TP_Monthly]
 								FROM [imis].[dbo].[Name] as n

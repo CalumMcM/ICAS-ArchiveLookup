@@ -33,6 +33,7 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string LOGBOOK_VERIFIED_DATE { get; set; }
 		public string ITP_STUDENT { get; set; }
 		public string ITP_Passed { get; set; }
+		public string COMMENTS { get; set; }
 		public string EVENT_ATTENDEES { get; set; }
 		public string TP_Monthly { get; set; }
 	}

@@ -34,6 +34,7 @@ namespace ArchiveLookup.ICAS.com.Models
 		public Nullable<DateTime> TRANSACTION_DATE;
 		public Nullable<DateTime> EFFECTIVE_DATE;
 		public string PRODUCT_CODE;
+		public string COMMENTS;
 		public string ACTIVITY_TYPE;
 		public Object ToDapperParameter()
 		{
@@ -65,7 +66,8 @@ namespace ArchiveLookup.ICAS.com.Models
 				TRANSACTION_DATE = TRANSACTION_DATE,
 				EFFECTIVE_DATE = EFFECTIVE_DATE,
 				PRODUCT_CODE = PRODUCT_CODE,
-				ACTIVITY_TYPE = ACTIVITY_TYPE
+				ACTIVITY_TYPE = ACTIVITY_TYPE,
+				COMMENTS = COMMENTS
 			};
 		}
 		public string getDatabasePrefix(string header)
@@ -92,6 +94,7 @@ namespace ArchiveLookup.ICAS.com.Models
 				case "LOGBOOK_VERIFIED_DATE": return "si.";
 				case "ITP_STUDENT": return "si.";
 				case "ITP_Passed": return "si.";
+				case "COMMENTS": return "si.";
 				case "EVENT_ATTENDEES": return "ec.";
 				case "TP_Monthly": return "g.";
 				case "DESCRIPTION": return "a.";

@@ -70,7 +70,7 @@ namespace ArchiveLookup.ICAS.com.test
 			//Arrange
 			PersonQuery criteria = new PersonQuery();
 			//Act
-			var siHeaders = new string[14] { "INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", "FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "BE_PASS", "LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed" };
+			var siHeaders = new string[15] { "COMMENTS", "INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", "FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "BE_PASS", "LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed" };
 			//Assert
 			foreach (string header in siHeaders)
 			{

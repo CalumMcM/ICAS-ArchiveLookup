@@ -5129,7 +5129,8 @@ a.list-group-item.active > .badge,
 
 .minotron{
 	display: none;
-	height: 80vmin;
+	height: auto;
+	max-height: 50vmin;
 	overflow-x: auto;
 	overflow-y: auto;
 	white-space: nowrap;

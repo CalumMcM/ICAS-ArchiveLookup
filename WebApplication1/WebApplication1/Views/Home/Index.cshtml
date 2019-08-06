@@ -56,10 +56,25 @@
 
 	<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
 	<div id="ResultsHeader" class="resultsHeader">
-		<h1 id="ResultsHeader">
-			Results
+		<h1>Results
 			<div id="resultsUnderline" class="underlineResults"></div>
 		</h1>
+	</div>
+
+	<div id="CustomerHeader" class="resultsHeader">
+		<h2>Customer<div id="billingUnderline" class="underlineResults"></div>
+		</h2>
+	</div>
+	<div id="CustomerContainer" class="minotron">
+		<table id="CustomerResultsTable" class="resultsTable">
+			<tr></tr>
+		</table>
+	</div>
+
+	<div id="ActivityHeader" class="resultsHeader">
+		<h2>Activity
+			<div id="ActivityUnderline" class="underlineResults"></div>
+		</h2>
 	</div>
 	<div class="copySelectDropdown">
 		<button id="copyButton" onclick="copy()" class="copyBtn">&#x1F4CB</button>
@@ -101,6 +116,21 @@
 			<tr></tr>
 		</table>
 	</div>
+
+	<div id="BillingHeader" class="resultsHeader">
+		<h2>
+			Billing
+			<div id="billingUnderline" class="underlineResults"></div>
+		</h2>
+	</div>
+
+	<div id="BillingHeader" class="resultsHeader">
+		<h2>
+			AR/Cash
+			<div id="billingUnderline" class="underlineResults"></div>
+		</h2>
+	</div>
+
 	<p id="clipboard" class="clipboard"></p>
 	<p id="queryResults" class="queryResults"></p>
 </div>
@@ -195,6 +225,7 @@
 			if (this.readyState == 4 && this.status == 200) {
 				var queryResults = this.response
 				queryResults = $.parseJSON(queryResults);
+				console.log(queryResults);
 				displayResults(queryResults);
 				document.getElementById("queryResults").innerHTML = JSON.stringify(queryResults);
 			}
@@ -211,27 +242,57 @@
 		//Display and Construct new table:
 		document.getElementById("ResultsContainer").style.display = "block";
 		document.getElementById("ResultsHeader").style.display = "block";
+		document.getElementById("CustomerContainer").style.display = "block";
+		document.getElementById("CustomerHeader").style.display = "block";
+		document.getElementById("CustomerHeader").style.display = "block";
+		document.getElementById("ActivityHeader").style.display = "block";
+		document.getElementById("BillingHeader").style.display = "block";
 		document.getElementById("resultsUnderline").style.display = "block";
 		document.getElementById("copyButton").innerHTML = '&#x1F4CB';
 		document.getElementById("copyButton").style.display = "block";
 		document.getElementById("copySelectButton").style.display = "block";
-		let resultsTable = document.getElementById("ResultsTable");
-		let headerTable = resultsTable.createTHead();
-		let headerRowTable = resultsTable.insertRow(0);
-		if (inputs.length == 0) {
+		let resultsTableHeaders = ["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME","LAST_NAME", "DESCRIPTION", "TRANSACTION_DATE", "EFFECTIVE_DATE", "PRODUCT_CODE", "ACTIVITY_TYPE", "FUNCTIONAL_TITLE", "STATUS", "INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", "FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "LOGBOOK_VERIFIED", "LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed", "EVENT_ATTENDEES", "TP_Monthly"];
+		let customerResultsTable = ["FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "COMMENTS"];
+		let bananas = inputs;
+		tableBuilder(bananas, "CustomerResultsTable", customerResultsTable)
+		tableBuilder(inputs, "ResultsTable", ["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "DESCRIPTION", "TRANSACTION_DATE", "EFFECTIVE_DATE", "PRODUCT_CODE", "ACTIVITY_TYPE", "FUNCTIONAL_TITLE", "STATUS", "INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", "FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "LOGBOOK_VERIFIED", "LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed", "EVENT_ATTENDEES", "TP_Monthly"]);
+	}
+	function tableBuilder(queryResults, tableName, headers) {
+		console.log(headers);
+		let table = document.getElementById(tableName);
+		let headerTable = table.createTHead();
+		let headerRowTable = table.insertRow(0);
+		if (queryResults.length == 0) {
 			let curHeaderCell = headerRowTable.insertCell(-1);
 			curHeaderCell.innerHTML = "The query failed to return any results";
-		} else {
-			let headers = Object.keys(inputs[0]);
-			for (let i = 0; i < headers.length; ++i) {
+		}
+		else {
+			
+			let tableHeaders = Object.keys(queryResults[0]).filter(word => headers.includes(word));
+			let discardedHeaders = Object.keys(queryResults[0]).filter(word => !headers.includes(word));
+			console.log(tableHeaders);
+			console.log(discardedHeaders);
+			for (let i = 0; i < tableHeaders.length; ++i) {
 				let curHeaderCell = headerRowTable.insertCell(-1);
-				curHeaderCell.innerHTML = headers[i];
+				curHeaderCell.innerHTML = tableHeaders[i];
 			}
-			for (let record in inputs) {
-				let curRecord = inputs[record];
-				let recordValues = Object.values(inputs[record]);
-				let curRecordRow = resultsTable.insertRow(-1);
-				for (let i = 0; i < headers.length - 1; ++i) {
+			let newInputs = [];
+			for (let record in queryResults) {
+				//NEED TO DELETE THIS FIELD WITHOUT DELEING GLOBAL INPUTS
+				console.log(queryResults);
+				let newRecord = {};
+				tableHeaders.forEach(function (header) {
+					let curRecord = queryResults[record];
+					console.log(curRecord[tableHeaders[header]]);
+					newRecord.tableHeaders[header] = curRecord[tableHeaders[header]];
+				});
+				newInputs.push(newRecord);
+			}
+			for (let record in queryResults) {
+				let curRecord = queryResults[record];
+				let recordValues = Object.values(queryResults[record]);
+				let curRecordRow = table.insertRow(-1);
+				for (let i = 0; i < tableHeaders.length; ++i) {
 					let curRecordCell = curRecordRow.insertCell(-1);
 					curRecordCell.innerHTML = recordValues[i];
 				}
