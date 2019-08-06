@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<div id="Login" class="inputOverlay">
+	<p class="pinHeader">Enter Pin</p>
+	<input id="pin" type="password" name="pin" class="pinInput" required/>
+	<input type="button" value="Submit" class="pinSubmit" onclick="validateForm()"/>
+	<p id="error" class="incorrectInput"></p>
+</div>
+
+
+<script>
+	function validateForm() {
+		let pin = document.getElementById("pin").value;
+		console.log(pin);
+		let xhttp = new XMLHttpRequest();
+		xhttp.open("POST", 'api/login', true);
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				var queryResults = (this.response).replace(/"/g,'');
+				processResults(queryResults);
+			}
+		};
+		xhttp.setRequestHeader('Content-Type', 'application/json');
+		xhttp.send(pin);
+	}
+	function processResults(validInput) {
+		if (validInput == "error") {
+			document.getElementById("error").innerHTML = "Sorry, Try Again";
+		} else {
+			console.log(validInput);
+			window.open("Home/" + validInput);
+		}
+	}
+</script>

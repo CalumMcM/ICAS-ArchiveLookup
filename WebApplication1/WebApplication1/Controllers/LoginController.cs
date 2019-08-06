@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
+
 
 namespace ArchiveLookup.ICAS.com.Controllers
 {
     public class LoginController : ApiController
     {
-		public bool Post([FromBody]string pin)
+		public string Post([FromBody]string pin)
 		{
-			return false;
+			switch (pin)
+			{
+				case "1234": return "ArchiveLookup";
+				case "1313": return "Finance";
+				default: return "error";
+			}
 		}
     }
 }

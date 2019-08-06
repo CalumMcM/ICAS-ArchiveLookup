@@ -13,6 +13,14 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		{
 			return View();
 		}
+		public ActionResult Finance()
+		{
+			return View();
+		}
+		public ActionResult ArchiveLookup()
+		{
+			return View();
+		}
 
 		public ActionResult About()
 		{
