@@ -253,8 +253,7 @@
 		document.getElementById("copySelectButton").style.display = "block";
 		let resultsTableHeaders = ["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME","LAST_NAME", "DESCRIPTION", "TRANSACTION_DATE", "EFFECTIVE_DATE", "PRODUCT_CODE", "ACTIVITY_TYPE", "FUNCTIONAL_TITLE", "STATUS", "INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", "FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "LOGBOOK_VERIFIED", "LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed", "EVENT_ATTENDEES", "TP_Monthly"];
 		let customerResultsTable = ["FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "COMMENTS"];
-		let bananas = inputs;
-		tableBuilder(bananas, "CustomerResultsTable", customerResultsTable)
+		tableBuilder(inputs, "CustomerResultsTable", customerResultsTable)
 		tableBuilder(inputs, "ResultsTable", ["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "DESCRIPTION", "TRANSACTION_DATE", "EFFECTIVE_DATE", "PRODUCT_CODE", "ACTIVITY_TYPE", "FUNCTIONAL_TITLE", "STATUS", "INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", "FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "LOGBOOK_VERIFIED", "LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed", "EVENT_ATTENDEES", "TP_Monthly"]);
 	}
 	function tableBuilder(queryResults, tableName, headers) {
@@ -279,18 +278,20 @@
 			let newInputs = [];
 			for (let record in queryResults) {
 				//NEED TO DELETE THIS FIELD WITHOUT DELEING GLOBAL INPUTS
-				console.log(queryResults);
+				//THERE IS A BETTER WAY TO DO THIS 
 				let newRecord = {};
 				tableHeaders.forEach(function (header) {
 					let curRecord = queryResults[record];
-					console.log(curRecord[tableHeaders[header]]);
-					newRecord.tableHeaders[header] = curRecord[tableHeaders[header]];
+					console.log(header);
+					console.log(curRecord[header]);
+					newRecord[header] = curRecord[header];
 				});
 				newInputs.push(newRecord);
+				console.log(newInputs);
 			}
-			for (let record in queryResults) {
-				let curRecord = queryResults[record];
-				let recordValues = Object.values(queryResults[record]);
+			for (let record in newInputs) {
+				let curRecord = newInputs[record];
+				let recordValues = Object.values(newInputs[record]);
 				let curRecordRow = table.insertRow(-1);
 				for (let i = 0; i < tableHeaders.length; ++i) {
 					let curRecordCell = curRecordRow.insertCell(-1);
