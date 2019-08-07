@@ -57,7 +57,7 @@ namespace ArchiveLookup.ICAS.com.test
 			//Arrange
 			PersonQuery criteria = new PersonQuery();
 			//Act
-			var nHeaders = new string[7] { "ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME","FUNCTIONAL_TITLE", "STATUS" };
+			var nHeaders = new string[16] {"LAST_FIRST", "Company", "FULL_ADDRESS", "COMPANY_SORT", "COUNTY", "CITY", "TITLE", "CATEGORY", "MEMBER_TYPE", "ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME","FUNCTIONAL_TITLE", "STATUS" };
 			//Assert
 			foreach (string header in nHeaders)
 			{
@@ -70,7 +70,7 @@ namespace ArchiveLookup.ICAS.com.test
 			//Arrange
 			PersonQuery criteria = new PersonQuery();
 			//Act
-			var siHeaders = new string[14] { "INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", "FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "BE_PASS", "LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed" };
+			var siHeaders = new string[15] { "COMMENTS", "INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", "FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "BE_PASS", "LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed" };
 			//Assert
 			foreach (string header in siHeaders)
 			{
@@ -109,11 +109,24 @@ namespace ArchiveLookup.ICAS.com.test
 			//Arrange
 			PersonQuery criteria = new PersonQuery();
 			//Act
-			var aHeaders = new string[5] { "DESCRIPTION", "TRANSACTION_DATE", "EFFECTIVE_DATE", "PRODUCT_CODE", "ACTIVITY_TYPE" };
+			var aHeaders = new string[7] { "AMOUNT", "THRU_DATE", "DESCRIPTION", "TRANSACTION_DATE", "EFFECTIVE_DATE", "PRODUCT_CODE", "ACTIVITY_TYPE" };
 			//Assert
 			foreach(string header in aHeaders)
 			{
 				Assert.AreEqual("a.", criteria.getDatabasePrefix(header));
+			}
+		}
+		[TestMethod]
+		public void PersonQueryReturnsCorrectDatabasePrefixForf()
+		{
+			//Arrange
+			PersonQuery criteria = new PersonQuery();
+			//Act
+			var fHeaders = new string[1] { "MAIN_FIRM_NO" };
+			//Assert
+			foreach (string header in fHeaders)
+			{
+				Assert.AreEqual("f.", criteria.getDatabasePrefix(header));
 			}
 		}
 	}

@@ -24,12 +24,24 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								,n.[MIDDLE_NAME]
 								,n.[LAST_NAME]
 								,n.[FUNCTIONAL_TITLE]
+								,n.[MEMBER_TYPE]
+								,n.[CATEGORY]
+								,n.[TITLE]
+								,n.[CITY]
+								,n.[COUNTY]
+								,n.[COMPANY_SORT]
+								,n.[FULL_ADDRESS]
+								,n.[Company]
+								,n.[LAST_FIRST]
+								,n.[STATUS]
 								,a.[DESCRIPTION]
 								,a.[TRANSACTION_DATE]
 								,a.[EFFECTIVE_DATE]
 								,a.[PRODUCT_CODE]
 								,a.[ACTIVITY_TYPE]
-								,n.[STATUS]
+								,a.[THRU_DATE]
+								,a.[AMOUNT]
+								,f.[MAIN_FIRM_NO]
 								,si.[INTAKE_YEAR]
 								,si.[TPCE_STUDENT]
 								,si.[TRE_STUDENT]
@@ -44,6 +56,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								,si.[LOGBOOK_VERIFIED_DATE]
 								,si.[ITP_STUDENT]
 								,si.[ITP_Passed]
+								,si.[COMMENTS]
 								,ec.[EVENT_ATTENDEES]
 								,g.[TP_Monthly]
 								FROM [imis].[dbo].[Name] as n
@@ -51,13 +64,15 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								on n.id = a.id
 								JOIN Member_Types as mt
 								on n.MEMBER_TYPE  = mt.MEMBER_TYPE
-								JOIN Student_Info as si
+								LEFT OUTER JOIN Student_Info as si
 								on n.ID = si.ID
 								JOIN Groups as g
 								on n.ID = g.ID
 								JOIN exclude_comms as ec
-								on n.ID = ec.ID " + queryGenerator(criteria, true);
-			
+								on n.ID = ec.ID
+								JOIN Firm as f
+								on n.ID = f.ID " + queryGenerator(criteria, true) + " ORDER BY TRANSACTION_DATE DESC";
+
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
 			{
 				try
