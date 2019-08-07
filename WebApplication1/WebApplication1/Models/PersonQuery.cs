@@ -36,6 +36,18 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string PRODUCT_CODE;
 		public string COMMENTS;
 		public string ACTIVITY_TYPE;
+		public string MEMBER_TYPE;
+		public string CATEGORY;
+		public string TITLE;
+		public string CITY;
+		public string COUNTY;
+		public string COMPANY_SORT;
+		public string FULL_ADDRESS;
+		public string Company;
+		public string LAST_FIRST;
+		public string THRU_DATE;
+		public string AMOUNT;
+		public string MAIN_FIRM_NO;
 		public Object ToDapperParameter()
 		{
 			return new {
@@ -67,7 +79,19 @@ namespace ArchiveLookup.ICAS.com.Models
 				EFFECTIVE_DATE = EFFECTIVE_DATE,
 				PRODUCT_CODE = PRODUCT_CODE,
 				ACTIVITY_TYPE = ACTIVITY_TYPE,
-				COMMENTS = COMMENTS
+				COMMENTS = COMMENTS,
+				MEMBER_TYPE = MEMBER_TYPE,
+				CATEGORY = CATEGORY,
+				TITLE = TITLE,
+				CITY = CITY,
+				COUNTY = COUNTY,
+				COMPANY_SORT = COMPANY_SORT,
+				FULL_ADDRESS = FULL_ADDRESS,
+				Company = Company,
+				LAST_FIRST = LAST_FIRST,
+				THRU_DATE = THRU_DATE,
+				AMOUNT = AMOUNT,
+				MAIN_FIRM_NO = MAIN_FIRM_NO
 			};
 		}
 		public string getDatabasePrefix(string header)
@@ -81,6 +105,15 @@ namespace ArchiveLookup.ICAS.com.Models
 				case "LAST_NAME": return "n.";
 				case "FUNCTIONAL_TITLE": return "n.";
 				case "STATUS": return "n.";
+				case "MEMBER_TYPE": return "n.";
+				case "CATEGORY": return "n.";
+				case "TITLE": return "n.";
+				case "CITY": return "n.";
+				case "COUNTY": return "n.";
+				case "COMPANY_SORT": return "n.";
+				case "FULL_ADDRESS": return "n.";
+				case "Company": return "n.";
+				case "LAST_FIRST": return "n.";
 				case "INTAKE_YEAR": return "si.";
 				case "TPCE_STUDENT": return "si.";
 				case "TRE_STUDENT": return "si.";
@@ -102,6 +135,9 @@ namespace ArchiveLookup.ICAS.com.Models
 				case "EFFECTIVE_DATE": return "a.";
 				case "PRODUCT_CODE": return "a.";
 				case "ACTIVITY_TYPE": return "a.";
+				case "THRU_DATE": return "a.";
+				case "AMOUNT": return "a.";
+				case "MAIN_FIRM_NO": return "f.";
 			}
 			return "";
 		}

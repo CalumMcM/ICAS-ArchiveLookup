@@ -223,6 +223,7 @@
 			if (this.readyState == 4 && this.status == 200) {
 				var queryResults = this.response
 				queryResults = $.parseJSON(queryResults);
+				console.log(queryResults);
 				displayResults(queryResults);
 				document.getElementById("queryResults").innerHTML = JSON.stringify(queryResults);
 			}
@@ -248,11 +249,11 @@
 		document.getElementById("copyButton").innerHTML = '&#x1F4CB';
 		document.getElementById("copyButton").style.display = "block";
 		document.getElementById("copySelectButton").style.display = "block";
-		let customerResultsTable = ["MAJOR_KEY", "LAST_NAME", "FIRST_NAME", "MIDDLE_NAME", "COMMENTS"];
-		let resultsTableHeaders = ["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME","LAST_NAME", "DESCRIPTION", "TRANSACTION_DATE", "EFFECTIVE_DATE", "PRODUCT_CODE", "ACTIVITY_TYPE", "FUNCTIONAL_TITLE", "STATUS", "INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", "FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "LOGBOOK_VERIFIED", "LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed", "EVENT_ATTENDEES", "TP_Monthly"];
+		let customerResultsTable = ["MEMBER_TYPE", "CATEGORY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "TITLE", "MAIN_FIRM_NO", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS"];
+		let resultsTableHeaders = ["TRANSACTION_DATE", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "THRU_DATE", "AMOUNT"];
 		tableBuilder(inputs, "CustomerResultsTable", customerResultsTable)
-		tableBuilder(inputs, "ResultsTable", ["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "DESCRIPTION", "TRANSACTION_DATE", "EFFECTIVE_DATE", "PRODUCT_CODE", "ACTIVITY_TYPE", "FUNCTIONAL_TITLE", "STATUS", "INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", "FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "LOGBOOK_VERIFIED", "LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed", "EVENT_ATTENDEES", "TP_Monthly"]);
-		tableBuilder(inputs, "CustomerNotesResultsTable", ["MAJOR_KEY", "FIRST_NAME", "COMMENTS"])
+		tableBuilder(inputs, "ResultsTable", resultsTableHeaders);
+		tableBuilder(inputs, "CustomerNotesResultsTable", ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"])
 	}
 	function tableDemolisher(tableName) {
 		for (var i = document.getElementById(tableName).rows.length; i > 0; i--) {
