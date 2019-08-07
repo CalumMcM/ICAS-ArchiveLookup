@@ -11,13 +11,14 @@
 	</h1>
 	<p>Select the criteria for your search: </p>
 
-	<button id="idInputButton" onclick="showInput('idInput')" class="addBtn">ID</button>
 	<button id="mkInputButton" onclick="showInput('mkInput')" class="addBtn">Major Key</button>
 	<button id="forenameInputButton" onclick="showInput('forenameInput')" class="addBtn">First Name</button>
 	<button id="middlenameInputButton" onclick="showInput('middlenameInput')" class="addBtn">Middle Name</button>
 	<button id="surnameInputButton" onclick="showInput('surnameInput')" class="addBtn">Last Name</button>
 	<button id="firmidInputButton" onclick="showInput('firmidInput')" class="addBtn">Firm ID</button>
+	<button id="firmnoInputButton" onclick="showInput('firmnoInput')" class="addBtn">Firm No.</button>
 	<button id="firmnameInputButton" onclick="showInput('firmnameInput')" class="addBtn">Firm Name</button>
+	<button id="companynameInputButton" onclick="showInput('companynameInput')" class="addBtn">Company Name</button>
 
 	<p id="idInputText" class="lead">
 		ID:
@@ -49,21 +50,80 @@
 		<input type="text" id="firmidInput" class="input-lookup" name="firmid">
 	</p>
 
+	<p id="firmnoInputText" class="lead">
+		Firm No:
+		<input type="text" id="firmnoInput" class="input-lookup" name="firmno">
+	</p>
+
 	<p id="firmnameInputText" class="lead">
 		Firm Name:
 		<input type="text" id="firmnameInput" class="input-lookup" name="firmname">
 	</p>
 
+	<p id="companynameInputText" class="lead">
+		Company Name:
+		<input type="text" id="companynameInput" class="input-lookup" name="companyname">
+	</p>
+
 	<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
 	<div id="ResultsHeader" class="resultsHeader">
-		<h1>Results
+		<h1>
+			Results
 			<div id="resultsUnderline" class="underlineResults"></div>
 		</h1>
 	</div>
 
 	<div id="CustomerHeader" class="resultsHeader">
-		<h2>Customer<div id="billingUnderline" class="underlineResults"></div>
+		<h2>
+			Customers<div id="billingUnderline" class="underlineResults"></div>
 		</h2>
+	</div>
+	<div class="copySelectDropdown">
+		<button id="CustomerscopyButton" onclick="copy('Customers')" class="copyBtn">&#x1F4CB</button>
+		<button id="CustomerscopySelectButton" onclick="showCopyDropdown('Customers')" class="copyBtn">+</button>
+		<div id="CustomersDropdown" class="copySelectDropdown-content">
+			<button id="mkCCopyButton" onclick="copySelectButton('mkCCopy', 'Customers')" class="addBtn">Major Key</button>
+			<button id="surnameCCopyButton" onclick="copySelectButton('surnameCCopy', 'Customers')" class="addBtn">Last Name</button>
+			<button id="forenameCCopyButton" onclick="copySelectButton('forenameCCopy', 'Customers')" class="addBtn">First Name</button>
+			<button id="middlenameCCopyButton" onclick="copySelectButton('middlenameCCopy', 'Customers')" class="addBtn">Middle Name</button>
+			<button id="mtCCopyButton" onclick="copySelectButton('mtCCopy', 'Customers')" class="addBtn">Member Type</button>
+			<button id="catCCopyButton" onclick="copySelectButton('catCCopy', 'Customers')" class="addBtn">Category</button>
+			<button id="titleCCopyButton" onclick="copySelectButton('titleCCopy', 'Customers')" class="addBtn">Title</button>
+			<button id="cityCCopyButton" onclick="copySelectButton('cityCCopy', 'Customers')" class="addBtn">City</button>
+			<button id="countyCCopyButton" onclick="copySelectButton('countyCCopy', 'Customers')" class="addBtn">County</button>
+			<button id="compsortCCopyButton" onclick="copySelectButton('compsortCCopy', 'Customers')" class="addBtn">Company Sort</button>
+			<button id="addrCCopyButton" onclick="copySelectButton('addrCCopy', 'Customers')" class="addBtn">Full Address</button>
+			<button id="firmnoCCopyButton" onclick="copySelectButton('firmnoCCopy', 'Customers')" class="addBtn">Main Firm No</button>
+		</div>
+	</div>
+	<div id="CustomerContainer" class="minotron">
+		<table id="CustomerResultsTable" class="resultsTable">
+			<tr></tr>
+		</table>
+	</div>
+
+	<div id="BillingHeader" class="resultsHeader">
+		<h2>
+			Billing<div id="billingUnderline" class="underlineResults"></div>
+		</h2>
+	</div>
+	<div class="copySelectDropdown">
+		<button id="CustomerscopyButton" onclick="copy('Customers')" class="copyBtn">&#x1F4CB</button>
+		<button id="CustomerscopySelectButton" onclick="showCopyDropdown('Customers')" class="copyBtn">+</button>
+		<div id="CustomersDropdown" class="copySelectDropdown-content">
+			<button id="mkCCopyButton" onclick="copySelectButton('mkCCopy', 'Customers')" class="addBtn">Major Key</button>
+			<button id="surnameCCopyButton" onclick="copySelectButton('surnameCCopy', 'Customers')" class="addBtn">Last Name</button>
+			<button id="forenameCCopyButton" onclick="copySelectButton('forenameCCopy', 'Customers')" class="addBtn">First Name</button>
+			<button id="middlenameCCopyButton" onclick="copySelectButton('middlenameCCopy', 'Customers')" class="addBtn">Middle Name</button>
+			<button id="mtCCopyButton" onclick="copySelectButton('mtCCopy', 'Customers')" class="addBtn">Member Type</button>
+			<button id="catCCopyButton" onclick="copySelectButton('catCCopy', 'Customers')" class="addBtn">Category</button>
+			<button id="titleCCopyButton" onclick="copySelectButton('titleCCopy', 'Customers')" class="addBtn">Title</button>
+			<button id="cityCCopyButton" onclick="copySelectButton('cityCCopy', 'Customers')" class="addBtn">City</button>
+			<button id="countyCCopyButton" onclick="copySelectButton('countyCCopy', 'Customers')" class="addBtn">County</button>
+			<button id="compsortCCopyButton" onclick="copySelectButton('compsortCCopy', 'Customers')" class="addBtn">Company Sort</button>
+			<button id="addrCCopyButton" onclick="copySelectButton('addrCCopy', 'Customers')" class="addBtn">Full Address</button>
+			<button id="firmnoCCopyButton" onclick="copySelectButton('firmnoCCopy', 'Customers')" class="addBtn">Main Firm No</button>
+		</div>
 	</div>
 	<div id="CustomerContainer" class="minotron">
 		<table id="CustomerResultsTable" class="resultsTable">
@@ -72,42 +132,22 @@
 	</div>
 
 	<div id="ActivityHeader" class="resultsHeader">
-		<h2>Activity
+		<h2>
+			Activity
 			<div id="ActivityUnderline" class="underlineResults"></div>
 		</h2>
 	</div>
 	<div class="copySelectDropdown">
-		<button id="copyButton" onclick="copy()" class="copyBtn">&#x1F4CB</button>
-		<button id="copySelectButton" onclick="showCopyDropdown()" class="copyBtn">+</button>
-		<div id="myDropdown" class="copySelectDropdown-content">
-			<button id="idCopyButton" onclick="copySelectButton('idCopy')" class="addBtn">ID</button>
-			<button id="mkCopyButton" onclick="copySelectButton('mkCopy')" class="addBtn">Major Key</button>
-			<button id="forenameCopyButton" onclick="copySelectButton('forenameCopy')" class="addBtn">First Name</button>
-			<button id="middlenameCopyButton" onclick="copySelectButton('middlenameCopy')" class="addBtn">Middle Name</button>
-			<button id="surnameCopyButton" onclick="copySelectButton('surnameCopy')" class="addBtn">Last Name</button>
-			<button id="descCopyButton" onclick="copySelectButton('descCopy')" class="addBtn">Description</button>
-			<button id="transCopyButton" onclick="copySelectButton('transCopy')" class="addBtn">Transaction Date</button>
-			<button id="effecCopyButton" onclick="copySelectButton('effecCopy')" class="addBtn">Effective Date</button>
-			<button id="prodCopyButton" onclick="copySelectButton('prodCopy')" class="addBtn">Product Code</button>
-			<button id="actCopyButton" onclick="copySelectButton('actCopy')" class="addBtn">Activity Type</button>
-			<button id="functionaltitleCopyButton" onclick="copySelectButton('functionaltitleCopy')" class="addBtn">Functional Title</button>
-			<button id="statusCopyButton" onclick="copySelectButton('statusCopy')" class="addBtn">Status</button>
-			<button id="intakeyearCopyButton" onclick="copySelectButton('intakeyearCopy')" class="addBtn">Intake Year</button>
-			<button id="tpceCopyButton" onclick="copySelectButton('tpceCopy')" class="addBtn">TPCE STUDENT</button>
-			<button id="treCopyButton" onclick="copySelectButton('treCopy')" class="addBtn">TRE Student</button>
-			<button id="csdCopyButton" onclick="copySelectButton('csdCopy')" class="addBtn">Contract Start Date</button>
-			<button id="cedCopyButton" onclick="copySelectButton('cedCopy')" class="addBtn">Contract End Date</button>
-			<button id="firmidCopyButton" onclick="copySelectButton('firmidCopy')" class="addBtn">Firm ID</button>
-			<button id="firmnameCopyButton" onclick="copySelectButton('firmnameCopy')" class="addBtn">Firm Name</button>
-			<button id="fcdCopyButton" onclick="copySelectButton('fcdCopy')" class="addBtn">Final Certificate Date</button>
-			<button id="ecdCopyButton" onclick="copySelectButton('ecdCopy')" class="addBtn">Exam Certificate Date</button>
-			<button id="bpCopyButton" onclick="copySelectButton('bpCopy')" class="addBtn">Be Pass</button>
-			<button id="lbvCopyButton" onclick="copySelectButton('lbvCopy')" class="addBtn">Logbook Verified</button>
-			<button id="lbvdCopyButton" onclick="copySelectButton('lbvdCopy')" class="addBtn">Logbook Verified Date</button>
-			<button id="itpsCopyButton" onclick="copySelectButton('itpsCopy')" class="addBtn">ITP Student</button>
-			<button id="itpCopyButton" onclick="copySelectButton('itpCopy')" class="addBtn">ITP Passed</button>
-			<button id="eaCopyButton" onclick="copySelectButton('eaCopy')" class="addBtn">Event Attendees</button>
-			<button id="tpmCopyButton" onclick="copySelectButton('tpmCopy')" class="addBtn">TP Monthly</button>
+		<button id="ActivitycopyButton" onclick="copy('Activity')" class="copyBtn">&#x1F4CB</button>
+		<button id="ActivitycopySelectButton" onclick="showCopyDropdown('Activity')" class="copyBtn">+</button>
+		<div id="ActivityDropdown" class="copySelectDropdown-content">
+			<button id="mkACopyButton" onclick="copySelectButton('mkACopy', 'Activity')" class="addBtn">Major Key</button>
+			<button id="transACopyButton" onclick="copySelectButton('transACopy', 'Activity')" class="addBtn">Transaction Date</button>
+			<button id="typeACopyButton" onclick="copySelectButton('typeACopy', 'Activity')" class="addBtn">Activity Type</button>
+			<button id="forenameACopyButton" onclick="copySelectButton('forenameACopy', 'Activity')" class="addBtn">First Name</button>
+			<button id="middlenameACopyButton" onclick="copySelectButton('middlenameACopy', 'Activity')" class="addBtn">Middle Name</button>
+			<button id="surnameACopyButton" onclick="copySelectButton('surnameACopy', 'Activity')" class="addBtn">Last Name</button>
+			<button id="descACopyButton" onclick="copySelectButton('descACopy', 'Activity')" class="addBtn">Description</button>
 		</div>
 	</div>
 	<div id="ResultsHeaders"></div>
@@ -117,20 +157,26 @@
 		</table>
 	</div>
 
-	<div id="BillingHeader" class="resultsHeader">
+	<div id="CustomerNotesHeader" class="resultsHeader">
 		<h2>
-			Billing
-			<div id="billingUnderline" class="underlineResults"></div>
+			Customer Notes<div id="CustomerNotesUnderline" class="underlineResults"></div>
 		</h2>
 	</div>
-
-	<div id="BillingHeader" class="resultsHeader">
-		<h2>
-			AR/Cash
-			<div id="billingUnderline" class="underlineResults"></div>
-		</h2>
+	<div class="copySelectDropdown">
+		<button id="CustomerNotescopyButton" onclick="copy('CustomerNotes')" class="copyBtn">&#x1F4CB</button>
+		<button id="CustomerNotescopySelectButton" onclick="showCopyDropdown('CustomerNotes')" class="copyBtn">+</button>
+		<div id="CustomerNotesDropdown" class="copySelectDropdown-content">
+			<button id="mkCNCopyButton" onclick="copySelectButton('mkCNCopy', 'CustomerNotes')" class="addBtn">Major Key</button>
+			<button id="lastfirstCNCopyButton" onclick="copySelectButton('lastfirstCNCopy', 'CustomerNotes')" class="addBtn">Last First</button>
+			<button id="middlenameCNCopyButton" onclick="copySelectButton('middlenameCNCopy', 'CustomerNotes')" class="addBtn">Middle Name</button>
+			<button id="commentsCNCopyButton" onclick="copySelectButton('commentsCNCopy', 'CustomerNotes')" class="addBtn">Comments</button>
+		</div>
 	</div>
-
+	<div id="CustomerNotesContainer" class="minotron">
+		<table id="CustomerNotesResultsTable" class="resultsTable">
+			<tr></tr>
+		</table>
+	</div>
 	<p id="clipboard" class="clipboard"></p>
 	<p id="queryResults" class="queryResults"></p>
 </div>
@@ -138,9 +184,24 @@
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="~/Scripts/lodashCore.js" type="text/javascript"></script>
 <script>
-	const getBtnNames = () =>["id", "mk", "forename", "middlename", "surname", "firmid", "firmname"];
-	const getClassNames = () =>["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "FIRM_ID", "FIRM_NAME"];
-
+	const getBtnNames = () =>["mk", "forename", "middlename", "surname", "firmid", "firmno", "firmname", "companyname"];
+	const getClassNames = () =>["MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "FIRM_ID", "MAIN_FIRM_NO", "FIRM_NAME", "Company"];
+	function getCopyBtnNames(table) {
+		switch (table) {
+			case "Activity": return ["mkA", "transA", "typeA", "forenameA", "middlenameA", "surnameA", "descA"];
+			case "Customers": return ["mkC", "surnameC", "forenameC", "middlenameC", "mtC", "catC", "titleC", "cityC", "countyC", "compsortC", "addrC", "firmnoC"];
+			case "CustomerNotes": return ["mkCN", "lastfirstCN", "middlenameCN", "commentsCN"];
+				defualt: return [];
+		}
+	}
+	function getCopyFields(table) {
+		switch (table) {
+			case "Activity": return ["MAJOR_KEY", "TRANSACTION_DATE", "ACTIVITY_TYPE", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "DESCRIPTION"];
+			case "Customers": return ["MAJOR_KEY", "LAST_NAME", "FIRST_NAME", "MIDDLE_NAME", "MEMBER_TYPE", "CATEGORY", "TITLE", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS", "MAIN_FIRM_NO"];
+			case "CustomerNotes": return ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"];
+				defualt: return [];
+		}
+	}
 	function showInput(input) {
 		let inputText = document.getElementById(input);
 		let inputTextTitle = document.getElementById(input + "Text");
@@ -157,39 +218,6 @@
 		}
 		showSubmit();
 	}
-	function copy() {
-		let btnNames = getBtnNames();
-		let classNames = getClassNames();
-		let chosenFields = [];
-		for (let button in classNames) {
-			if (document.getElementById(btnNames[button]+"CopyButton").style.backgroundColor == "rgb(32, 166, 75)") {
-				chosenFields.push(classNames[button]);
-			}
-		}
-		constructClipboard(chosenFields);
-		let clipboardContents = document.getElementById("clipboard").innerHTML;
-		let itemsToCopy = document.createElement("textarea");
-		document.body.appendChild(itemsToCopy);
-		itemsToCopy.value = clipboardContents;
-		itemsToCopy.select();
-		document.execCommand("copy");
-		console.log("copied!");
-		document.body.removeChild(itemsToCopy);
-		document.getElementById("copyButton").innerHTML = '&#10004';
-	}
-	function copySelectButton(buttonID) {
-		currentColour = document.getElementById(buttonID + "Button").style.backgroundColor;
-		document.getElementById("copyButton").innerHTML = '&#x1F4CB';
-		if (currentColour == "rgb(192, 10, 39)" || currentColour == "") {
-			document.getElementById(buttonID + "Button").style.backgroundColor = "#20A64B";
-		}
-		else {
-			document.getElementById(buttonID + "Button").style.backgroundColor = "#C00A27";
-		}
-	}
-	function showCopyDropdown() {
-		document.getElementById("myDropdown").classList.toggle("show");
-	}
 	function showSubmit() {
 		let btnNames = getBtnNames();
 		let active = 0;
@@ -203,6 +231,43 @@
 			document.getElementById("submitButton").style.display = "none";
 		}
 	}
+	function copy(table) {
+		let btnNames = getCopyBtnNames(table);
+		let classNames = getCopyFields(table);
+		let chosenFields = [];
+		for (let button in btnNames) {
+			if (document.getElementById(btnNames[button] + "CopyButton").style.backgroundColor == "rgb(32, 166, 75)") {
+				chosenFields.push(classNames[button]);
+			}
+		}
+		if (chosenFields.length == 0) {
+			chosenFields = classNames;
+		}
+		console.log(chosenFields);
+		constructClipboard(chosenFields);
+		let clipboardContents = document.getElementById("clipboard").innerHTML;
+		let itemsToCopy = document.createElement("textarea");
+		document.body.appendChild(itemsToCopy);
+		itemsToCopy.value = clipboardContents;
+		itemsToCopy.select();
+		document.execCommand("copy");
+		console.log("copied!");
+		document.body.removeChild(itemsToCopy);
+		document.getElementById(table + "copyButton").innerHTML = '&#10004';
+	}
+	function copySelectButton(buttonID, table) {
+		currentColour = document.getElementById(buttonID + "Button").style.backgroundColor;
+		document.getElementById(table + "copyButton").innerHTML = '&#x1F4CB';
+		if (currentColour == "rgb(192, 10, 39)" || currentColour == "") {
+			document.getElementById(buttonID + "Button").style.backgroundColor = "#20A64B";
+		}
+		else {
+			document.getElementById(buttonID + "Button").style.backgroundColor = "#C00A27";
+		}
+	}
+	function showCopyDropdown(table) {
+		document.getElementById(table + "Dropdown").classList.toggle("show");
+	}
 	function processQuery() {
 		let btnNames = getBtnNames();
 		let classNames = getClassNames();
@@ -215,7 +280,7 @@
 				}
 				else {
 					if (btnNames[button] + "Input")
-					inputs[classNames[button]] = document.getElementById(btnNames[button] + "Input").value;
+						inputs[classNames[button]] = document.getElementById(btnNames[button] + "Input").value;
 				}
 			}
 		}
@@ -226,7 +291,6 @@
 			if (this.readyState == 4 && this.status == 200) {
 				var queryResults = this.response
 				queryResults = $.parseJSON(queryResults);
-				console.log(queryResults);
 				displayResults(queryResults);
 				document.getElementById("queryResults").innerHTML = JSON.stringify(queryResults);
 			}
@@ -237,24 +301,33 @@
 	}
 	function displayResults(inputs) {
 		//Delete previous table if it exists:
-		tableDemolisher("ResultsTable");
 		tableDemolisher("CustomerResultsTable");
+		tableDemolisher("ResultsTable");
+		tableDemolisher("CustomerNotesResultsTable");
 		//Display and Construct new table:
 		document.getElementById("ResultsContainer").style.display = "block";
 		document.getElementById("ResultsHeader").style.display = "block";
 		document.getElementById("CustomerContainer").style.display = "block";
-		document.getElementById("CustomerHeader").style.display = "block";
+		document.getElementById("CustomerNotesContainer").style.display = "block";
 		document.getElementById("CustomerHeader").style.display = "block";
 		document.getElementById("ActivityHeader").style.display = "block";
-		document.getElementById("BillingHeader").style.display = "block";
+		document.getElementById("CustomerNotesHeader").style.display = "block";
 		document.getElementById("resultsUnderline").style.display = "block";
-		document.getElementById("copyButton").innerHTML = '&#x1F4CB';
-		document.getElementById("copyButton").style.display = "block";
-		document.getElementById("copySelectButton").style.display = "block";
-		let resultsTableHeaders = ["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME","LAST_NAME", "DESCRIPTION", "TRANSACTION_DATE", "EFFECTIVE_DATE", "PRODUCT_CODE", "ACTIVITY_TYPE", "FUNCTIONAL_TITLE", "STATUS", "INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", "FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "LOGBOOK_VERIFIED", "LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed", "EVENT_ATTENDEES", "TP_Monthly"];
-		let customerResultsTable = ["FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "COMMENTS"];
+		document.getElementById("CustomerscopyButton").innerHTML = '&#x1F4CB';
+		document.getElementById("ActivitycopyButton").innerHTML = '&#x1F4CB';
+		document.getElementById("CustomerscopyButton").innerHTML = '&#x1F4CB';
+		document.getElementById("CustomerNotescopyButton").innerHTML = '&#x1F4CB';
+		document.getElementById("CustomerscopyButton").style.display = 'block';
+		document.getElementById("CustomerNotescopyButton").style.display = 'block';
+		document.getElementById("ActivitycopyButton").style.display = 'block';
+		document.getElementById("CustomerscopySelectButton").style.display = "block";
+		document.getElementById("CustomerNotescopySelectButton").style.display = "block";
+		document.getElementById("ActivitycopySelectButton").style.display = "block";
+		let customerResultsTable = ["MAJOR_KEY", "MEMBER_TYPE", "CATEGORY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "TITLE", "MAIN_FIRM_NO", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS"];
+		let resultsTableHeaders = ["TRANSACTION_DATE", "MAJOR_KEY", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "THRU_DATE", "AMOUNT"];
 		tableBuilder(inputs, "CustomerResultsTable", customerResultsTable)
-		tableBuilder(inputs, "ResultsTable", ["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "DESCRIPTION", "TRANSACTION_DATE", "EFFECTIVE_DATE", "PRODUCT_CODE", "ACTIVITY_TYPE", "FUNCTIONAL_TITLE", "STATUS", "INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", "FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "LOGBOOK_VERIFIED", "LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed", "EVENT_ATTENDEES", "TP_Monthly"]);
+		tableBuilder(inputs, "ResultsTable", resultsTableHeaders);
+		tableBuilder(inputs, "CustomerNotesResultsTable", ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"])
 	}
 	function tableDemolisher(tableName) {
 		for (var i = document.getElementById(tableName).rows.length; i > 0; i--) {
@@ -279,7 +352,7 @@
 			let newInputs = [];
 			for (let record in queryResults) {
 				//NEED TO DELETE THIS FIELD WITHOUT DELEING GLOBAL INPUTS
-				//THERE IS A BETTER WAY TO DO THIS 
+				//THERE IS A BETTER WAY TO DO THIS
 				let newRecord = {};
 				tableHeaders.forEach(function (header) {
 					let curRecord = queryResults[record];
@@ -304,25 +377,19 @@
 	function constructClipboard(chosenFields) {
 		let queryResults = JSON.parse(document.getElementById("queryResults").innerHTML);
 		let clipboardContents = "";
-		if (chosenFields.length == 0) {
-			for (let record in queryResults) {
-				let curRecord = queryResults[record];
-				let recordValues = Object.values(queryResults[record]);
-				recordValues.forEach(function (element) {
-					clipboardContents += "\t" + element
-				});
-				clipboardContents += "\n";
-			}
-		}
-		else
-		{
-			for (let curRecord in queryResults) {
-				let record = queryResults[curRecord];
-				for (let chosenField in chosenFields) {
-					clipboardContents += "\t" + record[chosenFields[chosenField]];
+		for (let curRecord in queryResults) {
+			let record = queryResults[curRecord];
+			for (let chosenField in chosenFields) {
+				console.log(JSON.stringify(record[chosenFields[chosenField]]));
+				if (record[chosenFields[chosenField]] != null) {
+					if (record[chosenFields[chosenField]].includes("\r")) {
+						clipboardContents += "\t" + record[chosenFields[chosenField]].replace(/\r/g, ", ");
+					} else {
+						clipboardContents += "\t" + record[chosenFields[chosenField]];
+					}
 				}
-				clipboardContents += "\n";
 			}
+			clipboardContents += "\n";
 		}
 		document.getElementById("clipboard").innerHTML = clipboardContents;
 	}
