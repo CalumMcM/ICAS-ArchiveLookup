@@ -11,8 +11,8 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string MAJOR_KEY { get; set; } 
 		public string LAST_NAME { get; set; }
 		public string FIRST_NAME { get; set; }
-		public string MIDDLE_NAME { get; set; }
 		public string LAST_FIRST { get; set; }
+		public string MIDDLE_NAME { get; set; }
 		public string TRANSACTION_DATE { get; set; }
 		public string ACTIVITY_TYPE { get; set; }
 		public string DESCRIPTION { get; set; }
