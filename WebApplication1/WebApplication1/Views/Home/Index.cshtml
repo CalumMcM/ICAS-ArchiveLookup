@@ -6,18 +6,19 @@
 
 	<img src="ICASLogo.png">
 	<h1>
-		Finance Lookup
+		Legal Lookup
 		<div class="underline"></div>
 	</h1>
 	<p>Select the criteria for your search: </p>
 
-	<button id="idInputButton" onclick="showInput('idInput')" class="addBtn">ID</button>
 	<button id="mkInputButton" onclick="showInput('mkInput')" class="addBtn">Major Key</button>
 	<button id="forenameInputButton" onclick="showInput('forenameInput')" class="addBtn">First Name</button>
 	<button id="middlenameInputButton" onclick="showInput('middlenameInput')" class="addBtn">Middle Name</button>
 	<button id="surnameInputButton" onclick="showInput('surnameInput')" class="addBtn">Last Name</button>
 	<button id="firmidInputButton" onclick="showInput('firmidInput')" class="addBtn">Firm ID</button>
+	<button id="firmnoInputButton" onclick="showInput('firmnoInput')" class="addBtn">Firm No.</button>
 	<button id="firmnameInputButton" onclick="showInput('firmnameInput')" class="addBtn">Firm Name</button>
+	<button id="companynameInputButton" onclick="showInput('companynameInput')" class="addBtn">Company Name</button>
 
 	<p id="idInputText" class="lead">
 		ID:
@@ -49,9 +50,19 @@
 		<input type="text" id="firmidInput" class="input-lookup" name="firmid">
 	</p>
 
+	<p id="firmnoInputText" class="lead">
+		Firm No:
+		<input type="text" id="firmnoInput" class="input-lookup" name="firmno">
+	</p>
+
 	<p id="firmnameInputText" class="lead">
 		Firm Name:
 		<input type="text" id="firmnameInput" class="input-lookup" name="firmname">
+	</p>
+
+	<p id="companynameInputText" class="lead">
+		Company Name:
+		<input type="text" id="companynameInput" class="input-lookup" name="companyname">
 	</p>
 
 	<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
@@ -80,34 +91,14 @@
 		<button id="copyButton" onclick="copy()" class="copyBtn">&#x1F4CB</button>
 		<button id="copySelectButton" onclick="showCopyDropdown()" class="copyBtn">+</button>
 		<div id="myDropdown" class="copySelectDropdown-content">
-			<button id="idCopyButton" onclick="copySelectButton('idCopy')" class="addBtn">ID</button>
 			<button id="mkCopyButton" onclick="copySelectButton('mkCopy')" class="addBtn">Major Key</button>
+			<button id="transCopyButton" onclick="copySelectButton('transCopy')" class="addBtn">Transaction Date</button>
+			<button id="typeCopyButton" onclick="copySelectButton('typeCopy')" class="addBtn">Activity Type</button>
+
 			<button id="forenameCopyButton" onclick="copySelectButton('forenameCopy')" class="addBtn">First Name</button>
 			<button id="middlenameCopyButton" onclick="copySelectButton('middlenameCopy')" class="addBtn">Middle Name</button>
 			<button id="surnameCopyButton" onclick="copySelectButton('surnameCopy')" class="addBtn">Last Name</button>
 			<button id="descCopyButton" onclick="copySelectButton('descCopy')" class="addBtn">Description</button>
-			<button id="transCopyButton" onclick="copySelectButton('transCopy')" class="addBtn">Transaction Date</button>
-			<button id="effecCopyButton" onclick="copySelectButton('effecCopy')" class="addBtn">Effective Date</button>
-			<button id="prodCopyButton" onclick="copySelectButton('prodCopy')" class="addBtn">Product Code</button>
-			<button id="actCopyButton" onclick="copySelectButton('actCopy')" class="addBtn">Activity Type</button>
-			<button id="functionaltitleCopyButton" onclick="copySelectButton('functionaltitleCopy')" class="addBtn">Functional Title</button>
-			<button id="statusCopyButton" onclick="copySelectButton('statusCopy')" class="addBtn">Status</button>
-			<button id="intakeyearCopyButton" onclick="copySelectButton('intakeyearCopy')" class="addBtn">Intake Year</button>
-			<button id="tpceCopyButton" onclick="copySelectButton('tpceCopy')" class="addBtn">TPCE STUDENT</button>
-			<button id="treCopyButton" onclick="copySelectButton('treCopy')" class="addBtn">TRE Student</button>
-			<button id="csdCopyButton" onclick="copySelectButton('csdCopy')" class="addBtn">Contract Start Date</button>
-			<button id="cedCopyButton" onclick="copySelectButton('cedCopy')" class="addBtn">Contract End Date</button>
-			<button id="firmidCopyButton" onclick="copySelectButton('firmidCopy')" class="addBtn">Firm ID</button>
-			<button id="firmnameCopyButton" onclick="copySelectButton('firmnameCopy')" class="addBtn">Firm Name</button>
-			<button id="fcdCopyButton" onclick="copySelectButton('fcdCopy')" class="addBtn">Final Certificate Date</button>
-			<button id="ecdCopyButton" onclick="copySelectButton('ecdCopy')" class="addBtn">Exam Certificate Date</button>
-			<button id="bpCopyButton" onclick="copySelectButton('bpCopy')" class="addBtn">Be Pass</button>
-			<button id="lbvCopyButton" onclick="copySelectButton('lbvCopy')" class="addBtn">Logbook Verified</button>
-			<button id="lbvdCopyButton" onclick="copySelectButton('lbvdCopy')" class="addBtn">Logbook Verified Date</button>
-			<button id="itpsCopyButton" onclick="copySelectButton('itpsCopy')" class="addBtn">ITP Student</button>
-			<button id="itpCopyButton" onclick="copySelectButton('itpCopy')" class="addBtn">ITP Passed</button>
-			<button id="eaCopyButton" onclick="copySelectButton('eaCopy')" class="addBtn">Event Attendees</button>
-			<button id="tpmCopyButton" onclick="copySelectButton('tpmCopy')" class="addBtn">TP Monthly</button>
 		</div>
 	</div>
 	<div id="ResultsHeaders"></div>
@@ -135,8 +126,8 @@
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="~/Scripts/lodashCore.js" type="text/javascript"></script>
 <script>
-	const getBtnNames = () =>["id", "mk", "forename", "middlename", "surname", "firmid", "firmname"];
-	const getClassNames = () =>["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "FIRM_ID", "FIRM_NAME"];
+	const getBtnNames = () =>["mk", "forename", "middlename", "surname", "firmid", "firmno", "firmname", "companyname"];
+	const getClassNames = () =>["MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "FIRM_ID", "MAIN_FIRM_NO", "FIRM_NAME", "Company"];
 
 	function showInput(input) {
 		let inputText = document.getElementById(input);
@@ -155,10 +146,11 @@
 		showSubmit();
 	}
 	function copy() {
-		let btnNames = getBtnNames();
-		let classNames = getClassNames();
+		let btnNames = getCopyBtnNames();
+		let classNames = getActivityFields();
 		let chosenFields = [];
-		for (let button in classNames) {
+		for (let button in btnNames) {
+			console.log(btnNames[button]);
 			if (document.getElementById(btnNames[button]+"CopyButton").style.backgroundColor == "rgb(32, 166, 75)") {
 				chosenFields.push(classNames[button]);
 			}
@@ -216,6 +208,7 @@
 				}
 			}
 		}
+		console.log(inputs);
 		let xhttp = new XMLHttpRequest();
 		xhttp.open("POST", 'api/person', true);
 		let MOCKqueryResults;
@@ -250,7 +243,7 @@
 		document.getElementById("copyButton").style.display = "block";
 		document.getElementById("copySelectButton").style.display = "block";
 		let customerResultsTable = ["MEMBER_TYPE", "CATEGORY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "TITLE", "MAIN_FIRM_NO", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS"];
-		let resultsTableHeaders = ["TRANSACTION_DATE", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "THRU_DATE", "AMOUNT"];
+		let resultsTableHeaders = ["TRANSACTION_DATE", "MAJOR_KEY", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "THRU_DATE", "AMOUNT"];
 		tableBuilder(inputs, "CustomerResultsTable", customerResultsTable)
 		tableBuilder(inputs, "ResultsTable", resultsTableHeaders);
 		tableBuilder(inputs, "CustomerNotesResultsTable", ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"])
