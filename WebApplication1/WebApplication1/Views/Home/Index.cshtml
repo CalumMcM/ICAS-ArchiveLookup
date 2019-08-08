@@ -337,7 +337,7 @@
 		tableDemolisherAndDisplayer("Invoices");
 		tableDemolisherAndDisplayer("Transactions");
 
-		tableBuilder(inputs, "InvoicesResultsTable", ["MAJOR_KEY", "INVOICE_DATE", "REFERENCE_NUM", "INVOICE_DESCRIPTION", "CHARGES", "CREDITS", "BALANCE"])
+		tableBuilder(inputs, "InvoicesResultsTable", ["MAJOR_KEY", "INVOICE_DATE", "REFERENCE_NUM", "INVOICE_DESCRIPTION", "CHARGES", "CREDITS", "BALANCE", "NOTE"])
 		tableBuilder(inputs, "TransactionsResultsTable", ["TRANSACTION_DATE","REFERENCE_NUM","MAJOR_KEY","TRANSACTION_NUMBER", "REFERENCE_NUMBER","TRANSACTION_TYPE","TRANSACTION_AMOUNT", "TRANSACTION_DESCRIPTION"])
 	}
 	function displayResultsCustomer(inputs) {

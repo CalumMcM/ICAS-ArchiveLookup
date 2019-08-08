@@ -109,7 +109,7 @@ namespace ArchiveLookup.ICAS.com.test
 			//Arrange
 			PersonQuery criteria = new PersonQuery();
 			//Act
-			var aHeaders = new string[9] {"NOTE", "UNITS", "AMOUNT", "THRU_DATE", "DESCRIPTION", "TRANSACTION_DATE", "EFFECTIVE_DATE", "PRODUCT_CODE", "ACTIVITY_TYPE" };
+			var aHeaders = new string[8] { "UNITS", "AMOUNT", "THRU_DATE", "DESCRIPTION", "TRANSACTION_DATE", "EFFECTIVE_DATE", "PRODUCT_CODE", "ACTIVITY_TYPE" };
 			//Assert
 			foreach(string header in aHeaders)
 			{

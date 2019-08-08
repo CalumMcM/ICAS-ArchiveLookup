@@ -57,6 +57,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								,i.[CHARGES]
 								,i.[CREDITS]
 								,i.[BALANCE]
+								,i.[Note]
 								,t.[TRANSACTION_DATE] AS [TRANS_TRANSACTION_DATE]
 								,t.[TRANS_NUMBER]
 								,t.[TRANSACTION_TYPE]

@@ -42,7 +42,6 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								,a.[THRU_DATE]
 								,a.[AMOUNT]
 								,a.[UNITS]
-								,a.[NOTE]
 								,f.[MAIN_FIRM_NO]
 								,si.[INTAKE_YEAR]
 								,si.[STUDENT_NO]

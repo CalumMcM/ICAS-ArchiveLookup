@@ -51,6 +51,7 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string TRANSACTION_TYPE{ get; set; }
 		public string TRANSACTION_DESCRIPTION{ get; set; }
 		public string TRANSACTION_AMOUNT{ get; set; }
+		public string NOTE { get; set; }
 
 	}
 }

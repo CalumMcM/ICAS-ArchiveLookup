@@ -134,7 +134,7 @@ namespace ArchiveLookup.ICAS.com.test
 			//Arrange
 			FinanceQuery criteria = new FinanceQuery();
 			//Act
-			var iHeaders = new string[6] { "INVOICE_DATE", "REFERENCE_NUM", "INVOICE_DESCRIPTION", "CHARGES", "CREDITS", "BALANCE" };
+			var iHeaders = new string[7] { "NOTE", "INVOICE_DATE", "REFERENCE_NUM", "INVOICE_DESCRIPTION", "CHARGES", "CREDITS", "BALANCE" };
 			//Assert
 			foreach (string header in iHeaders)
 			{

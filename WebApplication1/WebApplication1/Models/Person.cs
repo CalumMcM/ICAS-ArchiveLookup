@@ -21,7 +21,6 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string FUNCTIONAL_TITLE { get; set; }
 		public string STATUS { get; set; }
 		public string UNITS { get; set; }
-		public string NOTE { get; set; }
 		public string INTAKE_YEAR{ get; set; }
 		public string TPCE_STUDENT { get; set; }
 		public string TRE_STUDENT { get; set; }

@@ -38,7 +38,6 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string COMMENTS;
 		public string ACTIVITY_TYPE;
 		public string UNITS;
-		public string NOTE;
 		public string MEMBER_TYPE;
 		public string CATEGORY;
 		public string TITLE;
@@ -97,7 +96,6 @@ namespace ArchiveLookup.ICAS.com.Models
 				AMOUNT = AMOUNT,
 				MAIN_FIRM_NO = MAIN_FIRM_NO,
 				UNITS = UNITS,
-				NOTE = NOTE
 			};
 		}
 		public string getDatabasePrefix(string header)
@@ -145,7 +143,6 @@ namespace ArchiveLookup.ICAS.com.Models
 				case "THRU_DATE": return "a.";
 				case "AMOUNT": return "a.";
 				case "UNITS": return "a.";
-				case "NOTE": return "a.";
 				case "MAIN_FIRM_NO": return "f.";
 			}
 			return "";

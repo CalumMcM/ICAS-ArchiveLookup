@@ -37,6 +37,7 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string STUDENT_NO;
 		public string ITP_STUDENT;
 		public string ITP_Passed;
+		public string NOTE;
 		public string COMMENTS;
 		public string EVENT_ATTENDEES;
 		public string TP_Monthly;
@@ -99,7 +100,8 @@ namespace ArchiveLookup.ICAS.com.Models
 				TRANSACTION_TYPE = TRANSACTION_TYPE,
 				TRANSACTION_DESCRIPTION = TRANSACTION_DESCRIPTION,
 				TRANSACTION_AMOUNT = TRANSACTION_AMOUNT,
-	};
+				NOTE = NOTE
+			};
 		}
 		public string getDatabasePrefix(string header)
 		{
@@ -149,6 +151,7 @@ namespace ArchiveLookup.ICAS.com.Models
 				case "TRANSACTION_TYPE": return "t.";
 				case "TRANSACTION_DESCRIPTION": return "t.";
 				case "TRANSACTION_AMOUNT": return "t.";
+				case "NOTE": return "i.";
 			}
 			return "";
 		}
