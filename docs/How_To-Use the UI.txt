@@ -1,0 +1,16 @@
+Starting from the page you need to use (E.g "Legal Lookup")
+
+1. Select the red buttons you want to search for. The button should turn green
+and a text field should now be revealed below
+2. Type in the value you wish to search for in that field
+3. Hit submit
+4. The results will now be displayed below
+5. Each table has the ability to scroll right for more fields (if there are more fields) 
+or scroll down for more records
+6. Clicking the clipboad icon will copy the entire contents of the table below to your clipboard
+	- If you only want to copy certain fields then click the '+' and select the buttons for the 
+	fields you want to copy, only the green fields will be copied unless all fields are red
+	in which case all the fields will be copied
+	- Once you have chosen the fields you want then you can click the clipboard icon again to 
+	copy only the fields selected
+	- You can press the '+' icon again to close the selection dropdown

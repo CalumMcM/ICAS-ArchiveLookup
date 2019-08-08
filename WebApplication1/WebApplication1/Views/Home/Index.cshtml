@@ -334,6 +334,7 @@
 		tableBuilder(inputs, "CustomersResultsTable", customerResultsTable)
 		tableBuilder(inputs, "ActivityResultsTable", resultsTableHeaders);
 		tableBuilder(inputs, "CustomerNotesResultsTable", ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"])
+		tableBuilder(inputs, "TransactionsResultsTable", ["LAST_FIRST","AMOUNT"])
 	}
 	function tableDemolisherAndDisplayer(tableName) {
 		for (var i = document.getElementById(tableName + "ResultsTable").rows.length; i > 0; i--) {
