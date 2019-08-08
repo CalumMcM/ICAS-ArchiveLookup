@@ -42,6 +42,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								,a.[THRU_DATE]
 								,f.[MAIN_FIRM_NO]
 								,si.[CONTRACT_START_DATE]
+								,si.[STUDENT_NO]
 								,si.[CONTRACT_END_DATE]
 								,si.[FIRM_ID]
 								,si.[FIRM_NAME]
@@ -74,12 +75,12 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								on n.ID = ec.ID
 								JOIN Firm as f
 								on n.ID = f.ID
-								JOIN Orders as o
+								LEFT OUTER JOIN Orders as o
 								on n.CO_ID = o.CO_ID
-								JOIN Trans as t
+								LEFT OUTER JOIN Trans as t
 								on t.INVOICE_REFERENCE_NUM = o.INVOICE_REFERENCE_NUM
-								JOIN Invoice as i
-								on o.INVOICE_REFERENCE_NUM = i.REFERENCE_NUM " + queryGenerator(criteria, true);
+								LEFT OUTER JOIN Invoice as i
+								on t.BT_ID = i.BT_ID " + queryGenerator(criteria, true) + " ORDER BY TRANSACTION_DATE DESC"; ;
 
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
 			{

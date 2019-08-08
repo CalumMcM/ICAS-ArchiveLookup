@@ -11,7 +11,9 @@
 	</h1>
 	<p>Select the criteria for your search: </p>
 
+	<button id="idInputButton" onclick="showInput('idInput')" class="addBtn">ID</button>
 	<button id="mkInputButton" onclick="showInput('mkInput')" class="addBtn">Major Key</button>
+	<button id="studnoInputButton" onclick="showInput('studnoInput')" class="addBtn">Student No.</button>
 	<button id="forenameInputButton" onclick="showInput('forenameInput')" class="addBtn">First Name</button>
 	<button id="middlenameInputButton" onclick="showInput('middlenameInput')" class="addBtn">Middle Name</button>
 	<button id="surnameInputButton" onclick="showInput('surnameInput')" class="addBtn">Last Name</button>
@@ -19,6 +21,8 @@
 	<button id="firmnoInputButton" onclick="showInput('firmnoInput')" class="addBtn">Firm No.</button>
 	<button id="firmnameInputButton" onclick="showInput('firmnameInput')" class="addBtn">Firm Name</button>
 	<button id="companynameInputButton" onclick="showInput('companynameInput')" class="addBtn">Company Name</button>
+	<button id="refInputButton" onclick="showInput('refInput')" class="addBtn">Invoice Reference No.</button>
+
 
 	<p id="idInputText" class="lead">
 		ID:
@@ -28,6 +32,11 @@
 	<p id="mkInputText" class="lead">
 		Major Key:
 		<input type="text" id="mkInput" class="input-lookup" name="mk">
+	</p>
+
+	<p id="studnoInputText" class="lead">
+		Student No:
+		<input type="text" id="studnoInput" class="input-lookup" name="studno">
 	</p>
 
 	<p id="forenameInputText" class="lead">
@@ -63,6 +72,11 @@
 	<p id="companynameInputText" class="lead">
 		Company Name:
 		<input type="text" id="companynameInput" class="input-lookup" name="companyname">
+	</p>
+
+	<p id="refInputText" class="lead">
+		Invoice Reference No:
+		<input type="text" id="refInput" class="input-lookup" name="ref">
 	</p>
 
 	<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
@@ -102,23 +116,6 @@
 		</table>
 	</div>
 
-	<div id="BillingHeader" class="resultsHeader">
-		<h2>
-			Billing<div id="BillingUnderline" class="underlineResults"></div>
-		</h2>
-	</div>
-	<div class="copySelectDropdown">
-		<button id="BillingcopyButton" onclick="copy('Billing')" class="copyBtn">&#x1F4CB</button>
-		<button id="BillingcopySelectButton" onclick="showCopyDropdown('Billing')" class="copyBtn">+</button>
-		<div id="BillingDropdown" class="copySelectDropdown-content">
-		</div>
-	</div>
-	<div id="BillingContainer" class="minotron">
-		<table id="BillingResultsTable" class="resultsTable">
-			<tr></tr>
-		</table>
-	</div>
-
 	<div id="InvoicesHeader" class="resultsHeader">
 		<h2>
 			Invoices<div id="InvoicesUnderline" class="underlineResults"></div>
@@ -126,7 +123,7 @@
 	</div>
 	<div class="copySelectDropdown">
 		<button id="InvoicescopyButton" onclick="copy('Invoices')" class="copyBtn">&#x1F4CB</button>
-		<button id="InvoicescopySelectButton" onclick="showCopyDropdown('Billing')" class="copyBtn">+</button>
+		<button id="InvoicescopySelectButton" onclick="showCopyDropdown('Invoices')" class="copyBtn">+</button>
 		<div id="InvoicesDropdown" class="copySelectDropdown-content">
 		</div>
 	</div>
@@ -207,8 +204,8 @@
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="~/Scripts/lodashCore.js" type="text/javascript"></script>
 <script>
-	const getBtnNames = () =>["mk", "forename", "middlename", "surname", "firmid", "firmno", "firmname", "companyname"];
-	const getClassNames = () =>["MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "FIRM_ID", "MAIN_FIRM_NO", "FIRM_NAME", "Company"];
+	const getBtnNames = () =>["id", "mk", "studno", "forename", "middlename", "surname", "firmid", "firmno", "firmname", "companyname", "ref"];
+	const getClassNames = () =>["ID", "MAJOR_KEY", "STUDENT_NO", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "FIRM_ID", "MAIN_FIRM_NO", "FIRM_NAME", "Company", "REFERENCE_NUM"];
 	function getCopyBtnNames(table) {
 		switch (table) {
 			case "Activity": return ["mkA", "transA", "typeA", "forenameA", "middlenameA", "surnameA", "descA"];
@@ -337,21 +334,19 @@
 	}
 	function displayResultsFinance(inputs) {
 		//Delete previous table if it exists:
-		tableDemolisherAndDisplayer("Activity");
-		tableDemolisherAndDisplayer("Billing");
 		tableDemolisherAndDisplayer("Invoices");
 		tableDemolisherAndDisplayer("Transactions");
 
-		let resultsTableHeaders = ["TRANSACTION_DATE", "MAJOR_KEY", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "THRU_DATE", "AMOUNT"];
-		tableBuilder(inputs, "ActivityResultsTable", resultsTableHeaders);
 		tableBuilder(inputs, "InvoicesResultsTable", ["MAJOR_KEY", "INVOICE_DATE", "REFERENCE_NUM", "INVOICE_DESCRIPTION", "CHARGES", "CREDITS", "BALANCE"])
-		tableBuilder(inputs, "TransactionsResultsTable", ["TRANSACTION_DATE","MAJOR_KEY","TRANSACTION_NUMBER", "REFERENCE_NUMBER","TRANSACTION_TYPE","TRANSACTION_AMOUNT", "TRANSACTION_DESCRIPTION"])
+		tableBuilder(inputs, "TransactionsResultsTable", ["TRANSACTION_DATE","REFERENCE_NUM","MAJOR_KEY","TRANSACTION_NUMBER", "REFERENCE_NUMBER","TRANSACTION_TYPE","TRANSACTION_AMOUNT", "TRANSACTION_DESCRIPTION"])
 	}
 	function displayResultsCustomer(inputs) {
+		tableDemolisherAndDisplayer("Activity");
 		tableDemolisherAndDisplayer("Customers");
 		tableDemolisherAndDisplayer("CustomerNotes");
 
-		let customerResultsTable = ["MAJOR_KEY", "MEMBER_TYPE", "CATEGORY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "TITLE", "MAIN_FIRM_NO", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS"];
+		let customerResultsTable = ["MAJOR_KEY", "MEMBER_TYPE","STUDENT_NO", "CATEGORY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "TITLE", "MAIN_FIRM_NO", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS"];
+		tableBuilder(inputs, "ActivityResultsTable", ["TRANSACTION_DATE", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "THRU_DATE", "AMOUNT", "UNITS"]);
 		tableBuilder(inputs, "CustomersResultsTable", customerResultsTable)
 		tableBuilder(inputs, "CustomerNotesResultsTable", ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"])
 	}

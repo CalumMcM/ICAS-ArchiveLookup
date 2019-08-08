@@ -34,6 +34,7 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string CONTRACT_END_DATE{ get; set; }
 		public string FIRM_ID{ get; set; }
 		public string FIRM_NAME{ get; set; }
+		public string STUDENT_NO { get; set; }
 		public string ITP_STUDENT{ get; set; }
 		public string ITP_Passed{ get; set; }
 		public string COMMENTS{ get; set; }

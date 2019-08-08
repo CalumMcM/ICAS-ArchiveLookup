@@ -69,7 +69,7 @@ namespace ArchiveLookup.ICAS.com.test
 			//Arrange
 			FinanceQuery criteria = new FinanceQuery();
 			//Act
-			var siHeaders = new string[7] { "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", "FIRM_NAME", "ITP_STUDENT", "ITP_Passed", "COMMENTS"};
+			var siHeaders = new string[8] { "STUDENT_NO", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", "FIRM_NAME", "ITP_STUDENT", "ITP_Passed", "COMMENTS"};
 			//Assert
 			foreach (string header in siHeaders)
 			{

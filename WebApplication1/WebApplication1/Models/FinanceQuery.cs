@@ -34,6 +34,7 @@ namespace ArchiveLookup.ICAS.com.Models
 		public Nullable<DateTime> CONTRACT_END_DATE;
 		public string FIRM_ID;
 		public string FIRM_NAME;
+		public string STUDENT_NO;
 		public string ITP_STUDENT;
 		public string ITP_Passed;
 		public string COMMENTS;
@@ -80,6 +81,7 @@ namespace ArchiveLookup.ICAS.com.Models
 				CONTRACT_START_DATE = CONTRACT_START_DATE,
 				CONTRACT_END_DATE = CONTRACT_END_DATE,
 				FIRM_ID = FIRM_ID,
+				STUDENT_NO = STUDENT_NO,
 				FIRM_NAME = FIRM_NAME,
 				ITP_STUDENT = ITP_STUDENT,
 				ITP_Passed = ITP_Passed,
@@ -130,6 +132,7 @@ namespace ArchiveLookup.ICAS.com.Models
 				case "CONTRACT_END_DATE": return "si.";
 				case "FIRM_ID": return "si.";
 				case "FIRM_NAME": return "si.";
+				case "STUDENT_NO": return "si.";
 				case "ITP_STUDENT": return "si.";
 				case "ITP_Passed": return "si.";
 				case "COMMENTS": return "si.";

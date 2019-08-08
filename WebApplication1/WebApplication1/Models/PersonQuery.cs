@@ -27,6 +27,7 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string LOGBOOK_VERIFIED;
 		public Nullable<DateTime> LOGBOOK_VERIFIED_DATE;
 		public string ITP_STUDENT;
+		public string STUDENT_NO;
 		public string ITP_Passed;
 		public string EVENT_ATTENDEES;
 		public string TP_Monthly;
@@ -36,6 +37,8 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string PRODUCT_CODE;
 		public string COMMENTS;
 		public string ACTIVITY_TYPE;
+		public string UNITS;
+		public string NOTE;
 		public string MEMBER_TYPE;
 		public string CATEGORY;
 		public string TITLE;
@@ -78,6 +81,7 @@ namespace ArchiveLookup.ICAS.com.Models
 				TRANSACTION_DATE = TRANSACTION_DATE,
 				EFFECTIVE_DATE = EFFECTIVE_DATE,
 				PRODUCT_CODE = PRODUCT_CODE,
+				STUDENT_NO = STUDENT_NO,
 				ACTIVITY_TYPE = ACTIVITY_TYPE,
 				COMMENTS = COMMENTS,
 				MEMBER_TYPE = MEMBER_TYPE,
@@ -91,7 +95,9 @@ namespace ArchiveLookup.ICAS.com.Models
 				LAST_FIRST = LAST_FIRST,
 				THRU_DATE = THRU_DATE,
 				AMOUNT = AMOUNT,
-				MAIN_FIRM_NO = MAIN_FIRM_NO
+				MAIN_FIRM_NO = MAIN_FIRM_NO,
+				UNITS = UNITS,
+				NOTE = NOTE
 			};
 		}
 		public string getDatabasePrefix(string header)
@@ -116,6 +122,7 @@ namespace ArchiveLookup.ICAS.com.Models
 				case "LAST_FIRST": return "n.";
 				case "INTAKE_YEAR": return "si.";
 				case "TPCE_STUDENT": return "si.";
+				case "STUDENT_NO": return "si.";
 				case "TRE_STUDENT": return "si.";
 				case "CONTRACT_START_DATE": return "si.";
 				case "CONTRACT_END_DATE": return "si.";
@@ -137,6 +144,8 @@ namespace ArchiveLookup.ICAS.com.Models
 				case "ACTIVITY_TYPE": return "a.";
 				case "THRU_DATE": return "a.";
 				case "AMOUNT": return "a.";
+				case "UNITS": return "a.";
+				case "NOTE": return "a.";
 				case "MAIN_FIRM_NO": return "f.";
 			}
 			return "";
