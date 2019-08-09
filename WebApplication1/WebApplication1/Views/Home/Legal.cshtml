@@ -282,16 +282,16 @@
 		tableDemolisherAndDisplayer("Activity");
 		tableDemolisherAndDisplayer("CustomerNotes");
 
-		let customerResultsTable = ["MAJOR_KEY", "MEMBER_TYPE", "CATEGORY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "TITLE", "MAIN_FIRM_NO", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS"];
-		let resultsTableHeaders = ["TRANSACTION_DATE", "MAJOR_KEY", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "THRU_DATE", "AMOUNT"];
-		tableBuilder(inputs, "CustomersResultsTable", customerResultsTable)
-		tableBuilder(inputs, "ActivityResultsTable", resultsTableHeaders);
+		tableBuilder(inputs, "CustomersResultsTable", ["MAJOR_KEY", "MEMBER_TYPE", "CATEGORY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "TITLE", "MAIN_FIRM_NO", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS"])
+		tableBuilder(inputs, "ActivityResultsTable",  ["TRANSACTION_DATE", "MAJOR_KEY", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "THRU_DATE", "AMOUNT"]);
 		tableBuilder(inputs, "CustomerNotesResultsTable", ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"])
 	}
 	function tableDemolisherAndDisplayer(tableName) {
+		//Demolisher
 		for (var i = document.getElementById(tableName + "ResultsTable").rows.length; i > 0; i--) {
 			document.getElementById(tableName + "ResultsTable").deleteRow(i - 1);
 		}
+		//Displayer
 		document.getElementById(tableName + "Container").style.display = "block";
 		document.getElementById(tableName + "Header").style.display = "block";
 		document.getElementById(tableName + "copyButton").innerHTML = '&#x1F4CB';
