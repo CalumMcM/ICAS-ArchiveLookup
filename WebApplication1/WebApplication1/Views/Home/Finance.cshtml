@@ -363,7 +363,6 @@
 		tableDemolisherAndDisplayer("Invoices");
 		tableDemolisherAndDisplayer("Transactions");
 		
-
 		tableBuilder(inputs, "InvoicesResultsTable", ["MAJOR_KEY", "INVOICE_DATE", "REFERENCE_NUM", "INVOICE_DESCRIPTION", "CHARGES", "CREDITS", "BALANCE", "NOTE"])
 		tableBuilder(inputs, "TransactionsResultsTable", ["TRANSACTION_DATE","REFERENCE_NUM","MAJOR_KEY","TRANSACTION_NUMBER", "REFERENCE_NUMBER","TRANSACTION_TYPE","TRANSACTION_AMOUNT", "TRANSACTION_DESCRIPTION"])
 	}
@@ -377,9 +376,11 @@
 		tableBuilder(inputs, "CustomerNotesResultsTable", ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"])
 	}
 	function tableDemolisherAndDisplayer(tableName) {
+		//Demolisher
 		for (var i = document.getElementById(tableName + "ResultsTable").rows.length; i > 0; i--) {
 			document.getElementById(tableName + "ResultsTable").deleteRow(i - 1);
 		}
+		//Displayer
 		document.getElementById(tableName + "Container").style.display = "block";
 		document.getElementById(tableName + "Header").style.display = "block";
 		document.getElementById(tableName + "copyButton").innerHTML = '&#x1F4CB';
