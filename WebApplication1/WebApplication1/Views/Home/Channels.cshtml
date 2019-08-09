@@ -1,12 +1,12 @@
 ﻿@{
-	ViewBag.Title = "Archive Lookup";
+	ViewBag.Title = "Channels Lookup";
 }
 
 <div class="jumbotron">
 
 	<img src="ICASLogo.png">
 	<h1>
-		Archive Lookup
+		Channels Lookup
 		<div class="underline"></div>
 	</h1>
 	<p>Select the criteria for your search: </p>
@@ -183,7 +183,10 @@
 		<input type="text" id="tpmInput" class="input-lookup" name="tpm">
 	</p>
 
-	<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
+	<div class="copySelectDropdown">
+		<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
+		<div id="loadingIcon" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+	</div>
 	<div id="ResultsHeader" class="resultsHeader">
 		<h1 id="ResultsHeader">
 			Results
@@ -232,6 +235,7 @@
 	</div>
 	<p id="clipboard" class="clipboard"></p>
 	<p id="queryResults" class="queryResults"></p>
+	<p id="queriesLoaded" class="queryResults"></p>
 </div>
 <script src="~/Scripts/moment.js" type="text/javascript"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
@@ -308,6 +312,8 @@
 		}
 	}
 	function processQuery() {
+		document.getElementById("loadingIcon").style.display = "block";
+		document.getElementById("queriesLoaded").innerHTML = 0;
 		let btnNames = getBtnNames();
 		let classNames = getClassNames();
 		let inputs = {}
@@ -318,8 +324,9 @@
 					inputs[classNames[button]] = moment(document.getElementById(btnNames[button] + "Input").value).format('YYYY-MM-DDT00:00:00');
 				}
 				else {
-					if (btnNames[button] + "Input")
-					inputs[classNames[button]] = document.getElementById(btnNames[button] + "Input").value;
+					if (btnNames[button] + "Input"){
+						inputs[classNames[button]] = document.getElementById(btnNames[button] + "Input").value;
+					}
 				}
 			}
 		}
@@ -330,6 +337,7 @@
 			if (this.readyState == 4 && this.status == 200) {
 				var queryResults = this.response
 				queryResults = $.parseJSON(queryResults);
+				document.getElementById("queriesLoaded").innerHTML = document.getElementById("queriesLoaded").innerHTML + 1
 				displayResults(queryResults);
 				document.getElementById("queryResults").innerHTML = JSON.stringify(queryResults);
 			}
@@ -339,6 +347,7 @@
 
 	}
 	function displayResults(inputs) {
+		document.getElementById("loadingIcon").style.display = "none";
 		//Delete previous table if it exists:
 		for (var i = document.getElementById("ResultsTable").rows.length; i > 0; i--) {
 			document.getElementById("ResultsTable").deleteRow(i - 1);
@@ -387,6 +396,7 @@
 				}
 			}
 		}
+	}
 	function constructClipboard(chosenFields) {
 		let queryResults = JSON.parse(document.getElementById("queryResults").innerHTML);
 		let clipboardContents = "";
