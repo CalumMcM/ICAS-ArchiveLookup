@@ -64,8 +64,10 @@
 		Company Name:
 		<input type="text" id="companynameInput" class="input-lookup" name="companyname">
 	</p>
-
-	<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
+	<div class="copySelectDropdown">
+		<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
+		<div id="loadingIcon" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+	</div>
 	<div id="ResultsHeader" class="resultsHeader">
 		<h1>Results
 			<div id="resultsUnderline" class="underlineResults"></div>
@@ -147,6 +149,7 @@
 	</div>
 	<p id="clipboard" class="clipboard"></p>
 	<p id="queryResults" class="queryResults"></p>
+	<p id="queriesLoaded" class="queryResults"></p>
 </div>
 <script src="~/Scripts/moment.js" type="text/javascript"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
@@ -237,6 +240,8 @@
 		document.getElementById(table+"Dropdown").classList.toggle("show");
 	}
 	function processQuery() {
+		document.getElementById("loadingIcon").style.display = "block";
+		document.getElementById("queriesLoaded").innerHTML = 0;
 		let btnNames = getBtnNames();
 		let classNames = getClassNames();
 		let inputs = {}
@@ -259,6 +264,7 @@
 			if (this.readyState == 4 && this.status == 200) {
 				var queryResults = this.response
 				queryResults = $.parseJSON(queryResults);
+				document.getElementById("queriesLoaded").innerHTML = document.getElementById("queriesLoaded").innerHTML + 1
 				displayResults(queryResults);
 				document.getElementById("queryResults").innerHTML = JSON.stringify(queryResults);
 			}
@@ -268,6 +274,7 @@
 
 	}
 	function displayResults(inputs) {
+		document.getElementById("loadingIcon").style.display = "none";
 		//Delete previous table if it exists:
 		tableDemolisher("CustomerResultsTable");
 		tableDemolisher("ResultsTable");
