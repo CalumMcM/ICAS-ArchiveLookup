@@ -100,6 +100,7 @@
 			<button id="surnameCCopyButton" onclick="copySelectButton('surnameCCopy', 'Customers')" class="addBtn">Last Name</button>
 			<button id="forenameCCopyButton" onclick="copySelectButton('forenameCCopy', 'Customers')" class="addBtn">First Name</button>
 			<button id="middlenameCCopyButton" onclick="copySelectButton('middlenameCCopy', 'Customers')" class="addBtn">Middle Name</button>
+			<button id="studnoCCopyButton" onclick="copySelectButton('studnoCCopy', 'Customers')" class="addBtn">Student No</button>
 			<button id="mtCCopyButton" onclick="copySelectButton('mtCCopy', 'Customers')" class="addBtn">Member Type</button>
 			<button id="catCCopyButton" onclick="copySelectButton('catCCopy', 'Customers')" class="addBtn">Category</button>
 			<button id="titleCCopyButton" onclick="copySelectButton('titleCCopy', 'Customers')" class="addBtn">Title</button>
@@ -125,6 +126,14 @@
 		<button id="InvoicescopyButton" onclick="copy('Invoices')" class="copyBtn">&#x1F4CB</button>
 		<button id="InvoicescopySelectButton" onclick="showCopyDropdown('Invoices')" class="copyBtn">+</button>
 		<div id="InvoicesDropdown" class="copySelectDropdown-content">
+			<button id="mkICopyButton" onclick="copySelectButton('mkICopy', 'Invoices')" class="addBtn">Major Key</button>
+			<button id="invdateICopyButton" onclick="copySelectButton('invdateICopy', 'Invoices')" class="addBtn">Invoice Date</button>
+			<button id="refnumICopyButton" onclick="copySelectButton('refnumICopy', 'Invoices')" class="addBtn">Reference Num</button>
+			<button id="invdescICopyButton" onclick="copySelectButton('invdescICopy', 'Invoices')" class="addBtn">Invoice Description</button>
+			<button id="chargesICopyButton" onclick="copySelectButton('chargesICopy', 'Invoices')" class="addBtn">Charges</button>
+			<button id="credICopyButton" onclick="copySelectButton('credICopy', 'Invoices')" class="addBtn">Credits</button>
+			<button id="balICopyButton" onclick="copySelectButton('balICopy', 'Invoices')" class="addBtn">Balance</button>
+			<button id="noteICopyButton" onclick="copySelectButton('noteICopy', 'Invoices')" class="addBtn">Note</button>
 		</div>
 	</div>
 	<div id="InvoicesContainer" class="minotron">
@@ -209,7 +218,8 @@
 	function getCopyBtnNames(table) {
 		switch (table) {
 			case "Activity": return ["mkA", "transA", "typeA", "forenameA", "middlenameA", "surnameA", "descA"];
-			case "Customers": return ["mkC", "surnameC", "forenameC", "middlenameC", "mtC", "catC", "titleC", "cityC", "countyC", "compsortC", "addrC", "firmnoC"];
+			case "Customers": return ["mkC", "surnameC", "forenameC", "middlenameC","studnoC", "mtC", "catC", "titleC", "cityC", "countyC", "compsortC", "addrC", "firmnoC"];
+			case "Invoices": return ["mkI", "invdateI", "refnumI", "invdescI", "chargesI", "credI", "balI", "noteI"];
 			case "CustomerNotes": return ["mkCN", "lastfirstCN", "middlenameCN", "commentsCN"];
 				defualt: return [];
 		}
@@ -217,7 +227,8 @@
 	function getCopyFields(table) {
 		switch (table) {
 			case "Activity": return ["MAJOR_KEY", "TRANSACTION_DATE", "ACTIVITY_TYPE", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "DESCRIPTION"];
-			case "Customers": return ["MAJOR_KEY", "LAST_NAME", "FIRST_NAME", "MIDDLE_NAME", "MEMBER_TYPE", "CATEGORY", "TITLE", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS", "MAIN_FIRM_NO"];
+			case "Customers": return ["MAJOR_KEY", "LAST_NAME", "FIRST_NAME", "MIDDLE_NAME", "STUDENT_NO", "MEMBER_TYPE", "CATEGORY", "TITLE", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS", "MAIN_FIRM_NO"];
+			case "Invoices": return ["MAJOR_KEY", "INVOICE_DATE", "REFERENCE_NUM", "INVOICE_DESCRIPTION", "CHARGES", "CREDITS", "BALANCE", "NOTE"];
 			case "CustomerNotes": return ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"];
 				defualt: return [];
 		}
@@ -256,6 +267,7 @@
 		let classNames = getCopyFields(table);
 		let chosenFields = [];
 		for (let button in btnNames) {
+			console.log(btnNames[button]);
 			if (document.getElementById(btnNames[button] + "CopyButton").style.backgroundColor == "rgb(32, 166, 75)") {
 				chosenFields.push(classNames[button]);
 			}
@@ -264,7 +276,7 @@
 			chosenFields = classNames;
 		}
 		console.log(chosenFields);
-		constructClipboard(chosenFields);
+		constructClipboard(chosenFields, table);
 		let clipboardContents = document.getElementById("clipboard").innerHTML;
 		let itemsToCopy = document.createElement("textarea");
 		document.body.appendChild(itemsToCopy);
@@ -400,8 +412,14 @@
 			}
 		}
 	}
-	function constructClipboard(chosenFields) {
-		let queryResults = JSON.parse(document.getElementById("queryResults").innerHTML);
+	function constructClipboard(chosenFields, table) {
+		let financeTables = ["Invoices", "Transactions"];
+		let queryResults = "";
+		if (financeTables.includes(table)) {
+			queryResults = JSON.parse(document.getElementById("financeQueryResults").innerHTML);
+		} else {
+			queryResults = JSON.parse(document.getElementById("customerQueryResults").innerHTML);
+		}
 		let clipboardContents = "";
 		for (let curRecord in queryResults) {
 			let record = queryResults[curRecord];
