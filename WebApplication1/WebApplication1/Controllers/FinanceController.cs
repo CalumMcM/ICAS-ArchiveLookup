@@ -12,13 +12,13 @@ using System.Reflection;
 
 namespace ArchiveLookup.ICAS.com.Controllers
 {
-    public class PersonController : ApiController
+    public class FinanceController : ApiController
     {
 		//rename query in paramters to criteria here and in WebAPICONfig.cs
-		public List<Person> Post([FromBody]PersonQuery criteria)
+		public List<Finance> Post([FromBody]FinanceQuery criteria)
 		{
-			var persons = new List<Person>();
-			var queryBase = @"SELECT TOP (1000) n.[ID]
+			var persons = new List<Finance>();
+			var queryBase = @"SELECT TOP (2000) n.[ID]
 								,n.[MAJOR_KEY]
 								,n.[FIRST_NAME]
 								,n.[MIDDLE_NAME]
@@ -40,27 +40,29 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								,a.[PRODUCT_CODE]
 								,a.[ACTIVITY_TYPE]
 								,a.[THRU_DATE]
-								,a.[AMOUNT]
-								,a.[UNITS]
 								,f.[MAIN_FIRM_NO]
-								,si.[INTAKE_YEAR]
-								,si.[STUDENT_NO]
-								,si.[TPCE_STUDENT]
-								,si.[TRE_STUDENT]
 								,si.[CONTRACT_START_DATE]
+								,si.[STUDENT_NO]
 								,si.[CONTRACT_END_DATE]
 								,si.[FIRM_ID]
 								,si.[FIRM_NAME]
-								,si.[FINAL_CERTIFICATE_DATE]
-								,si.[EXAM_CERTIFICATE_DATE]
-								,si.[BE_PASS]
-								,si.[LOGBOOK_VERIFIED]
-								,si.[LOGBOOK_VERIFIED_DATE]
 								,si.[ITP_STUDENT]
 								,si.[ITP_Passed]
 								,si.[COMMENTS]
 								,ec.[EVENT_ATTENDEES]
 								,g.[TP_Monthly]
+								,i.[INVOICE_DATE]
+								,i.[REFERENCE_NUM]
+								,i.[DESCRIPTION] AS [INVOICE_DESCRIPTION]
+								,i.[CHARGES]
+								,i.[CREDITS]
+								,i.[BALANCE]
+								,i.[Note]
+								,t.[TRANSACTION_DATE] AS [TRANS_TRANSACTION_DATE]
+								,t.[TRANS_NUMBER]
+								,t.[TRANSACTION_TYPE]
+								,t.[DESCRIPTION] AS [TRANSACTION_DESCRIPTION]
+								,t.[AMOUNT] AS [TRANSACTION_AMOUNT]
 								FROM [imis].[dbo].[Name] as n
 								JOIN activity as a
 								on n.id = a.id
@@ -73,13 +75,19 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								JOIN exclude_comms as ec
 								on n.ID = ec.ID
 								JOIN Firm as f
-								on n.ID = f.ID " + queryGenerator(criteria, true) + " ORDER BY TRANSACTION_DATE DESC";
+								on n.ID = f.ID
+								LEFT OUTER JOIN Orders as o
+								on n.CO_ID = o.CO_ID
+								LEFT OUTER JOIN Trans as t
+								on t.INVOICE_REFERENCE_NUM = o.INVOICE_REFERENCE_NUM
+								LEFT OUTER JOIN Invoice as i
+								on t.BT_ID = i.BT_ID " + queryGenerator(criteria, true) + " ORDER BY TRANSACTION_DATE DESC"; ;
 
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
 			{
 				try
 				{
-					persons = connection.Query<Person>(queryBase, criteria.ToDapperParameter()).ToList();
+					persons = connection.Query<Finance>(queryBase, criteria.ToDapperParameter()).ToList();
 				}
 				catch (SqlException e)
 				{
@@ -94,7 +102,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 			return persons;
 		}
 		
-		public string queryGenerator(PersonQuery criteriaFull, bool areYouSure)
+		public string queryGenerator(FinanceQuery criteriaFull, bool areYouSure)
 		{
 			//WHEN ADDING NEW CRITERIA ADD DATABSE PREFIX HERE IN SAME POSITION AS IT IS IN getClassNames();
 			var properties = criteriaFull.GetType().GetFields();

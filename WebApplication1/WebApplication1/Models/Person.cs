@@ -20,6 +20,7 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string PRODUCT_CODE { get; set; }
 		public string FUNCTIONAL_TITLE { get; set; }
 		public string STATUS { get; set; }
+		public string UNITS { get; set; }
 		public string INTAKE_YEAR{ get; set; }
 		public string TPCE_STUDENT { get; set; }
 		public string TRE_STUDENT { get; set; }
@@ -27,6 +28,7 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string CONTRACT_END_DATE { get; set; }
 		public string FIRM_ID { get; set; }
 		public string FIRM_NAME { get; set; }
+		public string STUDENT_NO { get; set; }
 		public string FINAL_CERTIFICATE_DATE { get; set; }
 		public string EXAM_CERTIFICATE_DATE { get; set; }
 		public string BE_PASS { get; set; }
