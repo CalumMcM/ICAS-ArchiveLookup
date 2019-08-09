@@ -69,13 +69,15 @@
 		<div id="loadingIcon" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 	</div>
 	<div id="ResultsHeader" class="resultsHeader">
-		<h1>Results
+		<h1>
+			Results
 			<div id="resultsUnderline" class="underlineResults"></div>
 		</h1>
 	</div>
 
-	<div id="CustomerHeader" class="resultsHeader">
-		<h2>Customers<div id="billingUnderline" class="underlineResults"></div>
+	<div id="CustomersHeader" class="resultsHeader">
+		<h2>
+			Customers<div id="billingUnderline" class="underlineResults"></div>
 		</h2>
 	</div>
 	<div class="copySelectDropdown">
@@ -96,14 +98,15 @@
 			<button id="firmnoCCopyButton" onclick="copySelectButton('firmnoCCopy', 'Customers')" class="addBtn">Main Firm No</button>
 		</div>
 	</div>
-	<div id="CustomerContainer" class="minotron">
-		<table id="CustomerResultsTable" class="resultsTable">
+	<div id="CustomersContainer" class="minotron">
+		<table id="CustomersResultsTable" class="resultsTable">
 			<tr></tr>
 		</table>
 	</div>
 
 	<div id="ActivityHeader" class="resultsHeader">
-		<h2>Activity
+		<h2>
+			Activity
 			<div id="ActivityUnderline" class="underlineResults"></div>
 		</h2>
 	</div>
@@ -120,9 +123,8 @@
 			<button id="descACopyButton" onclick="copySelectButton('descACopy', 'Activity')" class="addBtn">Description</button>
 		</div>
 	</div>
-	<div id="ResultsHeaders"></div>
-	<div id="ResultsContainer" class="minotron">
-		<table id="ResultsTable" class="resultsTable">
+	<div id="ActivityContainer" class="minotron">
+		<table id="ActivityResultsTable" class="resultsTable">
 			<tr></tr>
 		</table>
 	</div>
@@ -276,38 +278,25 @@
 	function displayResults(inputs) {
 		document.getElementById("loadingIcon").style.display = "none";
 		//Delete previous table if it exists:
-		tableDemolisher("CustomerResultsTable");
-		tableDemolisher("ResultsTable");
-		tableDemolisher("CustomerNotesResultsTable");
-		//Display and Construct new table:
-		document.getElementById("ResultsContainer").style.display = "block";
-		document.getElementById("ResultsHeader").style.display = "block";
-		document.getElementById("CustomerContainer").style.display = "block";
-		document.getElementById("CustomerNotesContainer").style.display = "block";
-		document.getElementById("CustomerHeader").style.display = "block";
-		document.getElementById("ActivityHeader").style.display = "block";
-		document.getElementById("CustomerNotesHeader").style.display = "block";
-		document.getElementById("resultsUnderline").style.display = "block";
-		document.getElementById("CustomerscopyButton").innerHTML = '&#x1F4CB';
-		document.getElementById("ActivitycopyButton").innerHTML = '&#x1F4CB';
-		document.getElementById("CustomerscopyButton").innerHTML = '&#x1F4CB';
-		document.getElementById("CustomerNotescopyButton").innerHTML = '&#x1F4CB';
-		document.getElementById("CustomerscopyButton").style.display = 'block';
-		document.getElementById("CustomerNotescopyButton").style.display = 'block';
-		document.getElementById("ActivitycopyButton").style.display = 'block';
-		document.getElementById("CustomerscopySelectButton").style.display = "block";
-		document.getElementById("CustomerNotescopySelectButton").style.display = "block";
-		document.getElementById("ActivitycopySelectButton").style.display = "block";
+		tableDemolisherAndDisplayer("Customers");
+		tableDemolisherAndDisplayer("Activity");
+		tableDemolisherAndDisplayer("CustomerNotes");
+
 		let customerResultsTable = ["MAJOR_KEY", "MEMBER_TYPE", "CATEGORY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "TITLE", "MAIN_FIRM_NO", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS"];
 		let resultsTableHeaders = ["TRANSACTION_DATE", "MAJOR_KEY", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "THRU_DATE", "AMOUNT"];
-		tableBuilder(inputs, "CustomerResultsTable", customerResultsTable)
-		tableBuilder(inputs, "ResultsTable", resultsTableHeaders);
+		tableBuilder(inputs, "CustomersResultsTable", customerResultsTable)
+		tableBuilder(inputs, "ActivityResultsTable", resultsTableHeaders);
 		tableBuilder(inputs, "CustomerNotesResultsTable", ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"])
 	}
-	function tableDemolisher(tableName) {
-		for (var i = document.getElementById(tableName).rows.length; i > 0; i--) {
-			document.getElementById(tableName).deleteRow(i - 1);
+	function tableDemolisherAndDisplayer(tableName) {
+		for (var i = document.getElementById(tableName + "ResultsTable").rows.length; i > 0; i--) {
+			document.getElementById(tableName + "ResultsTable").deleteRow(i - 1);
 		}
+		document.getElementById(tableName + "Container").style.display = "block";
+		document.getElementById(tableName + "Header").style.display = "block";
+		document.getElementById(tableName + "copyButton").innerHTML = '&#x1F4CB';
+		document.getElementById(tableName + "copyButton").style.display = 'block';
+		document.getElementById(tableName + "copySelectButton").style.display = "block";
 	}
 	function tableBuilder(queryResults, tableName, headers) {
 		let table = document.getElementById(tableName);
@@ -327,7 +316,7 @@
 			let newInputs = [];
 			for (let record in queryResults) {
 				//NEED TO DELETE THIS FIELD WITHOUT DELEING GLOBAL INPUTS
-				//THERE IS A BETTER WAY TO DO THIS 
+				//THERE IS A BETTER WAY TO DO THIS
 				let newRecord = {};
 				tableHeaders.forEach(function (header) {
 					let curRecord = queryResults[record];
@@ -362,7 +351,7 @@
 					} else {
 						clipboardContents += "\t" + record[chosenFields[chosenField]];
 					}
-				} 
+				}
 			}
 			clipboardContents += "\n";
 		}
