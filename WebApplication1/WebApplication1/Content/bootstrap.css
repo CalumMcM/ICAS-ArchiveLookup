@@ -58,7 +58,9 @@ html {
 }
 
 body {
-  margin: 0;
+	display: flex;
+	justify-content: flex-start;
+	margin: 0;
 }
 
 a:focus {
@@ -1272,7 +1274,7 @@ pre code {
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 1170px;
+		max-width: 1170px;
   }
   .col-lg-1,
   .col-lg-2,
@@ -5232,7 +5234,8 @@ a.list-group-item.active > .badge,
 }
 
 .container .jumbotron {
-  border-radius: 6px;
+	width: 100%;
+	border-radius: 6px;
 }
 
 @media screen and (min-width: 768px) {
