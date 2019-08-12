@@ -58,7 +58,9 @@ html {
 }
 
 body {
-  margin: 0;
+	display: flex;
+	justify-content: flex-start;
+	margin: 0;
 }
 
 a:focus {
@@ -1272,7 +1274,7 @@ pre code {
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 1170px;
+		max-width: 1170px;
   }
   .col-lg-1,
   .col-lg-2,
@@ -2342,6 +2344,16 @@ fieldset[disabled] .btn-info.active {
 	border: none;
 	width: 10em;
 	margin-top: 0.2em;
+	margin-left: 10px;
+	-webkit-border-radius: 10px;
+}
+.addBtnTPS{
+	background-color: #C00A27;
+	color: #ffffff;
+	padding: 0;
+	border: none;
+	width: 16em;
+	margin-top: 0.2em;
 	-webkit-border-radius: 10px;
 }
 .resultsHeader{
@@ -2389,6 +2401,32 @@ fieldset[disabled] .btn-info.active {
 }
 
 .copySelectDropdown a:hover {background-color: #ddd;}
+
+
+.copySelectDropdownTPS {
+	position: relative;
+	display: flex;
+	align-content: flex-start;
+}
+
+.copySelectDropdownTPS-content {
+	margin-top:40px;
+	display: none;
+	position: absolute;
+	width: 32.5em;
+	overflow: auto;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+
+.copySelectDropdownTPS-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.copySelectDropdownTPS a:hover {background-color: #ddd;}
 
 .show {display: block;}
 
@@ -5196,7 +5234,8 @@ a.list-group-item.active > .badge,
 }
 
 .container .jumbotron {
-  border-radius: 6px;
+	width: 100%;
+	border-radius: 6px;
 }
 
 @media screen and (min-width: 768px) {
@@ -5214,6 +5253,10 @@ a.list-group-item.active > .badge,
   }
 }
 
+.centralFlex{
+	display: flex;
+	justify-content: center;
+}
 .minotron{
 	display: none;
 	height: auto;
