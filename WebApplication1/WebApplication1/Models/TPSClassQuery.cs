@@ -13,9 +13,9 @@ namespace ArchiveLookup.ICAS.com.Models
 		public Object ToDapperParameter()
 		{
 			return new {
-				CLASS = CLASS,
 				START_DATE = START_DATE,
-				END_DATE = END_DATE
+				END_DATE = END_DATE,
+				CLASS = CLASS
 			};
 		}
 	}

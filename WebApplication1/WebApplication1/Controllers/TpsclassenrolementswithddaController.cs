@@ -17,7 +17,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		public List<TPSClass> Post([FromBody]TPSClassQuery criteria)
 		{
 			var persons = new List<TPSClass>();
-			var queryBase = @"EXEC DBO.TPSClassSelect '20190701', '20190805', '605340001'";
+			var queryBase = @"EXEC DBO.TPSClassSelect @START_DATE, @END_DATE, " + queryGenerator(criteria, true);
 
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["TPSClassEnrolementWithDDA"].ConnectionString))
 			{
@@ -38,16 +38,15 @@ namespace ArchiveLookup.ICAS.com.Controllers
 			return persons;
 		}
 
-		public string queryGenerator(TPSClassQuery criteriaFull, bool areYouSure)
+		public int queryGenerator(TPSClassQuery criteriaFull, bool areYouSure)
 		{
 			//TPC = 605340000 //TPS = 605340001 //TPE = 605340002
-			var chosenClass = "60534000";
 			switch (criteriaFull.CLASS)
 			{
-				case "TPC": return chosenClass + "0";
-				case "TPS": return chosenClass + "1";
-				case "TPE": return chosenClass + "2";
-				default: return chosenClass + "0";
+				case "TPC": return 605340000;
+				case "TPS": return 605340001;
+				case "TPE": return 605340002;
+				default: return 605340000;
 			}
 		}
 	}
