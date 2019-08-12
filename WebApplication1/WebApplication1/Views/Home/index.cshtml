@@ -1,12 +1,12 @@
 ﻿@{
-	ViewBag.Title = "Becky's Query";
+	ViewBag.Title = "TPS Class Query";
 }
 
 <div class="jumbotron">
 
 	<img src="ICASLogo.png">
 	<h1>
-		Becky's Query
+		TPS Class Query
 		<div class="underline"></div>
 	</h1>
 	<p>Select the criteria for your search: </p>
@@ -29,9 +29,9 @@
 		Class:
 		<input list="classes" id="classInput" class="input-lookup" name="class">
 		<datalist id="classes">
-			<option value="TPS">
 			<option value="TPC">
-			<option value="CPD">
+			<option value="TPS">
+			<option value="TPE">
 		</datalist>
 	</p>
 
@@ -55,18 +55,15 @@
 		<button id="StudentscopyButton" onclick="copy('Students')" class="copyBtn">&#x1F4CB</button>
 		<button id="StudentscopySelectButton" onclick="showCopyDropdown('Students')" class="copyBtn">+</button>
 		<div id="StudentsDropdown" class="copySelectDropdown-content">
-			<button id="mkCCopyButton" onclick="copySelectButton('mkCCopy', 'Students')" class="addBtn">Major Key</button>
-			<button id="surnameCCopyButton" onclick="copySelectButton('surnameCCopy', 'Students')" class="addBtn">Last Name</button>
-			<button id="forenameCCopyButton" onclick="copySelectButton('forenameCCopy', 'Students')" class="addBtn">First Name</button>
-			<button id="middlenameCCopyButton" onclick="copySelectButton('middlenameCCopy', 'Students')" class="addBtn">Middle Name</button>
-			<button id="mtCCopyButton" onclick="copySelectButton('mtCCopy', 'Students')" class="addBtn">Member Type</button>
-			<button id="catCCopyButton" onclick="copySelectButton('catCCopy', 'Students')" class="addBtn">Category</button>
-			<button id="titleCCopyButton" onclick="copySelectButton('titleCCopy', 'Students')" class="addBtn">Title</button>
-			<button id="cityCCopyButton" onclick="copySelectButton('cityCCopy', 'Students')" class="addBtn">City</button>
-			<button id="countyCCopyButton" onclick="copySelectButton('countyCCopy', 'Students')" class="addBtn">County</button>
-			<button id="compsortCCopyButton" onclick="copySelectButton('compsortCCopy', 'Students')" class="addBtn">Company Sort</button>
-			<button id="addrCCopyButton" onclick="copySelectButton('addrCCopy', 'Students')" class="addBtn">Full Address</button>
-			<button id="firmnoCCopyButton" onclick="copySelectButton('firmnoCCopy', 'Students')" class="addBtn">Main Firm No</button>
+			<button id="icascncSCopyButton" onclick="copySelectButton('icascncSCopy', 'Students')" class="addBtn">ICAS CONTACTNUMBERCALC</button>
+			<button id="fullnameSCopyButton" onclick="copySelectButton('fullnameSCopy', 'Students')" class="addBtn">FULL NAME</button>
+			<button id="workcitySCopyButton" onclick="copySelectButton('workcitySCopy', 'Students')" class="addBtn">WORK CITY</button>
+			<button id="homecitySCopyButton" onclick="copySelectButton('homecitySCopy', 'Students')" class="addBtn">HOME CITY</button>
+			<button id="companynameSCopyButton" onclick="copySelectButton('companynameSCopy', 'Students')" class="addBtn">COMPANY NAME</button>
+			<button id="customertypeSCopyButton" onclick="copySelectButton('customertypeSCopy', 'Students')" class="addBtn">CUSTOMER TYPE</button>
+			<button id="tpssubjSCopyButton" onclick="copySelectButton('tpssubjSCopy', 'Students')" class="addBtn">TPS SUBJECT</button>
+			<button id="concawardSCopyButton" onclick="copySelectButton('concawardSCopy', 'Students')" class="addBtn">CONCESSION AWARDED</button>
+			<button id="icassdCopyButton" onclick="copySelectButton('icassdSCopy', 'Students')" class="addBtn">ICAS STARTDATE</button>
 		</div>
 	</div>
 	<div id="StudentsContainer" class="minotron">
@@ -83,9 +80,9 @@
 <script src="~/Scripts/lodashCore.js" type="text/javascript"></script>
 <script>
 	const getBtnNames = () =>["sd", "ed", "class"];
-	const getClassNames = () =>["TRANSACTION_DATE", "THRU_DATE", "CLASS"];
-	const getCopyBtnNames = () => ["mkC", "surnameC", "forenameC", "middlenameC", "mtC", "catC", "titleC", "cityC", "countyC", "compsortC", "addrC", "firmnoC"];
-	const getCopyFields = () => ["MAJOR_KEY", "LAST_NAME", "FIRST_NAME", "MIDDLE_NAME", "MEMBER_TYPE", "CATEGORY", "TITLE", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS", "MAIN_FIRM_NO"];
+	const getClassNames = () =>["START_DATE", "END_DATE", "CLASS"];
+	const getCopyBtnNames = () => ["icascncS", "fullnameS", "workcityS", "homecityS", "companynameS", "customertypeS", "tpssubjS", "concawardS", "icassd"];
+	const getCopyFields = () =>["ICAS_CONTACTNUMBERCALC", "FULL_NAME", "WORK_CITY", "HOME_CITY", "COMPANY_NAME", "CUSTOMER_TYPE", "TPS_SUBJECT", "CONCESSION_AWARDED", "ICAS_STARTDATE"];
 
 	function showInput(input) {
 		let inputText = document.getElementById(input);
@@ -164,7 +161,7 @@
 		for (let button in btnNames) {
 			if (document.getElementById(btnNames[button] + "InputButton").style.backgroundColor == "rgb(32, 166, 75)") {
 				if (dateTypesObjects.includes(btnNames[button] + "input")) {
-					inputs[classNames[button]] = moment(document.getElementById(btnNames[button] + "Input").value).format('YYYY-MM-DDT00:00:00');
+					inputs[classNames[button]] = moment(document.getElementById(btnNames[button] + "Input").value).format('YYYYMMDD');
 				}
 				else {
 					if (btnNames[button] + "Input")
@@ -173,7 +170,7 @@
 			}
 		}
 		let xhttp = new XMLHttpRequest();
-		xhttp.open("POST", 'api/person', true);
+		xhttp.open("POST", 'api/Tpsclassenrolementswithdda', true);
 		let MOCKqueryResults;
 		xhttp.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
@@ -192,7 +189,7 @@
 		document.getElementById("loadingIcon").style.display = "none";
 		//Delete previous table if it exists:
 		tableDemolisherAndDisplayer("Students");
-		tableBuilder(inputs, "StudentsResultsTable", ["MAJOR_KEY", "MEMBER_TYPE", "CATEGORY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "TITLE", "MAIN_FIRM_NO", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS"])
+		tableBuilder(inputs, "StudentsResultsTable", getCopyFields())
 	}
 	function tableDemolisherAndDisplayer(tableName) {
 		//Demolisher

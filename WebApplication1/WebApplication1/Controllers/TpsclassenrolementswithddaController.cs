@@ -14,17 +14,16 @@ namespace ArchiveLookup.ICAS.com.Controllers
 {
 	public class TpsclassenrolementswithddaController : ApiController
 	{
-		//rename query in paramters to criteria here and in WebAPICONfig.cs
-		public List<TPSClass> Post([FromBody]TPSClass criteria)
+		public List<TPSClass> Post([FromBody]TPSClassQuery criteria)
 		{
 			var persons = new List<TPSClass>();
-			var queryBase = @"EXEC DBO.ClassSelect" + queryGenerator(criteria, true);
+			var queryBase = @"EXEC DBO.TPSClassSelect '20190701', '20190805', '605340001'";
 
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["TPSClassEnrolementWithDDA"].ConnectionString))
 			{
 				try
 				{
-					persons = connection.Query<Person>(queryBase, criteria.ToDapperParameter()).ToList();
+					persons = connection.Query<TPSClass>(queryBase, criteria.ToDapperParameter()).ToList();
 				}
 				catch (SqlException e)
 				{
@@ -39,27 +38,17 @@ namespace ArchiveLookup.ICAS.com.Controllers
 			return persons;
 		}
 
-		public string queryGenerator(PersonQuery criteriaFull, bool areYouSure)
+		public string queryGenerator(TPSClassQuery criteriaFull, bool areYouSure)
 		{
-			//WHEN ADDING NEW CRITERIA ADD DATABSE PREFIX HERE IN SAME POSITION AS IT IS IN getClassNames();
-			var properties = criteriaFull.GetType().GetFields();
-			var query = "";
-			bool began = false;
-			for (var i = 0; i < properties.Length; i++)
+			//TPC = 605340000 //TPS = 605340001 //TPE = 605340002
+			var chosenClass = "60534000";
+			switch (criteriaFull.CLASS)
 			{
-				if (properties[i].GetValue(criteriaFull) != "" && properties[i].GetValue(criteriaFull) != null && !began)
-				{
-					query = query + "WHERE " + criteriaFull.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
-					began = true;
-				}
-				else if (properties[i].GetValue(criteriaFull) != "" && properties[i].GetValue(criteriaFull) != null)
-				{
-					query = query + " AND " + criteriaFull.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
-				}
+				case "TPC": return chosenClass + "0";
+				case "TPS": return chosenClass + "1";
+				case "TPE": return chosenClass + "2";
+				default: return chosenClass + "0";
 			}
-
-			return query;
 		}
-
 	}
 }
