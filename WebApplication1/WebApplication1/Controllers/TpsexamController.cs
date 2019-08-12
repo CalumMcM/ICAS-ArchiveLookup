@@ -12,12 +12,12 @@ using System.Reflection;
 
 namespace ArchiveLookup.ICAS.com.Controllers
 {
-	public class TpsclassenrolementswithddaController : ApiController
+	public class TpsexamController : ApiController
 	{
 		public List<TPSClass> Post([FromBody]TPSClassQuery criteria)
 		{
 			var persons = new List<TPSClass>();
-			var queryBase = @"EXEC DBO.TPSClassSelect @START_DATE, @END_DATE, " + queryGenerator(criteria, true);
+			var queryBase = @"EXEC DBO.TPSExamSelect @START_DATE, @END_DATE, " + queryGenerator(criteria, true);
 
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["TPSClassEnrolementWithDDA"].ConnectionString))
 			{

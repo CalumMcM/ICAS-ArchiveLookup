@@ -190,7 +190,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\FinanceController.cs" />
-    <Compile Include="Controllers\TpsclassenrolementswithddaController.cs" />
+    <Compile Include="Controllers\TpsexamController.cs" />
+    <Compile Include="Controllers\TpsclassController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

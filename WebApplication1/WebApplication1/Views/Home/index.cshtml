@@ -11,10 +11,11 @@
 	</h1>
 	<p>Select the criteria for your search: </p>
 
-	<button id="sdInputButton" onclick="showInput('sdInput')" class="addBtn">Start Date</button>
-	<button id="edInputButton" onclick="showInput('edInput')" class="addBtn">End Date</button>
-	<button id="classInputButton" onclick="showInput('classInput')" class="addBtn">Class</button>
-
+	<div class="centralFlex">
+		<button id="classInputButton" onclick="showInput('classInputButton')" class="addBtn">Class</button>
+		<button id="examInputButton" onclick="showInput('examInputButton')" class="addBtn">Exam</button>
+	</div>
+	
 	<p id="sdInputText" class="lead">
 		Start Date:
 		<input type="date" id="sdInput" class="input-lookup" name="sd">
@@ -25,9 +26,9 @@
 		<input type="date" id="edInput" class="input-lookup" name="ed">
 	</p>
 
-	<p id="classInputText" class="lead">
+	<p id="claInputText" class="lead">
 		Class:
-		<input list="classes" id="classInput" class="input-lookup" name="class">
+		<input list="classes" id="claInput" class="input-lookup" name="cla">
 		<datalist id="classes">
 			<option value="TPC">
 			<option value="TPS">
@@ -35,7 +36,7 @@
 		</datalist>
 	</p>
 
-	<div class="copySelectDropdown">
+	<div class="copySelectDropdownTPS">
 		<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
 		<div id="loadingIcon" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 	</div>
@@ -51,19 +52,20 @@
 			Students<div id="billingUnderline" class="underlineResults"></div>
 		</h2>
 	</div>
-	<div class="copySelectDropdown">
+	<div class="copySelectDropdownTPS">
 		<button id="StudentscopyButton" onclick="copy('Students')" class="copyBtn">&#x1F4CB</button>
 		<button id="StudentscopySelectButton" onclick="showCopyDropdown('Students')" class="copyBtn">+</button>
-		<div id="StudentsDropdown" class="copySelectDropdown-content">
-			<button id="icascncSCopyButton" onclick="copySelectButton('icascncSCopy', 'Students')" class="addBtn">ICAS CONTACTNUMBERCALC</button>
-			<button id="fullnameSCopyButton" onclick="copySelectButton('fullnameSCopy', 'Students')" class="addBtn">FULL NAME</button>
-			<button id="workcitySCopyButton" onclick="copySelectButton('workcitySCopy', 'Students')" class="addBtn">WORK CITY</button>
-			<button id="homecitySCopyButton" onclick="copySelectButton('homecitySCopy', 'Students')" class="addBtn">HOME CITY</button>
-			<button id="companynameSCopyButton" onclick="copySelectButton('companynameSCopy', 'Students')" class="addBtn">COMPANY NAME</button>
-			<button id="customertypeSCopyButton" onclick="copySelectButton('customertypeSCopy', 'Students')" class="addBtn">CUSTOMER TYPE</button>
-			<button id="tpssubjSCopyButton" onclick="copySelectButton('tpssubjSCopy', 'Students')" class="addBtn">TPS SUBJECT</button>
-			<button id="concawardSCopyButton" onclick="copySelectButton('concawardSCopy', 'Students')" class="addBtn">CONCESSION AWARDED</button>
-			<button id="icassdCopyButton" onclick="copySelectButton('icassdSCopy', 'Students')" class="addBtn">ICAS STARTDATE</button>
+		<div id="StudentsDropdown" class="copySelectDropdownTPS-content">
+			<button id="icascncSCopyButton" onclick="copySelectButton('icascncSCopy', 'Students')" class="addBtnTPS">ICAS CONTACTNUMBERCALC</button>
+			<button id="fullnameSCopyButton" onclick="copySelectButton('fullnameSCopy', 'Students')" class="addBtnTPS">FULL NAME</button>
+			<button id="workcitySCopyButton" onclick="copySelectButton('workcitySCopy', 'Students')" class="addBtnTPS">WORK CITY</button>
+			<button id="homecitySCopyButton" onclick="copySelectButton('homecitySCopy', 'Students')" class="addBtnTPS">HOME CITY</button>
+			<button id="companynameSCopyButton" onclick="copySelectButton('companynameSCopy', 'Students')" class="addBtnTPS">COMPANY NAME</button>
+			<button id="customertypeSCopyButton" onclick="copySelectButton('customertypeSCopy', 'Students')" class="addBtnTPS">CUSTOMER TYPE</button>
+			<button id="tpssubjSCopyButton" onclick="copySelectButton('tpssubjSCopy', 'Students')" class="addBtnTPS">TPS SUBJECT</button>
+			<button id="concawardSCopyButton" onclick="copySelectButton('concawardSCopy', 'Students')" class="addBtnTPS">CONCESSION AWARDED</button>
+			<button id="icassdSCopyButton" onclick="copySelectButton('icassdSCopy', 'Students')" class="addBtnTPS">ICAS STARTDATE</button>
+			<button id="icasstSCopyButton" onclick="copySelectButton('icasstSCopy', 'Students')" class="addBtnTPS">ICAS STARTTIME</button>
 		</div>
 	</div>
 	<div id="StudentsContainer" class="minotron">
@@ -79,25 +81,42 @@
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="~/Scripts/lodashCore.js" type="text/javascript"></script>
 <script>
-	const getBtnNames = () =>["sd", "ed", "class"];
-	const getClassNames = () =>["START_DATE", "END_DATE", "CLASS"];
-	const getCopyBtnNames = () => ["icascncS", "fullnameS", "workcityS", "homecityS", "companynameS", "customertypeS", "tpssubjS", "concawardS", "icassd"];
-	const getCopyFields = () =>["ICAS_CONTACTNUMBERCALC", "FULL_NAME", "WORK_CITY", "HOME_CITY", "COMPANY_NAME", "CUSTOMER_TYPE", "TPS_SUBJECT", "CONCESSION_AWARDED", "ICAS_STARTDATE"];
-
-	function showInput(input) {
-		let inputText = document.getElementById(input);
-		let inputTextTitle = document.getElementById(input + "Text");
-		let button = document.getElementById(input + "Button");
-		if (inputText.style.display == "none" || button.style.backgroundColor == "") {
-			inputText.value = "";
-			inputText.style.display = "block";
-			inputTextTitle.style.display = "block";
-			button.style.backgroundColor = "#20A64B"
-		} else {
-			inputText.style.display = "none";
-			inputTextTitle.style.display = "none";
-			button.style.backgroundColor = "#C00A27";
+	const getBtnNames		= () => ["class", "exam"];
+	const getFieldNames		= () => ["sd", "ed", "cla"];
+	const getClassNames		= () => ["START_DATE", "END_DATE", "CLASS"];
+	const getCopyBtnNames	= () => ["icascncS", "fullnameS", "workcityS", "homecityS", "companynameS", "customertypeS", "tpssubjS", "concawardS", "icassdS", "icasstS"];
+	function getCopyFields(query) {
+		switch (query) {
+			case "class": return ["ICAS_CONTACTNUMBERCALC", "FULLNAME", "WORK_CITY", "HOME_CITY", "COMPANY_NAME", "CUSTOMER_TYPE", "TPS_SUBJECT", "CONCESSION_AWARDED", "ICAS_STARTDATE"];
+			case "exam": return ["ICAS_CONTACTNUMBERCALC", "FULLNAME", "WORK_CITY", "HOME_CITY", "COMPANY_NAME", "CUSTOMER_TYPE", "TPS_SUBJECT", "CONCESSION_AWARDED", "ICAS_STARTTIME"];
+			default: return ["ICAS_CONTACTNUMBERCALC", "FULLNAME", "WORK_CITY", "HOME_CITY", "COMPANY_NAME", "CUSTOMER_TYPE", "TPS_SUBJECT", "CONCESSION_AWARDED", "ICAS_STARTDATE"];
 		}
+	}
+	function showInput(type) {
+		inputs = ["sdInput", "edInput", "claInput"];
+		let inputText = "";
+		let inputTextTitle = "";
+		let otherButton = "";
+		let displayValue = "";
+		switch (type) {
+			case "classInputButton": otherButton = "examInputButton"; break;
+			case "examInputButton": otherButton = "classInputButton"; break;
+			default: otherButton = "classInputButton"; break;
+		}
+		document.getElementById(otherButton).style.backgroundColor = "#C00A27";
+		document.getElementById(type).style.backgroundColor = "#20A64B"
+		if (document.getElementById(type).style.display != "none" && document.getElementById(otherButton).style.display != "none") {
+			displayValue = "block";
+		} else {
+			displayValue = "none";
+		}
+		inputs.forEach(function (input) {
+			inputText = document.getElementById(input);
+			inputTextTitle = document.getElementById(input + "Text");
+			inputText.value = "";
+			inputText.style.display = displayValue;
+			inputTextTitle.style.display = displayValue;
+		});
 		showSubmit();
 	}
 	function showSubmit() {
@@ -114,8 +133,15 @@
 		}
 	}
 	function copy(table) {
-		let btnNames = getCopyBtnNames(table);
-		let classNames = getCopyFields(table);
+		let queryNames = getBtnNames(table);
+		let chosenButton = "";
+		queryNames.forEach(function (btn) {
+			if (document.getElementById(btn + "InputButton").style.backgroundColor == "rgb(32, 166, 75)") {
+				chosenButton = btn;
+			}
+		});
+		let btnNames = getCopyBtnNames();
+		let classNames = getCopyFields(chosenButton);
 		let chosenFields = [];
 		for (let button in btnNames) {
 			if (document.getElementById(btnNames[button] + "CopyButton").style.backgroundColor == "rgb(32, 166, 75)") {
@@ -151,45 +177,49 @@
 		document.getElementById(table+"Dropdown").classList.toggle("show");
 	}
 	function processQuery() {
-		console.log(document.getElementById("classInput").value);
+		let chosenButton = "";
 		document.getElementById("loadingIcon").style.display = "block";
 		document.getElementById("queriesLoaded").innerHTML = 0;
 		let btnNames = getBtnNames();
+		let fieldNames = getFieldNames();
 		let classNames = getClassNames();
+		btnNames.forEach(function (btn) {
+			if (document.getElementById(btn + "InputButton").style.backgroundColor == "rgb(32, 166, 75)") {
+				chosenButton = btn;
+			}
+		});
+
 		let inputs = {}
 		let dateTypesObjects = $('input[type=date]').map(function () { return this.id; }).get();
-		for (let button in btnNames) {
-			if (document.getElementById(btnNames[button] + "InputButton").style.backgroundColor == "rgb(32, 166, 75)") {
-				if (dateTypesObjects.includes(btnNames[button] + "input")) {
-					inputs[classNames[button]] = moment(document.getElementById(btnNames[button] + "Input").value).format('YYYY-MM-DDT00:00:00');
-				}
-				else {
-					if (btnNames[button] + "Input")
-					inputs[classNames[button]] = document.getElementById(btnNames[button] + "Input").value;
-				}
+		for (let button in fieldNames) {
+			if (dateTypesObjects.includes(fieldNames[button] + "input")) {
+				inputs[classNames[button]] = moment(document.getElementById(fieldNames[button] + "Input").value).format('YYYY-MM-DDT00:00:00');
+			}
+			else {
+				if (fieldNames[button] + "Input")
+				inputs[classNames[button]] = document.getElementById(fieldNames[button] + "Input").value;
 			}
 		}
 		let xhttp = new XMLHttpRequest();
-		xhttp.open("POST", 'api/Tpsclassenrolementswithdda', true);
+		xhttp.open("POST", 'api/Tps'+chosenButton, true);
 		let MOCKqueryResults;
 		xhttp.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				var queryResults = this.response
 				queryResults = $.parseJSON(queryResults);
 				document.getElementById("queriesLoaded").innerHTML = document.getElementById("queriesLoaded").innerHTML + 1
-				displayResults(queryResults);
+				displayResults(queryResults, chosenButton);
 				document.getElementById("queryResults").innerHTML = JSON.stringify(queryResults);
 			}
 		};
 		xhttp.setRequestHeader('Content-Type', 'application/json');
 		xhttp.send(JSON.stringify(inputs));
-
 	}
-	function displayResults(inputs) {
+	function displayResults(inputs, query) {
 		document.getElementById("loadingIcon").style.display = "none";
 		//Delete previous table if it exists:
 		tableDemolisherAndDisplayer("Students");
-		tableBuilder(inputs, "StudentsResultsTable", getCopyFields())
+		tableBuilder(inputs, "StudentsResultsTable", getCopyFields(query))
 	}
 	function tableDemolisherAndDisplayer(tableName) {
 		//Demolisher
