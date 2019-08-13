@@ -418,6 +418,13 @@ p {
 	margin-top: -5px;
 	margin-bottom:10px;
 }
+.underlinePC{
+	width:75%;
+	height:3px;
+	background-color: #575656;
+	margin-top: -5px;
+	margin-bottom:10px;
+}
 
 .underlineResults{
 	width:42%;
