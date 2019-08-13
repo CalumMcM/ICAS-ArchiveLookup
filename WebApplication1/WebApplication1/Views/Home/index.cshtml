@@ -251,7 +251,7 @@
 			case "Activity": return ["mkA", "transA", "typeA", "forenameA", "middlenameA", "surnameA", "descA"];
 			case "Customers": return ["mkC", "surnameC", "forenameC", "middlenameC", "mtC", "catC", "titleC", "cityC", "countyC", "compsortC", "addrC", "firmnoC"];
 			case "CustomerNotes": return ["mkCN", "lastfirstCN", "middlenameCN", "commentsCN"];
-				defualt: return [];
+				default: return [];
 			}
 	}
 	function getCopyFields(table) {
@@ -259,7 +259,7 @@
 			case "Activity": return ["MAJOR_KEY", "TRANSACTION_DATE", "ACTIVITY_TYPE", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "DESCRIPTION"];
 			case "Customers": return ["MAJOR_KEY", "LAST_NAME", "FIRST_NAME", "MIDDLE_NAME", "MEMBER_TYPE", "CATEGORY", "TITLE", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS", "MAIN_FIRM_NO"];
 			case "CustomerNotes": return ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"];
-				defualt: return [];
+				default: return [];
 		}
 	}
 	function showInput(input) {
