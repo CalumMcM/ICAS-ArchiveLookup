@@ -68,7 +68,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="PersonControllerTest - Copy.cs" />
-    <Compile Include="ProcessingChangeTest.cs" />
+    <Compile Include="LicenceControllerTest.cs" />
     <Compile Include="FinanceControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

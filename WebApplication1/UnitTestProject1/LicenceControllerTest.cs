@@ -12,7 +12,7 @@ namespace ArchiveLookup.ICAS.com.test
 		public void PcControllerGeneratesQueryGivenGoodCriteria()
 		{
 			//Arrange
-			PersonQuery criteria = new PersonQuery();
+			LicenceQuery criteria = new LicenceQuery();
 			criteria.FIRST_NAME = "Calum";
 			criteria.LAST_NAME = "McMeekin";
 			PersonController personController = new PersonController();
@@ -23,7 +23,7 @@ namespace ArchiveLookup.ICAS.com.test
 			Assert.AreEqual("WHERE n.FIRST_NAME = @FIRST_NAME AND n.LAST_NAME = @LAST_NAME", response, "Query Generator failed to generate the correct query");
 		}
 		[TestMethod]
-		public void PersonQueryReturnsCorrectDatabasePrefixForGivenType()
+		public void LicenceQueryReturnsCorrectDatabasePrefixForGivenType()
 		{
 			//Arrange 
 			LicenceQuery criteria = new LicenceQuery();
@@ -39,7 +39,7 @@ namespace ArchiveLookup.ICAS.com.test
 			Assert.AreEqual("si.", siResponse);
 		}
 		[TestMethod]
-		public void PersonQueryReturnsCorrectDatabasePrefixForn()
+		public void LicenceQueryReturnsCorrectDatabasePrefixForn()
 		{
 			//Arrange
 			LicenceQuery criteria = new LicenceQuery();
@@ -52,7 +52,7 @@ namespace ArchiveLookup.ICAS.com.test
 			}
 		}
 		[TestMethod]
-		public void PersonQueryReturnsCorrectDatabasePrefixForsi()
+		public void LicenceQueryReturnsCorrectDatabasePrefixForsi()
 		{
 			//Arrange
 			LicenceQuery criteria = new LicenceQuery();
@@ -65,7 +65,7 @@ namespace ArchiveLookup.ICAS.com.test
 			}
 		}
 		[TestMethod]
-		public void PersonQueryReturnsCorrectDatabasePrefixFora()
+		public void LicenceQueryReturnsCorrectDatabasePrefixFora()
 		{
 			//Arrange
 			LicenceQuery criteria = new LicenceQuery();
@@ -78,7 +78,7 @@ namespace ArchiveLookup.ICAS.com.test
 			}
 		}
 		[TestMethod]
-		public void PersonQueryReturnsCorrectDatabasePrefixForar()
+		public void LicenceQueryReturnsCorrectDatabasePrefixForar()
 		{
 			//Arrange
 			LicenceQuery criteria = new LicenceQuery();
@@ -91,7 +91,7 @@ namespace ArchiveLookup.ICAS.com.test
 			}
 		}
 		[TestMethod]
-		public void PersonQueryReturnsCorrectDatabasePrefixForf()
+		public void LicenceQueryReturnsCorrectDatabasePrefixForf()
 		{
 			//Arrange
 			LicenceQuery criteria = new LicenceQuery();
