@@ -45,13 +45,12 @@ namespace ArchiveLookup.ICAS.com.Models
 				case "MAJOR_KEY": return "n.";
 				case "FIRST_NAME": return "n.";
 				case "MIDDLE_NAME": return "n.";
-				case "SORT_NAME": return "n.";
+				case "SORT_NAME": return "f.";
 				case "LAST_NAME": return "n.";
 				case "DESCRIPTION": return "a.";
 				case "ACTIVITY_TYPE": return "a.";
 				case "FIRM_NO": return "ar.";
 				case "FIRM_ID": return "si.";
-				case "FIRM_NAME": return "si.";
 				case "SOURCE_CODE": return "a.";
 			}
 			return "";

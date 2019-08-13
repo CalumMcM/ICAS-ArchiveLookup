@@ -41,25 +41,25 @@ namespace ArchiveLookup.ICAS.com.test
 		public void PersonQueryReturnsCorrectDatabasePrefixForGivenType()
 		{
 			//Arrange 
-			PersonQuery criteria = new PersonQuery();
+			PCQuery criteria = new PCQuery();
 			//Act
 			var nResponse = criteria.getDatabasePrefix("FIRST_NAME");
 			var aReponse = criteria.getDatabasePrefix("DESCRIPTION");
-			var fResponse = criteria.getDatabasePrefix("MAIN_FIRM_NO");
+			var fResponse = criteria.getDatabasePrefix("FIRM_NO");
 			var siResponse = criteria.getDatabasePrefix("FIRM_ID");
 			//Assert
 			Assert.AreEqual("n.", nResponse);
 			Assert.AreEqual("a.", aReponse);
-			Assert.AreEqual("f.", fResponse);
+			Assert.AreEqual("ar.", fResponse);
 			Assert.AreEqual("si.", siResponse);
 		}
 		[TestMethod]
 		public void PersonQueryReturnsCorrectDatabasePrefixForn()
 		{
 			//Arrange
-			PersonQuery criteria = new PersonQuery();
+			PCQuery criteria = new PCQuery();
 			//Act
-			var nHeaders = new string[5] {"ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME"};
+			var nHeaders = new string[5] {"ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", };
 			//Assert
 			foreach (string header in nHeaders)
 			{
@@ -70,9 +70,9 @@ namespace ArchiveLookup.ICAS.com.test
 		public void PersonQueryReturnsCorrectDatabasePrefixForsi()
 		{
 			//Arrange
-			PersonQuery criteria = new PersonQuery();
+			PCQuery criteria = new PCQuery();
 			//Act
-			var siHeaders = new string[2] { "FIRM_ID", "FIRM_NAME"};
+			var siHeaders = new string[1] { "FIRM_ID"};
 			//Assert
 			foreach (string header in siHeaders)
 			{
@@ -83,9 +83,9 @@ namespace ArchiveLookup.ICAS.com.test
 		public void PersonQueryReturnsCorrectDatabasePrefixFora()
 		{
 			//Arrange
-			PersonQuery criteria = new PersonQuery();
+			PCQuery criteria = new PCQuery();
 			//Act
-			var aHeaders = new string[2] {"DESCRIPTION", "ACTIVITY_TYPE" };
+			var aHeaders = new string[3] {"DESCRIPTION", "ACTIVITY_TYPE", "SOURCE_CODE" };
 			//Assert
 			foreach(string header in aHeaders)
 			{
@@ -93,12 +93,25 @@ namespace ArchiveLookup.ICAS.com.test
 			}
 		}
 		[TestMethod]
+		public void PersonQueryReturnsCorrectDatabasePrefixForar()
+		{
+			//Arrange
+			PCQuery criteria = new PCQuery();
+			//Act
+			var arHeaders = new string[1] { "FIRM_NO" };
+			//Assert
+			foreach (string header in arHeaders)
+			{
+				Assert.AreEqual("ar.", criteria.getDatabasePrefix(header));
+			}
+		}
+		[TestMethod]
 		public void PersonQueryReturnsCorrectDatabasePrefixForf()
 		{
 			//Arrange
-			PersonQuery criteria = new PersonQuery();
+			PCQuery criteria = new PCQuery();
 			//Act
-			var fHeaders = new string[1] { "MAIN_FIRM_NO" };
+			var fHeaders = new string[1] { "SORT_NAME" };
 			//Assert
 			foreach (string header in fHeaders)
 			{
