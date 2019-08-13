@@ -23,8 +23,8 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string PRODUCT_CODE { get; set; } 
 		public string ACTIVITY_TYPE { get; set; } 
 		public string FIRM_ID { get; set; } 
-		public string FIRM_NAME { get; set; } 
-		public string MAIN_FIRM_NO { get; set; } 
+		public string SORT_NAME { get; set; } 
+		public string FIRM_NO { get; set; } 
 		public string AR_MONTH { get; set; } 
 		public string FINANCIAL_YEAR_END { get; set; } 
 		public string CA_LICENSED_END_DATE { get; set; } 

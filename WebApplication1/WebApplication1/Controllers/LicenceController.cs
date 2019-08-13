@@ -12,12 +12,12 @@ using System.Reflection;
 
 namespace ArchiveLookup.ICAS.com.Controllers
 {
-    public class PcController : ApiController
+    public class LicenceController : ApiController
     {
 		//rename query in paramters to criteria here and in WebAPICONfig.cs
-		public List<ProcessingChange> Post([FromBody]PCQuery criteria)
+		public List<Licence> Post([FromBody]LicenceQuery criteria)
 		{
-			var persons = new List<ProcessingChange>();
+			var persons = new List<Licence>();
 			var queryBase = @"SELECT TOP (1000) n.[ID] 
 									,n.[MAJOR_KEY] 
 									,n.[FUNCTIONAL_TITLE]
@@ -71,7 +71,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 			{
 				try
 				{
-					persons = connection.Query<ProcessingChange>(queryBase, criteria.ToDapperParameter()).ToList();
+					persons = connection.Query<Licence>(queryBase, criteria.ToDapperParameter()).ToList();
 				}
 				catch (SqlException e)
 				{
@@ -86,7 +86,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 			return persons;
 		}
 		
-		public string queryGenerator(PCQuery criteriaFull, bool areYouSure)
+		public string queryGenerator(LicenceQuery criteriaFull, bool areYouSure)
 		{
 			var properties = criteriaFull.GetType().GetProperties();
 			var propertyName = properties[0].Name;

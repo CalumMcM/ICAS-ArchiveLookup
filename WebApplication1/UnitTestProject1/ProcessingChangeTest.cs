@@ -22,26 +22,11 @@ namespace ArchiveLookup.ICAS.com.test
 			//Assert
 			Assert.AreEqual("WHERE n.FIRST_NAME = @FIRST_NAME AND n.LAST_NAME = @LAST_NAME", response, "Query Generator failed to generate the correct query");
 		}
-		/*
-		[TestMethod]
-		public void PersonControllerReturnsCorrectResultFromQueryOnDatabase()
-		{
-			//Arrange
-			PersonQuery criteria = new PersonQuery();
-			criteria.FIRST_NAME = "Calum";
-			criteria.ID = "259365";
-			PersonController personController = new PersonController();
-			//Act
-			var response = personController.Post(criteria);
-			//Assert
-			//Assert.AreEqual("");
-		}
-		*/
 		[TestMethod]
 		public void PersonQueryReturnsCorrectDatabasePrefixForGivenType()
 		{
 			//Arrange 
-			PCQuery criteria = new PCQuery();
+			LicenceQuery criteria = new LicenceQuery();
 			//Act
 			var nResponse = criteria.getDatabasePrefix("FIRST_NAME");
 			var aReponse = criteria.getDatabasePrefix("DESCRIPTION");
@@ -57,7 +42,7 @@ namespace ArchiveLookup.ICAS.com.test
 		public void PersonQueryReturnsCorrectDatabasePrefixForn()
 		{
 			//Arrange
-			PCQuery criteria = new PCQuery();
+			LicenceQuery criteria = new LicenceQuery();
 			//Act
 			var nHeaders = new string[5] {"ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", };
 			//Assert
@@ -70,7 +55,7 @@ namespace ArchiveLookup.ICAS.com.test
 		public void PersonQueryReturnsCorrectDatabasePrefixForsi()
 		{
 			//Arrange
-			PCQuery criteria = new PCQuery();
+			LicenceQuery criteria = new LicenceQuery();
 			//Act
 			var siHeaders = new string[1] { "FIRM_ID"};
 			//Assert
@@ -83,7 +68,7 @@ namespace ArchiveLookup.ICAS.com.test
 		public void PersonQueryReturnsCorrectDatabasePrefixFora()
 		{
 			//Arrange
-			PCQuery criteria = new PCQuery();
+			LicenceQuery criteria = new LicenceQuery();
 			//Act
 			var aHeaders = new string[3] {"DESCRIPTION", "ACTIVITY_TYPE", "SOURCE_CODE" };
 			//Assert
@@ -96,7 +81,7 @@ namespace ArchiveLookup.ICAS.com.test
 		public void PersonQueryReturnsCorrectDatabasePrefixForar()
 		{
 			//Arrange
-			PCQuery criteria = new PCQuery();
+			LicenceQuery criteria = new LicenceQuery();
 			//Act
 			var arHeaders = new string[1] { "FIRM_NO" };
 			//Assert
@@ -109,7 +94,7 @@ namespace ArchiveLookup.ICAS.com.test
 		public void PersonQueryReturnsCorrectDatabasePrefixForf()
 		{
 			//Arrange
-			PCQuery criteria = new PCQuery();
+			LicenceQuery criteria = new LicenceQuery();
 			//Act
 			var fHeaders = new string[1] { "SORT_NAME" };
 			//Assert

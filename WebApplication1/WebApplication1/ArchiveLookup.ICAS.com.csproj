@@ -187,7 +187,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\PcController.cs" />
+    <Compile Include="Controllers\LicenceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\FinanceController.cs" />
@@ -198,9 +198,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LicenceQuery.cs" />
-    <Compile Include="Models\PCQuery.cs" />
     <Compile Include="Models\Licence.cs" />
-    <Compile Include="Models\ProcessingChange.cs" />
     <Compile Include="Models\Finance.cs" />
     <Compile Include="Models\TPSClass.cs" />
     <Compile Include="Models\Person.cs" />
