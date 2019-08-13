@@ -77,6 +77,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 				{
 					switch (e.Number)
 					{
+						//2601 = SQL Violation in unique index
 						case 2601: return persons;
 						default: return persons;
 					}
