@@ -1,27 +1,26 @@
 ﻿@{
-	ViewBag.Title = "Finance";
+	ViewBag.Title = "Processing Change";
 }
 
 <div class="jumbotron">
 
 	<h1>
-		Finance Lookup
-		<div class="underline"></div>
+		Processing Change Lookup
+		<div class="underlinePC"></div>
 	</h1>
 	<p>Select the criteria for your search: </p>
 
 	<button id="idInputButton" onclick="showInput('idInput')" class="addBtn">ID</button>
 	<button id="mkInputButton" onclick="showInput('mkInput')" class="addBtn">Major Key</button>
-	<button id="studnoInputButton" onclick="showInput('studnoInput')" class="addBtn">Student No.</button>
 	<button id="forenameInputButton" onclick="showInput('forenameInput')" class="addBtn">First Name</button>
 	<button id="middlenameInputButton" onclick="showInput('middlenameInput')" class="addBtn">Middle Name</button>
 	<button id="surnameInputButton" onclick="showInput('surnameInput')" class="addBtn">Last Name</button>
 	<button id="firmidInputButton" onclick="showInput('firmidInput')" class="addBtn">Firm ID</button>
 	<button id="firmnoInputButton" onclick="showInput('firmnoInput')" class="addBtn">Firm No.</button>
 	<button id="firmnameInputButton" onclick="showInput('firmnameInput')" class="addBtn">Firm Name</button>
-	<button id="companynameInputButton" onclick="showInput('companynameInput')" class="addBtn">Company Name</button>
-	<button id="refInputButton" onclick="showInput('refInput')" class="addBtn">Invoice Reference No.</button>
-
+	<button id="descInputButton" onclick="showInput('descInput')" class="addBtn">Description</button>
+	<button id="atInputButton" onclick="showInput('atInput')" class="addBtn">Activity Type</button>
+	<button id="scInputButton" onclick="showInput('scInput')" class="addBtn">Source Code</button>
 
 	<p id="idInputText" class="lead">
 		ID:
@@ -31,11 +30,6 @@
 	<p id="mkInputText" class="lead">
 		Major Key:
 		<input type="text" id="mkInput" class="input-lookup" name="mk">
-	</p>
-
-	<p id="studnoInputText" class="lead">
-		Student No:
-		<input type="text" id="studnoInput" class="input-lookup" name="studno">
 	</p>
 
 	<p id="forenameInputText" class="lead">
@@ -68,15 +62,21 @@
 		<input type="text" id="firmnameInput" class="input-lookup" name="firmname">
 	</p>
 
-	<p id="companynameInputText" class="lead">
-		Company Name:
-		<input type="text" id="companynameInput" class="input-lookup" name="companyname">
+	<p id="descInputText" class="lead">
+		Description:
+		<input type="text" id="descInput" class="input-lookup" name="descname">
 	</p>
 
-	<p id="refInputText" class="lead">
-		Invoice Reference No:
-		<input type="text" id="refInput" class="input-lookup" name="ref">
+	<p id="atInputText" class="lead">
+		Activity Type:
+		<input type="text" id="atInput" class="input-lookup" name="atname">
 	</p>
+
+	<p id="scInputText" class="lead">
+		Source Code:
+		<input type="text" id="scInput" class="input-lookup" name="scname">
+	</p>
+
 	<div class="copySelectDropdown">
 		<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
 		<div id="loadingIcon" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
@@ -90,7 +90,7 @@
 
 	<div id="CustomersHeader" class="resultsHeader">
 		<h2>
-			Customers<div id="CustomersUnderline" class="underlineResults"></div>
+			Customers<div id="billingUnderline" class="underlineResults"></div>
 		</h2>
 	</div>
 	<div class="copySelectDropdown">
@@ -101,7 +101,6 @@
 			<button id="surnameCCopyButton" onclick="copySelectButton('surnameCCopy', 'Customers')" class="addBtn">Last Name</button>
 			<button id="forenameCCopyButton" onclick="copySelectButton('forenameCCopy', 'Customers')" class="addBtn">First Name</button>
 			<button id="middlenameCCopyButton" onclick="copySelectButton('middlenameCCopy', 'Customers')" class="addBtn">Middle Name</button>
-			<button id="studnoCCopyButton" onclick="copySelectButton('studnoCCopy', 'Customers')" class="addBtn">Student No</button>
 			<button id="mtCCopyButton" onclick="copySelectButton('mtCCopy', 'Customers')" class="addBtn">Member Type</button>
 			<button id="catCCopyButton" onclick="copySelectButton('catCCopy', 'Customers')" class="addBtn">Category</button>
 			<button id="titleCCopyButton" onclick="copySelectButton('titleCCopy', 'Customers')" class="addBtn">Title</button>
@@ -118,50 +117,26 @@
 		</table>
 	</div>
 
-	<div id="InvoicesHeader" class="resultsHeader">
+	<div id="FirmHeader" class="resultsHeader">
 		<h2>
-			Invoices<div id="InvoicesUnderline" class="underlineResults"></div>
+			Firm<div id="FirmUnderline" class="underlineResults"></div>
 		</h2>
 	</div>
 	<div class="copySelectDropdown">
-		<button id="InvoicescopyButton" onclick="copy('Invoices')" class="copyBtn">&#x1F4CB</button>
-		<button id="InvoicescopySelectButton" onclick="showCopyDropdown('Invoices')" class="copyBtn">+</button>
-		<div id="InvoicesDropdown" class="copySelectDropdown-content">
-			<button id="mkICopyButton" onclick="copySelectButton('mkICopy', 'Invoices')" class="addBtn">Major Key</button>
-			<button id="invdateICopyButton" onclick="copySelectButton('invdateICopy', 'Invoices')" class="addBtn">Invoice Date</button>
-			<button id="refnumICopyButton" onclick="copySelectButton('refnumICopy', 'Invoices')" class="addBtn">Reference Num</button>
-			<button id="invdescICopyButton" onclick="copySelectButton('invdescICopy', 'Invoices')" class="addBtn">Invoice Description</button>
-			<button id="chargesICopyButton" onclick="copySelectButton('chargesICopy', 'Invoices')" class="addBtn">Charges</button>
-			<button id="credICopyButton" onclick="copySelectButton('credICopy', 'Invoices')" class="addBtn">Credits</button>
-			<button id="balICopyButton" onclick="copySelectButton('balICopy', 'Invoices')" class="addBtn">Balance</button>
-			<button id="noteICopyButton" onclick="copySelectButton('noteICopy', 'Invoices')" class="addBtn">Note</button>
+		<button id="FirmcopyButton" onclick="copy('Firm')" class="copyBtn">&#x1F4CB</button>
+		<button id="FirmcopySelectButton" onclick="showCopyDropdown('Firm')" class="copyBtn">+</button>
+		<div id="FirmDropdown" class="copySelectDropdown-content">
+			<button id="mkFCopyButton" onclick="copySelectButton('mkFCopy', 'Firm')" class="addBtn">Major Key</button>
+			<button id="mfnFCopyButton" onclick="copySelectButton('mfnFCopy', 'Firm')" class="addBtn">Main Firm No.</button>
+			<button id="fyeFCopyButton" onclick="copySelectButton('fyeFCopy', 'Firm')" class="addBtn">Financial Year End</button>
+			<button id="fedFCopyButton" onclick="copySelectButton('fedFCopy', 'Firm')" class="addBtn">Firm End Date</button>
+			<button id="armFCopyButton" onclick="copySelectButton('armFCopy', 'Firm')" class="addBtn">AR Month</button>
+			<button id="aroFCopyButton" onclick="copySelectButton('aroFCopy', 'Firm')" class="addBtn">AR Other</button>
+			<button id="fnFCopyButton" onclick="copySelectButton('fnFCopy', 'Firm')" class="addBtn">Firm Notes</button>
 		</div>
 	</div>
-	<div id="InvoicesContainer" class="minotron">
-		<table id="InvoicesResultsTable" class="resultsTable">
-			<tr></tr>
-		</table>
-	</div>
-
-	<div id="TransactionsHeader" class="resultsHeader">
-		<h2>
-			Transactions<div id="TransactionsUnderline" class="underlineResults"></div>
-		</h2>
-	</div>
-	<div class="copySelectDropdown">
-		<button id="TransactionscopyButton" onclick="copy('Transactions')" class="copyBtn">&#x1F4CB</button>
-		<button id="TransactionscopySelectButton" onclick="showCopyDropdown('Transactions')" class="copyBtn">+</button>
-		<div id="TransactionsDropdown" class="copySelectDropdown-content">
-			<button id="mkTCopyButton" onclick="copySelectButton('mkTCopy', 'Transactions')" class="addBtn">Major Key</button>
-			<button id="transdateTCopyButton" onclick="copySelectButton('transdateTCopy', 'Transactions')" class="addBtn">Transaction Date</button>
-			<button id="refnumTCopyButton" onclick="copySelectButton('refnumTCopy', 'Transactions')" class="addBtn">Reference Num</button>
-			<button id="transtypeTCopyButton" onclick="copySelectButton('transtypeTCopy', 'Transactions')" class="addBtn">Transaction Type</button>
-			<button id="transdescTCopyButton" onclick="copySelectButton('transdescTCopy', 'Transactions')" class="addBtn">Transaction Description</button>
-			<button id="amountTCopyButton" onclick="copySelectButton('amountTCopy', 'Transactions')" class="addBtn">Transaction Amount</button>
-		</div>
-	</div>
-	<div id="TransactionsContainer" class="minotron">
-		<table id="TransactionsResultsTable" class="resultsTable">
+	<div id="FirmContainer" class="minotron">
+		<table id="FirmResultsTable" class="resultsTable">
 			<tr></tr>
 		</table>
 	</div>
@@ -179,11 +154,10 @@
 			<button id="mkACopyButton" onclick="copySelectButton('mkACopy', 'Activity')" class="addBtn">Major Key</button>
 			<button id="transACopyButton" onclick="copySelectButton('transACopy', 'Activity')" class="addBtn">Transaction Date</button>
 			<button id="typeACopyButton" onclick="copySelectButton('typeACopy', 'Activity')" class="addBtn">Activity Type</button>
+			<button id="forenameACopyButton" onclick="copySelectButton('forenameACopy', 'Activity')" class="addBtn">First Name</button>
+			<button id="middlenameACopyButton" onclick="copySelectButton('middlenameACopy', 'Activity')" class="addBtn">Middle Name</button>
+			<button id="surnameACopyButton" onclick="copySelectButton('surnameACopy', 'Activity')" class="addBtn">Last Name</button>
 			<button id="descACopyButton" onclick="copySelectButton('descACopy', 'Activity')" class="addBtn">Description</button>
-			<button id="prodcodeACopyButton" onclick="copySelectButton('prodcodeACopy', 'Activity')" class="addBtn">Product Code</button>
-			<button id="unitsACopyButton" onclick="copySelectButton('unitsACopy', 'Activity')" class="addBtn">Units</button>
-			<button id="thrudateACopyButton" onclick="copySelectButton('thrudateACopy', 'Activity')" class="addBtn">Thru Date</button>
-			<button id="amountACopyButton" onclick="copySelectButton('amountACopy', 'Activity')" class="addBtn">Amount</button>
 		</div>
 	</div>
 	<div id="ActivityContainer" class="minotron">
@@ -192,55 +166,99 @@
 		</table>
 	</div>
 
-	<div id="CustomerNotesHeader" class="resultsHeader">
+	<div id="PIILicenseHeader" class="resultsHeader">
 		<h2>
-			Customer Notes<div id="CustomerNotesUnderline" class="underlineResults"></div>
+			PII License<div id="PIILicenseUnderline" class="underlineResults"></div>
 		</h2>
 	</div>
 	<div class="copySelectDropdown">
-		<button id="CustomerNotescopyButton" onclick="copy('CustomerNotes')" class="copyBtn">&#x1F4CB</button>
-		<button id="CustomerNotescopySelectButton" onclick="showCopyDropdown('CustomerNotes')" class="copyBtn">+</button>
-		<div id="CustomerNotesDropdown" class="copySelectDropdown-content">
-			<button id="mkCNCopyButton" onclick="copySelectButton('mkCNCopy', 'CustomerNotes')" class="addBtn">Major Key</button>
-			<button id="lastfirstCNCopyButton" onclick="copySelectButton('lastfirstCNCopy', 'CustomerNotes')" class="addBtn">Last First</button>
-			<button id="middlenameCNCopyButton" onclick="copySelectButton('middlenameCNCopy', 'CustomerNotes')" class="addBtn">Middle Name</button>
-			<button id="commentsCNCopyButton" onclick="copySelectButton('commentsCNCopy', 'CustomerNotes')" class="addBtn">Comments</button>
+		<button id="PIILicensecopyButton" onclick="copy('PIILicense')" class="copyBtn">&#x1F4CB</button>
+		<button id="PIILicensecopySelectButton" onclick="showCopyDropdown('PIILicense')" class="copyBtn">+</button>
+		<div id="PIILicenseDropdown" class="copySelectDropdown-content">
+			<button id="mkPIICopyButton" onclick="copySelectButton('mkPIICopy', 'PIILicense')" class="addBtn">Major Key</button>
+			<button id="statusPIICopyButton" onclick="copySelectButton('statusPIICopy', 'PIILicense')" class="addBtn">Status</button>
+			<button id="sdPIICopyButton" onclick="copySelectButton('sdPIICopy', 'PIILicense')" class="addBtn">Start Date</button>
+			<button id="edPIICopyButton" onclick="copySelectButton('edPIICopy', 'PIILicense')" class="addBtn">End Date</button>
+			<button id="commPIICopyButton" onclick="copySelectButton('commPIICopy', 'PIILicense')" class="addBtn">Comments</button>
+			<button id="scPIICopyButton" onclick="copySelectButton('scPIICopy', 'PIILicense')" class="addBtn">Source Code</button>
+
 		</div>
 	</div>
-	<div id="CustomerNotesContainer" class="minotron">
-		<table id="CustomerNotesResultsTable" class="resultsTable">
+	<div id="PIILicenseContainer" class="minotron">
+		<table id="PIILicenseResultsTable" class="resultsTable">
 			<tr></tr>
 		</table>
 	</div>
+
+	<div id="DPBLicenseHeader" class="resultsHeader">
+		<h2>
+			DPB License<div id="DPBLicenseUnderline" class="underlineResults"></div>
+		</h2>
+	</div>
+	<div class="copySelectDropdown">
+		<button id="DPBLicensecopyButton" onclick="copy('DPBLicense')" class="copyBtn">&#x1F4CB</button>
+		<button id="DPBLicensecopySelectButton" onclick="showCopyDropdown('DPBLicense')" class="copyBtn">+</button>
+		<div id="DPBLicenseDropdown" class="copySelectDropdown-content">
+			<button id="mkDPBCopyButton" onclick="copySelectButton('mkDPBCopy', 'DPBLicense')" class="addBtn">Major Key</button>
+			<button id="statusDPBCopyButton" onclick="copySelectButton('statusDPBCopy', 'DPBLicense')" class="addBtn">Status</button>
+			<button id="sdDPBCopyButton" onclick="copySelectButton('sdDPBCopy', 'DPBLicense')" class="addBtn">Start Date</button>
+			<button id="edDPBCopyButton" onclick="copySelectButton('edDPBCopy', 'DPBLicense')" class="addBtn">End Date</button>
+			<button id="commDPBCopyButton" onclick="copySelectButton('commDPBCopy', 'DPBLicense')" class="addBtn">Comments</button>
+			<button id="scDPBCopyButton" onclick="copySelectButton('scDPBCopy', 'DPBLicense')" class="addBtn">Source Code</button>
+		</div>
+	</div>
+	<div id="DPBLicenseContainer" class="minotron">
+		<table id="DPBLicenseResultsTable" class="resultsTable">
+			<tr></tr>
+		</table>
+	</div>
+
+	<div id="ARLicenseHeader" class="resultsHeader">
+		<h2>
+			AR License<div id="ARLicenseUnderline" class="underlineResults"></div>
+		</h2>
+	</div>
+	<div class="copySelectDropdown">
+		<button id="ARLicensecopyButton" onclick="copy('ARLicense')" class="copyBtn">&#x1F4CB</button>
+		<button id="ARLicensecopySelectButton" onclick="showCopyDropdown('ARLicense')" class="copyBtn">+</button>
+		<div id="ARLicenseDropdown" class="copySelectDropdown-content">
+			<button id="mkARCopyButton" onclick="copySelectButton('mkARCopy', 'ARLicense')" class="addBtn">Major Key</button>
+			<button id="statusARCopyButton" onclick="copySelectButton('statusARCopy', 'ARLicense')" class="addBtn">Status</button>
+			<button id="sdARCopyButton" onclick="copySelectButton('sdARCopy', 'ARLicense')" class="addBtn">Start Date</button>
+			<button id="commARCopyButton" onclick="copySelectButton('commARCopy', 'ARLicense')" class="addBtn">Comments</button>
+			<button id="scARCopyButton" onclick="copySelectButton('scARCopy', 'ARLicense')" class="addBtn">Source Code</button>
+		</div>
+	</div>
+	<div id="ARLicenseContainer" class="minotron">
+		<table id="ARLicenseResultsTable" class="resultsTable">
+			<tr></tr>
+		</table>
+	</div>
+
 	<p id="clipboard" class="clipboard"></p>
-	<p id="financeQueryResults" class="queryResults"></p>
-	<p id="customerQueryResults" class="queryResults"></p>
+	<p id="queryResults" class="queryResults"></p>
 	<p id="queriesLoaded" class="queryResults"></p>
 </div>
 <script src="~/Scripts/moment.js" type="text/javascript"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="~/Scripts/lodashCore.js" type="text/javascript"></script>
 <script>
-	const getBtnNames = () =>["id", "mk", "studno", "forename", "middlename", "surname", "firmid", "firmno", "firmname", "companyname", "ref"];
-	const getClassNames = () =>["ID", "MAJOR_KEY", "STUDENT_NO", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "FIRM_ID", "MAIN_FIRM_NO", "FIRM_NAME", "Company", "REFERENCE_NUM"];
+	const getBtnNames = () =>["id", "mk", "forename", "middlename", "surname", "firmid", "firmno", "firmname", "desc", "at", "sc"];
+	const getClassNames = () =>["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "FIRM_ID", "FIRM_NO", "FIRM_NAME", "DESCRIPTION", "ACTIVITY_TYPE", "SOURCE_CODE"];
 	function getCopyBtnNames(table) {
 		switch (table) {
-			case "Customers": return ["mkC", "surnameC", "forenameC", "middlenameC","studnoC", "mtC", "catC", "titleC", "cityC", "countyC", "compsortC", "addrC", "firmnoC"];
-			case "Invoices": return ["mkI", "invdateI", "refnumI", "invdescI", "chargesI", "credI", "balI", "noteI"];
-			case "Transactions": return ["mkT", "transdateT", "refnumT", "transtypeT", "transdescT", "amountT"]
-			case "Activity": return ["mkA", "transA", "typeA", "descA", "prodcodeA", "unitsA", "thrudateA", "amountA"];
+			case "Activity": return ["mkA", "transA", "typeA", "forenameA", "middlenameA", "surnameA", "descA"];
+			case "Customers": return ["mkC", "surnameC", "forenameC", "middlenameC", "mtC", "catC", "titleC", "cityC", "countyC", "compsortC", "addrC", "firmnoC"];
 			case "CustomerNotes": return ["mkCN", "lastfirstCN", "middlenameCN", "commentsCN"];
-				defualt: return [];
-		}
+				default: return [];
+			}
 	}
 	function getCopyFields(table) {
 		switch (table) {
-			case "Customers": return ["MAJOR_KEY", "LAST_NAME", "FIRST_NAME", "MIDDLE_NAME", "STUDENT_NO", "MEMBER_TYPE", "CATEGORY", "TITLE", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS", "MAIN_FIRM_NO"];
-			case "Invoices": return ["MAJOR_KEY", "INVOICE_DATE", "REFERENCE_NUM", "INVOICE_DESCRIPTION", "CHARGES", "CREDITS", "BALANCE", "NOTE"];
-			case "Transactions": return ["MAJOR_KEY", "TRANS_TRANSACTION_DATE", "REFERENCE_NUM", "TRANSACTION_TYPE", "TRANSACTION_DESCRIPTION", "TRANSACTION_AMOUNT"]
-			case "Activity": return ["MAJOR_KEY", "TRANSACTION_DATE", "ACTIVITY_TYPE", "DESCRIPTION", "PRODUCT_CODE", "UNITS", "THRU_DATE", "AMOUNT"]
+			case "Activity": return ["MAJOR_KEY", "TRANSACTION_DATE", "ACTIVITY_TYPE", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "DESCRIPTION"];
+			case "Customers": return ["MAJOR_KEY", "LAST_NAME", "FIRST_NAME", "MIDDLE_NAME", "MEMBER_TYPE", "CATEGORY", "TITLE", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS", "MAIN_FIRM_NO"];
 			case "CustomerNotes": return ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"];
-				defualt: return [];
+				default: return [];
 		}
 	}
 	function showInput(input) {
@@ -284,7 +302,8 @@
 		if (chosenFields.length == 0) {
 			chosenFields = classNames;
 		}
-		constructClipboard(chosenFields, table);
+		console.log(chosenFields);
+		constructClipboard(chosenFields);
 		let clipboardContents = document.getElementById("clipboard").innerHTML;
 		let itemsToCopy = document.createElement("textarea");
 		document.body.appendChild(itemsToCopy);
@@ -293,11 +312,11 @@
 		document.execCommand("copy");
 		console.log("copied!");
 		document.body.removeChild(itemsToCopy);
-		document.getElementById(table + "copyButton").innerHTML = '&#10004';
+		document.getElementById(table+"copyButton").innerHTML = '&#10004';
 	}
 	function copySelectButton(buttonID, table) {
 		currentColour = document.getElementById(buttonID + "Button").style.backgroundColor;
-		document.getElementById(table + "copyButton").innerHTML = '&#x1F4CB';
+		document.getElementById(table+"copyButton").innerHTML = '&#x1F4CB';
 		if (currentColour == "rgb(192, 10, 39)" || currentColour == "") {
 			document.getElementById(buttonID + "Button").style.backgroundColor = "#20A64B";
 		}
@@ -306,7 +325,7 @@
 		}
 	}
 	function showCopyDropdown(table) {
-		document.getElementById(table + "Dropdown").classList.toggle("show");
+		document.getElementById(table+"Dropdown").classList.toggle("show");
 	}
 	function processQuery() {
 		document.getElementById("loadingIcon").style.display = "block";
@@ -322,57 +341,44 @@
 				}
 				else {
 					if (btnNames[button] + "Input")
-						inputs[classNames[button]] = document.getElementById(btnNames[button] + "Input").value;
+					inputs[classNames[button]] = document.getElementById(btnNames[button] + "Input").value;
 				}
 			}
 		}
-		let financeQuery = new XMLHttpRequest();
-		financeQuery.open("POST", 'api/finance', true);
-		financeQuery.onreadystatechange = function () {
+		let xhttp = new XMLHttpRequest();
+		xhttp.open("POST", 'api/Licence', true);
+		let MOCKqueryResults;
+		xhttp.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
-				var financeQueryResults = this.response
-				financeQueryResults = $.parseJSON(financeQueryResults);
+				var queryResults = this.response
+				queryResults = $.parseJSON(queryResults);
+				console.log(queryResults);
 				document.getElementById("queriesLoaded").innerHTML = document.getElementById("queriesLoaded").innerHTML + 1
-				displayResultsFinance(financeQueryResults);
-				document.getElementById("financeQueryResults").innerHTML = JSON.stringify(financeQueryResults);
+				displayResults(queryResults);
+				document.getElementById("queryResults").innerHTML = JSON.stringify(queryResults);
 			}
 		};
-		financeQuery.setRequestHeader('Content-Type', 'application/json');
-		financeQuery.send(JSON.stringify(inputs));
-		
-		let customerQuery = new XMLHttpRequest();
-		customerQuery.open("POST", 'api/person', true);
-		customerQuery.onreadystatechange = function () {
-			if (this.readyState == 4 && this.status == 200) {
-				var customerQueryResults = this.response
-				customerQueryResults = $.parseJSON(customerQueryResults);
-				document.getElementById("queriesLoaded").innerHTML = document.getElementById("queriesLoaded").innerHTML + 1
-				displayResultsCustomer(customerQueryResults);
-				document.getElementById("customerQueryResults").innerHTML = JSON.stringify(customerQueryResults);
-			}
-		};
-		customerQuery.setRequestHeader('Content-Type', 'application/json');
-		customerQuery.send(JSON.stringify(inputs));
+		xhttp.setRequestHeader('Content-Type', 'application/json');
+		xhttp.send(JSON.stringify(inputs));
+
 	}
-	function displayResultsFinance(inputs) {
-		if (document.getElementById("queriesLoaded").innerHTML > 1) {
-			document.getElementById("loadingIcon").style.display = "none";
-		}
+	function displayResults(inputs) {
+		document.getElementById("loadingIcon").style.display = "none";
 		//Delete previous table if it exists:
-		tableDemolisherAndDisplayer("Invoices");
-		tableDemolisherAndDisplayer("Transactions");
-		
-		tableBuilder(inputs, "InvoicesResultsTable", ["MAJOR_KEY", "INVOICE_DATE", "REFERENCE_NUM", "INVOICE_DESCRIPTION", "CHARGES", "CREDITS", "BALANCE", "NOTE"])
-		tableBuilder(inputs, "TransactionsResultsTable", ["TRANSACTION_DATE","REFERENCE_NUM","MAJOR_KEY","TRANSACTION_NUMBER", "REFERENCE_NUMBER","TRANSACTION_TYPE","TRANSACTION_AMOUNT", "TRANSACTION_DESCRIPTION"])
-	}
-	function displayResultsCustomer(inputs) {
-		tableDemolisherAndDisplayer("Activity");
 		tableDemolisherAndDisplayer("Customers");
-		tableDemolisherAndDisplayer("CustomerNotes");
-		let customerResultsTable = ["MAJOR_KEY", "MEMBER_TYPE", "STUDENT_NO", "CATEGORY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "TITLE", "MAIN_FIRM_NO", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS"];
-		tableBuilder(inputs, "ActivityResultsTable", ["MAJOR_KEY", "TRANSACTION_DATE", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "THRU_DATE", "AMOUNT", "UNITS"]);
-		tableBuilder(inputs, "CustomersResultsTable", customerResultsTable)
-		tableBuilder(inputs, "CustomerNotesResultsTable", ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"])
+		tableDemolisherAndDisplayer("Firm");
+		tableDemolisherAndDisplayer("Activity");
+		tableDemolisherAndDisplayer("PIILicense");
+		tableDemolisherAndDisplayer("DPBLicense");
+		tableDemolisherAndDisplayer("ARLicense");
+
+		tableBuilder(inputs, "CustomersResultsTable", ["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME"]);
+		tableBuilder(inputs, "FirmResultsTable", ["FIRM_NO","SORT_NAME", "MAJOR_KEY", "FINANCIAL_YEAR_END", "CA_LICENSED_END_DATE", "AR_MONTH", "AROther", "FIRM_NOTES"]);
+		tableBuilder(inputs, "ActivityResultsTable",  ["TRANSACTION_DATE", "MAJOR_KEY", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "NOTE", "THRU_DATE", "EFFECTIVE_DATE", ]);
+		tableBuilder(inputs, "PIILicenseResultsTable", ["FIRM_NO", "PII_Status", "PII_Start_Date", "PII_End_Date", "PII_COMMENTS", "SOURCE_CODE"]);
+		tableBuilder(inputs, "DPBLicenseResultsTable", ["FIRM_NO", "DPB_Status", "DPB_Start_Date", "DPB_End_Date", "DPB_COMMENTS", "SOURCE_CODE"]);
+		tableBuilder(inputs, "ARLicenseResultsTable", ["FIRM_NO", "AR_Status", "AR_Start_Date", "SOURCE_CODE"])
+
 	}
 	function tableDemolisherAndDisplayer(tableName) {
 		//Demolisher
@@ -426,24 +432,16 @@
 			}
 		}
 	}
-	function constructClipboard(chosenFields, table) {
-		let financeTables = ["Invoices", "Transactions"];
-		let queryResults = "";
-		if (financeTables.includes(table)) {
-			queryResults = JSON.parse(document.getElementById("financeQueryResults").innerHTML);
-		} else {
-			queryResults = JSON.parse(document.getElementById("customerQueryResults").innerHTML);
-		}
+	function constructClipboard(chosenFields) {
+		let queryResults = JSON.parse(document.getElementById("queryResults").innerHTML);
 		let clipboardContents = "";
-		let rowsInTable = document.getElementById(table+"ResultsTable").rows.length; 
-		for (let curRecord = 0; curRecord < rowsInTable - 1; ++curRecord) {
+		for (let curRecord in queryResults) {
 			let record = queryResults[curRecord];
 			for (let chosenField in chosenFields) {
-				if (record[chosenFields[chosenField]] != null) {
-					if (record[chosenFields[chosenField]].includes("\r") || record[chosenFields[chosenField]].includes("\n")) {
-						let clipboardRecord = record[chosenFields[chosenField]].replace(/\r/g, ", ");
-						clipboardRecord = clipboardRecord.replace(/\n/g, ", ");
-						clipboardContents += "\t" + clipboardRecord;
+				console.log(JSON.stringify(record[chosenFields[chosenField]]));
+				if (record[chosenFields[chosenField]] != null){
+					if (record[chosenFields[chosenField]].includes("\r")) {
+						clipboardContents += "\t" + record[chosenFields[chosenField]].replace(/\r/g, ", ");
 					} else {
 						clipboardContents += "\t" + record[chosenFields[chosenField]];
 					}

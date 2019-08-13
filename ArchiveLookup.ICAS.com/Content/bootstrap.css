@@ -4435,7 +4435,10 @@ textarea.input-group-sm > .input-group-btn > .btn {
   }
 }
 
-.container > .navbar-header,
+.container > .navbar-header {
+	display: flex;
+	justify-content: ;
+},
 .container > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px;
