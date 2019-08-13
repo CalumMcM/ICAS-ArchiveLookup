@@ -197,7 +197,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LicenceQuery.cs" />
     <Compile Include="Models\PCQuery.cs" />
+    <Compile Include="Models\Licence.cs" />
     <Compile Include="Models\ProcessingChange.cs" />
     <Compile Include="Models\Finance.cs" />
     <Compile Include="Models\TPSClass.cs" />
@@ -263,7 +265,7 @@
     <Content Include="Views\Home\LoginPage.cshtml" />
     <Content Include="Views\Home\Legal.cshtml" />
     <Content Include="Views\Home\Concession.cshtml" />
-    <Content Include="Views\Home\ProcessingChange.cshtml" />
+    <Content Include="Views\Home\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

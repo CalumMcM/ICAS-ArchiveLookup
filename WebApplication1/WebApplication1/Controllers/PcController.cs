@@ -33,10 +33,11 @@ namespace ArchiveLookup.ICAS.com.Controllers
 									,a.[NOTE] 
 									,a.[PRODUCT_CODE] 
 									,a.[ACTIVITY_TYPE] 
+									,a.[SOURCE_CODE]
 									,si.[FIRM_ID] 
-									,si.[FIRM_NAME] 
-									,f.[MAIN_FIRM_NO] 
+									,ar.[FIRM_NO] 
 									,f.[AR_MONTH] 
+									,f.[SORT_NAME]
 									,f.[FINANCIAL_YEAR_END] 
 									,f.[CA_LICENSED_END_DATE] 
 									,f.[AROther] 
@@ -52,20 +53,19 @@ namespace ArchiveLookup.ICAS.com.Controllers
 									,ar.[DATE_CREATED] as [AR_Start_Date]
 									,ar.[STATUS] as [AR_Status]
 							  FROM [imis].[dbo].[Name] as n
-							JOIN activity as a
+							LEFT OUTER JOIN activity as a
 							on n.id = a.id
 							LEFT OUTER JOIN Student_Info as si
 							on n.ID = si.ID
-							JOIN Firm as f
+							LEFT OUTER JOIN Firm as f
 							on n.ID = f.ID
-							JOIN IREG_DPB as dpb
+							LEFT OUTER JOIN IREG_DPB as dpb
 							on n.ID = dpb.NameID
-							JOIN IREG_PII as pii
+							LEFT OUTER JOIN IREG_PII as pii
 							on n.ID = pii.NameID
-							JOIN IREG_AnnRet as ar
-							on n.ID = ar.ID
-							-- NEED TO GET ATOL
-							ORDER BY TRANSACTION_DATE DESC" + queryGenerator(criteria, true) + " ORDER BY TRANSACTION_DATE DESC"; ;
+							LEFT OUTER JOIN IREG_AnnRet as ar
+							on n.ID = ar.ID 
+							where a.[ACTIVITY_TYPE] = 'LICENCE'" + queryGenerator(criteria, true) + " ORDER BY TRANSACTION_DATE DESC"; ;
 
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
 			{
@@ -88,18 +88,12 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		
 		public string queryGenerator(PCQuery criteriaFull, bool areYouSure)
 		{
-			//WHEN ADDING NEW CRITERIA ADD DATABSE PREFIX HERE IN SAME POSITION AS IT IS IN getClassNames();
-			var properties = criteriaFull.GetType().GetFields();
+			var properties = criteriaFull.GetType().GetProperties();
+			var propertyName = properties[0].Name;
 			var query = "";
-			bool began = false;
 			for (var i =0; i < properties.Length; i++)
 			{
-				if (properties[i].GetValue(criteriaFull) != "" && properties[i].GetValue(criteriaFull) != null && !began)
-				{
-					query = query + "WHERE " + criteriaFull.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
-					began = true;
-				}
-				else if (properties[i].GetValue(criteriaFull) != "" && properties[i].GetValue(criteriaFull) != null)
+				if (properties[i].GetValue(criteriaFull) != null)
 				{
 					query = query + " AND " + criteriaFull.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
 				}
