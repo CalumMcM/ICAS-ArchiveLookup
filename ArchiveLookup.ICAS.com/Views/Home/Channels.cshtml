@@ -4,7 +4,6 @@
 
 <div class="jumbotron">
 
-	<img src="ICASLogo.png">
 	<h1>
 		Channels Lookup
 		<div class="underline"></div>
@@ -258,10 +257,12 @@
 			inputText.style.display = "block";
 			inputTextTitle.style.display = "block";
 			button.style.backgroundColor = "#20A64B"
+			button.style.borderColor = "#20A64B"
 		} else {
 			inputText.style.display = "none";
 			inputTextTitle.style.display = "none";
-			button.style.backgroundColor = "#C00A27";
+			button.style.backgroundColor = "#f1f3f1";
+			button.style.borderColor = "#F9B123"
 		}
 		showSubmit();
 	}
@@ -288,11 +289,11 @@
 	function copySelectButton(buttonID) {
 		currentColour = document.getElementById(buttonID + "Button").style.backgroundColor;
 		document.getElementById("copyButton").innerHTML = '&#x1F4CB';
-		if (currentColour == "rgb(192, 10, 39)" || currentColour == "") {
+		if (currentColour == "rgb(241, 243, 242)" || currentColour == "") {
 			document.getElementById(buttonID + "Button").style.backgroundColor = "#20A64B";
 		}
 		else {
-			document.getElementById(buttonID + "Button").style.backgroundColor = "#C00A27";
+			document.getElementById(buttonID + "Button").style.backgroundColor = "#f1f3f2";
 		}
 	}
 	function showCopyDropdown() {

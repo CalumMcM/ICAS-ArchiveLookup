@@ -8,6 +8,7 @@ namespace ArchiveLookup.ICAS.com.test
 	[TestClass]
 	public class ProcessingChangeTest
 	{
+		/*
 		[TestMethod]
 		public void PcControllerGeneratesQueryGivenGoodCriteria()
 		{
@@ -22,6 +23,7 @@ namespace ArchiveLookup.ICAS.com.test
 			//Assert
 			Assert.AreEqual("WHERE n.FIRST_NAME = @FIRST_NAME AND n.LAST_NAME = @LAST_NAME", response, "Query Generator failed to generate the correct query");
 		}
+		*/
 		[TestMethod]
 		public void LicenceQueryReturnsCorrectDatabasePrefixForGivenType()
 		{

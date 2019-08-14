@@ -4,7 +4,6 @@
 
 <div class="jumbotron">
 
-	<img src="ICASLogo.png">
 	<h1>
 		Concession Query
 		<div class="underline"></div>
@@ -103,7 +102,7 @@
 			case "examInputButton": otherButton = "classInputButton"; break;
 			default: otherButton = "classInputButton"; break;
 		}
-		document.getElementById(otherButton).style.backgroundColor = "#C00A27";
+		document.getElementById(otherButton).style.backgroundColor = "#f1f3f2";
 		document.getElementById(type).style.backgroundColor = "#20A64B"
 		if (document.getElementById(type).style.display != "none" && document.getElementById(otherButton).style.display != "none") {
 			displayValue = "block";
@@ -166,11 +165,11 @@
 	function copySelectButton(buttonID, table) {
 		currentColour = document.getElementById(buttonID + "Button").style.backgroundColor;
 		document.getElementById(table+"copyButton").innerHTML = '&#x1F4CB';
-		if (currentColour == "rgb(192, 10, 39)" || currentColour == "") {
+		if (currentColour == "rgb(241, 243, 242)" || currentColour == "") {
 			document.getElementById(buttonID + "Button").style.backgroundColor = "#20A64B";
 		}
 		else {
-			document.getElementById(buttonID + "Button").style.backgroundColor = "#C00A27";
+			document.getElementById(buttonID + "Button").style.backgroundColor = "#f1f3f2";
 		}
 	}
 	function showCopyDropdown(table) {
