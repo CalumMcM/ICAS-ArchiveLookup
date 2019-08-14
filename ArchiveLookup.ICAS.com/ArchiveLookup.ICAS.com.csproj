@@ -264,6 +264,15 @@
     <Content Include="Views\Home\Legal.cshtml" />
     <Content Include="Views\Home\Concession.cshtml" />
     <Content Include="Views\Home\ProcessingChange.cshtml" />
+    <None Include="Views\Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Views\Web.Dev.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Views\Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
