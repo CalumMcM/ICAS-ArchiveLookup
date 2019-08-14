@@ -73,7 +73,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebApplication1\ArchiveLookup.ICAS.com.csproj">
+    <ProjectReference Include="..\ArchiveLookup.ICAS.com\ArchiveLookup.ICAS.com.csproj">
       <Project>{b38ea69e-8612-48f9-9b9c-3fb9a3165e87}</Project>
       <Name>ArchiveLookup.ICAS.com</Name>
     </ProjectReference>

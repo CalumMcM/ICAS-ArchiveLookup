@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiveLookup.ICAS.com", "WebApplication1\ArchiveLookup.ICAS.com.csproj", "{B38EA69E-8612-48F9-9B9C-3FB9A3165E87}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiveLookup.ICAS.com", "ArchiveLookup.ICAS.com\ArchiveLookup.ICAS.com.csproj", "{B38EA69E-8612-48F9-9B9C-3FB9A3165E87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiveLookup.ICAS.com.test", "UnitTestProject1\ArchiveLookup.ICAS.com.test.csproj", "{4305C428-822B-4525-ADEB-FF498F000F41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiveLookup.ICAS.com.test", "ArchiveLookup.ICAS.com.test\ArchiveLookup.ICAS.com.test.csproj", "{4305C428-822B-4525-ADEB-FF498F000F41}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B38EA69E-8612-48F9-9B9C-3FB9A3165E87} = {B38EA69E-8612-48F9-9B9C-3FB9A3165E87}
 	EndProjectSection
