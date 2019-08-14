@@ -5272,7 +5272,7 @@ a.list-group-item.active > .badge,
 .minotron{
 	display: none;
 	height: auto;
-	max-height: 50vmin;
+	max-height: 70vmin;
 	overflow-x: auto;
 	overflow-y: auto;
 	white-space: nowrap;
