@@ -5309,6 +5309,7 @@ a.list-group-item.active > .badge,
 .resultsTable td {
 	word-wrap: break-word;
 	white-space: normal;
+	border-bottom: 1px solid #F9B123;
 }
 
 .resultsTable {
