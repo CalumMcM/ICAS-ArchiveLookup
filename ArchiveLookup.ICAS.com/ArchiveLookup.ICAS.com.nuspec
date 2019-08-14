@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>ICAS</authors>    
+    <iconUrl>http://www.icas.com/__data/assets/image/0008/295568/NuGet2.jpg</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>User interface for Archive Lookup</description>
+    <copyright>Copyright ICAS Ltd 2019</copyright>
+	<dependencies />
+  </metadata>
+	<files>
+		<file src="..\Output\**\*.*" />
+		<file src="$envConf$" />
+	</files>
+</package>
