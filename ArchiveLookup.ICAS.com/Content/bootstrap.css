@@ -1462,7 +1462,7 @@ th {
 
 td {
 	padding:10px;
-	width: 20em;
+	width: 50em;
 }
 
 .table {
@@ -5298,13 +5298,21 @@ a.list-group-item.active > .badge,
 .minotron tr:first-child>td{
 	position: sticky;
     position: -webkit-sticky;
+	word-wrap: normal;
+	white-space: nowrap;
     top: 0;
+	width: 100%;
 	background-color: #575656;
 	color: #ffffff;
 	position: sticky;
 }
+.resultsTable td {
+	word-wrap: break-word;
+	white-space: normal;
+}
 
 .resultsTable {
+	table-layout: auto;
 	text-align: left;
 	border-bottom: 1px solid #ddd;
 	-webkit-column-gap: 40px;
