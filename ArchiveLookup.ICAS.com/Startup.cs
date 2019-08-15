@@ -8,7 +8,6 @@ namespace ArchiveLookup.ICAS.com
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
         }
     }
 }
