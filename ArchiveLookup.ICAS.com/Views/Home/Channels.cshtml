@@ -384,7 +384,7 @@
 			console.log(discardedHeaders);
 			for (let i = 0; i < tableHeaders.length; ++i) {
 				let curHeaderCell = headerRowTable.insertCell(-1);
-				curHeaderCell.innerHTML = tableHeaders[i];
+				curHeaderCell.innerHTML = tableHeaders[i].replace(/_/g, " ");
 			}
 			for (let header in discardedHeaders) {
 				inputs.map(record => delete record[discardedHeaders[header]]);
