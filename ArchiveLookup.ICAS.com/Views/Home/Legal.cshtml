@@ -364,7 +364,9 @@
 					} else {
 						clipboardContents += "\t" + record[chosenFields[chosenField]];
 					}
-				}
+				} else {
+					clipboardContents += "\t";
+				}	
 			}
 			clipboardContents += "\n";
 		}
