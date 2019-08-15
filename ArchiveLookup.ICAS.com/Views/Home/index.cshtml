@@ -154,9 +154,17 @@
 			<button id="DisabilitiescopySelectButton" onclick="showCopyDropdown('Disabilities')" class="copyBtn">+</button>
 			<div id="DisabilitiesDropdown" class="copySelectDropdown-content">
 				<button id="mkDCopyButton" onclick="copySelectButton('mkDCopy', 'Disabilities')" class="addBtn">Major Key</button>
-				<button id="lastfirstDCopyButton" onclick="copySelectButton('lastfirstDCopy', 'Disabilities')" class="addBtn">Last First</button>
-				<button id="middlenameDCopyButton" onclick="copySelectButton('middlenameDCopy', 'Disabilities')" class="addBtn">Middle Name</button>
-				<button id="commentsDCopyButton" onclick="copySelectButton('commentsDCopy', 'Disabilities')" class="addBtn">Comments</button>
+				<button id="typeDCopyButton" onclick="copySelectButton('typeDCopy', 'Disabilities')" class="addBtn">Type</button>
+				<button id="allowanceDCopyButton" onclick="copySelectButton('allowanceDCopy', 'Disabilities')" class="addBtn">Allowance</button>
+				<button id="actionDCopyButton" onclick="copySelectButton('actionDCopy', 'Disabilities')" class="addBtn">Action</button>
+				<button id="allowanceDCopyButton" onclick="copySelectButton('allowanceDCopy', 'Disabilities')" class="addBtn">Allowance</button>
+				<button id="actionDCopyButton" onclick="copySelectButton('actionDCopy', 'Disabilities')" class="addBtn">Action</button>
+				<button id="allowance2DCopyButton" onclick="copySelectButton('allowance2DCopy', 'Disabilities')" class="addBtn">Allowance 2</button>
+				<button id="action2DCopyButton" onclick="copySelectButton('action2DCopy', 'Disabilities')" class="addBtn">Action 2</button>
+				<button id="allowance3DCopyButton" onclick="copySelectButton('allowance3DCopy', 'Disabilities')" class="addBtn">Allowance 3</button>
+				<button id="action3DCopyButton" onclick="copySelectButton('action3DCopy', 'Disabilities')" class="addBtn">Action 3</button>
+				<button id="allowance4DCopyButton" onclick="copySelectButton('allowance4DCopy', 'Disabilities')" class="addBtn">Allowance 4</button>
+				<button id="action4DCopyButton" onclick="copySelectButton('action4DCopy', 'Disabilities')" class="addBtn">Action 4</button>
 			</div>
 		</div>
 		<div id="DisabilitiesContainer" class="minotron">
@@ -197,7 +205,7 @@
 			case "Activity": return ["mkA", "transA", "descA", "productcodeA", "typeA", "noteA", "thrudateA", "amountA", "unitA"];
 			case "Students": return ["mkS","studentidS", "forenameS", "middlenameS","surnameS", "cityS", "zipS", "countyS", "routecodeS", "routesubcodeS", "firmnameS", "firmnoS"];
 			case "Exams": return ["mkE", "statusE", "gradeE", "programE", "regitemE","titleE", "classyearE", "groupE", "notesE", "locationE", "enrolleddateE"];
-			case "Disabilities": return ["mkCN", "lastfirstCN", "middlenameCN", "commentsCN"];
+			case "Disabilities": return ["mkD", "typeD", "allowanceD", "actionD", "allowance2D", "action2D", "allowance3D", "action3D", "allowance4D", "action4D"];
 				defualt: return [];
 			}
 	}
@@ -206,7 +214,7 @@
 			case "Activity": return ["MAJOR_KEY", "TRANSACTION_DATE",  "DESCRIPTION", "PRODUCT_CODE", "ACTIVITY_TYPE", "NOTE", "THRU_DATE", "AMOUNT", "UNITS"];
 			case "Students": return ["MAJOR_KEY", "STUDENT_ID", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME","CITY", "ZIP", "COUNTY", "ROUTE_CODE", "ROUTE_SUB_CODE","FULL_ADDRESS","FIRM_NAME", "MAIN_FIRM_NO"];
 			case "Exams": return ["MAJOR_KEY", "STATUS", "GRADE", "PROGRAM", "REGISTRATION_ITEM", "TITLE", "CLASS_YEAR", "GROUP", "NOTES", "LOCATION", "ENROLLED_DATE"]
-			case "Disabilities": return ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"];
+			case "Disabilities": return ["MAJOR_KEY", "TYPE", "ALLOWANCE", "ACTION", "ALLOWANCE_2", "ACTION_2", "ALLOWANCE_3", "ACTION_3", "ALLOWANCE_4", "ACTION_4"];
 				defualt: return [];
 		}
 	}
