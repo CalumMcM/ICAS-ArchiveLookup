@@ -7,7 +7,8 @@ namespace ArchiveLookup.ICAS.com.Models
 {
 	public class Exam
 	{
-		public string MAJOR_KEY { get; set; } 
+		public string MAJOR_KEY { get; set; }
+		public string STUDENT_ID { get; set; }
 		public string FIRST_NAME { get; set; } 
 		public string MIDDLE_NAME { get; set; } 
 		public string LAST_NAME { get; set; }
@@ -19,10 +20,9 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string ROUTE_CODE { get; set; } 
 		public string ROUTE_SUB_CODE { get; set; }
 		public string INTAKE_YEAR { get; set; }
-		public string STUDENT_ID { get; set; } 
 		public string FIRM_NAME { get; set; } 
-		public string DESCRIPTION { get; set; }
 		public string TRANSACTION_DATE { get; set; }
+		public string DESCRIPTION { get; set; }
 		public string PRODUCT_CODE { get; set; }
 		public string ACTIVITY_TYPE { get; set; }
 		public string NOTE { get; set; }
