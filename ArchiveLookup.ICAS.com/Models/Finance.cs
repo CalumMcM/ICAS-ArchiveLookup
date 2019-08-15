@@ -7,8 +7,8 @@ namespace ArchiveLookup.ICAS.com.Models
 {
 	public class Finance
 	{
-		public string ID { get; set; }
-		public string MAJOR_KEY { get; set; } 
+		public string IMIS_ID { get; set; }
+		public string MEMBER_NO { get; set; } 
 		public string STUDENT_NO { get; set; }
 		public string INVOICE_DATE { get; set; } 
 		public string REFERENCE_NUM { get; set; } 

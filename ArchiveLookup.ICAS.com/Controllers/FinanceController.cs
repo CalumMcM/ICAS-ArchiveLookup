@@ -19,8 +19,8 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		public List<Finance> Post([FromBody]FinanceQuery criteria)
 		{
 			var persons = new List<Finance>();
-			var queryBase = @"SELECT TOP (2000) n.[ID]
-								,n.[MAJOR_KEY] 
+			var queryBase = @"SELECT TOP (2000) n.[ID] as [IMIS_ID]
+								,n.[MAJOR_KEY] as [MEMBER_NO]
 								,si.[STUDENT_NO]
 								,i.[INVOICE_DATE] 
 								,i.[REFERENCE_NUM] 

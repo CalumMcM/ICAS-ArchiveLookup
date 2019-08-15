@@ -23,7 +23,7 @@
 	</p>
 
 	<p id="mkInputText" class="lead">
-		Major Key:
+		Member No.:
 		<input type="text" id="mkInput" class="input-lookup" name="mk">
 	</p>
 
@@ -98,7 +98,7 @@
 			<button id="ActivitycopyButton" onclick="copy('Activity')" class="copyBtn">&#x1F4CB</button>
 			<button id="ActivitycopySelectButton" onclick="showCopyDropdown('Activity')" class="copyBtn">+</button>
 			<div id="ActivityDropdown" class="copySelectDropdown-content">
-				<button id="mkACopyButton" onclick="copySelectButton('mkACopy', 'Activity')" class="addBtn">Major Key</button>
+				<button id="mkACopyButton" onclick="copySelectButton('mkACopy', 'Activity')" class="addBtn">Member No.</button>
 				<button id="transACopyButton" onclick="copySelectButton('transACopy', 'Activity')" class="addBtn">Transaction Date</button>
 				<button id="descACopyButton" onclick="copySelectButton('descACopy', 'Activity')" class="addBtn">Description</button>
 				<button id="productcodeACopyButton" onclick="copySelectButton('productcodeACopy', 'Activity')" class="addBtn">Product Code</button>
@@ -121,7 +121,7 @@
 			<button id="ExamscopyButton" onclick="copy('Exams')" class="copyBtn">&#x1F4CB</button>
 			<button id="ExamscopySelectButton" onclick="showCopyDropdown('Exams')" class="copyBtn">+</button>
 			<div id="ExamsDropdown" class="copySelectDropdown-content">
-				<button id="mkECopyButton" onclick="copySelectButton('mkECopy', 'Exams')" class="addBtn">Major Key</button>
+				<button id="mkECopyButton" onclick="copySelectButton('mkECopy', 'Exams')" class="addBtn">Member No.</button>
 				<button id="statusECopyButton" onclick="copySelectButton('statusECopy', 'Exams')" class="addBtn">status</button>
 				<button id="gradeECopyButton" onclick="copySelectButton('gradeECopy', 'Exams')" class="addBtn">Grade</button>
 				<button id="programECopyButton" onclick="copySelectButton('programECopy', 'Exams')" class="addBtn">Program</button>
@@ -146,7 +146,7 @@
 			<button id="DisabilitiescopyButton" onclick="copy('Disabilities')" class="copyBtn">&#x1F4CB</button>
 			<button id="DisabilitiescopySelectButton" onclick="showCopyDropdown('Disabilities')" class="copyBtn">+</button>
 			<div id="DisabilitiesDropdown" class="copySelectDropdown-content">
-				<button id="mkDCopyButton" onclick="copySelectButton('mkDCopy', 'Disabilities')" class="addBtn">Major Key</button>
+				<button id="mkDCopyButton" onclick="copySelectButton('mkDCopy', 'Disabilities')" class="addBtn">Member No.</button>
 				<button id="typeDCopyButton" onclick="copySelectButton('typeDCopy', 'Disabilities')" class="addBtn">Type</button>
 				<button id="allowanceDCopyButton" onclick="copySelectButton('allowanceDCopy', 'Disabilities')" class="addBtn">Allowance</button>
 				<button id="actionDCopyButton" onclick="copySelectButton('actionDCopy', 'Disabilities')" class="addBtn">Action</button>
@@ -204,10 +204,10 @@
 	}
 	function getCopyFields(table) {
 		switch (table) {
-			case "Activity": return ["MAJOR_KEY", "TRANSACTION_DATE",  "DESCRIPTION", "PRODUCT_CODE", "ACTIVITY_TYPE", "NOTE", "THRU_DATE", "AMOUNT", "UNITS"];
-			case "Students": return ["MAJOR_KEY", "STUDENT_ID", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME","CITY", "ZIP", "COUNTY", "ROUTE_CODE", "ROUTE_SUB_CODE","FULL_ADDRESS","FIRM_NAME", "MAIN_FIRM_NO"];
-			case "Exams": return ["MAJOR_KEY", "STATUS", "GRADE", "PROGRAM", "REGISTRATION_ITEM", "TITLE", "CLASS_YEAR", "GROUP", "NOTES", "LOCATION", "ENROLLED_DATE"]
-			case "Disabilities": return ["MAJOR_KEY", "TYPE", "ALLOWANCE", "ACTION", "ALLOWANCE_2", "ACTION_2", "ALLOWANCE_3", "ACTION_3", "ALLOWANCE_4", "ACTION_4"];
+			case "Activity": return ["MEMBER_NO", "TRANSACTION_DATE", "DESCRIPTION", "PRODUCT_CODE", "ACTIVITY_TYPE", "NOTE", "THRU_DATE", "AMOUNT", "UNITS"];
+			case "Students": return ["MEMBER_NO", "STUDENT_ID", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "CITY", "ZIP", "COUNTY", "ROUTE_CODE", "ROUTE_SUB_CODE", "FULL_ADDRESS", "FIRM_NAME", "MAIN_FIRM_NO"];
+			case "Exams": return ["MEMBER_NO", "STATUS", "GRADE", "PROGRAM", "REGISTRATION_ITEM", "TITLE", "CLASS_YEAR", "GROUP", "NOTES", "LOCATION", "ENROLLED_DATE"]
+			case "Disabilities": return ["MEMBER_NO", "TYPE", "ALLOWANCE", "ACTION", "ALLOWANCE_2", "ACTION_2", "ALLOWANCE_3", "ACTION_3", "ALLOWANCE_4", "ACTION_4"];
 				defualt: return [];
 		}
 	}
@@ -323,10 +323,10 @@
 		tableDemolisherAndDisplayer("Activity");
 		tableDemolisherAndDisplayer("Disabilities");
 
-		tableBuilder(inputs, "StudentsResultsTable", ["MAJOR_KEY", "STUDENT_ID", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "MAIN_FIRM_NO", "FIRM_NAME", "CITY", "COUNTY", "ZIP", "ROUTE_CODE", "ROUTE_SUB_CODE"])
-		tableBuilder(inputs, "ActivityResultsTable", ["TRANSACTION_DATE", "MAJOR_KEY", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "NOTE", "THRU_DATE", "AMOUNT", "UNITS"]);
-		tableBuilder(inputs, "ExamsResultsTable", ["MAJOR_KEY", "STATUS", "REGISTRATION_ITEM", "TITLE", "LOCATION", "GRADE", "ENROLLED_DATE", "CLASS_YEAR", "PROGRAM", "GROUP", "NOTES"]);
-		tableBuilder(inputs, "DisabilitiesResultsTable", ["MAJOR_KEY", "TYPE", "ALLOWANCE", "ACTION", "ALLOWANCE_2", "ACTION_2", "ALLOWANCE_3", "ACTION_3", "ALLOWANCE_4", "ACTION_4"])
+		tableBuilder(inputs, "StudentsResultsTable", ["MEMBER_NO", "STUDENT_ID", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "MAIN_FIRM_NO", "FIRM_NAME", "CITY", "COUNTY", "ZIP", "ROUTE_CODE", "ROUTE_SUB_CODE"])
+		tableBuilder(inputs, "ActivityResultsTable", ["TRANSACTION_DATE", "MEMBER_NO", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "NOTE", "THRU_DATE", "AMOUNT", "UNITS"]);
+		tableBuilder(inputs, "ExamsResultsTable", ["MEMBER_NO", "STATUS", "REGISTRATION_ITEM", "TITLE", "LOCATION", "GRADE", "ENROLLED_DATE", "CLASS_YEAR", "PROGRAM", "GROUP", "NOTES"]);
+		tableBuilder(inputs, "DisabilitiesResultsTable", ["MEMBER_NO", "TYPE", "ALLOWANCE", "ACTION", "ALLOWANCE_2", "ACTION_2", "ALLOWANCE_3", "ACTION_3", "ALLOWANCE_4", "ACTION_4"])
 	}
 	function tableDemolisherAndDisplayer(tableName) {
 		//Demolisher

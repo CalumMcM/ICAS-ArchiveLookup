@@ -7,7 +7,7 @@ namespace ArchiveLookup.ICAS.com.Models
 {
 	public class Exam
 	{
-		public string MAJOR_KEY { get; set; }
+		public string MEMBER_NO { get; set; }
 		public string STUDENT_ID { get; set; }
 		public string FIRST_NAME { get; set; } 
 		public string MIDDLE_NAME { get; set; } 

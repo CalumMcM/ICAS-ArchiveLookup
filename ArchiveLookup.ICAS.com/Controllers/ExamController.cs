@@ -18,8 +18,8 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		public List<Exam> Post([FromBody]ExamQuery criteria)
 		{
 			var persons = new List<Exam>();
-			var queryBase = @"SELECT TOP (1000) n.[ID]
-								,n.[MAJOR_KEY] -- 
+			var queryBase = @"SELECT TOP (1000) n.[ID] as [IMIS_ID]
+								,n.[MAJOR_KEY] as [MEMBER_NO]
 								,n.[FIRST_NAME] -- 
 								,n.[MIDDLE_NAME] -- 
 								,n.[LAST_NAME] --

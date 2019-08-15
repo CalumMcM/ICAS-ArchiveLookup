@@ -9,8 +9,8 @@
 	</h1>
 	<p>Select the criteria for your search: </p>
 
-	<button id="idInputButton" onclick="showInput('idInput')" class="addBtn">ID</button>
-	<button id="mkInputButton" onclick="showInput('mkInput')" class="addBtn">Major Key</button>
+	<button id="idInputButton" onclick="showInput('idInput')" class="addBtn">IMIS ID</button>
+	<button id="mkInputButton" onclick="showInput('mkInput')" class="addBtn">Member No.</button>
 	<button id="forenameInputButton" onclick="showInput('forenameInput')" class="addBtn">First Name</button>
 	<button id="middlenameInputButton" onclick="showInput('middlenameInput')" class="addBtn">Middle Name</button>
 	<button id="surnameInputButton" onclick="showInput('surnameInput')" class="addBtn">Last Name</button>
@@ -42,12 +42,12 @@
 
 
 	<p id="idInputText" class="lead">
-		ID:
+		IMIS ID:
 		<input type="text" id="idInput" class="input-lookup" name="id">
 	</p>
 
 	<p id="mkInputText" class="lead">
-		Major Key:
+		Member No:
 		<input type="text" id="mkInput" class="input-lookup" name="mk">
 	</p>
 
@@ -194,8 +194,8 @@
 		<button id="copyButton" onclick="copy()" class="copyBtn">&#x1F4CB</button>
 		<button id="copySelectButton" onclick="showCopyDropdown()" class="copyBtn">+</button>
 		<div id="myDropdown" class="copySelectDropdown-content">
-			<button id="idCopyButton" onclick="copySelectButton('idCopy')" class="addBtn">ID</button>
-			<button id="mkCopyButton" onclick="copySelectButton('mkCopy')" class="addBtn">Major Key</button>
+			<button id="idCopyButton" onclick="copySelectButton('idCopy')" class="addBtn">IMIS ID</button>
+			<button id="mkCopyButton" onclick="copySelectButton('mkCopy')" class="addBtn">Member No.</button>
 			<button id="forenameCopyButton" onclick="copySelectButton('forenameCopy')" class="addBtn">First Name</button>
 			<button id="middlenameCopyButton" onclick="copySelectButton('middlenameCopy')" class="addBtn">Middle Name</button>
 			<button id="surnameCopyButton" onclick="copySelectButton('surnameCopy')" class="addBtn">Last Name</button>
@@ -245,6 +245,11 @@
 	"INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", 
 	"FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "LOGBOOK_VERIFIED", 
 	"LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed", "EVENT_ATTENDEES", "TP_Monthly"];
+	const getCopyNames = () => ["IMIS_ID", "MEMBER_NO", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "DESCRIPTION", 
+	"TRANSACTION_DATE", "EFFECTIVE_DATE","PRODUCT_CODE","ACTIVITY_TYPE","FUNCTIONAL_TITLE", "STATUS", 
+	"INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", 
+	"FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "LOGBOOK_VERIFIED", 
+	"LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed", "EVENT_ATTENDEES", "TP_Monthly"];
 
 	function showInput(input) {
 		let inputText = document.getElementById(input);
@@ -266,7 +271,7 @@
 	}
 	function copy() {
 		let btnNames = getBtnNames();
-		let classNames = getClassNames();
+		let classNames = getCopyNames();
 		let chosenFields = [];
 		for (let button in classNames) {
 			if (document.getElementById(btnNames[button]+"CopyButton").style.backgroundColor == "rgb(32, 166, 75)") {
@@ -354,11 +359,10 @@
 		//Display and Construct new table:
 		document.getElementById("ResultsContainer").style.display = "block";
 		document.getElementById("ResultsHeader").style.display = "block";
-		document.getElementById("resultsUnderline").style.display = "block";
 		document.getElementById("copyButton").innerHTML = '&#x1F4CB';
 		document.getElementById("copyButton").style.display = "block";
 		document.getElementById("copySelectButton").style.display = "block";
-		let resultsTableHeaders = ["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "DESCRIPTION", 
+		let resultsTableHeaders = ["IMIS_ID", "MEMBER_NO", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "DESCRIPTION", 
 		"TRANSACTION_DATE", "EFFECTIVE_DATE", "PRODUCT_CODE", "ACTIVITY_TYPE", "FUNCTIONAL_TITLE", "STATUS", 
 		"INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", 
 		"FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "LOGBOOK_VERIFIED",
