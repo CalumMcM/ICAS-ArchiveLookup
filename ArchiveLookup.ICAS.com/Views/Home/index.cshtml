@@ -129,9 +129,16 @@
 			<button id="ExamscopySelectButton" onclick="showCopyDropdown('Exams')" class="copyBtn">+</button>
 			<div id="ExamsDropdown" class="copySelectDropdown-content">
 				<button id="mkECopyButton" onclick="copySelectButton('mkECopy', 'Exams')" class="addBtn">Major Key</button>
-				<button id="lastfirstECopyButton" onclick="copySelectButton('lastfirstECopy', 'Exams')" class="addBtn">Last First</button>
-				<button id="middlenameECopyButton" onclick="copySelectButton('middlenameECopy', 'Exams')" class="addBtn">Middle Name</button>
-				<button id="commentsECopyButton" onclick="copySelectButton('commentsECopy', 'Exams')" class="addBtn">Comments</button>
+				<button id="statusECopyButton" onclick="copySelectButton('statusECopy', 'Exams')" class="addBtn">status</button>
+				<button id="gradeECopyButton" onclick="copySelectButton('gradeECopy', 'Exams')" class="addBtn">Grade</button>
+				<button id="programECopyButton" onclick="copySelectButton('programECopy', 'Exams')" class="addBtn">Program</button>
+				<button id="regitemECopyButton" onclick="copySelectButton('regitemECopy', 'Exams')" class="addBtn">Registration Item</button>
+				<button id="titleECopyButton" onclick="copySelectButton('titleECopy', 'Exams')" class="addBtn">Title</button>
+				<button id="classyearECopyButton" onclick="copySelectButton('classyearECopy', 'Exams')" class="addBtn">Class Year</button>
+				<button id="groupECopyButton" onclick="copySelectButton('groupECopy', 'Exams')" class="addBtn">Group</button>
+				<button id="notesECopyButton" onclick="copySelectButton('notesECopy', 'Exams')" class="addBtn">Notes</button>
+				<button id="locationECopyButton" onclick="copySelectButton('locationECopy', 'Exams')" class="addBtn">Location</button>
+				<button id="enrolleddateECopyButton" onclick="copySelectButton('enrolleddateECopy', 'Exams')" class="addBtn">Enrolled Date</button>
 			</div>
 		</div>
 		<div id="ExamsContainer" class="minotron">
@@ -189,6 +196,7 @@
 		switch (table) {
 			case "Activity": return ["mkA", "transA", "descA", "productcodeA", "typeA", "noteA", "thrudateA", "amountA", "unitA"];
 			case "Students": return ["mkS","studentidS", "forenameS", "middlenameS","surnameS", "cityS", "zipS", "countyS", "routecodeS", "routesubcodeS", "firmnameS", "firmnoS"];
+			case "Exams": return ["mkE", "statusE", "gradeE", "programE", "regitemE","titleE", "classyearE", "groupE", "notesE", "locationE", "enrolleddateE"];
 			case "Disabilities": return ["mkCN", "lastfirstCN", "middlenameCN", "commentsCN"];
 				defualt: return [];
 			}
@@ -197,6 +205,7 @@
 		switch (table) {
 			case "Activity": return ["MAJOR_KEY", "TRANSACTION_DATE",  "DESCRIPTION", "PRODUCT_CODE", "ACTIVITY_TYPE", "NOTE", "THRU_DATE", "AMOUNT", "UNITS"];
 			case "Students": return ["MAJOR_KEY", "STUDENT_ID", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME","CITY", "ZIP", "COUNTY", "ROUTE_CODE", "ROUTE_SUB_CODE","FULL_ADDRESS","FIRM_NAME", "MAIN_FIRM_NO"];
+			case "Exams": return ["MAJOR_KEY", "STATUS", "GRADE", "PROGRAM", "REGISTRATION_ITEM", "TITLE", "CLASS_YEAR", "GROUP", "NOTES", "LOCATION", "ENROLLED_DATE"]
 			case "Disabilities": return ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"];
 				defualt: return [];
 		}
