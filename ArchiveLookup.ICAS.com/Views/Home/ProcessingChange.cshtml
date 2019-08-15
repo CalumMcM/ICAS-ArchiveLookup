@@ -6,7 +6,6 @@
 
 	<h1>
 		Processing Change Lookup
-		<div class="underlinePC"></div>
 	</h1>
 	<p>Select the criteria for your search: </p>
 
@@ -80,12 +79,6 @@
 	<div class="copySelectDropdown">
 		<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
 		<div id="loadingIcon" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-	</div>
-	<div id="ResultsHeader" class="resultsHeader">
-		<h1>
-			Results
-			<div id="resultsUnderline" class="underlineResults"></div>
-		</h1>
 	</div>
 
 	<div id="tabBar" class="tab">
@@ -368,7 +361,6 @@
 
 	}
 	function displayResults(inputs) {
-		document.getElementById("ResultsHeader").style.display = "block";
 		document.getElementById("tabBar").style.display = "block";
 		document.getElementById("loadingIcon").style.display = "none";
 		//Delete previous table if it exists:

@@ -1,22 +1,21 @@
 ﻿@{
-	ViewBag.Title = "Legal";
+	ViewBag.Title = "Examinations";
 }
 
 <div class="jumbotron">
 
 	<h1>
-		Legal Lookup
+		Exam Lookup
 	</h1>
 	<p>Select the criteria for your search: </p>
 
-	<button id="mkInputButton" onclick="showInput('mkInput')" class="addBtn">Major Key</button>
+	<button id="mkInputButton" onclick="showInput('mkInput')" class="addBtn">Member No.</button>
 	<button id="forenameInputButton" onclick="showInput('forenameInput')" class="addBtn">First Name</button>
 	<button id="middlenameInputButton" onclick="showInput('middlenameInput')" class="addBtn">Middle Name</button>
 	<button id="surnameInputButton" onclick="showInput('surnameInput')" class="addBtn">Last Name</button>
-	<button id="firmidInputButton" onclick="showInput('firmidInput')" class="addBtn">Firm ID</button>
 	<button id="firmnoInputButton" onclick="showInput('firmnoInput')" class="addBtn">Firm No.</button>
 	<button id="firmnameInputButton" onclick="showInput('firmnameInput')" class="addBtn">Firm Name</button>
-	<button id="companynameInputButton" onclick="showInput('companynameInput')" class="addBtn">Company Name</button>
+	<button id="studentidInputButton" onclick="showInput('studentidInput')" class="addBtn">Student ID</button>
 
 	<p id="idInputText" class="lead">
 		ID:
@@ -43,11 +42,6 @@
 		<input id="surnameInput" type="text" class="input-lookup" name="surname">
 	</p>
 
-	<p id="firmidInputText" class="lead">
-		Firm ID:
-		<input type="text" id="firmidInput" class="input-lookup" name="firmid">
-	</p>
-
 	<p id="firmnoInputText" class="lead">
 		Firm No:
 		<input type="text" id="firmnoInput" class="input-lookup" name="firmno">
@@ -58,41 +52,42 @@
 		<input type="text" id="firmnameInput" class="input-lookup" name="firmname">
 	</p>
 
-	<p id="companynameInputText" class="lead">
-		Company Name:
-		<input type="text" id="companynameInput" class="input-lookup" name="companyname">
+	<p id="studentidInputText" class="lead">
+		Student ID:
+		<input type="text" id="studentidInput" class="input-lookup" name="studentid">
 	</p>
 	<div class="copySelectDropdown">
 		<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
 		<div id="loadingIcon" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 	</div>
 	<div id="tabBar" class="tab">
-		<button class="tablinks" onclick="changeTab(event, 'Customers')">Customers</button>
+		<button class="tablinks" onclick="changeTab(event, 'Students')">Students</button>
 		<button class="tablinks" onclick="changeTab(event, 'Activity')">Activity</button>
-		<button class="tablinks" onclick="changeTab(event, 'CustomerNotes')">CustomerNotes</button>
+		<button class="tablinks" onclick="changeTab(event, 'Exams')">Exams</button>
+		<button class="tablinks" onclick="changeTab(event, 'Disabilities')">Disabilities</button>
 	</div>
 
-	<div id="Customers" class="tabcontent">
+	<div id="Students" class="tabcontent">
 		<div class="copySelectDropdown">
-			<button id="CustomerscopyButton" onclick="copy('Customers')" class="copyBtn">&#x1F4CB</button>
-			<button id="CustomerscopySelectButton" onclick="showCopyDropdown('Customers')" class="copyBtn">+</button>
-			<div id="CustomersDropdown" class="copySelectDropdown-content">
-				<button id="mkCCopyButton" onclick="copySelectButton('mkCCopy', 'Customers')" class="addBtn">Major Key</button>
-				<button id="surnameCCopyButton" onclick="copySelectButton('surnameCCopy', 'Customers')" class="addBtn">Last Name</button>
-				<button id="forenameCCopyButton" onclick="copySelectButton('forenameCCopy', 'Customers')" class="addBtn">First Name</button>
-				<button id="middlenameCCopyButton" onclick="copySelectButton('middlenameCCopy', 'Customers')" class="addBtn">Middle Name</button>
-				<button id="mtCCopyButton" onclick="copySelectButton('mtCCopy', 'Customers')" class="addBtn">Member Type</button>
-				<button id="catCCopyButton" onclick="copySelectButton('catCCopy', 'Customers')" class="addBtn">Category</button>
-				<button id="titleCCopyButton" onclick="copySelectButton('titleCCopy', 'Customers')" class="addBtn">Title</button>
-				<button id="cityCCopyButton" onclick="copySelectButton('cityCCopy', 'Customers')" class="addBtn">City</button>
-				<button id="countyCCopyButton" onclick="copySelectButton('countyCCopy', 'Customers')" class="addBtn">County</button>
-				<button id="compsortCCopyButton" onclick="copySelectButton('compsortCCopy', 'Customers')" class="addBtn">Company Sort</button>
-				<button id="addrCCopyButton" onclick="copySelectButton('addrCCopy', 'Customers')" class="addBtn">Full Address</button>
-				<button id="firmnoCCopyButton" onclick="copySelectButton('firmnoCCopy', 'Customers')" class="addBtn">Main Firm No</button>
+			<button id="StudentscopyButton" onclick="copy('Students')" class="copyBtn">&#x1F4CB</button>
+			<button id="StudentscopySelectButton" onclick="showCopyDropdown('Students')" class="copyBtn">+</button>
+			<div id="StudentsDropdown" class="copySelectDropdown-content">
+				<button id="mkSCopyButton" onclick="copySelectButton('mkSCopy', 'Students')" class="addBtn">Member No.</button>
+				<button id="studentidSCopyButton" onclick="copySelectButton('studentidSCopy', 'Students')" class="addBtn">Student ID</button>
+				<button id="forenameSCopyButton" onclick="copySelectButton('forenameSCopy', 'Students')" class="addBtn">First Name</button>
+				<button id="middlenameSCopyButton" onclick="copySelectButton('middlenameSCopy', 'Students')" class="addBtn">Middle Name</button>
+				<button id="surnameSCopyButton" onclick="copySelectButton('surnameSCopy', 'Students')" class="addBtn">Last Name</button>
+				<button id="citySCopyButton" onclick="copySelectButton('citySCopy', 'Students')" class="addBtn">City</button>
+				<button id="zipSCopyButton" onclick="copySelectButton('zipSCopy', 'Students')" class="addBtn">Zip</button>
+				<button id="countySCopyButton" onclick="copySelectButton('countySCopy', 'Students')" class="addBtn">County</button>
+				<button id="routecodeSCopyButton" onclick="copySelectButton('routecodeSCopy', 'Students')" class="addBtn">Route Code</button>
+				<button id="routesubcodeSCopyButton" onclick="copySelectButton('routesubcodeSCopy', 'Students')" class="addBtn">Route Sub Code</button>
+				<button id="firmnameSCopyButton" onclick="copySelectButton('firmnameSCopy', 'Students')" class="addBtn">Firm Name</button>
+				<button id="firmnoSCopyButton" onclick="copySelectButton('firmnoSCopy', 'Students')" class="addBtn">Main Firm No</button>
 			</div>
 		</div>
-		<div id="CustomersContainer" class="minotron">
-			<table id="CustomersResultsTable" class="resultsTable">
+		<div id="StudentsContainer" class="minotron">
+			<table id="StudentsResultsTable" class="resultsTable">
 				<tr></tr>
 			</table>
 		</div>
@@ -105,11 +100,13 @@
 			<div id="ActivityDropdown" class="copySelectDropdown-content">
 				<button id="mkACopyButton" onclick="copySelectButton('mkACopy', 'Activity')" class="addBtn">Major Key</button>
 				<button id="transACopyButton" onclick="copySelectButton('transACopy', 'Activity')" class="addBtn">Transaction Date</button>
-				<button id="typeACopyButton" onclick="copySelectButton('typeACopy', 'Activity')" class="addBtn">Activity Type</button>
-				<button id="forenameACopyButton" onclick="copySelectButton('forenameACopy', 'Activity')" class="addBtn">First Name</button>
-				<button id="middlenameACopyButton" onclick="copySelectButton('middlenameACopy', 'Activity')" class="addBtn">Middle Name</button>
-				<button id="surnameACopyButton" onclick="copySelectButton('surnameACopy', 'Activity')" class="addBtn">Last Name</button>
 				<button id="descACopyButton" onclick="copySelectButton('descACopy', 'Activity')" class="addBtn">Description</button>
+				<button id="productcodeACopyButton" onclick="copySelectButton('productcodeACopy', 'Activity')" class="addBtn">Product Code</button>
+				<button id="typeACopyButton" onclick="copySelectButton('typeACopy', 'Activity')" class="addBtn">Activity Type</button>
+				<button id="noteACopyButton" onclick="copySelectButton('noteACopy', 'Activity')" class="addBtn">Note</button>
+				<button id="thrudateACopyButton" onclick="copySelectButton('thrudateACopy', 'Activity')" class="addBtn">Thru Date</button>
+				<button id="amountACopyButton" onclick="copySelectButton('amountACopy', 'Activity')" class="addBtn">Amount</button>
+				<button id="unitACopyButton" onclick="copySelectButton('unitACopy', 'Activity')" class="addBtn">Unit</button>
 			</div>
 		</div>
 		<div id="ActivityContainer" class="minotron">
@@ -119,19 +116,52 @@
 		</div>
 	</div>
 
-	<div id="CustomerNotes" class="tabcontent">
+	<div id="Exams" class="tabcontent">
 		<div class="copySelectDropdown">
-			<button id="CustomerNotescopyButton" onclick="copy('CustomerNotes')" class="copyBtn">&#x1F4CB</button>
-			<button id="CustomerNotescopySelectButton" onclick="showCopyDropdown('CustomerNotes')" class="copyBtn">+</button>
-			<div id="CustomerNotesDropdown" class="copySelectDropdown-content">
-				<button id="mkCNCopyButton" onclick="copySelectButton('mkCNCopy', 'CustomerNotes')" class="addBtn">Major Key</button>
-				<button id="lastfirstCNCopyButton" onclick="copySelectButton('lastfirstCNCopy', 'CustomerNotes')" class="addBtn">Last First</button>
-				<button id="middlenameCNCopyButton" onclick="copySelectButton('middlenameCNCopy', 'CustomerNotes')" class="addBtn">Middle Name</button>
-				<button id="commentsCNCopyButton" onclick="copySelectButton('commentsCNCopy', 'CustomerNotes')" class="addBtn">Comments</button>
+			<button id="ExamscopyButton" onclick="copy('Exams')" class="copyBtn">&#x1F4CB</button>
+			<button id="ExamscopySelectButton" onclick="showCopyDropdown('Exams')" class="copyBtn">+</button>
+			<div id="ExamsDropdown" class="copySelectDropdown-content">
+				<button id="mkECopyButton" onclick="copySelectButton('mkECopy', 'Exams')" class="addBtn">Major Key</button>
+				<button id="statusECopyButton" onclick="copySelectButton('statusECopy', 'Exams')" class="addBtn">status</button>
+				<button id="gradeECopyButton" onclick="copySelectButton('gradeECopy', 'Exams')" class="addBtn">Grade</button>
+				<button id="programECopyButton" onclick="copySelectButton('programECopy', 'Exams')" class="addBtn">Program</button>
+				<button id="regitemECopyButton" onclick="copySelectButton('regitemECopy', 'Exams')" class="addBtn">Registration Item</button>
+				<button id="titleECopyButton" onclick="copySelectButton('titleECopy', 'Exams')" class="addBtn">Title</button>
+				<button id="classyearECopyButton" onclick="copySelectButton('classyearECopy', 'Exams')" class="addBtn">Class Year</button>
+				<button id="groupECopyButton" onclick="copySelectButton('groupECopy', 'Exams')" class="addBtn">Group</button>
+				<button id="notesECopyButton" onclick="copySelectButton('notesECopy', 'Exams')" class="addBtn">Notes</button>
+				<button id="locationECopyButton" onclick="copySelectButton('locationECopy', 'Exams')" class="addBtn">Location</button>
+				<button id="enrolleddateECopyButton" onclick="copySelectButton('enrolleddateECopy', 'Exams')" class="addBtn">Enrolled Date</button>
 			</div>
 		</div>
-		<div id="CustomerNotesContainer" class="minotron">
-			<table id="CustomerNotesResultsTable" class="resultsTable">
+		<div id="ExamsContainer" class="minotron">
+			<table id="ExamsResultsTable" class="resultsTable">
+				<tr></tr>
+			</table>
+		</div>
+	</div>
+
+	<div id="Disabilities" class="tabcontent">
+		<div class="copySelectDropdown">
+			<button id="DisabilitiescopyButton" onclick="copy('Disabilities')" class="copyBtn">&#x1F4CB</button>
+			<button id="DisabilitiescopySelectButton" onclick="showCopyDropdown('Disabilities')" class="copyBtn">+</button>
+			<div id="DisabilitiesDropdown" class="copySelectDropdown-content">
+				<button id="mkDCopyButton" onclick="copySelectButton('mkDCopy', 'Disabilities')" class="addBtn">Major Key</button>
+				<button id="typeDCopyButton" onclick="copySelectButton('typeDCopy', 'Disabilities')" class="addBtn">Type</button>
+				<button id="allowanceDCopyButton" onclick="copySelectButton('allowanceDCopy', 'Disabilities')" class="addBtn">Allowance</button>
+				<button id="actionDCopyButton" onclick="copySelectButton('actionDCopy', 'Disabilities')" class="addBtn">Action</button>
+				<button id="allowanceDCopyButton" onclick="copySelectButton('allowanceDCopy', 'Disabilities')" class="addBtn">Allowance</button>
+				<button id="actionDCopyButton" onclick="copySelectButton('actionDCopy', 'Disabilities')" class="addBtn">Action</button>
+				<button id="allowance2DCopyButton" onclick="copySelectButton('allowance2DCopy', 'Disabilities')" class="addBtn">Allowance 2</button>
+				<button id="action2DCopyButton" onclick="copySelectButton('action2DCopy', 'Disabilities')" class="addBtn">Action 2</button>
+				<button id="allowance3DCopyButton" onclick="copySelectButton('allowance3DCopy', 'Disabilities')" class="addBtn">Allowance 3</button>
+				<button id="action3DCopyButton" onclick="copySelectButton('action3DCopy', 'Disabilities')" class="addBtn">Action 3</button>
+				<button id="allowance4DCopyButton" onclick="copySelectButton('allowance4DCopy', 'Disabilities')" class="addBtn">Allowance 4</button>
+				<button id="action4DCopyButton" onclick="copySelectButton('action4DCopy', 'Disabilities')" class="addBtn">Action 4</button>
+			</div>
+		</div>
+		<div id="DisabilitiesContainer" class="minotron">
+			<table id="DisabilitiesResultsTable" class="resultsTable">
 				<tr></tr>
 			</table>
 		</div>
@@ -145,8 +175,8 @@
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="~/Scripts/lodashCore.js" type="text/javascript"></script>
 <script>
-	const getBtnNames = () =>["mk", "forename", "middlename", "surname", "firmid", "firmno", "firmname", "companyname"];
-	const getClassNames = () =>["MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "FIRM_ID", "MAIN_FIRM_NO", "FIRM_NAME", "Company"];
+	const getBtnNames = () =>["mk", "forename", "middlename", "surname", "firmno", "firmname", "studentid"];
+	const getClassNames = () =>["MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "MAIN_FIRM_NO", "FIRM_NAME", "STUDENT_ID"];
 	function changeTab(evt, tabName) {
 		var i, tabcontent, tablinks;
 
@@ -165,17 +195,19 @@
 	}
 	function getCopyBtnNames(table) {
 		switch (table) {
-			case "Activity": return ["mkA", "transA", "typeA", "forenameA", "middlenameA", "surnameA", "descA"];
-			case "Customers": return ["mkC", "surnameC", "forenameC", "middlenameC", "mtC", "catC", "titleC", "cityC", "countyC", "compsortC", "addrC", "firmnoC"];
-			case "CustomerNotes": return ["mkCN", "lastfirstCN", "middlenameCN", "commentsCN"];
+			case "Activity": return ["mkA", "transA", "descA", "productcodeA", "typeA", "noteA", "thrudateA", "amountA", "unitA"];
+			case "Students": return ["mkS","studentidS", "forenameS", "middlenameS","surnameS", "cityS", "zipS", "countyS", "routecodeS", "routesubcodeS", "firmnameS", "firmnoS"];
+			case "Exams": return ["mkE", "statusE", "gradeE", "programE", "regitemE","titleE", "classyearE", "groupE", "notesE", "locationE", "enrolleddateE"];
+			case "Disabilities": return ["mkD", "typeD", "allowanceD", "actionD", "allowance2D", "action2D", "allowance3D", "action3D", "allowance4D", "action4D"];
 				defualt: return [];
 			}
 	}
 	function getCopyFields(table) {
 		switch (table) {
-			case "Activity": return ["MAJOR_KEY", "TRANSACTION_DATE", "ACTIVITY_TYPE", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "DESCRIPTION"];
-			case "Customers": return ["MAJOR_KEY", "LAST_NAME", "FIRST_NAME", "MIDDLE_NAME", "MEMBER_TYPE", "CATEGORY", "TITLE", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS", "MAIN_FIRM_NO"];
-			case "CustomerNotes": return ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"];
+			case "Activity": return ["MAJOR_KEY", "TRANSACTION_DATE",  "DESCRIPTION", "PRODUCT_CODE", "ACTIVITY_TYPE", "NOTE", "THRU_DATE", "AMOUNT", "UNITS"];
+			case "Students": return ["MAJOR_KEY", "STUDENT_ID", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME","CITY", "ZIP", "COUNTY", "ROUTE_CODE", "ROUTE_SUB_CODE","FULL_ADDRESS","FIRM_NAME", "MAIN_FIRM_NO"];
+			case "Exams": return ["MAJOR_KEY", "STATUS", "GRADE", "PROGRAM", "REGISTRATION_ITEM", "TITLE", "CLASS_YEAR", "GROUP", "NOTES", "LOCATION", "ENROLLED_DATE"]
+			case "Disabilities": return ["MAJOR_KEY", "TYPE", "ALLOWANCE", "ACTION", "ALLOWANCE_2", "ACTION_2", "ALLOWANCE_3", "ACTION_3", "ALLOWANCE_4", "ACTION_4"];
 				defualt: return [];
 		}
 	}
@@ -215,6 +247,7 @@
 		let classNames = getCopyFields(table);
 		let chosenFields = [];
 		for (let button in btnNames) {
+			console.log(btnNames[button]);
 			if (document.getElementById(btnNames[button] + "CopyButton").style.backgroundColor == "rgb(32, 166, 75)") {
 				chosenFields.push(classNames[button]);
 			}
@@ -267,7 +300,7 @@
 			}
 		}
 		let xhttp = new XMLHttpRequest();
-		xhttp.open("POST", 'api/person', true);
+		xhttp.open("POST", 'api/exam', true);
 		let MOCKqueryResults;
 		xhttp.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
@@ -285,13 +318,15 @@
 	function displayResults(inputs) {
 		document.getElementById("loadingIcon").style.display = "none";
 		//Delete previous table if it exists:
-		tableDemolisherAndDisplayer("Customers");
+		tableDemolisherAndDisplayer("Students");
+		tableDemolisherAndDisplayer("Exams");
 		tableDemolisherAndDisplayer("Activity");
-		tableDemolisherAndDisplayer("CustomerNotes");
+		tableDemolisherAndDisplayer("Disabilities");
 
-		tableBuilder(inputs, "CustomersResultsTable", ["MAJOR_KEY", "MEMBER_TYPE", "CATEGORY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "TITLE", "MAIN_FIRM_NO", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS"])
-		tableBuilder(inputs, "ActivityResultsTable",  ["TRANSACTION_DATE", "MAJOR_KEY", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "THRU_DATE", "AMOUNT"]);
-		tableBuilder(inputs, "CustomerNotesResultsTable", ["MAJOR_KEY", "LAST_FIRST", "COMMENTS"])
+		tableBuilder(inputs, "StudentsResultsTable", ["MAJOR_KEY", "STUDENT_ID", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "MAIN_FIRM_NO", "FIRM_NAME", "CITY", "COUNTY", "ZIP", "ROUTE_CODE", "ROUTE_SUB_CODE"])
+		tableBuilder(inputs, "ActivityResultsTable", ["TRANSACTION_DATE", "MAJOR_KEY", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "NOTE", "THRU_DATE", "AMOUNT", "UNITS"]);
+		tableBuilder(inputs, "ExamsResultsTable", ["MAJOR_KEY", "STATUS", "REGISTRATION_ITEM", "TITLE", "LOCATION", "GRADE", "ENROLLED_DATE", "CLASS_YEAR", "PROGRAM", "GROUP", "NOTES"]);
+		tableBuilder(inputs, "DisabilitiesResultsTable", ["MAJOR_KEY", "TYPE", "ALLOWANCE", "ACTION", "ALLOWANCE_2", "ACTION_2", "ALLOWANCE_3", "ACTION_3", "ALLOWANCE_4", "ACTION_4"])
 	}
 	function tableDemolisherAndDisplayer(tableName) {
 		//Demolisher
@@ -306,6 +341,7 @@
 	}
 	function tableBuilder(queryResults, tableName, headers) {
 		let table = document.getElementById(tableName);
+		console.log(tableName);
 		let headerTable = table.createTHead();
 		let headerRowTable = table.insertRow(0);
 		if (queryResults.length == 0) {
@@ -359,7 +395,7 @@
 					}
 				} else {
 					clipboardContents += "\t";
-				}	
+				}
 			}
 			clipboardContents += "\n";
 		}

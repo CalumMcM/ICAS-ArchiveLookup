@@ -5239,6 +5239,7 @@ a.list-group-item.active > .badge,
 .jumbotron h1 {
   line-height: 1;
   color: inherit;
+  text-decoration: underline;
 }
 
 .jumbotron p {
@@ -5337,6 +5338,7 @@ a.list-group-item.active > .badge,
 	background-color: inherit;
 	float: left;
 	border: none;
+	border-bottom: 0.1px solid #ccc;
 	outline: none;
 	cursor: pointer;
 	padding: 14px 16px;
