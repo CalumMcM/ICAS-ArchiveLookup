@@ -9,6 +9,7 @@ using Dapper;
 using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace ArchiveLookup.ICAS.com.Controllers
 {
@@ -81,7 +82,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								LEFT OUTER JOIN Trans as t
 								on t.INVOICE_REFERENCE_NUM = o.INVOICE_REFERENCE_NUM
 								LEFT OUTER JOIN Invoice as i
-								on t.BT_ID = i.BT_ID " + queryGenerator(criteria, true) + " ORDER BY TRANSACTION_DATE DESC"; ;
+								on t.BT_ID = i.BT_ID " + queryGenerator(criteria, true) + " ORDER BY TRANSACTION_DATE DESC";
 
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
 			{
@@ -91,6 +92,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 				}
 				catch (SqlException e)
 				{
+					//Debug.WriteLine(e.Message);
 					switch (e.Number)
 					{
 						case 2601: return persons;

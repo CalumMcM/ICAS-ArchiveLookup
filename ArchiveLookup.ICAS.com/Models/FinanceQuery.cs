@@ -42,7 +42,7 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string EVENT_ATTENDEES;
 		public string TP_Monthly;
 		public Nullable<DateTime> INVOICE_DATE;
-		public string INVOICE_REFERENCE_NUM;
+		public string REFERENCE_NUM;
 		public string INVOICE_DESCRIPTION;
 		public string CHARGES;
 		public string CREDITS;
@@ -90,7 +90,7 @@ namespace ArchiveLookup.ICAS.com.Models
 				EVENT_ATTENDEES = EVENT_ATTENDEES,
 				TP_Monthly = TP_Monthly,
 				INVOICE_DATE = INVOICE_DATE,
-				INVOICE_REFERENCE_NUM = INVOICE_REFERENCE_NUM,
+				REFERENCE_NUM = REFERENCE_NUM,
 				INVOICE_DESCRIPTION = INVOICE_DESCRIPTION,
 				CHARGES = CHARGES,
 				CREDITS = CREDITS,
@@ -141,7 +141,7 @@ namespace ArchiveLookup.ICAS.com.Models
 				case "EVENT_ATTENDEES": return "ec.";
 				case "TP_Monthly": return "g.";
 				case "INVOICE_DATE": return "i.";
-				case "INVOICE_REFERENCE_NUM": return "t.";
+				case "REFERENCE_NUM": return "i.";
 				case "INVOICE_DESCRIPTION": return "i.";
 				case "CHARGES": return "i.";
 				case "CREDITS": return "i.";
