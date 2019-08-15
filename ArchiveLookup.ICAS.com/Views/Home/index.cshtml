@@ -330,20 +330,26 @@
 				}
 			}
 		}
-		let financeQuery = new XMLHttpRequest();
-		financeQuery.open("POST", 'api/finance', true);
-		financeQuery.onreadystatechange = function () {
-			if (this.readyState == 4 && this.status == 200) {
-				var financeQueryResults = this.response
-				financeQueryResults = $.parseJSON(financeQueryResults);
-				document.getElementById("queriesLoaded").innerHTML = document.getElementById("queriesLoaded").innerHTML + 1
-				displayResultsFinance(financeQueryResults);
-				document.getElementById("financeQueryResults").innerHTML = JSON.stringify(financeQueryResults);
-			}
-		};
-		financeQuery.setRequestHeader('Content-Type', 'application/json');
-		financeQuery.send(JSON.stringify(inputs));
-		
+		console.log(inputs);
+		if (inputs.hasOwnProperty("ID") || inputs.hasOwnProperty("MAJOR_KEY") || inputs.hasOwnProperty("STUDENT_NO") || inputs.hasOwnProperty("MAIN_FIRM_NO") || inputs.hasOwnProperty('REFERENCE_NUM')) {
+			console.log("PASSED CRITERIA BORDER")
+			let financeQuery = new XMLHttpRequest();
+			financeQuery.open("POST", 'api/finance', true);
+			financeQuery.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					var financeQueryResults = this.response
+					financeQueryResults = $.parseJSON(financeQueryResults);
+					document.getElementById("queriesLoaded").innerHTML = document.getElementById("queriesLoaded").innerHTML + 1
+					displayResultsFinance(financeQueryResults);
+					document.getElementById("financeQueryResults").innerHTML = JSON.stringify(financeQueryResults);
+				}
+			};
+			financeQuery.setRequestHeader('Content-Type', 'application/json');
+			financeQuery.send(JSON.stringify(inputs));
+		} else {
+			document.getElementById("queriesLoaded").innerHTML = document.getElementById("queriesLoaded").innerHTML + 1
+			displayResultsFinance("Invalid Search Criteria");
+		}
 		let customerQuery = new XMLHttpRequest();
 		customerQuery.open("POST", 'api/person', true);
 		customerQuery.onreadystatechange = function () {
@@ -372,6 +378,9 @@
 	}
 	function displayResultsCustomer(inputs) {
 		document.getElementById("tabBar").style.display = "block";
+		if (document.getElementById("queriesLoaded").innerHTML > 1) {
+			document.getElementById("loadingIcon").style.display = "none";
+		}
 		tableDemolisherAndDisplayer("Activity");
 		tableDemolisherAndDisplayer("Customers");
 		tableDemolisherAndDisplayer("CustomerNotes");
@@ -398,6 +407,11 @@
 		if (queryResults.length == 0) {
 			let curHeaderCell = headerRowTable.insertCell(-1);
 			curHeaderCell.innerHTML = "The query failed to return any results";
+		}
+		console.log(queryResults)
+		if (queryResults === "Invalid Search Criteria") {
+			let curHeaderCell = headerRowTable.insertCell(-1);
+			curHeaderCell.innerHTML = "To get results here append one or more of; ID, Invoice Reference No., Member No., Student No. or Firm No. to your search";
 		}
 		else {
 			let tableHeaders = Object.keys(queryResults[0]).filter(word => headers.includes(word));

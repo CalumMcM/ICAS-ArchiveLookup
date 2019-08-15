@@ -30,7 +30,7 @@ namespace ArchiveLookup.ICAS.com.Models
 				case "ID": return "n.";
 				case "MAJOR_KEY": return "n.";
 				case "STUDENT_NO": return "si.";
-				case "INVOICE_DATE": return "i.";
+				case "MAIN_FIRM_NO": return "f.";
 				case "REFERENCE_NUM": return "i.";
 			}
 			return "";
