@@ -432,7 +432,6 @@
 			queryResults = JSON.parse(document.getElementById("customerQueryResults").innerHTML);
 		}
 		let clipboardContents = "";
-		console.log(table);
 		let rowsInTable = document.getElementById(table+"ResultsTable").rows.length; 
 		for (let curRecord = 0; curRecord < rowsInTable - 1; ++curRecord) {
 			let record = queryResults[curRecord];
