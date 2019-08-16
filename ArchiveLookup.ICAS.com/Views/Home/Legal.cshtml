@@ -141,8 +141,23 @@
 <script src="~/Scripts/lodashCore.js" type="text/javascript"></script>
 <script src="~/Scripts/common.js" type="text/javascript"></script>
 <script>
+	/*
+	Returns: A list of all input button names
+	Remarks: Button names must be in exact same position as its field name
+	in getClassNames();
+	*/
 	const getBtnNames = () =>["mk", "forename", "middlename", "surname", "firmid", "firmno", "firmname", "companyname"];
+	/*
+	Inputs: The field names for the corresponding button
+	Remarks: These are the fields that users can search by
+	*/
 	const getClassNames = () =>["MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "FIRM_ID", "MAIN_FIRM_NO", "FIRM_NAME", "Company"];
+	/*
+	Inputs: table - A name of a table
+	Returns: The names of each of the copy buttons for that table
+	Remarks: Button names should be in same position as their corresponding
+	field name in getCopyFields()
+	*/
 	function getCopyBtnNames(table) {
 		switch (table) {
 			case "Customers": return ["mkC", "forenameC", "middlenameC", "surnameC", "mtC", "catC", "titleC", "cityC", "countyC", "compsortC", "addrC", "firmnoC"];
@@ -151,6 +166,12 @@
 				defualt: return [];
 			}
 	}
+	/*
+	Inputs: table - A name of a table
+	Returns: The names of each of the field names for that table
+	Remarks: Field names should be in the exact same position as its button name in 
+	getCopyBtnNames()
+	*/
 	function getCopyFields(table) {
 		switch (table) {
 			case "Customers": return ["MEMBER_NO", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "MEMBER_TYPE", "CATEGORY", "TITLE", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS", "MAIN_FIRM_NO"];
@@ -159,6 +180,10 @@
 				defualt: return [];
 		}
 	}
+	/*
+	Remarks: Construct the query object by reading the contents of text fields where the corresponding button is
+	green and send the query object to the PersonController. 
+	*/
 	function processQuery() {
 		document.getElementById("loadingIcon").style.display = "block";
 		document.getElementById("tabBar").style.display = "block";
@@ -179,7 +204,7 @@
 			}
 		}
 		let xhttp = new XMLHttpRequest();
-		xhttp.open("POST", 'api/person', true);
+		xhttp.open("POST", '/api/person', true);
 		let MOCKqueryResults;
 		xhttp.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
@@ -194,13 +219,16 @@
 		xhttp.send(JSON.stringify(inputs));
 
 	}
+	/*
+	Inputs: inputs - The query results from the controller
+	Remarks: Calls the method to wipe the data in all the tables and then 
+	calls the method to populate the tables with the appropriate header fields
+	*/
 	function displayResults(inputs) {
 		document.getElementById("loadingIcon").style.display = "none";
-		//Delete previous table if it exists:
 		tableDemolisherAndDisplayer("Customers");
 		tableDemolisherAndDisplayer("Activity");
 		tableDemolisherAndDisplayer("CustomerNotes");
-
 		tableBuilder(inputs, "CustomersResultsTable", ["MEMBER_NO", "MEMBER_TYPE", "CATEGORY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "TITLE", "MAIN_FIRM_NO", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS"])
 		tableBuilder(inputs, "ActivityResultsTable", ["TRANSACTION_DATE", "MEMBER_NO", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "THRU_DATE", "AMOUNT"]);
 		tableBuilder(inputs, "CustomerNotesResultsTable", ["MEMBER_NO", "LAST_FIRST", "COMMENTS"])
