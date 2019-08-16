@@ -14,7 +14,12 @@ namespace ArchiveLookup.ICAS.com.Controllers
 {
     public class LicenceController : ApiController
     {
-		//rename query in paramters to criteria here and in WebAPICONfig.cs
+		/*
+		 Inputs: criteria - The query which has the fields in LicenceQuery
+		 Returns: A list of Licence objects
+		 Remark: Constructs the query which is executed on the imis database and returns the results as a 
+		 list of Licence objects where each Licence is a record that was returned
+		*/
 		public List<Licence> Post([FromBody]LicenceQuery criteria)
 		{
 			var persons = new List<Licence>();

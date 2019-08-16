@@ -14,8 +14,13 @@ using System.Diagnostics;
 namespace ArchiveLookup.ICAS.com.Controllers
 {
 	public class FinanceController : ApiController
-	{
-		//rename query in paramters to criteria here and in WebAPICONfig.cs
+	{       
+		/*
+		 Inputs: criteria - The query which has the fields in FinanceQuery
+		 Returns: A list of Finance objects
+		 Remark: Constructs the query which is executed on the imis database and returns the results as a 
+		 list of Finance objects where each Finance is a record that was returned
+		*/
 		public List<Finance> Post([FromBody]FinanceQuery criteria)
 		{
 			var persons = new List<Finance>();
@@ -54,7 +59,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 				}
 				catch (SqlException e)
 				{
-					//Debug.WriteLine(e.Message);
+					//2601 = SQL Violation in unique index
 					switch (e.Number)
 					{
 						case 2601: return persons;
