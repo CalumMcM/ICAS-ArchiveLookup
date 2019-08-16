@@ -28,7 +28,7 @@ namespace ArchiveLookup.ICAS.com.test
 			//Arrange
 			ExamQuery criteria = new ExamQuery();
 			//Act
-			var nHeaders = new string[5] {"ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME"};
+			var nHeaders = new string[4] {"MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME"};
 			//Assert
 			foreach (string header in nHeaders)
 			{

@@ -5,22 +5,22 @@ using System.Web;
 
 namespace ArchiveLookup.ICAS.com.Models
 {
-	public class LicenceQuery
+	public class LicenceQuery: Query
 	{
-		public string ID { get; set; }
-		public string MAJOR_KEY { get; set; }
-		public string FIRST_NAME { get; set; }
-		public string MIDDLE_NAME { get; set; }
-		public string SORT_NAME { get; set; }
-		public string LAST_NAME { get; set; }
-		public string DESCRIPTION { get; set; }
-		public string ACTIVITY_TYPE { get; set; }
-		public string FIRM_ID { get; set; }
-		public string FIRM_NAME { get; set; }
-		public string FIRM_NO { get; set; }
-		public string SOURCE_CODE { get; set; }
+		public string ID;
+		public string MAJOR_KEY;
+		public string FIRST_NAME;
+		public string MIDDLE_NAME;
+		public string SORT_NAME;
+		public string LAST_NAME;
+		public string DESCRIPTION;
+		public string ACTIVITY_TYPE;
+		public string FIRM_ID;
+		public string FIRM_NAME;
+		public string FIRM_NO;
+		public string SOURCE_CODE;
 
-		public Object ToDapperParameter()
+		public override Object ToDapperParameter()
 		{
 			return new {
 				ID = ID,
@@ -37,7 +37,7 @@ namespace ArchiveLookup.ICAS.com.Models
 				SOURCE_CODE = SOURCE_CODE
 			};
 		}
-		public string getDatabasePrefix(string header)
+		public override string getDatabasePrefix(string header)
 		{
 			switch (header)
 			{
@@ -54,6 +54,21 @@ namespace ArchiveLookup.ICAS.com.Models
 				case "SOURCE_CODE": return "a.";
 			}
 			return "";
+		}
+		public override string queryGenerator()
+		{
+			var properties = this.GetType().GetProperties();
+			var propertyName = properties[0].Name;
+			var query = "";
+			for (var i = 0; i < properties.Length; i++)
+			{
+				if (properties[i].GetValue(this) != null)
+				{
+					query = query + " AND " + this.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
+				}
+			}
+
+			return query;
 		}
 	}
 

@@ -43,7 +43,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 			//TPC = 605340000 //TPS = 605340001 //TPE = 605340002
 			switch (criteriaFull.CLASS)
 			{
-				case "TPC": return 605340000;
+				case "TC": return 605340000;
 				case "TPS": return 605340001;
 				case "TPE": return 605340002;
 				default: return 605340000;
