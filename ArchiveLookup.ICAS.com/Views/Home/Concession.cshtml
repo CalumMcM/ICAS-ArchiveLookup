@@ -1,0 +1,230 @@
+﻿@{
+	ViewBag.Title = "Concession Query";
+}
+
+<div class="jumbotron">
+
+	<h1>
+		Concession Query
+	</h1>
+	<p>Select the criteria for your search: </p>
+
+	<div class="centralFlex">
+		<button id="classInputButton" onclick="showInput('classInputButton')" class="addBtn">Class</button>
+		<button id="examInputButton" onclick="showInput('examInputButton')" class="addBtn">Exam</button>
+	</div>
+	
+	<p id="sdInputText" class="lead">
+		Start Date:
+		<input type="date" id="sdInput" class="input-lookup" name="sd">
+	</p>
+
+	<p id="edInputText" class="lead">
+		End Date:
+		<input type="date" id="edInput" class="input-lookup" name="ed">
+	</p>
+
+	<p id="claInputText" class="lead">
+		Class:
+		<input list="classes" id="claInput" class="input-lookup" name="cla">
+		<datalist id="classes">
+			<option value="TC">
+			<option value="TPS">
+			<option value="TPE">
+		</datalist>
+	</p>
+
+	<div class="copySelectDropdownTPS">
+		<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
+		<div id="loadingIcon" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+	</div>
+
+	<div id="StudentsHeader" class="resultsHeader">
+		<h2>
+			Students<div id="billingUnderline" class="underlineResults"></div>
+		</h2>
+	</div>
+	<div class="copySelectDropdownTPS">
+		<button id="StudentscopyButton" onclick="copy('Students')" class="copyBtn">&#x1F4CB</button>
+		<button id="StudentscopySelectButton" onclick="showCopyDropdown('Students')" class="copyBtn">+</button>
+		<div id="StudentsDropdown" class="copySelectDropdownTPS-content">
+			<button id="icascncSCopyButton" onclick="copySelectButton('icascncSCopy', 'Students')" class="addBtnTPS">ICAS CONTACTNUMBERCALC</button>
+			<button id="fullnameSCopyButton" onclick="copySelectButton('fullnameSCopy', 'Students')" class="addBtnTPS">FULL NAME</button>
+			<button id="workcitySCopyButton" onclick="copySelectButton('workcitySCopy', 'Students')" class="addBtnTPS">WORK CITY</button>
+			<button id="homecitySCopyButton" onclick="copySelectButton('homecitySCopy', 'Students')" class="addBtnTPS">HOME CITY</button>
+			<button id="companynameSCopyButton" onclick="copySelectButton('companynameSCopy', 'Students')" class="addBtnTPS">COMPANY NAME</button>
+			<button id="customertypeSCopyButton" onclick="copySelectButton('customertypeSCopy', 'Students')" class="addBtnTPS">CUSTOMER TYPE</button>
+			<button id="tpssubjSCopyButton" onclick="copySelectButton('tpssubjSCopy', 'Students')" class="addBtnTPS">TPS SUBJECT</button>
+			<button id="concawardSCopyButton" onclick="copySelectButton('concawardSCopy', 'Students')" class="addBtnTPS">CONCESSION AWARDED</button>
+			<button id="icassdSCopyButton" onclick="copySelectButton('icassdSCopy', 'Students')" class="addBtnTPS">ICAS STARTDATE</button>
+			<button id="icasstSCopyButton" onclick="copySelectButton('icasstSCopy', 'Students')" class="addBtnTPS">ICAS STARTTIME</button>
+		</div>
+	</div>
+	<div id="StudentsContainer" class="minotron">
+		<table id="StudentsResultsTable" class="resultsTable">
+			<tr></tr>
+		</table>
+	</div>
+	<p id="clipboard" class="clipboard"></p>
+	<p id="queryResults" class="queryResults"></p>
+	<p id="queriesLoaded" class="queryResults"></p>
+</div>
+<script src="~/Scripts/moment.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="~/Scripts/lodashCore.js" type="text/javascript"></script>
+<script src="~/Scripts/common.js" type="text/javascript"></script>
+<script>
+	/*
+	Returns: A list of the two different searches button names
+	*/
+	const getBtnNames = () =>["class", "exam"];
+	/*
+	Returns: A list of all input button names 
+	Remarks: Button names must be in exact same position as its field name counterpart
+	in getClassNames
+	*/
+	const getFieldNames = () =>["sd", "ed", "cla"];
+	/* 
+	Returns: The field names for the inputs
+	Remarks: These are the fields the user can search by
+	*/
+	const getClassNames		= () => ["START_DATE", "END_DATE", "CLASS"];
+	/*
+	Returns: The names of each of the copy buttons for both possible searches
+	*/
+	const getCopyBtnNames = () =>["icascncS", "fullnameS", "workcityS", "homecityS", "companynameS", "customertypeS", "tpssubjS", "concawardS", "icassdS", "icasstS"];
+	/*
+	Inputs: query - The chosen query
+	Returns: The names of each of the copy buttons for that query
+	Remarks: Field names should be in same position as their corresponding
+	button name in getCopyBtnNames()
+	*/
+	function getCopyFields(query) {
+		switch (query) {
+			case "class": return ["ICAS_CONTACTNUMBERCALC", "FULLNAME", "WORK_CITY", "HOME_CITY", "COMPANY_NAME", "CUSTOMER_TYPE", "TPS_SUBJECT", "CONCESSION_AWARDED", "ICAS_STARTDATE"];
+			case "exam": return ["ICAS_CONTACTNUMBERCALC", "FULLNAME", "WORK_CITY", "HOME_CITY", "COMPANY_NAME", "CUSTOMER_TYPE", "TPS_SUBJECT", "CONCESSION_AWARDED", "ICAS_STARTTIME"];
+			default: return ["ICAS_CONTACTNUMBERCALC", "FULLNAME", "WORK_CITY", "HOME_CITY", "COMPANY_NAME", "CUSTOMER_TYPE", "TPS_SUBJECT", "CONCESSION_AWARDED", "ICAS_STARTDATE"];
+		}
+	}
+	/*
+	Inputs: type - Name of button for the chosen query type
+	Remarks: Toggles colour of button, ensuring that only one of the two query buttons is selected at any time and
+	displays the input fields for the query
+	*/
+	function showInput(type) {
+		inputs = ["sdInput", "edInput", "claInput"];
+		let inputText = "";
+		let inputTextTitle = "";
+		let otherButton = "";
+		let displayValue = "";
+		switch (type) {
+			case "classInputButton": otherButton = "examInputButton"; break;
+			case "examInputButton": otherButton = "classInputButton"; break;
+			default: otherButton = "classInputButton"; break;
+		}
+		document.getElementById(otherButton).style.backgroundColor = "#f1f3f2";
+		document.getElementById(type).style.backgroundColor = "#20A64B"
+		if (document.getElementById(type).style.display != "none" && document.getElementById(otherButton).style.display != "none") {
+			displayValue = "block";
+		} else {
+			displayValue = "none";
+		}
+		inputs.forEach(function (input) {
+			inputText = document.getElementById(input);
+			inputTextTitle = document.getElementById(input + "Text");
+			inputText.value = "";
+			inputText.style.display = displayValue;
+			inputTextTitle.style.display = displayValue;
+		});
+		showSubmit();
+	}
+	/*
+	Inputs: table - the table that is currently displayed
+	Remarks: If no copy select buttons chosen then copies all fields in the table otherwise it 
+	gets a list of the chosen fields and sends them to constructClipboard which it copies the
+	result of which to the users clipboard
+	*/
+	function copy(table) {
+		let queryNames = getBtnNames(table);
+		let chosenButton = "";
+		queryNames.forEach(function (btn) {
+			if (document.getElementById(btn + "InputButton").style.backgroundColor == "rgb(32, 166, 75)") {
+				chosenButton = btn;
+			}
+		});
+		let btnNames = getCopyBtnNames();
+		let classNames = getCopyFields(chosenButton);
+		let chosenFields = [];
+		for (let button in btnNames) {
+			if (document.getElementById(btnNames[button] + "CopyButton").style.backgroundColor == "rgb(32, 166, 75)") {
+				chosenFields.push(classNames[button]);
+			}
+		}
+		if (chosenFields.length == 0) {
+			chosenFields = classNames;
+		}
+		constructClipboard(chosenFields);
+		let clipboardContents = document.getElementById("clipboard").innerHTML;
+		let itemsToCopy = document.createElement("textarea");
+		document.body.appendChild(itemsToCopy);
+		itemsToCopy.value = clipboardContents;
+		itemsToCopy.select();
+		document.execCommand("copy");
+		console.log("copied!");
+		document.body.removeChild(itemsToCopy);
+		document.getElementById(table+"copyButton").innerHTML = '&#10004';
+	}
+	/*
+	Remarks: Construct the query object by reading the contents of text fields where the corresponding button is
+	green and send the query object to the TpsController. 
+	*/
+	function processQuery() {
+		let chosenButton = "";
+		document.getElementById("loadingIcon").style.display = "block";
+		document.getElementById("queriesLoaded").innerHTML = 0;
+		let btnNames = getBtnNames();
+		let fieldNames = getFieldNames();
+		let classNames = getClassNames();
+		btnNames.forEach(function (btn) {
+			if (document.getElementById(btn + "InputButton").style.backgroundColor == "rgb(32, 166, 75)") {
+				chosenButton = btn;
+			}
+		});
+
+		let inputs = {}
+		let dateTypesObjects = $('input[type=date]').map(function () { return this.id; }).get();
+		for (let button in fieldNames) {
+			if (dateTypesObjects.includes(fieldNames[button] + "input")) {
+				inputs[classNames[button]] = moment(document.getElementById(fieldNames[button] + "Input").value).format('YYYY-MM-DDT00:00:00');
+			}
+			else {
+				if (fieldNames[button] + "Input")
+				inputs[classNames[button]] = document.getElementById(fieldNames[button] + "Input").value;
+			}
+		}
+		let xhttp = new XMLHttpRequest();
+		xhttp.open("POST", 'api/Tps'+chosenButton, true);
+		let MOCKqueryResults;
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				var queryResults = this.response
+				queryResults = $.parseJSON(queryResults);
+				document.getElementById("queriesLoaded").innerHTML = document.getElementById("queriesLoaded").innerHTML + 1
+				displayResults(queryResults, chosenButton);
+				document.getElementById("queryResults").innerHTML = JSON.stringify(queryResults);
+			}
+		};
+		xhttp.setRequestHeader('Content-Type', 'application/json');
+		xhttp.send(JSON.stringify(inputs));
+	}
+	/*
+	Inputs: inputs - The query results from the controller | query - The chosen query type
+	Remarks: Calls the method to wipe the data in all the tables and then 
+	calls the method to populate the tables with the appropriate header fields
+	*/
+	function displayResults(inputs, query) {
+		document.getElementById("loadingIcon").style.display = "none";
+		tableDemolisherAndDisplayer("Students");
+		tableBuilder(inputs, "StudentsResultsTable", getCopyFields(query))
+	}
+</script>

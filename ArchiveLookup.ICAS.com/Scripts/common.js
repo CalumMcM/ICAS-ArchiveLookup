@@ -1,4 +1,7 @@
-﻿
+﻿/*
+Inputs: evt - Holds the current selected tab that is selected | tabName - The new tab that is to be shown
+Remarks: When tab button is clicked hide the current table that is shown and show the table that is selected.
+*/
 function changeTab(evt, tabName) {
 	var i, tabcontent, tablinks;
 
@@ -15,6 +18,10 @@ function changeTab(evt, tabName) {
 	document.getElementById(tabName).style.display = "block";
 	evt.currentTarget.tabName += " active";
 }
+/*
+Inputs: input -  Name of button which needs the text input shown
+Remarks: Toggles colour of button and displays input text if button is active else hides text input
+*/
 function showInput(input) {
 	let inputText = document.getElementById(input);
 	let inputTextTitle = document.getElementById(input + "Text");
@@ -33,6 +40,9 @@ function showInput(input) {
 	}
 	showSubmit();
 }
+/*
+Remarks: If at least one button is active then show the submit button otherwise the button should be hidden
+*/
 function showSubmit() {
 	let btnNames = getBtnNames();
 	let active = 0;
@@ -46,6 +56,11 @@ function showSubmit() {
 		document.getElementById("submitButton").style.display = "none";
 	}
 }
+/*
+Inputs: table - The table name that is to be copied
+Remarks: If no copy buttons selected then copy all fields, otherwise construct the contents for the clipboard
+so that it only has those fields which are selected
+*/
 function copy(table) {
 	let btnNames = getCopyBtnNames(table);
 	let classNames = getCopyFields(table);
@@ -69,6 +84,10 @@ function copy(table) {
 	document.body.removeChild(itemsToCopy);
 	document.getElementById(table+"copyButton").innerHTML = '&#10004';
 }
+/*
+Inputs: buttonID - The name of the copy button which has just been clicked | table - The table that the selected button belongs to
+Remarks: Toggle the colour of button so that if it hasn't been selected it is now showing it is selected and vice versa
+*/
 function copySelectButton(buttonID, table) {
 	currentColour = document.getElementById(buttonID + "Button").style.backgroundColor;
 	document.getElementById(table+"copyButton").innerHTML = '&#x1F4CB';
@@ -79,20 +98,32 @@ function copySelectButton(buttonID, table) {
 		document.getElementById(buttonID + "Button").style.backgroundColor = "#f1f3f2";
 	}
 }
+/*
+Inputs: table - The table this dropdown button belongs to
+Remarks: Toggles the visibily of the copy buttons dropdown for the appropriate table
+*/
 function showCopyDropdown(table) {
 	document.getElementById(table+"Dropdown").classList.toggle("show");
 }
+/*
+Inputs: tableName - The table to be demolished and displayed
+Remarks: Regardless if the table is populated or not it has its contents cleared and then the 
+table and copy buttons are made visible
+*/
 function tableDemolisherAndDisplayer(tableName) {
-	//Demolisher
 	for (var i = document.getElementById(tableName + "ResultsTable").rows.length; i > 0; i--) {
 		document.getElementById(tableName + "ResultsTable").deleteRow(i - 1);
 	}
-	//Displayer
 	document.getElementById(tableName + "Container").style.display = "block";
 	document.getElementById(tableName + "copyButton").innerHTML = '&#x1F4CB';
 	document.getElementById(tableName + "copyButton").style.display = 'block';
 	document.getElementById(tableName + "copySelectButton").style.display = "block";
 }
+/*
+Inputs: chosenFields - The selected fields that are to be copied
+Remarks: Adds the fields to the clipboardContents string. Removing special characters, 
+adding a tab after every field value and a new line after every record.
+*/
 function constructClipboard(chosenFields) {
 	let queryResults = JSON.parse(document.getElementById("queryResults").innerHTML);
 	let clipboardContents = "";
@@ -113,6 +144,12 @@ function constructClipboard(chosenFields) {
 	}
 	document.getElementById("clipboard").innerHTML = clipboardContents;
 }
+/*
+Inputs: queryResults - The object returned from the Controller | tableName - The table to be populated | headers - The chosen fields for said table
+Remarks: If queryResults is empty then display message saying such. Else create a header row to the table and append
+the headers to it. Then fill each appropriate field value to its corresponding header until all records are displayed,
+ensuring that duplicate records are not displayed
+*/
 function tableBuilder(queryResults, tableName, headers) {
 	let table = document.getElementById(tableName);
 	let headerTable = table.createTHead();

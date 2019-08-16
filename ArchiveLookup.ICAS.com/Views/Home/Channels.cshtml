@@ -38,9 +38,6 @@
 	<button id="eaInputButton" onclick="showInput('eaInput')" class="addBtn">Event Attendees</button>
 	<button id="tpmInputButton" onclick="showInput('tpmInput')" class="addBtn">TP Monthly</button>
 
-
-
-
 	<p id="idInputText" class="lead">
 		IMIS ID:
 		<input type="text" id="idInput" class="input-lookup" name="id">
@@ -255,7 +252,10 @@
 	"INTAKE_YEAR", "TPCE_STUDENT", "TRE_STUDENT", "CONTRACT_START_DATE", "CONTRACT_END_DATE", "FIRM_ID", 
 	"FIRM_NAME", "FINAL_CERTIFICATE_DATE", "EXAM_CERTIFICATE_DATE", "BE_PASS", "LOGBOOK_VERIFIED", 
 	"LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed", "EVENT_ATTENDEES", "TP_Monthly"];
-
+	/*
+	Remarks: Construct the query object by reading the contents of text fields where the corresponding button is
+	green and send the query object to the PersonController. 
+	*/
 	function processQuery() {
 		document.getElementById("loadingIcon").style.display = "block";
 		document.getElementById("queriesLoaded").innerHTML = 0;
@@ -291,13 +291,15 @@
 		xhttp.send(JSON.stringify(inputs));
 
 	}
+	/*
+	Remarks: Remove contents of tables and build it with the fields that are connected to the headers 
+	passed to the builder
+	*/
 	function displayResults(inputs) {
 		document.getElementById("loadingIcon").style.display = "none";
-		//Delete previous table if it exists:
 		for (var i = document.getElementById("ResultsTable").rows.length; i > 0; i--) {
 			document.getElementById("ResultsTable").deleteRow(i - 1);
 		}
-		//Display and Construct new table:
 		document.getElementById("ResultsContainer").style.display = "block";
 		document.getElementById("ResultsHeader").style.display = "block";
 		document.getElementById("ResultscopyButton").innerHTML = '&#x1F4CB';
@@ -310,5 +312,4 @@
 		"LOGBOOK_VERIFIED_DATE", "ITP_STUDENT", "ITP_Passed", "EVENT_ATTENDEES", "TP_Monthly"];
 		tableBuilder(inputs, "ResultsTable", resultsTableHeaders);
 	}
-
 </script>
