@@ -6,12 +6,11 @@
 
 	<h1>
 		Finance Lookup
-		<div class="underline"></div>
 	</h1>
 	<p>Select the criteria for your search: </p>
 
-	<button id="idInputButton" onclick="showInput('idInput')" class="addBtn">ID</button>
-	<button id="mkInputButton" onclick="showInput('mkInput')" class="addBtn">Major Key</button>
+	<button id="idInputButton" onclick="showInput('idInput')" class="addBtn">IMIS ID</button>
+	<button id="mkInputButton" onclick="showInput('mkInput')" class="addBtn">Member No.</button>
 	<button id="studnoInputButton" onclick="showInput('studnoInput')" class="addBtn">Student No.</button>
 	<button id="forenameInputButton" onclick="showInput('forenameInput')" class="addBtn">First Name</button>
 	<button id="middlenameInputButton" onclick="showInput('middlenameInput')" class="addBtn">Middle Name</button>
@@ -24,12 +23,12 @@
 
 
 	<p id="idInputText" class="lead">
-		ID:
+		IMIS ID:
 		<input type="text" id="idInput" class="input-lookup" name="id">
 	</p>
 
 	<p id="mkInputText" class="lead">
-		Major Key:
+		Member No.:
 		<input type="text" id="mkInput" class="input-lookup" name="mk">
 	</p>
 
@@ -82,12 +81,6 @@
 		<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
 		<div id="loadingIcon" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 	</div>
-	<div id="ResultsHeader" class="resultsHeader">
-		<h1>
-			Results
-			<div id="resultsUnderline" class="underlineResults"></div>
-		</h1>
-	</div>
 
 	<div id="tabBar" class="tab">
 		<button class="tablinks" onclick="changeTab(event, 'Customers')">Customers</button>
@@ -102,7 +95,7 @@
 			<button id="CustomerscopyButton" onclick="copy('Customers')" class="copyBtn">&#x1F4CB</button>
 			<button id="CustomerscopySelectButton" onclick="showCopyDropdown('Customers')" class="copyBtn">+</button>
 			<div id="CustomersDropdown" class="copySelectDropdown-content">
-				<button id="mkCCopyButton" onclick="copySelectButton('mkCCopy', 'Customers')" class="addBtn">Major Key</button>
+				<button id="mkCCopyButton" onclick="copySelectButton('mkCCopy', 'Customers')" class="addBtn">Member No.</button>
 				<button id="surnameCCopyButton" onclick="copySelectButton('surnameCCopy', 'Customers')" class="addBtn">Last Name</button>
 				<button id="forenameCCopyButton" onclick="copySelectButton('forenameCCopy', 'Customers')" class="addBtn">First Name</button>
 				<button id="middlenameCCopyButton" onclick="copySelectButton('middlenameCCopy', 'Customers')" class="addBtn">Middle Name</button>
@@ -129,7 +122,7 @@
 			<button id="InvoicescopyButton" onclick="copy('Invoices')" class="copyBtn">&#x1F4CB</button>
 			<button id="InvoicescopySelectButton" onclick="showCopyDropdown('Invoices')" class="copyBtn">+</button>
 			<div id="InvoicesDropdown" class="copySelectDropdown-content">
-				<button id="mkICopyButton" onclick="copySelectButton('mkICopy', 'Invoices')" class="addBtn">Major Key</button>
+				<button id="mkICopyButton" onclick="copySelectButton('mkICopy', 'Invoices')" class="addBtn">Member No.</button>
 				<button id="invdateICopyButton" onclick="copySelectButton('invdateICopy', 'Invoices')" class="addBtn">Invoice Date</button>
 				<button id="refnumICopyButton" onclick="copySelectButton('refnumICopy', 'Invoices')" class="addBtn">Reference Num</button>
 				<button id="invdescICopyButton" onclick="copySelectButton('invdescICopy', 'Invoices')" class="addBtn">Invoice Description</button>
@@ -151,7 +144,7 @@
 			<button id="TransactionscopyButton" onclick="copy('Transactions')" class="copyBtn">&#x1F4CB</button>
 			<button id="TransactionscopySelectButton" onclick="showCopyDropdown('Transactions')" class="copyBtn">+</button>
 			<div id="TransactionsDropdown" class="copySelectDropdown-content">
-				<button id="mkTCopyButton" onclick="copySelectButton('mkTCopy', 'Transactions')" class="addBtn">Major Key</button>
+				<button id="mkTCopyButton" onclick="copySelectButton('mkTCopy', 'Transactions')" class="addBtn">Member No.</button>
 				<button id="transdateTCopyButton" onclick="copySelectButton('transdateTCopy', 'Transactions')" class="addBtn">Transaction Date</button>
 				<button id="refnumTCopyButton" onclick="copySelectButton('refnumTCopy', 'Transactions')" class="addBtn">Reference Num</button>
 				<button id="transtypeTCopyButton" onclick="copySelectButton('transtypeTCopy', 'Transactions')" class="addBtn">Transaction Type</button>
@@ -170,7 +163,7 @@
 			<button id="ActivitycopyButton" onclick="copy('Activity')" class="copyBtn">&#x1F4CB</button>
 			<button id="ActivitycopySelectButton" onclick="showCopyDropdown('Activity')" class="copyBtn">+</button>
 			<div id="ActivityDropdown" class="copySelectDropdown-content">
-				<button id="mkACopyButton" onclick="copySelectButton('mkACopy', 'Activity')" class="addBtn">Major Key</button>
+				<button id="mkACopyButton" onclick="copySelectButton('mkACopy', 'Activity')" class="addBtn">Member No.</button>
 				<button id="transACopyButton" onclick="copySelectButton('transACopy', 'Activity')" class="addBtn">Transaction Date</button>
 				<button id="typeACopyButton" onclick="copySelectButton('typeACopy', 'Activity')" class="addBtn">Activity Type</button>
 				<button id="descACopyButton" onclick="copySelectButton('descACopy', 'Activity')" class="addBtn">Description</button>
@@ -192,7 +185,7 @@
 			<button id="CustomerNotescopyButton" onclick="copy('CustomerNotes')" class="copyBtn">&#x1F4CB</button>
 			<button id="CustomerNotescopySelectButton" onclick="showCopyDropdown('CustomerNotes')" class="copyBtn">+</button>
 			<div id="CustomerNotesDropdown" class="copySelectDropdown-content">
-				<button id="mkCNCopyButton" onclick="copySelectButton('mkCNCopy', 'CustomerNotes')" class="addBtn">Major Key</button>
+				<button id="mkCNCopyButton" onclick="copySelectButton('mkCNCopy', 'CustomerNotes')" class="addBtn">Member No.</button>
 				<button id="lastfirstCNCopyButton" onclick="copySelectButton('lastfirstCNCopy', 'CustomerNotes')" class="addBtn">Last First</button>
 				<button id="middlenameCNCopyButton" onclick="copySelectButton('middlenameCNCopy', 'CustomerNotes')" class="addBtn">Middle Name</button>
 				<button id="commentsCNCopyButton" onclick="copySelectButton('commentsCNCopy', 'CustomerNotes')" class="addBtn">Comments</button>
@@ -244,11 +237,11 @@
 	}
 	function getCopyFields(table) {
 		switch (table) {
-			case "Customers": return ["MAJOR_KEY", "LAST_NAME", "FIRST_NAME", "MIDDLE_NAME", "STUDENT_NO", "MEMBER_TYPE", "CATEGORY", "TITLE", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS", "MAIN_FIRM_NO"];
-			case "Invoices": return ["MAJOR_KEY", "INVOICE_DATE", "REFERENCE_NUM", "INVOICE_DESCRIPTION", "CHARGES", "CREDITS", "BALANCE", "NOTE"];
-			case "Transactions": return ["MAJOR_KEY", "TRANS_TRANSACTION_DATE", "REFERENCE_NUM", "TRANSACTION_TYPE", "TRANSACTION_DESCRIPTION", "TRANSACTION_AMOUNT"]
-			case "Activity": return ["MAJOR_KEY", "TRANSACTION_DATE", "ACTIVITY_TYPE", "DESCRIPTION", "PRODUCT_CODE", "UNITS", "THRU_DATE", "AMOUNT"]
-			case "CustomerNotes": return ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"];
+			case "Customers": return ["MEMBER_NO", "LAST_NAME", "FIRST_NAME", "MIDDLE_NAME", "STUDENT_NO", "MEMBER_TYPE", "CATEGORY", "TITLE", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS", "MAIN_FIRM_NO"];
+			case "Invoices": return ["MEMBER_NO", "INVOICE_DATE", "REFERENCE_NUM", "INVOICE_DESCRIPTION", "CHARGES", "CREDITS", "BALANCE", "NOTE"];
+			case "Transactions": return ["MEMBER_NO", "TRANS_TRANSACTION_DATE", "REFERENCE_NUM", "TRANSACTION_TYPE", "TRANSACTION_DESCRIPTION", "TRANSACTION_AMOUNT"]
+			case "Activity": return ["MEMBER_NO", "TRANSACTION_DATE", "ACTIVITY_TYPE", "DESCRIPTION", "PRODUCT_CODE", "UNITS", "THRU_DATE", "AMOUNT"]
+			case "CustomerNotes": return ["MEMBER_NO", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"];
 				defualt: return [];
 		}
 	}
@@ -337,20 +330,26 @@
 				}
 			}
 		}
-		let financeQuery = new XMLHttpRequest();
-		financeQuery.open("POST", 'api/finance', true);
-		financeQuery.onreadystatechange = function () {
-			if (this.readyState == 4 && this.status == 200) {
-				var financeQueryResults = this.response
-				financeQueryResults = $.parseJSON(financeQueryResults);
-				document.getElementById("queriesLoaded").innerHTML = document.getElementById("queriesLoaded").innerHTML + 1
-				displayResultsFinance(financeQueryResults);
-				document.getElementById("financeQueryResults").innerHTML = JSON.stringify(financeQueryResults);
-			}
-		};
-		financeQuery.setRequestHeader('Content-Type', 'application/json');
-		financeQuery.send(JSON.stringify(inputs));
-		
+		console.log(inputs);
+		if (inputs.hasOwnProperty("ID") || inputs.hasOwnProperty("MAJOR_KEY") || inputs.hasOwnProperty("STUDENT_NO") || inputs.hasOwnProperty("MAIN_FIRM_NO") || inputs.hasOwnProperty('REFERENCE_NUM')) {
+			console.log("PASSED CRITERIA BORDER")
+			let financeQuery = new XMLHttpRequest();
+			financeQuery.open("POST", 'api/finance', true);
+			financeQuery.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					var financeQueryResults = this.response
+					financeQueryResults = $.parseJSON(financeQueryResults);
+					document.getElementById("queriesLoaded").innerHTML = document.getElementById("queriesLoaded").innerHTML + 1
+					displayResultsFinance(financeQueryResults);
+					document.getElementById("financeQueryResults").innerHTML = JSON.stringify(financeQueryResults);
+				}
+			};
+			financeQuery.setRequestHeader('Content-Type', 'application/json');
+			financeQuery.send(JSON.stringify(inputs));
+		} else {
+			document.getElementById("queriesLoaded").innerHTML = document.getElementById("queriesLoaded").innerHTML + 1
+			displayResultsFinance("Invalid Search Criteria");
+		}
 		let customerQuery = new XMLHttpRequest();
 		customerQuery.open("POST", 'api/person', true);
 		customerQuery.onreadystatechange = function () {
@@ -366,7 +365,6 @@
 		customerQuery.send(JSON.stringify(inputs));
 	}
 	function displayResultsFinance(inputs) {
-		document.getElementById("ResultsHeader").style.display = "block";
 		document.getElementById("tabBar").style.display = "block";
 		if (document.getElementById("queriesLoaded").innerHTML > 1) {
 			document.getElementById("loadingIcon").style.display = "none";
@@ -375,19 +373,21 @@
 		tableDemolisherAndDisplayer("Invoices");
 		tableDemolisherAndDisplayer("Transactions");
 		
-		tableBuilder(inputs, "InvoicesResultsTable", ["MAJOR_KEY", "INVOICE_DATE", "REFERENCE_NUM", "INVOICE_DESCRIPTION", "CHARGES", "CREDITS", "BALANCE", "NOTE"])
-		tableBuilder(inputs, "TransactionsResultsTable", ["TRANSACTION_DATE","REFERENCE_NUM","MAJOR_KEY","TRANSACTION_NUMBER", "REFERENCE_NUMBER","TRANSACTION_TYPE","TRANSACTION_AMOUNT", "TRANSACTION_DESCRIPTION"])
+		tableBuilder(inputs, "InvoicesResultsTable", ["MEMBER_NO", "INVOICE_DATE", "REFERENCE_NUM", "INVOICE_DESCRIPTION", "CHARGES", "CREDITS", "BALANCE", "NOTE"])
+		tableBuilder(inputs, "TransactionsResultsTable", ["TRANS_TRANSACTION_DATE", "REFERENCE_NUM", "MEMBER_NO", "TRANSACTION_NUMBER", "TRANSACTION_TYPE", "TRANSACTION_AMOUNT", "TRANSACTION_DESCRIPTION"])
 	}
 	function displayResultsCustomer(inputs) {
-		document.getElementById("ResultsHeader").style.display = "block";
 		document.getElementById("tabBar").style.display = "block";
+		if (document.getElementById("queriesLoaded").innerHTML > 1) {
+			document.getElementById("loadingIcon").style.display = "none";
+		}
 		tableDemolisherAndDisplayer("Activity");
 		tableDemolisherAndDisplayer("Customers");
 		tableDemolisherAndDisplayer("CustomerNotes");
-		let customerResultsTable = ["MAJOR_KEY", "MEMBER_TYPE", "STUDENT_NO", "CATEGORY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "TITLE", "MAIN_FIRM_NO", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS"];
-		tableBuilder(inputs, "ActivityResultsTable", ["MAJOR_KEY", "TRANSACTION_DATE", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "THRU_DATE", "AMOUNT", "UNITS"]);
+		let customerResultsTable = ["MEMBER_NO", "MEMBER_TYPE", "STUDENT_NO", "CATEGORY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "TITLE", "MAIN_FIRM_NO", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS"];
+		tableBuilder(inputs, "ActivityResultsTable", ["MEMBER_NO", "TRANSACTION_DATE", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "THRU_DATE", "AMOUNT", "UNITS"]);
 		tableBuilder(inputs, "CustomersResultsTable", customerResultsTable)
-		tableBuilder(inputs, "CustomerNotesResultsTable", ["MAJOR_KEY", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"])
+		tableBuilder(inputs, "CustomerNotesResultsTable", ["MEMBER_NO", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"])
 	}
 	function tableDemolisherAndDisplayer(tableName) {
 		//Demolisher
@@ -407,6 +407,11 @@
 		if (queryResults.length == 0) {
 			let curHeaderCell = headerRowTable.insertCell(-1);
 			curHeaderCell.innerHTML = "The query failed to return any results";
+		}
+		console.log(queryResults)
+		if (queryResults === "Invalid Search Criteria") {
+			let curHeaderCell = headerRowTable.insertCell(-1);
+			curHeaderCell.innerHTML = "To get results here append one or more of; ID, Invoice Reference No., Member No., Student No. or Firm No. to your search";
 		}
 		else {
 			let tableHeaders = Object.keys(queryResults[0]).filter(word => headers.includes(word));
@@ -461,6 +466,8 @@
 					} else {
 						clipboardContents += "\t" + record[chosenFields[chosenField]];
 					}
+				} else {
+					clipboardContents += "\t";
 				}
 			}
 			clipboardContents += "\n";

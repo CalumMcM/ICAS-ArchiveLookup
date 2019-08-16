@@ -21,7 +21,18 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		{
 			return View();
 		}
-
+		public ActionResult Legal()
+		{
+			return View();
+		}
+		public ActionResult Concession()
+		{
+			return View();
+		}
+		public ActionResult LoginPage()
+		{
+			return View();
+		}
 		public ActionResult About()
 		{
 			ViewBag.Message = "Your application description page.";

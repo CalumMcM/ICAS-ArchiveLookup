@@ -7,8 +7,8 @@ namespace ArchiveLookup.ICAS.com.Models
 {
 	public class Licence
 	{
-		public string ID { get; set; } 
-		public string MAJOR_KEY { get; set; } 
+		public string IMIS_ID { get; set; } 
+		public string MEMBER_NO { get; set; } 
 		public string FUNCTIONAL_TITLE { get; set; }
 		public string FIRST_NAME { get; set; } 
 		public string MIDDLE_NAME { get; set; } 

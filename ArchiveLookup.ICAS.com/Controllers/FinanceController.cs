@@ -9,6 +9,7 @@ using Dapper;
 using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace ArchiveLookup.ICAS.com.Controllers
 {
@@ -18,70 +19,32 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		public List<Finance> Post([FromBody]FinanceQuery criteria)
 		{
 			var persons = new List<Finance>();
-			var queryBase = @"SELECT TOP (2000) n.[ID]
-								,n.[MAJOR_KEY]
-								,n.[FIRST_NAME]
-								,n.[MIDDLE_NAME]
-								,n.[LAST_NAME]
-								,n.[FUNCTIONAL_TITLE]
-								,n.[MEMBER_TYPE]
-								,n.[CATEGORY]
-								,n.[TITLE]
-								,n.[CITY]
-								,n.[COUNTY]
-								,n.[COMPANY_SORT]
-								,n.[FULL_ADDRESS]
-								,n.[Company]
-								,n.[LAST_FIRST]
-								,n.[STATUS]
-								,a.[DESCRIPTION]
-								,a.[TRANSACTION_DATE]
-								,a.[EFFECTIVE_DATE]
-								,a.[PRODUCT_CODE]
-								,a.[ACTIVITY_TYPE]
-								,a.[THRU_DATE]
-								,f.[MAIN_FIRM_NO]
-								,si.[CONTRACT_START_DATE]
+			var queryBase = @"SELECT TOP (2000) n.[ID] as [IMIS_ID]
+								,n.[MAJOR_KEY] as [MEMBER_NO]
 								,si.[STUDENT_NO]
-								,si.[CONTRACT_END_DATE]
-								,si.[FIRM_ID]
-								,si.[FIRM_NAME]
-								,si.[ITP_STUDENT]
-								,si.[ITP_Passed]
-								,si.[COMMENTS]
-								,ec.[EVENT_ATTENDEES]
-								,g.[TP_Monthly]
-								,i.[INVOICE_DATE]
-								,i.[REFERENCE_NUM]
-								,i.[DESCRIPTION] AS [INVOICE_DESCRIPTION]
-								,i.[CHARGES]
-								,i.[CREDITS]
+								,i.[INVOICE_DATE] 
+								,i.[REFERENCE_NUM] 
+								,i.[DESCRIPTION] AS [INVOICE_DESCRIPTION] 
+								,i.[CHARGES] 
+								,i.[CREDITS] 
 								,i.[BALANCE]
-								,i.[Note]
-								,t.[TRANSACTION_DATE] AS [TRANS_TRANSACTION_DATE]
-								,t.[TRANS_NUMBER]
-								,t.[TRANSACTION_TYPE]
-								,t.[DESCRIPTION] AS [TRANSACTION_DESCRIPTION]
-								,t.[AMOUNT] AS [TRANSACTION_AMOUNT]
+								,i.[Note] 
+								,t.[TRANSACTION_DATE] AS [TRANS_TRANSACTION_DATE] 
+								,t.[TRANSACTION_TYPE] 
+								,t.[DESCRIPTION] AS [TRANSACTION_DESCRIPTION] 
+								,t.[AMOUNT] AS [TRANSACTION_AMOUNT] 
+								,f.[MAIN_FIRM_NO]
 								FROM [imis].[dbo].[Name] as n
-								JOIN activity as a
-								on n.id = a.id
-								JOIN Member_Types as mt
-								on n.MEMBER_TYPE  = mt.MEMBER_TYPE
 								LEFT OUTER JOIN Student_Info as si
 								on n.ID = si.ID
-								JOIN Groups as g
-								on n.ID = g.ID
-								JOIN exclude_comms as ec
-								on n.ID = ec.ID
 								JOIN Firm as f
 								on n.ID = f.ID
 								LEFT OUTER JOIN Orders as o
 								on n.CO_ID = o.CO_ID
 								LEFT OUTER JOIN Trans as t
-								on t.INVOICE_REFERENCE_NUM = o.INVOICE_REFERENCE_NUM
+								on t.TRANS_NUMBER = o.ORDER_NUMBER
 								LEFT OUTER JOIN Invoice as i
-								on t.BT_ID = i.BT_ID " + queryGenerator(criteria, true) + " ORDER BY TRANSACTION_DATE DESC"; ;
+								on t.TRANS_NUMBER = i.REFERENCE_NUM " + queryGenerator(criteria, true) + " ORDER BY TRANSACTION_DATE DESC";
 
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
 			{
@@ -91,6 +54,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 				}
 				catch (SqlException e)
 				{
+					//Debug.WriteLine(e.Message);
 					switch (e.Number)
 					{
 						case 2601: return persons;

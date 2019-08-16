@@ -9,7 +9,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		{
 			switch (pin)
 			{
-				case "1234": return "ArchiveLookup";
+				case "1234": return "Legal";
 				case "1313": return "Finance";
 				default: return "error";
 			}
