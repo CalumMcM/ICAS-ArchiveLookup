@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ArchiveLookup.ICAS.com.Models
 {
-	public class PersonQuery
+	public class PersonQuery: Query
 	{
 		public string ID;
 		public string MAJOR_KEY;
@@ -50,7 +50,7 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string THRU_DATE;
 		public string AMOUNT;
 		public string MAIN_FIRM_NO;
-		public Object ToDapperParameter()
+		public override Object ToDapperParameter()
 		{
 			return new {
 				ID = ID,
@@ -98,7 +98,7 @@ namespace ArchiveLookup.ICAS.com.Models
 				UNITS = UNITS,
 			};
 		}
-		public string getDatabasePrefix(string header)
+		public override string getDatabasePrefix(string header)
 		{
 			switch (header)
 			{

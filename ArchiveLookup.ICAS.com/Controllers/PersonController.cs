@@ -73,7 +73,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								JOIN exclude_comms as ec
 								on n.ID = ec.ID
 								JOIN Firm as f
-								on n.ID = f.ID " + queryGenerator(criteria, true) + " ORDER BY TRANSACTION_DATE DESC";
+								on n.ID = f.ID " + criteria.queryGenerator() + " ORDER BY TRANSACTION_DATE DESC";
 
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
 			{
@@ -92,28 +92,6 @@ namespace ArchiveLookup.ICAS.com.Controllers
 			}
 
 			return persons;
-		}
-		
-		public string queryGenerator(PersonQuery criteriaFull, bool areYouSure)
-		{
-			//WHEN ADDING NEW CRITERIA ADD DATABSE PREFIX HERE IN SAME POSITION AS IT IS IN getClassNames();
-			var properties = criteriaFull.GetType().GetFields();
-			var query = "";
-			bool began = false;
-			for (var i =0; i < properties.Length; i++)
-			{
-				if (properties[i].GetValue(criteriaFull) != "" && properties[i].GetValue(criteriaFull) != null && !began)
-				{
-					query = query + "WHERE " + criteriaFull.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
-					began = true;
-				}
-				else if (properties[i].GetValue(criteriaFull) != "" && properties[i].GetValue(criteriaFull) != null)
-				{
-					query = query + " AND " + criteriaFull.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
-				}
-			}
-			
-			return query;
 		}
 		
 	}

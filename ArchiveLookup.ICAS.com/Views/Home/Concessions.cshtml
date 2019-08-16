@@ -72,6 +72,7 @@
 <script src="~/Scripts/moment.js" type="text/javascript"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="~/Scripts/lodashCore.js" type="text/javascript"></script>
+<script src="~/Scripts/common.js" type="text/javascript"></script>
 <script>
 	const getBtnNames		= () => ["class", "exam"];
 	const getFieldNames		= () => ["sd", "ed", "cla"];
@@ -111,19 +112,6 @@
 		});
 		showSubmit();
 	}
-	function showSubmit() {
-		let btnNames = getBtnNames();
-		let active = 0;
-		for (let button in btnNames) {
-			if (document.getElementById(btnNames[button] + "InputButton").style.backgroundColor === "rgb(32, 166, 75)") {
-				++active;
-				document.getElementById("submitButton").style.display = "block";
-			}
-		}
-		if (active == 0) {
-			document.getElementById("submitButton").style.display = "none";
-		}
-	}
 	function copy(table) {
 		let queryNames = getBtnNames(table);
 		let chosenButton = "";
@@ -154,19 +142,6 @@
 		console.log("copied!");
 		document.body.removeChild(itemsToCopy);
 		document.getElementById(table+"copyButton").innerHTML = '&#10004';
-	}
-	function copySelectButton(buttonID, table) {
-		currentColour = document.getElementById(buttonID + "Button").style.backgroundColor;
-		document.getElementById(table+"copyButton").innerHTML = '&#x1F4CB';
-		if (currentColour == "rgb(241, 243, 242)" || currentColour == "") {
-			document.getElementById(buttonID + "Button").style.backgroundColor = "#20A64B";
-		}
-		else {
-			document.getElementById(buttonID + "Button").style.backgroundColor = "#f1f3f2";
-		}
-	}
-	function showCopyDropdown(table) {
-		document.getElementById(table+"Dropdown").classList.toggle("show");
 	}
 	function processQuery() {
 		let chosenButton = "";
@@ -225,66 +200,4 @@
 		document.getElementById(tableName + "copyButton").style.display = 'block';
 		document.getElementById(tableName + "copySelectButton").style.display = "block";
 	}
-	function tableBuilder(queryResults, tableName, headers) {
-		let table = document.getElementById(tableName);
-		let headerTable = table.createTHead();
-		let headerRowTable = table.insertRow(0);
-		if (queryResults.length == 0) {
-			let curHeaderCell = headerRowTable.insertCell(-1);
-			curHeaderCell.innerHTML = "The query failed to return any results";
-		}
-		else {
-			let tableHeaders = Object.keys(queryResults[0]).filter(word => headers.includes(word));
-			let discardedHeaders = Object.keys(queryResults[0]).filter(word => !headers.includes(word));
-			for (let i = 0; i < tableHeaders.length; ++i) {
-				let curHeaderCell = headerRowTable.insertCell(-1);
-				curHeaderCell.innerHTML = tableHeaders[i].replace(/_/g, " ");
-			}
-			let newInputs = [];
-			for (let record in queryResults) {
-				//NEED TO DELETE THIS FIELD WITHOUT DELEING GLOBAL INPUTS
-				//THERE IS A BETTER WAY TO DO THIS
-				let newRecord = {};
-				tableHeaders.forEach(function (header) {
-					let curRecord = queryResults[record];
-					newRecord[header] = curRecord[header];
-				});
-				let recordsEqual = newInputs.map(curRecord => _.isEqual(newRecord, curRecord));
-				if (!recordsEqual.includes(true)) {
-					newInputs.push(newRecord);
-				}
-			}
-			for (let record in newInputs) {
-				let curRecord = newInputs[record];
-				let recordValues = Object.values(newInputs[record]);
-				let curRecordRow = table.insertRow(-1);
-				for (let i = 0; i < tableHeaders.length; ++i) {
-					let curRecordCell = curRecordRow.insertCell(-1);
-					curRecordCell.innerHTML = recordValues[i];
-				}
-			}
-		}
-	}
-	function constructClipboard(chosenFields) {
-		let queryResults = JSON.parse(document.getElementById("queryResults").innerHTML);
-		let clipboardContents = "";
-		for (let curRecord in queryResults) {
-			let record = queryResults[curRecord];
-			for (let chosenField in chosenFields) {
-				console.log(JSON.stringify(record[chosenFields[chosenField]]));
-				if (record[chosenFields[chosenField]] != null){
-					if (record[chosenFields[chosenField]].includes("\r")) {
-						clipboardContents += "\t" + record[chosenFields[chosenField]].replace(/\r/g, ", ");
-					} else {
-						clipboardContents += "\t" + record[chosenFields[chosenField]];
-					}
-				} else {
-					clipboardContents += "\t";
-				}
-			}
-			clipboardContents += "\n";
-		}
-		document.getElementById("clipboard").innerHTML = clipboardContents;
-	}
-
 </script>

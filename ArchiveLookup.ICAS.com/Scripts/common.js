@@ -58,7 +58,6 @@ function copy(table) {
 	if (chosenFields.length == 0) {
 		chosenFields = classNames;
 	}
-	console.log(chosenFields);
 	constructClipboard(chosenFields);
 	let clipboardContents = document.getElementById("clipboard").innerHTML;
 	let itemsToCopy = document.createElement("textarea");
@@ -100,7 +99,6 @@ function constructClipboard(chosenFields) {
 	for (let curRecord in queryResults) {
 		let record = queryResults[curRecord];
 		for (let chosenField in chosenFields) {
-			console.log(JSON.stringify(record[chosenFields[chosenField]]));
 			if (record[chosenFields[chosenField]] != null) {
 				if (record[chosenFields[chosenField]].includes("\r")) {
 					clipboardContents += "\t" + record[chosenFields[chosenField]].replace(/\r/g, ", ");
