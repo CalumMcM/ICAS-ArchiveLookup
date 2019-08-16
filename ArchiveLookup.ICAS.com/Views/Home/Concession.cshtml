@@ -203,7 +203,7 @@
 			}
 		}
 		let xhttp = new XMLHttpRequest();
-		xhttp.open("POST", 'api/Tps'+chosenButton, true);
+		xhttp.open("POST", '/api/Tps'+chosenButton, true);
 		let MOCKqueryResults;
 		xhttp.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {

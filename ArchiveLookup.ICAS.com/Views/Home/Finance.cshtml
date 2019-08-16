@@ -276,7 +276,7 @@
 		}
 		if (inputs.hasOwnProperty("ID") || inputs.hasOwnProperty("MAJOR_KEY") || inputs.hasOwnProperty("STUDENT_NO") || inputs.hasOwnProperty("MAIN_FIRM_NO") || inputs.hasOwnProperty('REFERENCE_NUM')) {
 			let financeQuery = new XMLHttpRequest();
-			financeQuery.open("POST", 'api/finance', true);
+			financeQuery.open("POST", '/api/finance', true);
 			financeQuery.onreadystatechange = function () {
 				if (this.readyState == 4 && this.status == 200) {
 					var financeQueryResults = this.response
@@ -293,7 +293,7 @@
 			displayResultsFinance("Invalid Search Criteria");
 		}
 		let customerQuery = new XMLHttpRequest();
-		customerQuery.open("POST", 'api/person', true);
+		customerQuery.open("POST", '/api/person', true);
 		customerQuery.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				var customerQueryResults = this.response
