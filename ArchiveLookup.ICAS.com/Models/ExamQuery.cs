@@ -5,17 +5,17 @@ using System.Web;
 
 namespace ArchiveLookup.ICAS.com.Models
 {
-	public class ExamQuery
+	public class ExamQuery: Query
 	{
-		public string STUDENT_ID { get; set; }
-		public string MAJOR_KEY { get; set; }
-		public string FIRST_NAME { get; set; }
-		public string MIDDLE_NAME { get; set; }
-		public string LAST_NAME { get; set; }
-		public string FIRM_NAME { get; set; }
-		public string FIRM_NO { get; set; }
+		public string STUDENT_ID;
+		public string MAJOR_KEY;
+		public string FIRST_NAME;
+		public string MIDDLE_NAME;
+		public string LAST_NAME;
+		public string FIRM_NAME;
+		public string FIRM_NO;
 
-		public Object ToDapperParameter()
+		public override Object ToDapperParameter()
 		{
 			return new {
 				MAJOR_KEY = MAJOR_KEY,
@@ -27,7 +27,7 @@ namespace ArchiveLookup.ICAS.com.Models
 				STUDENT_ID = STUDENT_ID
 			};
 		}
-		public string getDatabasePrefix(string header)
+		public override string getDatabasePrefix(string header)
 		{
 			switch (header)
 			{

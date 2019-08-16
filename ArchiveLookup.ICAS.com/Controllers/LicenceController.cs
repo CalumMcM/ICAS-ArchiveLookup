@@ -65,7 +65,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 							on n.ID = pii.NameID
 							LEFT OUTER JOIN IREG_AnnRet as ar
 							on n.ID = ar.ID 
-							where a.[ACTIVITY_TYPE] = 'LICENCE'" + queryGenerator(criteria, true) + " ORDER BY TRANSACTION_DATE DESC"; ;
+							where a.[ACTIVITY_TYPE] = 'LICENCE'" + criteria.queryGenerator() + " ORDER BY TRANSACTION_DATE DESC"; ;
 
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
 			{
@@ -83,25 +83,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 					}
 				}
 			}
-
 			return persons;
 		}
-		
-		public string queryGenerator(LicenceQuery criteriaFull, bool areYouSure)
-		{
-			var properties = criteriaFull.GetType().GetProperties();
-			var propertyName = properties[0].Name;
-			var query = "";
-			for (var i =0; i < properties.Length; i++)
-			{
-				if (properties[i].GetValue(criteriaFull) != null)
-				{
-					query = query + " AND " + criteriaFull.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
-				}
-			}
-			
-			return query;
-		}
-		
 	}
 }

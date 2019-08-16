@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ArchiveLookup.ICAS.com.Models
 {
-	public class FinanceQuery
+	public class FinanceQuery: Query
 	{
 		public string ID;
 		public string MAJOR_KEY;
@@ -13,7 +13,7 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string MAIN_FIRM_NO;
 		public string REFERENCE_NUM;
 
-		public Object ToDapperParameter()
+		public override Object ToDapperParameter()
 		{
 			return new {
 				ID = ID,
@@ -23,7 +23,7 @@ namespace ArchiveLookup.ICAS.com.Models
 				REFERENCE_NUM = REFERENCE_NUM
 			};
 		}
-		public string getDatabasePrefix(string header)
+		public override string getDatabasePrefix(string header)
 		{
 			switch (header)
 			{

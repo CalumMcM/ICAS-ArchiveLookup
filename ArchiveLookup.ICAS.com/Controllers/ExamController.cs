@@ -75,7 +75,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 						JOIN Disability as d
 						on n.ID = d.ID
 						JOIN Cert_Register as cr
-						on si.ID = cr.BT_ID " + queryGenerator(criteria, true) + " ORDER BY TRANSACTION_DATE DESC"; ;
+						on si.ID = cr.BT_ID " + criteria.queryGenerator() + " ORDER BY TRANSACTION_DATE DESC"; 
 
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
 			{
@@ -93,31 +93,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 					}
 				}
 			}
-
 			return persons;
 		}
-		
-		public string queryGenerator(ExamQuery criteriaFull, bool areYouSure)
-		{
-			var properties = criteriaFull.GetType().GetProperties();
-			var propertyName = properties[0].Name;
-			var query = "";
-			var began = false;
-			for (var i = 0; i < properties.Length; i++)
-			{
-				if (properties[i].GetValue(criteriaFull) != "" && properties[i].GetValue(criteriaFull) != null && !began)
-				{
-					query = query + "WHERE " + criteriaFull.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
-					began = true;
-				}
-				else if (properties[i].GetValue(criteriaFull) != "" && properties[i].GetValue(criteriaFull) != null)
-				{
-					query = query + " AND " + criteriaFull.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
-				}
-			}
-
-			return query;
-		}
-		
 	}
 }

@@ -13,8 +13,8 @@ using System.Diagnostics;
 
 namespace ArchiveLookup.ICAS.com.Controllers
 {
-    public class FinanceController : ApiController
-    {
+	public class FinanceController : ApiController
+	{
 		//rename query in paramters to criteria here and in WebAPICONfig.cs
 		public List<Finance> Post([FromBody]FinanceQuery criteria)
 		{
@@ -44,7 +44,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								LEFT OUTER JOIN Trans as t
 								on t.TRANS_NUMBER = o.ORDER_NUMBER
 								LEFT OUTER JOIN Invoice as i
-								on t.TRANS_NUMBER = i.REFERENCE_NUM " + queryGenerator(criteria, true) + " ORDER BY TRANSACTION_DATE DESC";
+								on t.TRANS_NUMBER = i.REFERENCE_NUM " + criteria.queryGenerator() + " ORDER BY TRANSACTION_DATE DESC";
 
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
 			{
@@ -65,28 +65,5 @@ namespace ArchiveLookup.ICAS.com.Controllers
 
 			return persons;
 		}
-		
-		public string queryGenerator(FinanceQuery criteriaFull, bool areYouSure)
-		{
-			//WHEN ADDING NEW CRITERIA ADD DATABSE PREFIX HERE IN SAME POSITION AS IT IS IN getClassNames();
-			var properties = criteriaFull.GetType().GetFields();
-			var query = "";
-			bool began = false;
-			for (var i =0; i < properties.Length; i++)
-			{
-				if (properties[i].GetValue(criteriaFull) != "" && properties[i].GetValue(criteriaFull) != null && !began)
-				{
-					query = query + "WHERE " + criteriaFull.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
-					began = true;
-				}
-				else if (properties[i].GetValue(criteriaFull) != "" && properties[i].GetValue(criteriaFull) != null)
-				{
-					query = query + " AND " + criteriaFull.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
-				}
-			}
-			
-			return query;
-		}
-		
 	}
 }
