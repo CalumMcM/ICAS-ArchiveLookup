@@ -14,7 +14,12 @@ namespace ArchiveLookup.ICAS.com.Controllers
 {
     public class PersonController : ApiController
     {
-		//rename query in paramters to criteria here and in WebAPICONfig.cs
+		/*
+		 Inputs: criteria - The query which has the fields in PersonQuery
+		 Returns: A list of Person objects
+		 Remark: Constructs the query which is executed on the imis database and returns the results as a 
+		 list of Person objects where each Person is a record that was returned
+		*/
 		public List<Person> Post([FromBody]PersonQuery criteria)
 		{
 			var persons = new List<Person>();
@@ -85,6 +90,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 				{
 					switch (e.Number)
 					{
+						//2601 = SQL Violation in unique index
 						case 2601: return persons;
 						default: return persons;
 					}

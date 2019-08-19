@@ -14,6 +14,12 @@ namespace ArchiveLookup.ICAS.com.Controllers
 {
 	public class TpsexamController : ApiController
 	{
+		/*
+		 Inputs: criteria - The query which has the fields in TPSClassQuery
+		 Returns: A list of TPSClass objects
+		 Remark: Constructs the query which is executed on the imis database and returns the results as a 
+		 list of TPSClass objects where each TPSClass is a record that was returned
+		*/
 		public List<TPSClass> Post([FromBody]TPSClassQuery criteria)
 		{
 			var persons = new List<TPSClass>();
@@ -29,6 +35,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 				{
 					switch (e.Number)
 					{
+						//2601 = SQL Violation in unique index
 						case 2601: return persons;
 						default: return persons;
 					}

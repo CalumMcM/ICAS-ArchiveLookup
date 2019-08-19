@@ -10,6 +10,11 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string CLASS;
 		public Nullable<DateTime> START_DATE;
 		public Nullable<DateTime> END_DATE;
+		/*
+		 Returns: An object which converts the field name which has
+		 been used in the code with the counterpart of that field 
+		 name in the database 
+		*/
 		public Object ToDapperParameter()
 		{
 			return new {

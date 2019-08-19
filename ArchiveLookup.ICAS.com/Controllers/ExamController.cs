@@ -14,7 +14,12 @@ namespace ArchiveLookup.ICAS.com.Controllers
 {
     public class ExamController : ApiController
     {
-		//rename query in paramters to criteria here and in WebAPICONfig.cs
+		/*
+		 Inputs: criteria - The query which has the fields in ExamQuery
+		 Returns: A list of exam objects
+		 Remark: Constructs the query which is executed on the imis database and returns the results as a 
+		 list of Exam objects where each Exam is a record that was returned
+		*/
 		public List<Exam> Post([FromBody]ExamQuery criteria)
 		{
 			var persons = new List<Exam>();

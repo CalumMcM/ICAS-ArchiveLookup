@@ -19,7 +19,11 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string FIRM_NAME;
 		public string FIRM_NO;
 		public string SOURCE_CODE;
-
+		/*
+		 Returns: An object which converts the field name which has
+		 been used in the code with the counterpart of that field 
+		 name in the database 
+		*/
 		public override Object ToDapperParameter()
 		{
 			return new {
@@ -37,6 +41,12 @@ namespace ArchiveLookup.ICAS.com.Models
 				SOURCE_CODE = SOURCE_CODE
 			};
 		}
+		/*
+		 Inputs: header - a Field Name for the query of type string
+		 Returns: database prefix for that field name of type string
+		 Remarks: For the given header it should get the prefix the
+		 given field name belongs to for the query 
+		*/
 		public override string getDatabasePrefix(string header)
 		{
 			switch (header)
@@ -55,6 +65,9 @@ namespace ArchiveLookup.ICAS.com.Models
 			}
 			return "";
 		}
+		/*
+		 Returns: A string, in the SQL format, containing any criteria to filter the search 
+		*/
 		public override string queryGenerator()
 		{
 			var properties = this.GetType().GetProperties();
