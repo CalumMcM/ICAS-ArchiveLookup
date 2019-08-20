@@ -1,0 +1,314 @@
+﻿@{
+	ViewBag.Title = "Insight";
+}
+
+<div class="jumbotron">
+	<div class="centralFlex">
+		<h1>
+			Insight Lookup
+		</h1>
+	</div>
+	<div class="centralFlex">
+		<div class="copySelectDropdown">
+			<p><button id="submitButton" onClick="processQuery()" class="btn-insight">Submit</button></p>
+			<div id="loadingIcon" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+		</div>
+	</div>
+	<div id="tabBar" class="tab">
+		<button class="tablinks" onclick="changeTab(event, 'ATO')">ATO</button>
+		<button class="tablinks" onclick="changeTab(event, 'Boom')">Boom</button>
+		<button class="tablinks" onclick="changeTab(event, 'Contact')">Contact</button>
+		<button class="tablinks" onclick="changeTab(event, 'Licence')">Boom</button>
+		<button class="tablinks" onclick="changeTab(event, 'Membership Record')">Boom</button>
+		<button class="tablinks" onclick="changeTab(event, 'Organisation')">Boom</button>
+		<button class="tablinks" onclick="changeTab(event, 'Sales')">Boom</button>
+		<button class="tablinks" onclick="changeTab(event, 'Payments')">Boom</button>
+	</div>
+	<div id="tables">
+		<div id="ATO" class="tabcontent">
+			<div class="copySelectDropdown">
+				<button id="ATOcopyButton" onclick="copy('ATO')" class="copyBtn">&#x1F4CB</button>
+				<button id="ATOcopySelectButton" onclick="showCopyDropdown('ATO')" class="copyBtn">+</button>
+				<div id="ATODropdown" class="copySelectDropdown-content">
+					<button id="atoidATOCopyButton" onclick="copySelectButton('atoidATOCopy', 'ATO')" class="addBtn">AuthorisationTrainingOfficeID</button>
+					<button id="orgidATOCopyButton" onclick="copySelectButton('orgidATOCopy', 'ATO')" class="addBtn">OrganisationID</button>
+					<button id="parentidATOCopyButton" onclick="copySelectButton('parentidATOCopy', 'ATO')" class="addBtn">ParentATOID</button>
+					<button id="egATOCopyButton" onclick="copySelectButton('edATOCopy', 'ATO')" class="addBtn">EndDate</button>
+					<button id="authstageATOCopyButton" onclick="copySelectButton('authstageATOCopy', 'ATO')" class="addBtn">Authorisation Stage</button>
+					<button id="grpauthATOCopyButton" onclick="copySelectButton('grpauthATOCopy', 'ATO')" class="addBtn">Group Authorisation</button>
+					<button id="lauthdateATOCopyButton" onclick="copySelectButton('lauthdateATOCopy', 'ATO')" class="addBtn">Last Authorisation Date</button>
+					<button id="stateATOCopyButton" onclick="copySelectButton('stateATOCopy', 'ATO')" class="addBtn">State</button>
+					<button id="statATOCopyButton" onclick="copySelectButton('statATOCopy', 'ATO')" class="addBtn">Status</button>
+				</div>
+			</div>
+			<div id="ATOContainer" class="minotron">
+				<table id="ATOResultsTable" class="resultsTable">
+					<tr></tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="Boom" class="tabcontent">
+			<div class="copySelectDropdown">
+				<button id="BoomcopyButton" onclick="copy('Boom')" class="copyBtn">&#x1F4CB</button>
+				<button id="BoomcopySelectButton" onclick="showCopyDropdown('Boom')" class="copyBtn">+</button>
+				<div id="BoomDropdown" class="copySelectDropdown-content">
+					<button id="mkACopyButton" onclick="copySelectButton('mkACopy', 'Boom')" class="addBtn">Member No.</button>
+					<button id="transACopyButton" onclick="copySelectButton('transACopy', 'Boom')" class="addBtn">Transaction Date</button>
+					<button id="typeACopyButton" onclick="copySelectButton('typeACopy', 'Boom')" class="addBtn">Boom Type</button>
+					<button id="descACopyButton" onclick="copySelectButton('descACopy', 'Boom')" class="addBtn">Description</button>
+					<button id="prodcodeACopyButton" onclick="copySelectButton('prodcodeACopy', 'Boom')" class="addBtn">Product Code</button>
+					<button id="tdACopyButton" onclick="copySelectButton('tdACopy', 'Boom')" class="addBtn">Thru Date</button>
+					<button id="amountACopyButton" onclick="copySelectButton('amountACopy', 'Boom')" class="addBtn">Amount</button>
+				</div>
+			</div>
+			<div id="BoomContainer" class="minotron">
+				<table id="BoomResultsTable" class="resultsTable">
+					<tr></tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="Contact" class="tabcontent">
+			<div class="copySelectDropdown">
+				<button id="ContactcopyButton" onclick="copy('Contact')" class="copyBtn">&#x1F4CB</button>
+				<button id="ContactcopySelectButton" onclick="showCopyDropdown('Contact')" class="copyBtn">+</button>
+				<div id="ContactDropdown" class="copySelectDropdown-content">
+					<button id="mkCNCopyButton" onclick="copySelectButton('mkCNCopy', 'Contact')" class="addBtn">Member No.</button>
+					<button id="lastfirstCNCopyButton" onclick="copySelectButton('lastfirstCNCopy', 'Contact')" class="addBtn">Last First</button>
+					<button id="middlenameCNCopyButton" onclick="copySelectButton('middlenameCNCopy', 'Contact')" class="addBtn">Middle Name</button>
+					<button id="commentsCNCopyButton" onclick="copySelectButton('commentsCNCopy', 'Contact')" class="addBtn">Comments</button>
+				</div>
+			</div>
+			<div id="ContactContainer" class="minotron">
+				<table id="ContactResultsTable" class="resultsTable">
+					<tr></tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="Licence" class="tabcontent">
+			<div class="copySelectDropdown">
+				<button id="LCopyButton" onclick="copy('Licence')" class="copyBtn">&#x1F4CB</button>
+				<button id="LCopySelectButton" onclick="showCopyDropdown('Licence')" class="copyBtn">+</button>
+				<div id="LicenceDropdown" class="copySelectDropdown-content">
+					<button id="LicenceidLCopyButton" onclick="copySelectButton('LicenceidLCopy', 'Licence')" class="addBtn">AuthorisationTrainingOfficeID</button>
+					<button id="orgidLCopyButton" onclick="copySelectButton('orgidLCopy', 'Licence')" class="addBtn">OrganisationID</button>
+					<button id="parentidLCopyButton" onclick="copySelectButton('parentidLCopy', 'Licence')" class="addBtn">ParentLicenceID</button>
+					<button id="egLCopyButton" onclick="copySelectButton('edLCopy', 'Licence')" class="addBtn">EndDate</button>
+					<button id="authstageLCopyButton" onclick="copySelectButton('authstageLCopy', 'Licence')" class="addBtn">Authorisation Stage</button>
+					<button id="grpauthLCopyButton" onclick="copySelectButton('grpauthLCopy', 'Licence')" class="addBtn">Group Authorisation</button>
+					<button id="lauthdateLCopyButton" onclick="copySelectButton('lauthdateLCopy', 'Licence')" class="addBtn">Last Authorisation Date</button>
+					<button id="stateLCopyButton" onclick="copySelectButton('stateLCopy', 'Licence')" class="addBtn">State</button>
+					<button id="statLCopyButton" onclick="copySelectButton('statLCopy', 'Licence')" class="addBtn">Status</button>
+				</div>
+			</div>
+			<div id="LicenceContainer" class="minotron">
+				<table id="LicenceResultsTable" class="resultsTable">
+					<tr></tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="MembershipRecord" class="tabcontent">
+			<div class="copySelectDropdown">
+				<button id="MRCopyButton" onclick="copy('MembershipRecord')" class="copyBtn">&#x1F4CB</button>
+				<button id="MRCopySelectButton" onclick="showCopyDropdown('MembershipRecord')" class="copyBtn">+</button>
+				<div id="MembershipRecordDropdown" class="copySelectDropdown-content">
+					<button id="MembershipRecordidMRCopyButton" onclick="copySelectButton('MembershipRecordidMRCopy', 'MembershipRecord')" class="addBtn">AuthorisationTrainingOfficeID</button>
+					<button id="orgidMRCopyButton" onclick="copySelectButton('orgidMRCopy', 'MembershipRecord')" class="addBtn">OrganisationID</button>
+					<button id="parentidMRCopyButton" onclick="copySelectButton('parentidMRCopy', 'MembershipRecord')" class="addBtn">ParentMembershipRecordID</button>
+					<button id="egMRCopyButton" onclick="copySelectButton('edMRCopy', 'MembershipRecord')" class="addBtn">EndDate</button>
+					<button id="authstageMRCopyButton" onclick="copySelectButton('authstageMRCopy', 'MembershipRecord')" class="addBtn">Authorisation Stage</button>
+					<button id="grpauthMRCopyButton" onclick="copySelectButton('grpauthMRCopy', 'MembershipRecord')" class="addBtn">Group Authorisation</button>
+					<button id="lauthdateMRCopyButton" onclick="copySelectButton('lauthdateMRCopy', 'MembershipRecord')" class="addBtn">Last Authorisation Date</button>
+					<button id="stateMRCopyButton" onclick="copySelectButton('stateMRCopy', 'MembershipRecord')" class="addBtn">State</button>
+					<button id="statMRCopyButton" onclick="copySelectButton('statMRCopy', 'MembershipRecord')" class="addBtn">Status</button>
+				</div>
+			</div>
+			<div id="MembershipRecordContainer" class="minotron">
+				<table id="MembershipRecordResultsTable" class="resultsTable">
+					<tr></tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="Organisation" class="tabcontent">
+			<div class="copySelectDropdown">
+				<button id="OCopyButton" onclick="copy('Organisation')" class="copyBtn">&#x1F4CB</button>
+				<button id="OCopySelectButton" onclick="showCopyDropdown('Organisation')" class="copyBtn">+</button>
+				<div id="OrganisationDropdown" class="copySelectDropdown-content">
+					<button id="OrganisationidOCopyButton" onclick="copySelectButton('OrganisationidOCopy', 'Organisation')" class="addBtn">AuthorisationTrainingOfficeID</button>
+					<button id="orgidOCopyButton" onclick="copySelectButton('orgidOCopy', 'Organisation')" class="addBtn">OrganisationID</button>
+					<button id="parentidOCopyButton" onclick="copySelectButton('parentidOCopy', 'Organisation')" class="addBtn">ParentOrganisationID</button>
+					<button id="egOCopyButton" onclick="copySelectButton('edOCopy', 'Organisation')" class="addBtn">EndDate</button>
+					<button id="authstageOCopyButton" onclick="copySelectButton('authstageOCopy', 'Organisation')" class="addBtn">Authorisation Stage</button>
+					<button id="grpauthOCopyButton" onclick="copySelectButton('grpauthOCopy', 'Organisation')" class="addBtn">Group Authorisation</button>
+					<button id="lauthdateOCopyButton" onclick="copySelectButton('lauthdateOCopy', 'Organisation')" class="addBtn">Last Authorisation Date</button>
+					<button id="stateOCopyButton" onclick="copySelectButton('stateOCopy', 'Organisation')" class="addBtn">State</button>
+					<button id="statOCopyButton" onclick="copySelectButton('statOCopy', 'Organisation')" class="addBtn">Status</button>
+				</div>
+			</div>
+			<div id="OrganisationContainer" class="minotron">
+				<table id="OrganisationResultsTable" class="resultsTable">
+					<tr></tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="Sales" class="tabcontent">
+			<div class="copySelectDropdown">
+				<button id="SCopyButton" onclick="copy('Sales')" class="copyBtn">&#x1F4CB</button>
+				<button id="SCopySelectButton" onclick="showCopyDropdown('Sales')" class="copyBtn">+</button>
+				<div id="SalesDropdown" class="copySelectDropdown-content">
+					<button id="SalesidSCopyButton" onclick="copySelectButton('SalesidSCopy', 'Sales')" class="addBtn">AuthorisationTrainingOfficeID</button>
+					<button id="orgidSCopyButton" onclick="copySelectButton('orgidSCopy', 'Sales')" class="addBtn">SalesID</button>
+					<button id="parentidSCopyButton" onclick="copySelectButton('parentidSCopy', 'Sales')" class="addBtn">ParentSalesID</button>
+					<button id="egSCopyButton" onclick="copySelectButton('edSCopy', 'Sales')" class="addBtn">EndDate</button>
+					<button id="authstageSCopyButton" onclick="copySelectButton('authstageSCopy', 'Sales')" class="addBtn">Authorisation Stage</button>
+					<button id="grpauthSCopyButton" onclick="copySelectButton('grpauthSCopy', 'Sales')" class="addBtn">Group Authorisation</button>
+					<button id="lauthdateSCopyButton" onclick="copySelectButton('lauthdateSCopy', 'Sales')" class="addBtn">Last Authorisation Date</button>
+					<button id="stateSCopyButton" onclick="copySelectButton('stateSCopy', 'Sales')" class="addBtn">State</button>
+					<button id="statSCopyButton" onclick="copySelectButton('statSCopy', 'Sales')" class="addBtn">Status</button>
+				</div>
+			</div>
+			<div id="SalesContainer" class="minotron">
+				<table id="SalesResultsTable" class="resultsTable">
+					<tr></tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="Organisation" class="tabcontent">
+			<div class="copySelectDropdown">
+				<button id="OCopyButton" onclick="copy('Organisation')" class="copyBtn">&#x1F4CB</button>
+				<button id="OCopySelectButton" onclick="showCopyDropdown('Organisation')" class="copyBtn">+</button>
+				<div id="OrganisationDropdown" class="copySelectDropdown-content">
+					<button id="OrganisationidOCopyButton" onclick="copySelectButton('OrganisationidOCopy', 'Organisation')" class="addBtn">AuthorisationTrainingOfficeID</button>
+					<button id="orgidOCopyButton" onclick="copySelectButton('orgidOCopy', 'Organisation')" class="addBtn">OrganisationID</button>
+					<button id="parentidOCopyButton" onclick="copySelectButton('parentidOCopy', 'Organisation')" class="addBtn">ParentOrganisationID</button>
+					<button id="egOCopyButton" onclick="copySelectButton('edOCopy', 'Organisation')" class="addBtn">EndDate</button>
+					<button id="authstageOCopyButton" onclick="copySelectButton('authstageOCopy', 'Organisation')" class="addBtn">Authorisation Stage</button>
+					<button id="grpauthOCopyButton" onclick="copySelectButton('grpauthOCopy', 'Organisation')" class="addBtn">Group Authorisation</button>
+					<button id="lauthdateOCopyButton" onclick="copySelectButton('lauthdateOCopy', 'Organisation')" class="addBtn">Last Authorisation Date</button>
+					<button id="stateOCopyButton" onclick="copySelectButton('stateOCopy', 'Organisation')" class="addBtn">State</button>
+					<button id="statOCopyButton" onclick="copySelectButton('statOCopy', 'Organisation')" class="addBtn">Status</button>
+				</div>
+			</div>
+			<div id="OrganisationContainer" class="minotron">
+				<table id="OrganisationResultsTable" class="resultsTable">
+					<tr></tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="Sales" class="tabcontent">
+			<div class="copySelectDropdown">
+				<button id="SCopyButton" onclick="copy('Sales')" class="copyBtn">&#x1F4CB</button>
+				<button id="SCopySelectButton" onclick="showCopyDropdown('Sales')" class="copyBtn">+</button>
+				<div id="SalesDropdown" class="copySelectDropdown-content">
+					<button id="SalesidSCopyButton" onclick="copySelectButton('SalesidSCopy', 'Sales')" class="addBtn">AuthorisationTrainingOfficeID</button>
+					<button id="orgidSCopyButton" onclick="copySelectButton('orgidSCopy', 'Sales')" class="addBtn">OrganisationID</button>
+					<button id="parentidSCopyButton" onclick="copySelectButton('parentidSCopy', 'Sales')" class="addBtn">ParentSalesID</button>
+					<button id="egSCopyButton" onclick="copySelectButton('edSCopy', 'Sales')" class="addBtn">EndDate</button>
+					<button id="authstageSCopyButton" onclick="copySelectButton('authstageSCopy', 'Sales')" class="addBtn">Authorisation Stage</button>
+					<button id="grpauthSCopyButton" onclick="copySelectButton('grpauthSCopy', 'Sales')" class="addBtn">Group Authorisation</button>
+					<button id="lauthdateSCopyButton" onclick="copySelectButton('lauthdateSCopy', 'Sales')" class="addBtn">Last Authorisation Date</button>
+					<button id="stateSCopyButton" onclick="copySelectButton('stateSCopy', 'Sales')" class="addBtn">State</button>
+					<button id="statSCopyButton" onclick="copySelectButton('statSCopy', 'Sales')" class="addBtn">Status</button>
+				</div>
+			</div>
+			<div id="SalesContainer" class="minotron">
+				<table id="SalesResultsTable" class="resultsTable">
+					<tr></tr>
+				</table>
+			</div>
+		</div>
+
+	</div>
+	<p id="clipboard" class="clipboard"></p>
+	<p id="queryResults" class="queryResults"></p>
+	<p id="queriesLoaded" class="queryResults"></p>
+</div>
+<script src="~/Scripts/moment.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="~/Scripts/lodashCore.js" type="text/javascript"></script>
+<script src="~/Scripts/common.js" type="text/javascript"></script>
+<script>
+	/*
+	Returns: A list of all input button names
+	Remarks: Button names must be in exact same position as its field name
+	in getClassNames();
+	*/
+	const getBtnNames = () =>["mk", "forename", "middlename", "surname", "firmid", "firmno", "firmname", "companyname"];
+	/*
+	Inputs: The field names for the corresponding button
+	Remarks: These are the fields that users can search by
+	*/
+	const getClassNames = () =>["MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "FIRM_ID", "MAIN_FIRM_NO", "FIRM_NAME", "Company"];
+	/*
+	Inputs: table - A name of a table
+	Returns: The names of each of the copy buttons for that table
+	Remarks: Button names should be in same position as their corresponding
+	field name in getCopyFields()
+	*/
+	function getCopyBtnNames(table) {
+		switch (table) {
+			case "ATO": return ["mkC", "forenameC", "middlenameC", "surnameC", "mtC", "catC", "titleC", "cityC", "countyC", "compsortC", "addrC", "firmnoC"];
+			case "Boom": return ["mkA", "transA", "typeA", "descA", "prodcodeA", "tdA", "amountA"];
+			case "Contact": return ["mkCN", "lastfirstCN", "middlenameCN", "commentsCN"];
+				defualt: return [];
+			}
+	}
+	/*
+	Inputs: table - A name of a table
+	Returns: The names of each of the field names for that table
+	Remarks: Field names should be in the exact same position as its button name in 
+	getCopyBtnNames()
+	*/
+	function getCopyFields(table) {
+		switch (table) {
+			case "ATO": return ["MEMBER_NO", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "MEMBER_TYPE", "CATEGORY", "TITLE", "CITY", "COUNTY", "COMPANY_SORT", "FULL_ADDRESS", "MAIN_FIRM_NO"];
+			case "Boom": return ["MEMBER_NO", "TRANSACTION_DATE", "Boom_TYPE", "DESCRIPTION", "PRODUCT_CODE", "THRU_DATE", "AMOUNT"];
+			case "Contact": return ["MEMBER_NO", "LAST_FIRST", "MIDDLE_NAME", "COMMENTS"];
+				defualt: return [];
+		}
+	}
+	/*
+	Remarks: Construct the query object by reading the contents of text fields where the corresponding button is
+	green and send the query object to the PersonController. 
+	*/
+	function processQuery() {
+		document.getElementById("loadingIcon").style.display = "block";
+		document.getElementById("tabBar").style.display = "block";
+		document.getElementById("queriesLoaded").innerHTML = 0;
+		let xhttp = new XMLHttpRequest();
+		xhttp.open("POST", '/api/insights', true);
+		let MOCKqueryResults;
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				var queryResults = this.response
+				queryResults = $.parseJSON(queryResults);
+				document.getElementById("queriesLoaded").innerHTML = document.getElementById("queriesLoaded").innerHTML + 1
+				displayResults(queryResults);
+				document.getElementById("queryResults").innerHTML = JSON.stringify(queryResults);
+			}
+		};
+		xhttp.setRequestHeader('Content-Type', 'application/json');
+		xhttp.send();
+	}
+	/*
+	Inputs: inputs - The query results from the controller
+	Remarks: Calls the method to wipe the data in all the tables and then 
+	calls the method to populate the tables with the appropriate header fields
+	*/
+	function displayResults(inputs) {
+		document.getElementById("loadingIcon").style.display = "none";
+		tableDemolisherAndDisplayer("ATO");
+		tableDemolisherAndDisplayer("Boom");
+		tableDemolisherAndDisplayer("Contact");
+		tableBuilder(inputs, "ATOResultsTable", ["AuthorisationTrainingOfficeID", "OrganisationID", "ParentATOID", "ATO_EndDate", "Authorisation_Stage", "Group_Authorisation", "Last_Authorisation_Date", "ATO_State", "ATO_Status"])
+		tableBuilder(inputs, "BoomResultsTable", ["Contact_ID", "BoomID", "OrganisationID", "icas_businessowner_ynname", "icas_manager_ynname", "icas_officer_ynname", "BOOM_State", "BOOM_Status"]);
+		tableBuilder(inputs, "ContactResultsTable", ["Contact_ID", "Birth_Date", "CA_Member_Number", "Company", "CPD_Exempt", "Customer_Sub_Type", "Customer_Type", "Date_Of_Joining_ICAS", "Effective_Removal_Date", "Gender", "Home_Address_City", "Home_Address_Country", "Home_Address_Postal_Code", "Job_Level", "Job_Title", "Member_Interests", "Parent_Customer_Name", "Reason_For_Leaving", "Contact_State", "Contact_Status", "Student_Contract_Start_Date", "Student_Contract_End_Date", "Student_ITP", "Student_Training_Firm", "Work_Address_Line_1", "Work_Address_Line_2", "Work_Address_Line_3", "Work_Address_City", "Work_Address_County"])
+	}
+</script>

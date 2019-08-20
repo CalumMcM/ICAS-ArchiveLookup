@@ -80,7 +80,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								JOIN Firm as f
 								on n.ID = f.ID " + criteria.queryGenerator() + " ORDER BY TRANSACTION_DATE DESC";
 
-			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
+			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["sql"].ConnectionString))
 			{
 				try
 				{

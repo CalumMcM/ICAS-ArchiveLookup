@@ -72,7 +72,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 							on n.ID = ar.ID 
 							where a.[ACTIVITY_TYPE] = 'LICENCE'" + criteria.queryGenerator() + " ORDER BY TRANSACTION_DATE DESC"; ;
 
-			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
+			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["sql"].ConnectionString))
 			{
 				try
 				{
