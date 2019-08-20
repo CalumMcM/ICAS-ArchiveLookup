@@ -82,7 +82,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 						JOIN Cert_Register as cr
 						on si.ID = cr.BT_ID " + criteria.queryGenerator() + " ORDER BY TRANSACTION_DATE DESC"; 
 
-			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
+			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["sql"].ConnectionString))
 			{
 				try
 				{

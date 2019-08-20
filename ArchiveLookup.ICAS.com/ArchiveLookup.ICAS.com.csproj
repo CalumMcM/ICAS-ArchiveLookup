@@ -185,6 +185,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\InsightsController.cs" />
     <Compile Include="Controllers\ExamController.cs" />
     <Compile Include="Controllers\LicenceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -196,8 +197,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Query.cs" />
     <Compile Include="Models\Exam.cs" />
+    <Compile Include="Models\Query.cs" />
+    <Compile Include="Models\Insight.cs" />
     <Compile Include="Models\ExamQuery.cs" />
     <Compile Include="Models\LicenceQuery.cs" />
     <Compile Include="Models\Licence.cs" />
@@ -269,6 +271,7 @@
     <Content Include="Views\Home\ProcessingChange.cshtml" />
     <Content Include="Views\Home\Examinations.cshtml" />
     <Content Include="Scripts\common.js" />
+    <Content Include="Views\Home\Insights.cshtml" />
     <None Include="Views\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

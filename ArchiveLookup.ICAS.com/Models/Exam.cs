@@ -9,18 +9,18 @@ namespace ArchiveLookup.ICAS.com.Models
 	{
 		public string MEMBER_NO { get; set; }
 		public string STUDENT_ID { get; set; }
-		public string FIRST_NAME { get; set; } 
-		public string MIDDLE_NAME { get; set; } 
+		public string FIRST_NAME { get; set; }
+		public string MIDDLE_NAME { get; set; }
 		public string LAST_NAME { get; set; }
 		public string CITY { get; set; }
 		public string STATE_PROVINCE { get; set; }
 		public string ZIP { get; set; }
-		public string COUNTRY { get; set; } 
+		public string COUNTRY { get; set; }
 		public string COUNTY { get; set; }
-		public string ROUTE_CODE { get; set; } 
+		public string ROUTE_CODE { get; set; }
 		public string ROUTE_SUB_CODE { get; set; }
 		public string INTAKE_YEAR { get; set; }
-		public string FIRM_NAME { get; set; } 
+		public string FIRM_NAME { get; set; }
 		public string TRANSACTION_DATE { get; set; }
 		public string DESCRIPTION { get; set; }
 		public string PRODUCT_CODE { get; set; }

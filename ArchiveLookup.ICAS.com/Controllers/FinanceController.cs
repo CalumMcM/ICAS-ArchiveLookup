@@ -51,7 +51,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								LEFT OUTER JOIN Invoice as i
 								on t.TRANS_NUMBER = i.REFERENCE_NUM " + criteria.queryGenerator() + " ORDER BY TRANSACTION_DATE DESC";
 
-			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["ArchiveLookup"].ConnectionString))
+			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["sql"].ConnectionString))
 			{
 				try
 				{
@@ -63,7 +63,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 					switch (e.Number)
 					{
 						case 2601: return persons;
-						default: return persons;
+						default: throw e;
 					}
 				}
 			}

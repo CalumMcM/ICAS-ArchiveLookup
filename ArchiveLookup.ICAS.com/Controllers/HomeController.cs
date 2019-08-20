@@ -9,13 +9,20 @@ namespace ArchiveLookup.ICAS.com.Controllers
 {
 	public class HomeController : Controller
 	{
+		private string _CurrentUsername = System.Web.HttpContext.Current.User.Identity.Name;
 		public ActionResult Index()
 		{
 			return View();
 		}
 		public ActionResult Finance()
 		{
-			return View();
+			if (!_CurrentUsername.EndsWith("cmcmeekin"))
+			{
+				return View();
+			} else
+			{
+				return new HttpStatusCodeResult(403);
+			}
 		}
 		public ActionResult ArchiveLookup()
 		{
@@ -26,6 +33,10 @@ namespace ArchiveLookup.ICAS.com.Controllers
 			return View();
 		}
 		public ActionResult Concession()
+		{
+			return View();
+		}
+		public ActionResult Insights()
 		{
 			return View();
 		}
