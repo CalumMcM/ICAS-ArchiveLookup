@@ -7,6 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Http;
 using System.Web.Routing;
+using log4net.Config;
 
 namespace ArchiveLookup.ICAS.com
 {
@@ -14,6 +15,7 @@ namespace ArchiveLookup.ICAS.com
     {
         protected void Application_Start()
         {
+			XmlConfigurator.Configure();
 			AreaRegistration.RegisterAllAreas();
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			GlobalConfiguration.Configure(WebApiConfig.Register);
