@@ -59,7 +59,6 @@ namespace ArchiveLookup.ICAS.com.Controllers
 				try
 				{
 					persons = connection.Query<Finance>(queryBase, criteria.ToDapperParameter()).ToList();
-					_Logger.Debug("Query came to a close");
 				}
 				catch (SqlException e)
 				{
