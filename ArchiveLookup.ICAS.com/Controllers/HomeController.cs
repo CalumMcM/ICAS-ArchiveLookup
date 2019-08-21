@@ -9,12 +9,13 @@ namespace ArchiveLookup.ICAS.com.Controllers
 {
 	public class HomeController : Controller
 	{
-		private string[] ChannelsAccess = new string[2] { "cmcmeekin", "mrawes" };
-		private string[] ConcessionAccess = new string[2] { "cmcmeekin", "mrawes" };
-		private string[] ExaminationsAccess= new string[2] { "cmcmeekin", "mrawes" };
-		private string[] FinanceAccess = new string[2] { "cmcmeekin", "mrawes" };
+		private string[] ChannelsAccess = new string[3] { "cmcmeekin", "mrawes", "mherriot" };
+		private string[] ConcessionAccess = new string[5] { "cmcmeekin", "mrawes", "rburns", "jshaw", "gfagan" };
+		private string[] ExaminationsAccess= new string[5] { "cmcmeekin", "mrawes", "rburns", "jshaw", "gfagan" };
+		private string[] FinanceAccess = new string[3] { "cmcmeekin", "mrawes", "sfuller" };
 		private string[] InsightsAccess = new string[2] { "cmcmeekin", "mrawes" };
-		private string[] LegalAccess = new string[3] { "cmcmeekin", "mrawes", "" };
+		private string[] LegalAccess = new string[4] { "cmcmeekin", "mrawes", "ispowart", "ncosans" };
+		private string[] ProcessingChangeAccess = new string[4] { "cmcmeekin", "mrawes", "jgrant", "rrichardson" };
 
 		private string _CurrentUsername = System.Web.HttpContext.Current.User.Identity.Name;
 		public ActionResult Index()
@@ -23,37 +24,80 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		}
 		public ActionResult Channels()
 		{
-			return View();
+			foreach (string username in ChannelsAccess)
+			{
+				if (_CurrentUsername.EndsWith(username))
+				{
+					return View();
+				}
+			}
+			return new HttpStatusCodeResult(403);
 		}
 		public ActionResult Concession()
 		{
-			return View();
+			foreach (string username in ConcessionAccess)
+			{
+				if (_CurrentUsername.EndsWith(username))
+				{
+					return View();
+				}
+			}
+			return new HttpStatusCodeResult(403);
 		}
 		public ActionResult Examinations()
 		{
-			return View();
+			foreach (string username in ExaminationsAccess)
+			{
+				if (_CurrentUsername.EndsWith(username))
+				{
+					return View();
+				}
+			}
+			return new HttpStatusCodeResult(403);
 		}
 		public ActionResult Finance()
 		{
-			if (!_CurrentUsername.EndsWith("cmcmeekin"))
+			foreach (string username in FinanceAccess)
 			{
-				return View();
-			} else
-			{
-				return new HttpStatusCodeResult(403);
+				if (_CurrentUsername.EndsWith(username))
+				{
+					return View();
+				}
 			}
+			return new HttpStatusCodeResult(403);
 		}
 		public ActionResult Insights()
 		{
-			return View();
+			foreach (string username in InsightsAccess)
+			{
+				if (_CurrentUsername.EndsWith(username))
+				{
+					return View();
+				}
+			}
+			return new HttpStatusCodeResult(403);
 		}
 		public ActionResult Legal()
 		{
-			return View();
+			foreach (string username in LegalAccess)
+			{
+				if (_CurrentUsername.EndsWith(username))
+				{
+					return View();
+				}
+			}
+			return new HttpStatusCodeResult(403);
 		}
 		public ActionResult ProcessingChange()
 		{
-			return View();
+			foreach (string username in ProcessingChangeAccess)
+			{
+				if (_CurrentUsername.EndsWith(username))
+				{
+					return View();
+				}
+			}
+			return new HttpStatusCodeResult(403);
 		}
 		public ActionResult ArchiveLookup()
 		{
