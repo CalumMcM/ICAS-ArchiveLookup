@@ -15,7 +15,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 {
 	public class TpsclassController : ApiController
 	{
-		private ILog _Logger = LogManager.GetLogger(typeof(FinanceController));
+		private ILog _Logger = LogManager.GetLogger(typeof(TpsclassController));
 		/*
 		 Inputs: criteria - The query which has the fields in TPSClassQuery
 		 Returns: A list of TPSClass objects
