@@ -9,11 +9,13 @@ using Dapper;
 using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Reflection;
+using log4net;
 
 namespace ArchiveLookup.ICAS.com.Controllers
 {
     public class LicenceController : ApiController
     {
+		private ILog _Logger = LogManager.GetLogger(typeof(FinanceController));
 		/*
 		 Inputs: criteria - The query which has the fields in LicenceQuery
 		 Returns: A list of Licence objects
@@ -80,6 +82,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 				}
 				catch (SqlException e)
 				{
+					_Logger.Error("Database Query Failed", e);
 					switch (e.Number)
 					{
 						//2601 = SQL Violation in unique index

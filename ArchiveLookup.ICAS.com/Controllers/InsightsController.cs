@@ -22,7 +22,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		public List<Insight> Post()
 		{
 			var persons = new List<Insight>();
-			var queryBase = @"SELECT TOP (1000) CONVERT (nvarchar(250), c.[ContactID] ) as [ContactID]
+			var queryBase = @"SELECT TOP (2000000) CONVERT (nvarchar(250), c.[ContactID] ) as [ContactID]
 							,CONVERT (nvarchar(250), c.[OrganisationKey] ) as [OrganisationKey]
 							,c.[EndDate]
 							,c.[Birth Date] as [Birth_Date]
@@ -144,7 +144,27 @@ namespace ArchiveLookup.ICAS.com.Controllers
 					}
 				}
 			}
+			createCSV(persons);
 			return persons;
+		}
+
+		public void createCSV(List<Insight> table)
+		{
+			string csv = "";
+			foreach (Insight record in table)
+			{
+				var properties = record.GetType().GetFields();
+				for (var i = 0; i < properties.Length; i++)
+				{
+					if (!(i == properties.Length - 1))
+					{
+						csv += (string)properties[i].GetValue(record) + ",";
+					} else
+					{
+						csv += (string)properties[i].GetValue(record) + "\n";
+					}
+				}
+			}
 		}
 	}
 }
