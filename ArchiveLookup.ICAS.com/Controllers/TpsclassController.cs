@@ -49,7 +49,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 					throw e;
 				}
 			}
-
+			_Logger.Debug("Response from database: " + persons);
 			return persons;
 		}
 
