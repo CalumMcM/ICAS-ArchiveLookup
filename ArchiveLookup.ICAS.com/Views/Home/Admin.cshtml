@@ -1,0 +1,188 @@
+﻿@{
+	ViewBag.Title = "Legal";
+}
+
+<div class="jumbotron">
+
+	<h1>
+		Admin
+	</h1>
+
+	<div id="tabBar" class="tabAdmin">
+		<button class="tablinks" onclick="changeTab(event, 'Concession')">Concession</button>
+		<button class="tablinks" onclick="changeTab(event, 'Channels')">Channels</button>
+		<button class="tablinks" onclick="changeTab(event, 'Examinations')">Examinations</button>
+		<button class="tablinks" onclick="changeTab(event, 'Finance')">Finance</button>
+		<button class="tablinks" onclick="changeTab(event, 'Insights')">Insights</button>
+		<button class="tablinks" onclick="changeTab(event, 'Legal')">Legal</button>
+		<button class="tablinks" onclick="changeTab(event, 'ProcessingChange')">Processing Change</button>
+	</div>
+
+	<div id="Concession" class="tabcontent">
+		<div class="onLineLeft">
+			<p id="ConcessionAddUser" class="lead">
+				Add User:
+				<input type="text" id="ConcessionAddUserTextInput" class="input-lookup" name="Concession" placeholder="Enter Username">
+			</p>
+			<button id="AddUserConcession" class="copyBtn" onclick="submitAction('Concession', 'Add')" style="margin-left: 10px; margin-right: 10px">+</button>
+			<p id="ConcessionRemoveUser" class="lead">
+				Remove User:
+				<input type="text" id="ConcessionRemoveUserTextInput" class="input-lookup" name="Concession" placeholder="Enter Username">
+			</p>
+			<button id="RemoveUserConcession" class="removeBtn" onclick="submitAction('Concession', 'Remove')">-</button>
+		</div>
+		<div id="ConcessionText"></div>
+	</div>
+	<div id="Channels" class="tabcontent">
+		<div class="onLineLeft">
+			<button id="AddUserChannels" class="copyBtn" onclick="submitAction('Channels')">+</button>
+			<button id="RemoveUserChannels" class="removeBtn" onclick="submitAction('Channels')">-</button>
+		</div>
+		<div id="ChannelsText"></div>
+	</div>
+
+	<div id="Examinations" class="tabcontent">
+		<div class="onLineLeft">
+			<button id="AddUserExaminations" class="copyBtn" onclick="submitAction('Examinations')">+</button>
+			<button id="RemoveUserExaminations" class="removeBtn" onclick="submitAction('Examinations')">-</button>
+		</div>
+		<div id="ExaminationsText"></div>
+	</div>
+
+	<div id="Finance" class="tabcontent">
+		<div class="onLineLeft">
+			<button id="AddUserFinance" class="copyBtn" onclick="submitAction('Finance')">+</button>
+			<button id="RemoveUserFinance" class="removeBtn" onclick="submitAction('Finance')">-</button>
+		</div>
+		<div id="FinanceText"></div>
+	</div>
+
+	<div id="Insights" class="tabcontent">
+		<div class="onLineLeft">
+			<button id="AddUserInsights" class="copyBtn" onclick="submitAction('Insights')">+</button>
+			<button id="RemoveUserInsights" class="removeBtn" onclick="submitAction('Insights')">-</button>
+		</div>
+		<div id="InsightsText"></div>
+	</div>
+
+	<div id="Legal" class="tabcontent">
+		<div class="onLineLeft">
+			<button id="AddUserLegal" class="copyBtn" onclick="submitAction('Legal')">+</button>
+			<button id="RemoveUserLegal" class="removeBtn" onclick="submitAction('Legal')">-</button>
+		</div>
+		<div id="LegalText"></div>
+	</div>
+
+	<div id="ProcessingChange" class="tabcontent">
+		<div class="onLineLeft">
+			<button id="AddUserProcessingChange" class="copyBtn" onclick="submitAction('ProcessingChange')">+</button>
+			<button id="RemoveUserProcessingChange" class="removeBtn" onclick="submitAction('ProcessingChange')">-</button>
+		</div>
+		<div id="ProcessingChangeText"></div>
+	</div>
+
+	<div id="Admin" class="tabcontent">
+		<div class="onLineLeft">
+			<button id="AddUserAdmin" class="copyBtn" onclick="submitAction('Admin')">+</button>
+			<button id="RemoveUserAdmin" class="removeBtn" onclick="submitAction('Admin')">-</button>
+		</div>
+		<div id="AdminText"></div>
+	</div>
+	<p id="queryResults" class="queryResults"></p>
+</div>
+<script src="~/Scripts/moment.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="~/Scripts/lodashCore.js" type="text/javascript"></script>
+<script src="~/Scripts/common.js" type="text/javascript"></script>
+<script>
+	function submitAction(tabName, action) {
+		let textFieldValue = document.getElementById(tabName + action + 'UserTextInput').value;
+		console.log(textFieldValue)
+	}
+	function changeTab(evt, tabName) {
+		var i, tabcontent, tablinks;
+
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
+
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+		}
+
+		document.getElementById(tabName).style.display = "block";
+		evt.currentTarget.tabName += " active";
+		document.getElementById('AddUser' + tabName).style.display = 'block';
+		document.getElementById(tabName + 'AddUser').style.display = 'block';
+		document.getElementById(tabName + 'RemoveUser').style.display = 'block';
+		document.getElementById(tabName + 'AddUserTextInput').style.display = 'block';
+		document.getElementById(tabName + 'RemoveUserTextInput').style.display = 'block';
+		loadData(tabName);
+	}
+	function loadData(tabName) {
+		let xhttp = new XMLHttpRequest();
+		xhttp.open("POST", '/api/adminget', true);
+		let MOCKqueryResults;
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				var queryResults = this.response
+				queryResults = $.parseJSON(queryResults);
+				document.getElementById("queryResults").innerHTML = JSON.stringify(queryResults);
+				displayResults(tabName);
+			}
+		};
+		xhttp.setRequestHeader('Content-Type', 'application/json');
+		xhttp.send(JSON.stringify(tabName));
+	}
+	function processQuery() {
+		document.getElementById("loadingIcon").style.display = "block";
+		document.getElementById("tabBar").style.display = "block";
+		document.getElementById("queriesLoaded").innerHTML = 0;
+		let btnNames = getBtnNames();
+		let classNames = getClassNames();
+		let inputs = {}
+		let dateTypesObjects = $('input[type=date]').map(function () { return this.id; }).get();
+		for (let button in btnNames) {
+			if (document.getElementById(btnNames[button] + "InputButton").style.backgroundColor == "rgb(32, 166, 75)") {
+				if (dateTypesObjects.includes(btnNames[button] + "input")) {
+					inputs[classNames[button]] = moment(document.getElementById(btnNames[button] + "Input").value).format('YYYY-MM-DDT00:00:00');
+				}
+				else {
+					if (btnNames[button] + "Input")
+					inputs[classNames[button]] = document.getElementById(btnNames[button] + "Input").value;
+				}
+			}
+		}
+		let xhttp = new XMLHttpRequest();
+		xhttp.open("POST", '/api/person', true);
+		let MOCKqueryResults;
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				var queryResults = this.response
+				queryResults = $.parseJSON(queryResults);
+				document.getElementById("queriesLoaded").innerHTML = document.getElementById("queriesLoaded").innerHTML + 1
+				displayResults(queryResults);
+				document.getElementById("queryResults").innerHTML = JSON.stringify(queryResults);
+			}
+		};
+		xhttp.setRequestHeader('Content-Type', 'application/json');
+		xhttp.send(JSON.stringify(inputs));
+
+	}
+	/*
+	Inputs: inputs - The query results from the controller
+	Remarks: Calls the method to wipe the data in all the tables and then 
+	calls the method to populate the tables with the appropriate header fields
+	*/
+	function displayResults(tabName) {
+		console.log(tabName);
+		let queryResults = JSON.parse(document.getElementById("queryResults").innerHTML);
+		let tab = document.getElementById(tabName + "Text");
+		tab.innerHTML = '';
+		for (let i = 0; i < queryResults.length; ++i) {
+			tab.innerHTML += queryResults[i]['UserName'] + '<br>';
+		}
+	}
+</script>

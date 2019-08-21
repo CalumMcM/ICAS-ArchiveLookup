@@ -18,7 +18,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		private string[] ProcessingChangeAccess = new string[6] { "cmcmeekin", "egillon", "gfarrell", "mikerawes", "jgrant", "rrichardson" };
 
 		private string _CurrentUsername = System.Web.HttpContext.Current.User.Identity.Name;
-		public ActionResult Index()
+		public ActionResult Admin()
 		{
 			return View();
 		}
