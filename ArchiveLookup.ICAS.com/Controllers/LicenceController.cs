@@ -15,7 +15,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 {
     public class LicenceController : ApiController
     {
-		private ILog _Logger = LogManager.GetLogger(typeof(FinanceController));
+		private ILog _Logger = LogManager.GetLogger(typeof(LicenceController));
 		/*
 		 Inputs: criteria - The query which has the fields in LicenceQuery
 		 Returns: A list of Licence objects
@@ -89,6 +89,11 @@ namespace ArchiveLookup.ICAS.com.Controllers
 						case 2601: return persons;
 						default: return persons;
 					}
+				}
+				catch (Exception e)
+				{
+					_Logger.Error("Exception occurred", e);
+					throw e;
 				}
 			}
 			return persons;

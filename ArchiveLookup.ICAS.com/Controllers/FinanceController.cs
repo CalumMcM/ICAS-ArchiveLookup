@@ -11,7 +11,6 @@ using System.Data.SqlClient;
 using System.Reflection;
 using System.Diagnostics;
 using log4net;
-using log4net.Config;
 
 namespace ArchiveLookup.ICAS.com.Controllers
 {

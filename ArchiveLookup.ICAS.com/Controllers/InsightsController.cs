@@ -9,11 +9,13 @@ using Dapper;
 using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Reflection;
+using log4net;
 
 namespace ArchiveLookup.ICAS.com.Controllers
 {
     public class InsightsController : ApiController
 	{
+		private ILog _Logger = LogManager.GetLogger(typeof(InsightsController));
 		/*
 		 Returns: A list of Insight objects
 		 Remark: Constructs the query which is executed on the imis database and returns the results as a 
@@ -22,7 +24,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		public List<Insight> Post()
 		{
 			var persons = new List<Insight>();
-			var queryBase = @"SELECT TOP (2000000) CONVERT (nvarchar(250), c.[ContactID] ) as [ContactID]
+			var queryBase = @"SELECT TOP (1000) CONVERT (nvarchar(250), c.[ContactID] ) as [ContactID]
 							,CONVERT (nvarchar(250), c.[OrganisationKey] ) as [OrganisationKey]
 							,c.[EndDate]
 							,c.[Birth Date] as [Birth_Date]
@@ -136,6 +138,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 				}
 				catch (SqlException e)
 				{
+					_Logger.Error("Database Query Failed", e);
 					switch (e.Number)
 					{
 						//2601 = SQL Violation in unique index
@@ -143,8 +146,13 @@ namespace ArchiveLookup.ICAS.com.Controllers
 						default: return persons;
 					}
 				}
+				catch (Exception e)
+				{
+					_Logger.Error("Exception occurred", e);
+					throw e;
+				}
 			}
-			createCSV(persons);
+			//createCSV(persons);
 			return persons;
 		}
 
