@@ -37,7 +37,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		{
 			foreach (string username in ConcessionAccess)
 			{
-				if (!_CurrentUsername.EndsWith(username))
+				if (_CurrentUsername.EndsWith(username))
 				{
 					return View();
 				}
