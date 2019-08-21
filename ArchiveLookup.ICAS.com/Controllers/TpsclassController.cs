@@ -27,7 +27,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 			var persons = new List<TPSClass>();
 			var queryBase = @"EXEC DBO.TPSClassSelect @START_DATE, @END_DATE, " + queryGenerator(criteria, true);
 
-			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["dwdevAzure"].ConnectionString))
+			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["dwliveAzure"].ConnectionString))
 			{
 				try
 				{
@@ -49,7 +49,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 					throw e;
 				}
 			}
-
+			_Logger.Debug("Response from database: " + persons);
 			return persons;
 		}
 

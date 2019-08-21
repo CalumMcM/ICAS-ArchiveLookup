@@ -21,7 +21,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		 Remark: Constructs the query which is executed on the imis database and returns the results as a 
 		 list of Insight objects where each Insight is a record that was returned
 		*/
-		public List<Insight> Post()
+		public List<Insight> Post(string go)
 		{
 			var persons = new List<Insight>();
 			var queryBase = @"SELECT TOP (1000) CONVERT (nvarchar(250), c.[ContactID] ) as [ContactID]
@@ -155,7 +155,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 			//createCSV(persons);
 			return persons;
 		}
-
+		/*
 		public void createCSV(List<Insight> table)
 		{
 			string csv = "";
@@ -174,5 +174,6 @@ namespace ArchiveLookup.ICAS.com.Controllers
 				}
 			}
 		}
+		*/
 	}
 }

@@ -9,13 +9,13 @@ namespace ArchiveLookup.ICAS.com.Controllers
 {
 	public class HomeController : Controller
 	{
-		private string[] ChannelsAccess = new string[3] { "cmcmeekin", "mikerawes", "mherriot" };
-		private string[] ConcessionAccess = new string[5] { "cmcmeekin", "mikerawes", "rburns", "jshaw", "gfagan" };
-		private string[] ExaminationsAccess= new string[5] { "cmcmeekin", "mikerawes", "rburns", "jshaw", "gfagan" };
-		private string[] FinanceAccess = new string[3] { "cmcmeekin", "mikerawes", "sfuller" };
-		private string[] InsightsAccess = new string[2] { "cmcmeekin", "mikerawes" };
-		private string[] LegalAccess = new string[4] { "cmcmeekin", "mikerawes", "ispowart", "ncosans" };
-		private string[] ProcessingChangeAccess = new string[4] { "cmcmeekin", "mikerawes", "jgrant", "rrichardson" };
+		private string[] ChannelsAccess = new string[5] { "cmcmeekin", "mikerawes", "egillon", "gfarrell", "mherriot" };
+		private string[] ConcessionAccess = new string[7] { "cmcmeekin", "mikerawes", "egillon", "gfarrell", "rburns", "jshaw", "gfagan" };
+		private string[] ExaminationsAccess= new string[7] { "cmcmeekin", "mikerawes", "egillon", "gfarrell", "rburns", "jshaw", "gfagan" };
+		private string[] FinanceAccess = new string[5] { "cmcmeekin", "mikerawes", "egillon", "gfarrell", "sfuller" };
+		private string[] InsightsAccess = new string[4] { "cmcmeekin", "mikerawes", "egillon", "gfarrell", };
+		private string[] LegalAccess = new string[6] { "cmcmeekin", "mikerawes", "egillon", "gfarrell", "ispowart", "ncosans" };
+		private string[] ProcessingChangeAccess = new string[6] { "cmcmeekin", "egillon", "gfarrell", "mikerawes", "jgrant", "rrichardson" };
 
 		private string _CurrentUsername = System.Web.HttpContext.Current.User.Identity.Name;
 		public ActionResult Index()
