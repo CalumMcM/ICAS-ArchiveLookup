@@ -43,6 +43,11 @@ namespace ArchiveLookup.ICAS.com.Controllers
 						default: return persons;
 					}
 				}
+				catch (Exception e)
+				{
+					_Logger.Error("Exception occurred", e);
+					throw e;
+				}
 			}
 
 			return persons;

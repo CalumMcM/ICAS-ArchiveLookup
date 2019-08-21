@@ -138,13 +138,18 @@ namespace ArchiveLookup.ICAS.com.Controllers
 				}
 				catch (SqlException e)
 				{
+					_Logger.Error("Database Query Failed", e);
 					switch (e.Number)
 					{
-						_Logger.Error("Database Query Failed", e);
 						//2601 = SQL Violation in unique index
 						case 2601: return persons;
 						default: return persons;
 					}
+				}
+				catch (Exception e)
+				{
+					_Logger.Error("Exception occurred", e);
+					throw e;
 				}
 			}
 			//createCSV(persons);

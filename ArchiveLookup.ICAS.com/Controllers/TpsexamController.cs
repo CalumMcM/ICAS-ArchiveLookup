@@ -9,11 +9,13 @@ using Dapper;
 using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Reflection;
+using log4net;
 
 namespace ArchiveLookup.ICAS.com.Controllers
 {
 	public class TpsexamController : ApiController
 	{
+		private ILog _Logger = LogManager.GetLogger(typeof(TpsexamController));
 		/*
 		 Inputs: criteria - The query which has the fields in TPSClassQuery
 		 Returns: A list of TPSClass objects
@@ -39,6 +41,11 @@ namespace ArchiveLookup.ICAS.com.Controllers
 						case 2601: return persons;
 						default: return persons;
 					}
+				}
+				catch (Exception e)
+				{
+					_Logger.Error("Exception occurred", e);
+					throw e;
 				}
 			}
 

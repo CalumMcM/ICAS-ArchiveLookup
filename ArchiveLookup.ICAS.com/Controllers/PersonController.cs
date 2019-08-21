@@ -9,11 +9,13 @@ using Dapper;
 using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Reflection;
+using log4net;
 
 namespace ArchiveLookup.ICAS.com.Controllers
 {
     public class PersonController : ApiController
     {
+		private ILog _Logger = LogManager.GetLogger(typeof(PersonController));
 		/*
 		 Inputs: criteria - The query which has the fields in PersonQuery
 		 Returns: A list of Person objects
@@ -88,12 +90,18 @@ namespace ArchiveLookup.ICAS.com.Controllers
 				}
 				catch (SqlException e)
 				{
+					_Logger.Error("Database Query Failed", e);
 					switch (e.Number)
 					{
 						//2601 = SQL Violation in unique index
 						case 2601: return persons;
 						default: return persons;
 					}
+				}
+				catch (Exception e)
+				{
+					_Logger.Error("Exception occurred", e);
+					throw e;
 				}
 			}
 
