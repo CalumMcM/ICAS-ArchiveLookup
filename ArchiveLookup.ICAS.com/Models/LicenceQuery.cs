@@ -70,7 +70,7 @@ namespace ArchiveLookup.ICAS.com.Models
 		*/
 		public override string queryGenerator()
 		{
-			var properties = this.GetType().GetProperties();
+			var properties = this.GetType().GetFields();
 			var propertyName = properties[0].Name;
 			var query = "";
 			for (var i = 0; i < properties.Length; i++)

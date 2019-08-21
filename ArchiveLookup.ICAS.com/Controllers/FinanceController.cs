@@ -10,11 +10,14 @@ using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Diagnostics;
+using log4net;
+using log4net.Config;
 
 namespace ArchiveLookup.ICAS.com.Controllers
 {
 	public class FinanceController : ApiController
-	{       
+	{
+		private ILog _Logger = LogManager.GetLogger(typeof(FinanceController));
 		/*
 		 Inputs: criteria - The query which has the fields in FinanceQuery
 		 Returns: A list of Finance objects
@@ -59,6 +62,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 				}
 				catch (SqlException e)
 				{
+					_Logger.Error("Database Query Failed", e);
 					//2601 = SQL Violation in unique index
 					switch (e.Number)
 					{
