@@ -94,6 +94,7 @@
 		<div class="copySelectDropdown">
 			<button id="CustomerscopyButton" onclick="copy('Customers')" class="copyBtn">&#x1F4CB</button>
 			<button id="CustomerscopySelectButton" onclick="showCopyDropdown('Customers')" class="copyBtn">+</button>
+			<div id="recordCountCustomersResultsTable" class="recordCount"></div>
 			<div id="CustomersDropdown" class="copySelectDropdown-content">
 				<button id="idCCopyButton" onclick="copySelectButton('idCopy', 'Customers')" class="addBtn">IMIS ID</button>
 				<button id="mkCCopyButton" onclick="copySelectButton('mkCCopy', 'Customers')" class="addBtn">Member No.</button>
@@ -113,6 +114,7 @@
 		<div class="copySelectDropdown">
 			<button id="FirmcopyButton" onclick="copy('Firm')" class="copyBtn">&#x1F4CB</button>
 			<button id="FirmcopySelectButton" onclick="showCopyDropdown('Firm')" class="copyBtn">+</button>
+			<div id="recordCountFirmResultsTable" class="recordCount"></div>
 			<div id="FirmDropdown" class="copySelectDropdown-content">
 				<button id="mkFCopyButton" onclick="copySelectButton('mkFCopy', 'Firm')" class="addBtn">Member No.</button>
 				<button id="snFCopyButton" onclick="copySelectButton('snFCopy', 'Firm')" class="addBtn">Sort Name</button>
@@ -135,6 +137,7 @@
 		<div class="copySelectDropdown">
 			<button id="ActivitycopyButton" onclick="copy('Activity')" class="copyBtn">&#x1F4CB</button>
 			<button id="ActivitycopySelectButton" onclick="showCopyDropdown('Activity')" class="copyBtn">+</button>
+			<div id="recordCountActivityResultsTable" class="recordCount"></div>
 			<div id="ActivityDropdown" class="copySelectDropdown-content">
 				<button id="mkACopyButton" onclick="copySelectButton('mkACopy', 'Activity')" class="addBtn">Member No.</button>
 				<button id="descACopyButton" onclick="copySelectButton('descACopy', 'Activity')" class="addBtn">Description</button>
@@ -157,6 +160,7 @@
 		<div class="copySelectDropdown">
 			<button id="PIILicensecopyButton" onclick="copy('PIILicense')" class="copyBtn">&#x1F4CB</button>
 			<button id="PIILicensecopySelectButton" onclick="showCopyDropdown('PIILicense')" class="copyBtn">+</button>
+			<div id="recordCountPIILicenseResultsTable" class="recordCount"></div>
 			<div id="PIILicenseDropdown" class="copySelectDropdown-content">
 				<button id="mkPIICopyButton" onclick="copySelectButton('mkPIICopy', 'PIILicense')" class="addBtn">Member No.</button>
 				<button id="fnPIICopyButton" onclick="copySelectButton('fnPIICopy', 'PIILicense')" class="addBtn">Firm No.</button>
@@ -177,6 +181,7 @@
 		<div class="copySelectDropdown">
 			<button id="DPBLicensecopyButton" onclick="copy('DPBLicense')" class="copyBtn">&#x1F4CB</button>
 			<button id="DPBLicensecopySelectButton" onclick="showCopyDropdown('DPBLicense')" class="copyBtn">+</button>
+			<div id="recordCountDPBLicenseResultsTable" class="recordCount"></div>
 			<div id="DPBLicenseDropdown" class="copySelectDropdown-content">
 				<button id="mkDPBCopyButton" onclick="copySelectButton('mkDPBCopy', 'DPBLicense')" class="addBtn">Member No.</button>
 				<button id="fnDPBCopyButton" onclick="copySelectButton('fnDPBCopy', 'DPBLicense')" class="addBtn">Firm No.</button>
@@ -197,6 +202,7 @@
 		<div class="copySelectDropdown">
 			<button id="ARLicensecopyButton" onclick="copy('ARLicense')" class="copyBtn">&#x1F4CB</button>
 			<button id="ARLicensecopySelectButton" onclick="showCopyDropdown('ARLicense')" class="copyBtn">+</button>
+			<div id="recordCountARLicenseResultsTable" class="recordCount"></div>
 			<div id="ARLicenseDropdown" class="copySelectDropdown-content">
 				<button id="mkARCopyButton" onclick="copySelectButton('mkARCopy', 'ARLicense')" class="addBtn">Member No.</button>
 				<button id="fnARCopyButton" onclick="copySelectButton('fnARCopy', 'ARLicense')" class="addBtn">Firm No.</button>
