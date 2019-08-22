@@ -151,6 +151,7 @@ the headers to it. Then fill each appropriate field value to its corresponding h
 ensuring that duplicate records are not displayed
 */
 function tableBuilder(queryResults, tableName, headers) {
+	let recordCount = 0;
 	let table = document.getElementById(tableName);
 	let headerTable = table.createTHead();
 	let headerRowTable = table.insertRow(0);
@@ -175,8 +176,11 @@ function tableBuilder(queryResults, tableName, headers) {
 			let recordsEqual = newInputs.map(curRecord => _.isEqual(newRecord, curRecord));
 			if (!recordsEqual.includes(true)) {
 				newInputs.push(newRecord);
+				++recordCount;
 			}
 		}
+		console.log(tableName);
+		document.getElementById('recordCount' + tableName).innerHTML = "Total Record Count: " + recordCount;
 		for (let record in newInputs) {
 			let curRecord = newInputs[record];
 			let recordValues = Object.values(newInputs[record]);

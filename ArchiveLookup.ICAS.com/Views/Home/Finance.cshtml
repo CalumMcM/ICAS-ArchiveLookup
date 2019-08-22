@@ -94,6 +94,7 @@
 		<div class="copySelectDropdown">
 			<button id="CustomerscopyButton" onclick="copy('Customers')" class="copyBtn">&#x1F4CB</button>
 			<button id="CustomerscopySelectButton" onclick="showCopyDropdown('Customers')" class="copyBtn">+</button>
+			<div id="recordCountCustomersResultsTable" class="recordCount"></div>
 			<div id="CustomersDropdown" class="copySelectDropdown-content">
 				<button id="mkCCopyButton" onclick="copySelectButton('mkCCopy', 'Customers')" class="addBtn">Member No.</button>
 				<button id="surnameCCopyButton" onclick="copySelectButton('surnameCCopy', 'Customers')" class="addBtn">Last Name</button>
@@ -121,6 +122,7 @@
 		<div class="copySelectDropdown">
 			<button id="InvoicescopyButton" onclick="copy('Invoices')" class="copyBtn">&#x1F4CB</button>
 			<button id="InvoicescopySelectButton" onclick="showCopyDropdown('Invoices')" class="copyBtn">+</button>
+			<div id="recordCountInvoicesResultsTable" class="recordCount"></div>
 			<div id="InvoicesDropdown" class="copySelectDropdown-content">
 				<button id="mkICopyButton" onclick="copySelectButton('mkICopy', 'Invoices')" class="addBtn">Member No.</button>
 				<button id="invdateICopyButton" onclick="copySelectButton('invdateICopy', 'Invoices')" class="addBtn">Invoice Date</button>
@@ -143,6 +145,7 @@
 		<div class="copySelectDropdown">
 			<button id="TransactionscopyButton" onclick="copy('Transactions')" class="copyBtn">&#x1F4CB</button>
 			<button id="TransactionscopySelectButton" onclick="showCopyDropdown('Transactions')" class="copyBtn">+</button>
+			<div id="recordCountTransactionsResultsTable" class="recordCount"></div>
 			<div id="TransactionsDropdown" class="copySelectDropdown-content">
 				<button id="mkTCopyButton" onclick="copySelectButton('mkTCopy', 'Transactions')" class="addBtn">Member No.</button>
 				<button id="transdateTCopyButton" onclick="copySelectButton('transdateTCopy', 'Transactions')" class="addBtn">Transaction Date</button>
@@ -162,6 +165,7 @@
 		<div class="copySelectDropdown">
 			<button id="ActivitycopyButton" onclick="copy('Activity')" class="copyBtn">&#x1F4CB</button>
 			<button id="ActivitycopySelectButton" onclick="showCopyDropdown('Activity')" class="copyBtn">+</button>
+			<div id="recordCountActivityResultsTable" class="recordCount"></div>
 			<div id="ActivityDropdown" class="copySelectDropdown-content">
 				<button id="mkACopyButton" onclick="copySelectButton('mkACopy', 'Activity')" class="addBtn">Member No.</button>
 				<button id="transACopyButton" onclick="copySelectButton('transACopy', 'Activity')" class="addBtn">Transaction Date</button>
@@ -184,6 +188,7 @@
 		<div class="copySelectDropdown">
 			<button id="CustomerNotescopyButton" onclick="copy('CustomerNotes')" class="copyBtn">&#x1F4CB</button>
 			<button id="CustomerNotescopySelectButton" onclick="showCopyDropdown('CustomerNotes')" class="copyBtn">+</button>
+			<div id="recordCountCustomerNotesResultsTable" class="recordCount"></div>
 			<div id="CustomerNotesDropdown" class="copySelectDropdown-content">
 				<button id="mkCNCopyButton" onclick="copySelectButton('mkCNCopy', 'CustomerNotes')" class="addBtn">Member No.</button>
 				<button id="lastfirstCNCopyButton" onclick="copySelectButton('lastfirstCNCopy', 'CustomerNotes')" class="addBtn">Last First</button>
@@ -349,6 +354,7 @@
 	ensuring that duplicate records are not displayed
 	*/
 	function tableBuilder(queryResults, tableName, headers) {
+		let recordCount = 0;
 		let table = document.getElementById(tableName);
 		let headerTable = table.createTHead();
 		let headerRowTable = table.insertRow(0);
@@ -377,8 +383,11 @@
 				let recordsEqual = newInputs.map(curRecord => _.isEqual(newRecord, curRecord));
 				if (!recordsEqual.includes(true)) {
 					newInputs.push(newRecord);
+					++recordCount;
 				}
 			}
+			console.log(tableName);
+			document.getElementById('recordCount' + tableName).innerHTML = "Total Record Count is: " + recordCount;
 			for (let record in newInputs) {
 				let curRecord = newInputs[record];
 				let recordValues = Object.values(newInputs[record]);
