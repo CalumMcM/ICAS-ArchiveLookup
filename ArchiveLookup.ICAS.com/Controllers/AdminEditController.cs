@@ -22,9 +22,9 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		 Remark: Constructs the query which is executed on the imis database and returns the results as a 
 		 list of Licence objects where each Licence is a record that was returned
 		*/
-		public bool Post([FromBody]PageAccessQuery pageAccess)
+		public bool Post([FromBody]AdminQuery AdminQuery)
 		{
-			if (true)
+			if (AdminQuery.AdminAction == "Add")
 			{
 				var persons = new List<PageAccess>();
 				var queryBase = @"INSERT INTO dbo.PageAccess(UserName, PageName) VALUES(@UserName, @PageName)";
@@ -32,7 +32,35 @@ namespace ArchiveLookup.ICAS.com.Controllers
 				{
 					try
 					{
-						connection.Execute(queryBase, pageAccess.ToDapperParameter());
+						connection.Execute(queryBase, AdminQuery.ToDapperParameter());
+					}
+					catch (SqlException e)
+					{
+						_Logger.Error("Database Query Failed", e);
+						switch (e.Number)
+						{
+							//2601 = SQL Violation in unique index
+							case 2601: return false;
+							default: return false;
+						}
+					}
+					catch (Exception e)
+					{
+						_Logger.Error("Exception occurred", e);
+						throw e;
+					}
+				}
+				return true;
+			}
+			else if(AdminQuery.AdminAction == "Remove")
+			{
+				var persons = new List<PageAccess>();
+				var queryBase = @"INSERT INTO dbo.PageAccess(UserName, PageName) VALUES(@UserName, @PageName)";
+				using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["sqlArchiveLookup"].ConnectionString))
+				{
+					try
+					{
+						connection.Execute(queryBase, AdminQuery.ToDapperParameter());
 					}
 					catch (SqlException e)
 					{

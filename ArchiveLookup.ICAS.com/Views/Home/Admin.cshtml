@@ -97,7 +97,19 @@
 <script>
 	function submitAction(tabName, action) {
 		let textFieldValue = document.getElementById(tabName + action + 'UserTextInput').value;
-		console.log(textFieldValue)
+		let AdminQuery = {};
+		AdminQuery['UserName'] = textFieldValue;
+		AdminQuery['AdminAction'] = action;
+		let query = new XMLHttpRequest();
+		query.open("POST", '/api/adminedit', true);
+		let MOCKqueryResults;
+		query.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				loadData(tabName);
+			}
+		};
+		query.setRequestHeader('Content-Type', 'application/json');
+		query.send(JSON.stringify(tabName));
 	}
 	function changeTab(evt, tabName) {
 		var i, tabcontent, tablinks;
