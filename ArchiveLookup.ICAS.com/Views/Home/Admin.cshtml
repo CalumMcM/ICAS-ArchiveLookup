@@ -1,0 +1,253 @@
+﻿@{
+	ViewBag.Title = "Legal";
+}
+
+<div class="jumbotron">
+
+	<h1>
+		Admin
+	</h1>
+
+	<div id="tabBar" class="tabAdmin">
+		<button id="ConcessionTabButton" class="tablinks" onclick="changeTab(event, 'Concession')">Concession</button>
+		<button id="ChannelsTabButton" class="tablinks" onclick="changeTab(event, 'Channels')">Channels</button>
+		<button id="ExaminationsTabButton" class="tablinks" onclick="changeTab(event, 'Examinations')">Examinations</button>
+		<button id="FinanceTabButton" class="tablinks" onclick="changeTab(event, 'Finance')">Finance</button>
+		<button id="InsightsTabButton" class="tablinks" onclick="changeTab(event, 'Insights')">Insights</button>
+		<button id="LegalTabButton" class="tablinks" onclick="changeTab(event, 'Legal')">Legal</button>
+		<button id="ProcessingChangeTabButton" class="tablinks" onclick="changeTab(event, 'ProcessingChange')">Processing Change</button>
+		<button id="AdminTabButton" class="tablinks" onclick="changeTab(event, 'Admin')">Admin</button>
+	</div>
+
+	<div id="Concession" class="tabcontent">
+		<div class="onLineLeft">
+			<p id="ConcessionAddUser" class="lead">
+				Add User:
+				<input type="text" id="ConcessionAddUserTextInput" class="input-lookup" name="Concession" placeholder="Enter Username">
+			</p>
+			<button id="AddUserConcession" class="copyBtn" onclick="submitAction('Concession', 'Add')" style="margin-left: 10px; margin-right: 10px">+</button>
+			<p id="ConcessionRemoveUser" class="lead">
+				Remove User:
+				<input type="text" id="ConcessionRemoveUserTextInput" class="input-lookup" name="Concession" placeholder="Enter Username">
+			</p>
+			<button id="RemoveUserConcession" class="removeBtn" onclick="submitAction('Concession', 'Remove')">-</button>
+		</div>
+		<div id="ConcessionText"></div>
+	</div>
+	<div id="Channels" class="tabcontent">
+		<div class="onLineLeft">
+			<p id="ChannelsAddUser" class="lead">
+				Add User:
+				<input type="text" id="ChannelsAddUserTextInput" class="input-lookup" name="Channels" placeholder="Enter Username">
+			</p>
+			<button id="AddUserChannels" class="copyBtn" onclick="submitAction('Channels', 'Add')" style="margin-left: 10px; margin-right: 10px">+</button>
+			<p id="ChannelsRemoveUser" class="lead">
+				Remove User:
+				<input type="text" id="ChannelsRemoveUserTextInput" class="input-lookup" name="Channels" placeholder="Enter Username">
+			</p>
+			<button id="RemoveUserChannels" class="removeBtn" onclick="submitAction('Channels', 'Remove')">-</button>
+		</div>
+		<div id="ChannelsText"></div>
+	</div>
+
+	<div id="Examinations" class="tabcontent">
+		<div class="onLineLeft">
+			<p id="ExaminationsAddUser" class="lead">
+				Add User:
+				<input type="text" id="ExaminationsAddUserTextInput" class="input-lookup" name="Examinations" placeholder="Enter Username">
+			</p>
+			<button id="AddUserExaminations" class="copyBtn" onclick="submitAction('Examinations', 'Add')" style="margin-left: 10px; margin-right: 10px">+</button>
+			<p id="ExaminationsRemoveUser" class="lead">
+				Remove User:
+				<input type="text" id="ExaminationsRemoveUserTextInput" class="input-lookup" name="Examinations" placeholder="Enter Username">
+			</p>
+			<button id="RemoveUserExaminations" class="removeBtn" onclick="submitAction('Examinations', 'Remove')">-</button>
+		</div>
+		<div id="ExaminationsText"></div>
+	</div>
+
+	<div id="Finance" class="tabcontent">
+		<div class="onLineLeft">
+			<p id="FinanceAddUser" class="lead">
+				Add User:
+				<input type="text" id="FinanceAddUserTextInput" class="input-lookup" name="Finance" placeholder="Enter Username">
+			</p>
+			<button id="AddUserFinance" class="copyBtn" onclick="submitAction('Finance', 'Add')" style="margin-left: 10px; margin-right: 10px">+</button>
+			<p id="FinanceRemoveUser" class="lead">
+				Remove User:
+				<input type="text" id="FinanceRemoveUserTextInput" class="input-lookup" name="Finance" placeholder="Enter Username">
+			</p>
+			<button id="RemoveUserFinance" class="removeBtn" onclick="submitAction('Finance', 'Remove')">-</button>
+		</div>
+		<div id="FinanceText"></div>
+	</div>
+
+	<div id="Insights" class="tabcontent">
+		<div class="onLineLeft">
+			<p id="InsightsAddUser" class="lead">
+				Add User:
+				<input type="text" id="InsightsAddUserTextInput" class="input-lookup" name="Insights" placeholder="Enter Username">
+			</p>
+			<button id="AddUserInsights" class="copyBtn" onclick="submitAction('Insights', 'Add')" style="margin-left: 10px; margin-right: 10px">+</button>
+			<p id="InsightsRemoveUser" class="lead">
+				Remove User:
+				<input type="text" id="InsightsRemoveUserTextInput" class="input-lookup" name="Insights" placeholder="Enter Username">
+			</p>
+			<button id="RemoveUserInsights" class="removeBtn" onclick="submitAction('Insights', 'Remove')">-</button>
+		</div>
+		<div id="InsightsText"></div>
+	</div>
+
+	<div id="Legal" class="tabcontent">
+		<div class="onLineLeft">
+			<p id="LegalAddUser" class="lead">
+				Add User:
+				<input type="text" id="LegalAddUserTextInput" class="input-lookup" name="Legal" placeholder="Enter Username">
+			</p>
+			<button id="AddUserLegal" class="copyBtn" onclick="submitAction('Legal', 'Add')" style="margin-left: 10px; margin-right: 10px">+</button>
+			<p id="LegalRemoveUser" class="lead">
+				Remove User:
+				<input type="text" id="LegalRemoveUserTextInput" class="input-lookup" name="Legal" placeholder="Enter Username">
+			</p>
+			<button id="RemoveUserLegal" class="removeBtn" onclick="submitAction('Legal', 'Remove')">-</button>
+		</div>
+		<div id="LegalText"></div>
+	</div>
+
+	<div id="ProcessingChange" class="tabcontent">
+		<div class="onLineLeft">
+			<p id="ProcessingChangeAddUser" class="lead">
+				Add User:
+				<input type="text" id="ProcessingChangeAddUserTextInput" class="input-lookup" name="ProcessingChange" placeholder="Enter Username">
+			</p>
+			<button id="AddUserProcessingChange" class="copyBtn" onclick="submitAction('ProcessingChange', 'Add')" style="margin-left: 10px; margin-right: 10px">+</button>
+			<p id="ProcessingChangeRemoveUser" class="lead">
+				Remove User:
+				<input type="text" id="ProcessingChangeRemoveUserTextInput" class="input-lookup" name="ProcessingChange" placeholder="Enter Username">
+			</p>
+			<button id="RemoveUserProcessingChange" class="removeBtn" onclick="submitAction('ProcessingChange', 'Remove')">-</button>
+		</div>
+		<div id="ProcessingChangeText"></div>
+	</div>
+
+	<div id="Admin" class="tabcontent">
+		<div class="onLineLeft">
+			<button id="AddUserAdmin" class="copyBtn" onclick="submitAction('Admin')">+</button>
+			<button id="RemoveUserAdmin" class="removeBtn" onclick="submitAction('Admin')">-</button>
+		</div>
+		<div id="AdminText"></div>
+	</div>
+	<p id="queryResults" class="queryResults"></p>
+</div>
+<script src="~/Scripts/moment.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="~/Scripts/lodashCore.js" type="text/javascript"></script>
+<script src="~/Scripts/common.js" type="text/javascript"></script>
+<script>
+	function submitAction(tabName, action) {
+		let textFieldValue = document.getElementById(tabName + action + 'UserTextInput').value;
+		let AdminQuery = {};
+		AdminQuery['UserName'] = textFieldValue;
+		AdminQuery['PageName'] = tabName;
+		AdminQuery['AdminAction'] = action;
+		let query = new XMLHttpRequest();
+		query.open("POST", '/api/adminedit', true);
+		let MOCKqueryResults;
+		query.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				loadData(tabName);
+			}
+		};
+		query.setRequestHeader('Content-Type', 'application/json');
+		query.send(JSON.stringify(AdminQuery));
+	}
+	function changeTab(evt, tabName) {
+		var i, tabcontent, tablinks;
+
+		tabcontent = document.getElementsByClassName("tabcontent");
+		tabbuttons = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+			tabbuttons[i].style.backgroundColor = "#f1f1f1"
+		}
+
+		tablinks = document.getElementsByClassName("tablinks");
+		document.getElementById(tabName+'TabButton').style.backgroundColor = '#575656';
+		for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+		}
+
+		document.getElementById(tabName).style.display = "block";
+		evt.currentTarget.tabName += " active";
+		document.getElementById('AddUser' + tabName).style.display = 'block';
+		document.getElementById(tabName + 'AddUser').style.display = 'block';
+		document.getElementById(tabName + 'RemoveUser').style.display = 'block';
+		document.getElementById(tabName + 'AddUserTextInput').style.display = 'block';
+		document.getElementById(tabName + 'RemoveUserTextInput').style.display = 'block';
+		loadData(tabName);
+	}
+	function loadData(tabName) {
+		let xhttp = new XMLHttpRequest();
+		xhttp.open("POST", '/api/adminget', true);
+		let MOCKqueryResults;
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				var queryResults = this.response
+				queryResults = $.parseJSON(queryResults);
+				document.getElementById("queryResults").innerHTML = JSON.stringify(queryResults);
+				displayResults(tabName);
+			}
+		};
+		xhttp.setRequestHeader('Content-Type', 'application/json');
+		xhttp.send(JSON.stringify(tabName));
+	}
+	function processQuery() {
+		document.getElementById("loadingIcon").style.display = "block";
+		document.getElementById("tabBar").style.display = "block";
+		document.getElementById("queriesLoaded").innerHTML = 0;
+		let btnNames = getBtnNames();
+		let classNames = getClassNames();
+		let inputs = {}
+		let dateTypesObjects = $('input[type=date]').map(function () { return this.id; }).get();
+		for (let button in btnNames) {
+			if (document.getElementById(btnNames[button] + "InputButton").style.backgroundColor == "rgb(32, 166, 75)") {
+				if (dateTypesObjects.includes(btnNames[button] + "input")) {
+					inputs[classNames[button]] = moment(document.getElementById(btnNames[button] + "Input").value).format('YYYY-MM-DDT00:00:00');
+				}
+				else {
+					if (btnNames[button] + "Input")
+					inputs[classNames[button]] = document.getElementById(btnNames[button] + "Input").value;
+				}
+			}
+		}
+		let xhttp = new XMLHttpRequest();
+		xhttp.open("POST", '/api/person', true);
+		let MOCKqueryResults;
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				var queryResults = this.response
+				queryResults = $.parseJSON(queryResults);
+				document.getElementById("queriesLoaded").innerHTML = document.getElementById("queriesLoaded").innerHTML + 1
+				displayResults(queryResults);
+				document.getElementById("queryResults").innerHTML = JSON.stringify(queryResults);
+			}
+		};
+		xhttp.setRequestHeader('Content-Type', 'application/json');
+		xhttp.send(JSON.stringify(inputs));
+
+	}
+	/*
+	Inputs: inputs - The query results from the controller
+	Remarks: Calls the method to wipe the data in all the tables and then 
+	calls the method to populate the tables with the appropriate header fields
+	*/
+	function displayResults(tabName) {
+		console.log(tabName);
+		let queryResults = JSON.parse(document.getElementById("queryResults").innerHTML);
+		let tab = document.getElementById(tabName + "Text");
+		tab.innerHTML = '';
+		for (let i = 0; i < queryResults.length; ++i) {
+			tab.innerHTML += queryResults[i]['UserName'] + '<br>';
+		}
+	}
+</script>
