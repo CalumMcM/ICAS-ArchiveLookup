@@ -460,6 +460,10 @@ p {
   }
 }
 
+.recordCount{
+	margin-left: 10px;
+}
+
 small {
   font-size: 85%;
 }
