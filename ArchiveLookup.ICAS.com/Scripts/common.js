@@ -179,6 +179,7 @@ function tableBuilder(queryResults, tableName, headers) {
 				++recordCount;
 			}
 		}
+		console.log(tableName);
 		document.getElementById('recordCount' + tableName).innerHTML = "Total Record Count: " + recordCount;
 		for (let record in newInputs) {
 			let curRecord = newInputs[record];

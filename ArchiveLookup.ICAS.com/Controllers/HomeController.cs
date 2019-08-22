@@ -17,11 +17,18 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		private string _CurrentUsername = System.Web.HttpContext.Current.User.Identity.Name;
 		public ActionResult Admin()
 		{
-			return View();
+			foreach (string username in GandalfApproved("Admin"))
+			{
+				if (_CurrentUsername.EndsWith(username))
+				{
+					return View();
+				}
+			}
+			return new HttpStatusCodeResult(403);
 		}
 		public ActionResult Channels()
 		{
-			foreach (string username in GandalfApproved("Admin"))
+			foreach (string username in GandalfApproved("Channels"))
 			{
 				if (_CurrentUsername.EndsWith(username))
 				{
