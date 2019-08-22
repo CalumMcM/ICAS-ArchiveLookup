@@ -72,13 +72,11 @@ namespace ArchiveLookup.ICAS.com.Controllers
 				else if (AdminQuery.AdminAction == "Remove")
 				{
 					var persons = new List<PageAccess>();
-					var queryUsers = @"DELETE FROM dbo.Users where UserName = @UserName";
-					var queryPageAccess = @"DELETE FROM dbo.PageAccess where Username = 'jmcmeekin' and PageName = 'Concession'";
+					var queryPageAccess = @"DELETE FROM dbo.PageAccess where Username = @UserName and PageName = @PageName";
 					using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["sqlArchiveLookup"].ConnectionString))
 					{
 						try
 						{
-							connection.Execute(queryUsers, AdminQuery.ToDapperParameter());
 							connection.Execute(queryPageAccess, AdminQuery.ToDapperParameter());
 						}
 						catch (SqlException e)
