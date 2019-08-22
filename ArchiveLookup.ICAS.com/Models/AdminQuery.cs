@@ -8,6 +8,7 @@ namespace ArchiveLookup.ICAS.com.Models
 	public class AdminQuery: Query
 	{
 		public string UserName;
+		public string PageName;
 		public string AdminAction;
 		/*
 	 Returns: An object which converts the field name which has
@@ -19,6 +20,7 @@ namespace ArchiveLookup.ICAS.com.Models
 			return new
 			{
 				UserName = UserName,
+				PageName = PageName
 			};
 		}
 		/*
@@ -34,6 +36,10 @@ namespace ArchiveLookup.ICAS.com.Models
 				case "UserName": return "";
 			}
 			return "";
+		}
+		public string getAction()
+		{
+			return this.AdminAction;
 		}
 	}
 }

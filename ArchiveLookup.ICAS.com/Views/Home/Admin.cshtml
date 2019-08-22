@@ -99,6 +99,7 @@
 		let textFieldValue = document.getElementById(tabName + action + 'UserTextInput').value;
 		let AdminQuery = {};
 		AdminQuery['UserName'] = textFieldValue;
+		AdminQuery['PageName'] = tabName;
 		AdminQuery['AdminAction'] = action;
 		let query = new XMLHttpRequest();
 		query.open("POST", '/api/adminedit', true);
@@ -109,7 +110,7 @@
 			}
 		};
 		query.setRequestHeader('Content-Type', 'application/json');
-		query.send(JSON.stringify(tabName));
+		query.send(JSON.stringify(AdminQuery));
 	}
 	function changeTab(evt, tabName) {
 		var i, tabcontent, tablinks;
