@@ -30,7 +30,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 				if (action == "Add")
 				{
 					var persons = new List<PageAccess>();
-					var queryUsers = @"INSERT INTO ArchvieLookup.dbo.Users(UserName) Values(@UserName)";
+					var queryUsers = @"INSERT INTO ArchiveLookup.dbo.Users(UserName) Values(@UserName)";
 					var queryPageAccess = @"INSERT INTO ArchiveLookup.dbo.PageAccess(UserName, PageName) VALUES(@UserName, @PageName)";
 					using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["sqlArchiveLookup"].ConnectionString))
 					{
@@ -72,7 +72,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 				else if (AdminQuery.AdminAction == "Remove")
 				{
 					var persons = new List<PageAccess>();
-					var queryPageAccess = @"DELETE FROM ArchvieLookup.dbo.PageAccess where Username = @UserName and PageName = @PageName";
+					var queryPageAccess = @"DELETE FROM ArchiveLookup.dbo.PageAccess where Username = @UserName and PageName = @PageName";
 					using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["sqlArchiveLookup"].ConnectionString))
 					{
 						try
