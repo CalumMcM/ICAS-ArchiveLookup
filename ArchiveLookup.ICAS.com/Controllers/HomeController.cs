@@ -4,19 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Http;
+using System.Data.SqlClient;
+using System.Web.Configuration;
+using log4net;
+using ArchiveLookup.ICAS.com.Models;
 
 namespace ArchiveLookup.ICAS.com.Controllers
 {
 	public class HomeController : Controller
 	{
-		private string[] ChannelsAccess = new string[5] { "cmcmeekin", "mikerawes", "egillon", "gfarrell", "mherriot" };
-		private string[] ConcessionAccess = new string[8] { "cmcmeekin", "mikerawes", "egillon", "gfarrell", "rburns", "jshaw", "gfagan", "rwitt" };
-		private string[] ExaminationsAccess= new string[7] { "cmcmeekin", "mikerawes", "egillon", "gfarrell", "rburns", "jshaw", "gfagan" };
-		private string[] FinanceAccess = new string[5] { "cmcmeekin", "mikerawes", "egillon", "gfarrell", "sfuller" };
-		private string[] InsightsAccess = new string[4] { "cmcmeekin", "mikerawes", "egillon", "gfarrell", };
-		private string[] LegalAccess = new string[6] { "cmcmeekin", "mikerawes", "egillon", "gfarrell", "ispowart", "ncosans" };
-		private string[] ProcessingChangeAccess = new string[6] { "cmcmeekin", "egillon", "gfarrell", "mikerawes", "jgrant", "rrichardson" };
-
+		private ILog _Logger = LogManager.GetLogger(typeof(HomeController));
 		private string _CurrentUsername = System.Web.HttpContext.Current.User.Identity.Name;
 		public ActionResult Admin()
 		{
@@ -24,7 +21,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		}
 		public ActionResult Channels()
 		{
-			foreach (string username in ChannelsAccess)
+			foreach (string username in GandalfApproved("Admin"))
 			{
 				if (_CurrentUsername.EndsWith(username))
 				{
@@ -35,7 +32,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		}
 		public ActionResult Concession()
 		{
-			foreach (string username in ConcessionAccess)
+			foreach (string username in GandalfApproved("Concession"))
 			{
 				if (_CurrentUsername.EndsWith(username))
 				{
@@ -46,7 +43,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		}
 		public ActionResult Examinations()
 		{
-			foreach (string username in ExaminationsAccess)
+			foreach (string username in GandalfApproved("Examinations"))
 			{
 				if (_CurrentUsername.EndsWith(username))
 				{
@@ -57,7 +54,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		}
 		public ActionResult Finance()
 		{
-			foreach (string username in FinanceAccess)
+			foreach (string username in GandalfApproved("Finance"))
 			{
 				if (_CurrentUsername.EndsWith(username))
 				{
@@ -68,7 +65,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		}
 		public ActionResult Insights()
 		{
-			foreach (string username in InsightsAccess)
+			foreach (string username in GandalfApproved("Insights"))
 			{
 				if (_CurrentUsername.EndsWith(username))
 				{
@@ -79,7 +76,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		}
 		public ActionResult Legal()
 		{
-			foreach (string username in LegalAccess)
+			foreach (string username in GandalfApproved("Legal"))
 			{
 				if (_CurrentUsername.EndsWith(username))
 				{
@@ -90,7 +87,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		}
 		public ActionResult ProcessingChange()
 		{
-			foreach (string username in ProcessingChangeAccess)
+			foreach (string username in GandalfApproved("ProcessingChange"))
 			{
 				if (_CurrentUsername.EndsWith(username))
 				{
@@ -118,6 +115,19 @@ namespace ArchiveLookup.ICAS.com.Controllers
 			ViewBag.Message = "Your contact page.";
 
 			return View();
+		}
+		public string[] GandalfApproved(string tabName)
+		{
+			AdminGetController api = new AdminGetController();
+			List<PageAccess> results = api.Post(tabName);
+			string[] approved = new string[results.Count];
+			int position = 0;
+			foreach (PageAccess result in results)
+			{
+				approved[position] = result.UserName;
+				++position;
+			}
+			return approved;
 		}
 	}
 }

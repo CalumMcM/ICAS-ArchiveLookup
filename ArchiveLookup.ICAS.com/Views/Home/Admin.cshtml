@@ -9,13 +9,14 @@
 	</h1>
 
 	<div id="tabBar" class="tabAdmin">
-		<button class="tablinks" onclick="changeTab(event, 'Concession')">Concession</button>
-		<button class="tablinks" onclick="changeTab(event, 'Channels')">Channels</button>
-		<button class="tablinks" onclick="changeTab(event, 'Examinations')">Examinations</button>
-		<button class="tablinks" onclick="changeTab(event, 'Finance')">Finance</button>
-		<button class="tablinks" onclick="changeTab(event, 'Insights')">Insights</button>
-		<button class="tablinks" onclick="changeTab(event, 'Legal')">Legal</button>
-		<button class="tablinks" onclick="changeTab(event, 'ProcessingChange')">Processing Change</button>
+		<button id="ConcessionTabButton" class="tablinks" onclick="changeTab(event, 'Concession')">Concession</button>
+		<button id="ChannelsTabButton" class="tablinks" onclick="changeTab(event, 'Channels')">Channels</button>
+		<button id="ExaminationsTabButton" class="tablinks" onclick="changeTab(event, 'Examinations')">Examinations</button>
+		<button id="FinanceTabButton" class="tablinks" onclick="changeTab(event, 'Finance')">Finance</button>
+		<button id="InsightsTabButton" class="tablinks" onclick="changeTab(event, 'Insights')">Insights</button>
+		<button id="LegalTabButton" class="tablinks" onclick="changeTab(event, 'Legal')">Legal</button>
+		<button id="ProcessingChangeTabButton" class="tablinks" onclick="changeTab(event, 'ProcessingChange')">Processing Change</button>
+		<button id="AdminTabButton" class="tablinks" onclick="changeTab(event, 'Admin')">Admin</button>
 	</div>
 
 	<div id="Concession" class="tabcontent">
@@ -35,48 +36,96 @@
 	</div>
 	<div id="Channels" class="tabcontent">
 		<div class="onLineLeft">
-			<button id="AddUserChannels" class="copyBtn" onclick="submitAction('Channels')">+</button>
-			<button id="RemoveUserChannels" class="removeBtn" onclick="submitAction('Channels')">-</button>
+			<p id="ChannelsAddUser" class="lead">
+				Add User:
+				<input type="text" id="ChannelsAddUserTextInput" class="input-lookup" name="Channels" placeholder="Enter Username">
+			</p>
+			<button id="AddUserChannels" class="copyBtn" onclick="submitAction('Channels', 'Add')" style="margin-left: 10px; margin-right: 10px">+</button>
+			<p id="ChannelsRemoveUser" class="lead">
+				Remove User:
+				<input type="text" id="ChannelsRemoveUserTextInput" class="input-lookup" name="Channels" placeholder="Enter Username">
+			</p>
+			<button id="RemoveUserChannels" class="removeBtn" onclick="submitAction('Channels', 'Remove')">-</button>
 		</div>
 		<div id="ChannelsText"></div>
 	</div>
 
 	<div id="Examinations" class="tabcontent">
 		<div class="onLineLeft">
-			<button id="AddUserExaminations" class="copyBtn" onclick="submitAction('Examinations')">+</button>
-			<button id="RemoveUserExaminations" class="removeBtn" onclick="submitAction('Examinations')">-</button>
+			<p id="ExaminationsAddUser" class="lead">
+				Add User:
+				<input type="text" id="ExaminationsAddUserTextInput" class="input-lookup" name="Examinations" placeholder="Enter Username">
+			</p>
+			<button id="AddUserExaminations" class="copyBtn" onclick="submitAction('Examinations', 'Add')" style="margin-left: 10px; margin-right: 10px">+</button>
+			<p id="ExaminationsRemoveUser" class="lead">
+				Remove User:
+				<input type="text" id="ExaminationsRemoveUserTextInput" class="input-lookup" name="Examinations" placeholder="Enter Username">
+			</p>
+			<button id="RemoveUserExaminations" class="removeBtn" onclick="submitAction('Examinations', 'Remove')">-</button>
 		</div>
 		<div id="ExaminationsText"></div>
 	</div>
 
 	<div id="Finance" class="tabcontent">
 		<div class="onLineLeft">
-			<button id="AddUserFinance" class="copyBtn" onclick="submitAction('Finance')">+</button>
-			<button id="RemoveUserFinance" class="removeBtn" onclick="submitAction('Finance')">-</button>
+			<p id="FinanceAddUser" class="lead">
+				Add User:
+				<input type="text" id="FinanceAddUserTextInput" class="input-lookup" name="Finance" placeholder="Enter Username">
+			</p>
+			<button id="AddUserFinance" class="copyBtn" onclick="submitAction('Finance', 'Add')" style="margin-left: 10px; margin-right: 10px">+</button>
+			<p id="FinanceRemoveUser" class="lead">
+				Remove User:
+				<input type="text" id="FinanceRemoveUserTextInput" class="input-lookup" name="Finance" placeholder="Enter Username">
+			</p>
+			<button id="RemoveUserFinance" class="removeBtn" onclick="submitAction('Finance', 'Remove')">-</button>
 		</div>
 		<div id="FinanceText"></div>
 	</div>
 
 	<div id="Insights" class="tabcontent">
 		<div class="onLineLeft">
-			<button id="AddUserInsights" class="copyBtn" onclick="submitAction('Insights')">+</button>
-			<button id="RemoveUserInsights" class="removeBtn" onclick="submitAction('Insights')">-</button>
+			<p id="InsightsAddUser" class="lead">
+				Add User:
+				<input type="text" id="InsightsAddUserTextInput" class="input-lookup" name="Insights" placeholder="Enter Username">
+			</p>
+			<button id="AddUserInsights" class="copyBtn" onclick="submitAction('Insights', 'Add')" style="margin-left: 10px; margin-right: 10px">+</button>
+			<p id="InsightsRemoveUser" class="lead">
+				Remove User:
+				<input type="text" id="InsightsRemoveUserTextInput" class="input-lookup" name="Insights" placeholder="Enter Username">
+			</p>
+			<button id="RemoveUserInsights" class="removeBtn" onclick="submitAction('Insights', 'Remove')">-</button>
 		</div>
 		<div id="InsightsText"></div>
 	</div>
 
 	<div id="Legal" class="tabcontent">
 		<div class="onLineLeft">
-			<button id="AddUserLegal" class="copyBtn" onclick="submitAction('Legal')">+</button>
-			<button id="RemoveUserLegal" class="removeBtn" onclick="submitAction('Legal')">-</button>
+			<p id="LegalAddUser" class="lead">
+				Add User:
+				<input type="text" id="LegalAddUserTextInput" class="input-lookup" name="Legal" placeholder="Enter Username">
+			</p>
+			<button id="AddUserLegal" class="copyBtn" onclick="submitAction('Legal', 'Add')" style="margin-left: 10px; margin-right: 10px">+</button>
+			<p id="LegalRemoveUser" class="lead">
+				Remove User:
+				<input type="text" id="LegalRemoveUserTextInput" class="input-lookup" name="Legal" placeholder="Enter Username">
+			</p>
+			<button id="RemoveUserLegal" class="removeBtn" onclick="submitAction('Legal', 'Remove')">-</button>
 		</div>
 		<div id="LegalText"></div>
 	</div>
 
 	<div id="ProcessingChange" class="tabcontent">
 		<div class="onLineLeft">
-			<button id="AddUserProcessingChange" class="copyBtn" onclick="submitAction('ProcessingChange')">+</button>
-			<button id="RemoveUserProcessingChange" class="removeBtn" onclick="submitAction('ProcessingChange')">-</button>
+			<p id="ProcessingChangeAddUser" class="lead">
+				Add User:
+				<input type="text" id="ProcessingChangeAddUserTextInput" class="input-lookup" name="ProcessingChange" placeholder="Enter Username">
+			</p>
+			<button id="AddUserProcessingChange" class="copyBtn" onclick="submitAction('ProcessingChange', 'Add')" style="margin-left: 10px; margin-right: 10px">+</button>
+			<p id="ProcessingChangeRemoveUser" class="lead">
+				Remove User:
+				<input type="text" id="ProcessingChangeRemoveUserTextInput" class="input-lookup" name="ProcessingChange" placeholder="Enter Username">
+			</p>
+			<button id="RemoveUserProcessingChange" class="removeBtn" onclick="submitAction('ProcessingChange', 'Remove')">-</button>
 		</div>
 		<div id="ProcessingChangeText"></div>
 	</div>
@@ -116,11 +165,14 @@
 		var i, tabcontent, tablinks;
 
 		tabcontent = document.getElementsByClassName("tabcontent");
+		tabbuttons = document.getElementsByClassName("tablinks");
 		for (i = 0; i < tabcontent.length; i++) {
 			tabcontent[i].style.display = "none";
+			tabbuttons[i].style.backgroundColor = "#f1f1f1"
 		}
 
 		tablinks = document.getElementsByClassName("tablinks");
+		document.getElementById(tabName+'TabButton').style.backgroundColor = '#575656';
 		for (i = 0; i < tablinks.length; i++) {
 			tablinks[i].className = tablinks[i].className.replace(" active", "");
 		}
