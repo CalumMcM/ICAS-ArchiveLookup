@@ -25,7 +25,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		public List<PageAccess> Post([FromBody]string tabName)
 		{
 			var persons = new List<PageAccess>();
-			var queryBase = @"SELECT * FROM dbo.PageAccess where PageName = @tabName" ;
+			var queryBase = @"SELECT * FROM ArchiveLookup.dbo.PageAccess where PageName = @tabName" ;
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["sqlArchiveLookup"].ConnectionString))
 			{
 				try
