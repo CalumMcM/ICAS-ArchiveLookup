@@ -1,6 +1,6 @@
 Starting from the page you need to use (E.g "Legal Lookup")
 
-1. Select the red buttons you want to search for. The button should turn green
+1. Select the buttons you want to search for. The button should turn green
 and a text field should now be revealed below
 2. Type in the value you wish to search for in that field
 3. Hit submit
