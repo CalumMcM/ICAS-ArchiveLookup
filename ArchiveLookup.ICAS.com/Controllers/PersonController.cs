@@ -70,6 +70,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								,si.[COMMENTS]
 								,ec.[EVENT_ATTENDEES]
 								,g.[TP_Monthly]
+								,gt.[DESCRIPTION] as [STATUS_DESCRIPTION]
 								FROM [imis].[dbo].[Name] as n
 								JOIN activity as a
 								on n.id = a.id
@@ -81,6 +82,8 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								on n.ID = g.ID
 								JOIN exclude_comms as ec
 								on n.ID = ec.ID
+								LEFT OUTER JOIN Gen_Tables as gt 
+								on n.[STATUS] = gt.CODE AND TABLE_NAME = 'MEMBER_STATUS'
 								JOIN Firm as f
 								on n.ID = f.ID " + criteria.queryGenerator() + " ORDER BY TRANSACTION_DATE DESC";
 
