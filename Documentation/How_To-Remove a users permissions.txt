@@ -1,0 +1,5 @@
+1. Go to the Admin page. (At time of writing this document it can be found at http://dev.archivelookup.icas.com/Home/Admin)
+2. Select the page you want to remove the user from
+3. Type in the users username to the text box that is to the left of the '-' button
+4. Press the '-' button to add the user
+5. The users username should no longer be displayed below
