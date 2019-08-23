@@ -71,7 +71,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 							LEFT OUTER JOIN IREG_PII as pii
 							on n.ID = pii.NameID
 							LEFT OUTER JOIN IREG_AnnRet as ar
-							on n.ID = ar.ID " + criteria.queryGenerator() + " ORDER BY TRANSACTION_DATE DESC"; ;
+							on n.ID = ar.ID " + criteria.queryGenerator(); ;
 			using (var connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["sql"].ConnectionString))
 			{
 				try
