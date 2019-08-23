@@ -39,6 +39,7 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string EVENT_ATTENDEES { get; set; }
 		public string TP_Monthly { get; set; }
 		public string MEMBER_TYPE { get; set; }
+		public string STATUS_DESCRIPTION { get; set; }
 		public string CATEGORY { get; set; }
 		public string TITLE { get; set; }
 		public string CITY { get; set; }
@@ -48,6 +49,8 @@ namespace ArchiveLookup.ICAS.com.Models
 		public string Company { get; set; }
 		public string THRU_DATE { get; set; }
 		public string AMOUNT { get; set; }
+		public string PAID_THRU { get; set; }
+		public string JOIN_DATE { get; set; }
 		public string MAIN_FIRM_NO { get; set; }
 		public string COMMENTS { get; set; }
 	}
