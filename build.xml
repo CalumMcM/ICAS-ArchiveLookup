@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Target Name="Build">
+		<MSBuild 	Projects="ArchiveLookup.ICAS.com\ArchiveLookup.ICAS.com.csproj" 
+					Targets="Build" 
+					BuildInParallel="True" 
+					ToolsVersion="$(ProjectToolsVersion)" 
+					Properties="Configuration=$(Configuration); Platform=AnyCPU; WebPublishMethod=FileSystem; DeleteExistingFiles=True; DeployOnBuild=True;" />
+	</Target>
+	<UsingTask TaskName="TransformXml" AssemblyFile="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v12.0\Web\Microsoft.Web.Publishing.Tasks.dll" />
+	<Target Name="Transform" DependsOnTargets="Build">
+		<TransformXml Source="ArchiveLookup.ICAS.com\Web.config" 
+		Transform="ArchiveLookup.ICAS.com\Web.$(Configuration).config" 
+		Destination="ArchiveLookup.ICAS.com\obj\$(Configuration)\Package\PackageTmp\Web.config" />
+	</Target>
+	<Target Name="FullBuildAndDeploy" DependsOnTargets="Transform">
+		<RemoveDir Directories="Output" />
+		<ItemGroup>
+			<SourceFiles Include="ArchiveLookup.ICAS.com\obj\$(Configuration)\Package\PackageTmp\**\*.*"  />
+		</ItemGroup>
+		<Copy SourceFiles="@(SourceFiles)" DestinationFolder="Output\%(RecursiveDir)" />
+	</Target>
+</Project>

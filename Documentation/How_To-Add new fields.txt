@@ -1,0 +1,18 @@
+1. Add new field name to appropriate controller's sql query using correct SQL notation
+2. Add the field to the return Model object as string with get and set
+3. If the field is to be used as a query then add the field to the query Model object as an attribute with the correct datatype
+4. Add field to the Models ToDapperParameter() method in same format as other fields
+5. Add the field to the correct test case
+	a. If this fields is from a new table then a new test case will have to be made.
+6. Add field to getDatabasePrefix() switch case with correct prefix
+	a. The test the field was added to in stage 5. should now run and pass
+7. Add the field to the list of headers passed to tableBuilder for the table you wish
+this table to be a part of.
+	a. This should be done in the .cshtml file for the page you are wanting it to be on
+If this field is to be a searchable field then you will also need to:
+8. Add a button for this field in the .cshtml file for the page you want it on
+	a. Add the id prefix of the button (e.g. mk for MAJOR_KEY) to getBtnNames()
+	b. Add the corresponding field name for this button (e.g. MAJOR_KEY) to getClassNames()
+		- The id prefix should be in the same position for getBtnNames() as the field name
+		is in getClassNames()
+9b. Add a text field which has the same id prefix as the button for this class

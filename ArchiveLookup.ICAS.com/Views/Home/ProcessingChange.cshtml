@@ -1,0 +1,337 @@
+﻿@{
+	ViewBag.Title = "Processing Change";
+}
+
+<div class="jumbotron">
+
+	<h1>
+		Processing Change Lookup
+	</h1>
+	<p>Select the criteria for your search: </p>
+
+	<button id="idInputButton" onclick="showInput('idInput')" class="addBtn">IMIS ID</button>
+	<button id="mkInputButton" onclick="showInput('mkInput')" class="addBtn">Member No.</button>
+	<button id="forenameInputButton" onclick="showInput('forenameInput')" class="addBtn">First Name</button>
+	<button id="middlenameInputButton" onclick="showInput('middlenameInput')" class="addBtn">Middle Name</button>
+	<button id="surnameInputButton" onclick="showInput('surnameInput')" class="addBtn">Last Name</button>
+	<button id="firmidInputButton" onclick="showInput('firmidInput')" class="addBtn">Firm ID</button>
+	<button id="firmnoInputButton" onclick="showInput('firmnoInput')" class="addBtn">Firm No.</button>
+	<button id="firmnameInputButton" onclick="showInput('firmnameInput')" class="addBtn">Firm Name</button>
+	<button id="descInputButton" onclick="showInput('descInput')" class="addBtn">Description</button>
+	<button id="atInputButton" onclick="showInput('atInput')" class="addBtn">Activity Type</button>
+	<button id="scInputButton" onclick="showInput('scInput')" class="addBtn">Source Code</button>
+
+	<p id="idInputText" class="lead">
+		IMIS ID:
+		<input type="text" id="idInput" class="input-lookup" name="id">
+	</p>
+
+	<p id="mkInputText" class="lead">
+		Member No.:
+		<input type="text" id="mkInput" class="input-lookup" name="mk">
+	</p>
+
+	<p id="forenameInputText" class="lead">
+		First Name:
+		<input type="text" id="forenameInput" class="input-lookup" name="forename">
+	</p>
+
+	<p id="middlenameInputText" class="lead">
+		Middle Name:
+		<input type="text" id="middlenameInput" class="input-lookup" name="middlename">
+	</p>
+
+	<p id="surnameInputText" class="lead">
+		Last Name:
+		<input id="surnameInput" type="text" class="input-lookup" name="surname">
+	</p>
+
+	<p id="firmidInputText" class="lead">
+		Firm ID:
+		<input type="text" id="firmidInput" class="input-lookup" name="firmid">
+	</p>
+
+	<p id="firmnoInputText" class="lead">
+		Firm No:
+		<input type="text" id="firmnoInput" class="input-lookup" name="firmno">
+	</p>
+
+	<p id="firmnameInputText" class="lead">
+		Firm Name:
+		<input type="text" id="firmnameInput" class="input-lookup" name="firmname">
+	</p>
+
+	<p id="descInputText" class="lead">
+		Description:
+		<input type="text" id="descInput" class="input-lookup" name="descname">
+	</p>
+
+	<p id="atInputText" class="lead">
+		Activity Type:
+		<input type="text" id="atInput" class="input-lookup" name="atname">
+	</p>
+
+	<p id="scInputText" class="lead">
+		Source Code:
+		<input type="text" id="scInput" class="input-lookup" name="scname">
+	</p>
+
+	<div class="copySelectDropdown">
+		<p><button id="submitButton" onClick="processQuery()" class="btn btn-primary btn-lg">Submit</button></p>
+		<div id="loadingIcon" class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+	</div>
+
+	<div id="tabBar" class="tab">
+		<button class="tablinks" onclick="changeTab(event, 'Customers')">Customers</button>
+		<button class="tablinks" onclick="changeTab(event, 'Firm')">Firm</button>
+		<button class="tablinks" onclick="changeTab(event, 'Activity')">Activity</button>
+		<button class="tablinks" onclick="changeTab(event, 'PIILicense')">PIILicense</button>
+		<button class="tablinks" onclick="changeTab(event, 'DPBLicense')">DPBLicense</button>
+		<button class="tablinks" onclick="changeTab(event, 'ARLicense')">ARLicense</button>
+	</div>
+
+	<div id="Customers" class="tabcontent">
+		<div class="copySelectDropdown">
+			<button id="CustomerscopyButton" onclick="copy('Customers')" class="copyBtn" title="Copy fields">&#x1F4CB</button>
+			<button id="CustomerscopySelectButton" onclick="showCopyDropdown('Customers')" class="copyBtn" title="Select fields to copy">+</button>
+			<div id="recordCountCustomersResultsTable" class="recordCount"></div>
+			<div id="CustomersDropdown" class="copySelectDropdown-content">
+				<button id="idCCopyButton" onclick="copySelectButton('idCopy', 'Customers')" class="addBtn">IMIS ID</button>
+				<button id="mkCCopyButton" onclick="copySelectButton('mkCCopy', 'Customers')" class="addBtn">Member No.</button>
+				<button id="forenameCCopyButton" onclick="copySelectButton('forenameCCopy', 'Customers')" class="addBtn">First Name</button>
+				<button id="middlenameCCopyButton" onclick="copySelectButton('middlenameCCopy', 'Customers')" class="addBtn">Middle Name</button>
+				<button id="surnameCCopyButton" onclick="copySelectButton('surnameCCopy', 'Customers')" class="addBtn">Last Name</button>
+			</div>
+		</div>
+		<div id="CustomersContainer" class="minotron">
+			<table id="CustomersResultsTable" class="resultsTable">
+				<tr></tr>
+			</table>
+		</div>
+	</div>
+
+	<div id="Firm" class="tabcontent">
+		<div class="copySelectDropdown">
+			<button id="FirmcopyButton" onclick="copy('Firm')" class="copyBtn" title="Copy fields">&#x1F4CB</button>
+			<button id="FirmcopySelectButton" onclick="showCopyDropdown('Firm')" class="copyBtn" title="Select fields to copy">+</button>
+			<div id="recordCountFirmResultsTable" class="recordCount"></div>
+			<div id="FirmDropdown" class="copySelectDropdown-content">
+				<button id="mkFCopyButton" onclick="copySelectButton('mkFCopy', 'Firm')" class="addBtn">Member No.</button>
+				<button id="snFCopyButton" onclick="copySelectButton('snFCopy', 'Firm')" class="addBtn">Sort Name</button>
+				<button id="mfnFCopyButton" onclick="copySelectButton('mfnFCopy', 'Firm')" class="addBtn">Main Firm No.</button>
+				<button id="armFCopyButton" onclick="copySelectButton('armFCopy', 'Firm')" class="addBtn">AR Month</button>
+				<button id="fyeFCopyButton" onclick="copySelectButton('fyeFCopy', 'Firm')" class="addBtn">Financial Year End</button>
+				<button id="fedFCopyButton" onclick="copySelectButton('fedFCopy', 'Firm')" class="addBtn">Firm End Date</button>
+				<button id="aroFCopyButton" onclick="copySelectButton('aroFCopy', 'Firm')" class="addBtn">AR Other</button>
+				<button id="fnFCopyButton" onclick="copySelectButton('fnFCopy', 'Firm')" class="addBtn">Firm Notes</button>
+			</div>
+		</div>
+		<div id="FirmContainer" class="minotron">
+			<table id="FirmResultsTable" class="resultsTable">
+				<tr></tr>
+			</table>
+		</div>
+	</div>
+
+	<div id="Activity" class="tabcontent">
+		<div class="copySelectDropdown">
+			<button id="ActivitycopyButton" onclick="copy('Activity')" class="copyBtn" title="Copy fields">&#x1F4CB</button>
+			<button id="ActivitycopySelectButton" onclick="showCopyDropdown('Activity')" class="copyBtn" title="Select fields to copy">+</button>
+			<div id="recordCountActivityResultsTable" class="recordCount"></div>
+			<div id="ActivityDropdown" class="copySelectDropdown-content">
+				<button id="mkACopyButton" onclick="copySelectButton('mkACopy', 'Activity')" class="addBtn">Member No.</button>
+				<button id="descACopyButton" onclick="copySelectButton('descACopy', 'Activity')" class="addBtn">Description</button>
+				<button id="transACopyButton" onclick="copySelectButton('transACopy', 'Activity')" class="addBtn">Transaction Date</button>
+				<button id="effACopyButton" onclick="copySelectButton('effACopy', 'Activity')" class="addBtn">Effective Date</button>
+				<button id="tdACopyButton" onclick="copySelectButton('tdACopy', 'Activity')" class="addBtn">Thru Date</button>
+				<button id="noteACopyButton" onclick="copySelectButton('noteACopy', 'Activity')" class="addBtn">Note</button>
+				<button id="prodcodeACopyButton" onclick="copySelectButton('prodcodeACopy', 'Activity')" class="addBtn">Product Code</button>
+				<button id="acttypeACopyButton" onclick="copySelectButton('acttypeACopy', 'Activity')" class="addBtn">Activity Type</button>
+			</div>
+		</div>
+		<div id="ActivityContainer" class="minotron">
+			<table id="ActivityResultsTable" class="resultsTable">
+				<tr></tr>
+			</table>
+		</div>
+	</div>
+
+	<div id="PIILicense" class="tabcontent">
+		<div class="copySelectDropdown">
+			<button id="PIILicensecopyButton" onclick="copy('PIILicense')" class="copyBtn" title="Copy fields">&#x1F4CB</button>
+			<button id="PIILicensecopySelectButton" onclick="showCopyDropdown('PIILicense')" class="copyBtn" title="Select fields to copy">+</button>
+			<div id="recordCountPIILicenseResultsTable" class="recordCount"></div>
+			<div id="PIILicenseDropdown" class="copySelectDropdown-content">
+				<button id="mkPIICopyButton" onclick="copySelectButton('mkPIICopy', 'PIILicense')" class="addBtn">Member No.</button>
+				<button id="fnPIICopyButton" onclick="copySelectButton('fnPIICopy', 'PIILicense')" class="addBtn">Firm No.</button>
+				<button id="sdPIICopyButton" onclick="copySelectButton('sdPIICopy', 'PIILicense')" class="addBtn">PII Start Date</button>
+				<button id="edPIICopyButton" onclick="copySelectButton('edPIICopy', 'PIILicense')" class="addBtn">PII End Date</button>
+				<button id="statusPIICopyButton" onclick="copySelectButton('statusPIICopy', 'PIILicense')" class="addBtn">PII Status</button>
+				<button id="scPIICopyButton" onclick="copySelectButton('scPIICopy', 'PIILicense')" class="addBtn">Source Code</button>
+			</div>
+		</div>
+		<div id="PIILicenseContainer" class="minotron">
+			<table id="PIILicenseResultsTable" class="resultsTable">
+				<tr></tr>
+			</table>
+		</div>
+	</div>
+
+	<div id="DPBLicense" class="tabcontent">
+		<div class="copySelectDropdown">
+			<button id="DPBLicensecopyButton" onclick="copy('DPBLicense')" class="copyBtn" title="Copy fields">&#x1F4CB</button>
+			<button id="DPBLicensecopySelectButton" onclick="showCopyDropdown('DPBLicense')" class="copyBtn" title="Select fields to copy">+</button>
+			<div id="recordCountDPBLicenseResultsTable" class="recordCount"></div>
+			<div id="DPBLicenseDropdown" class="copySelectDropdown-content">
+				<button id="mkDPBCopyButton" onclick="copySelectButton('mkDPBCopy', 'DPBLicense')" class="addBtn">Member No.</button>
+				<button id="fnDPBCopyButton" onclick="copySelectButton('fnDPBCopy', 'DPBLicense')" class="addBtn">Firm No.</button>
+				<button id="sdDPBCopyButton" onclick="copySelectButton('sdDPBCopy', 'DPBLicense')" class="addBtn">DPB Start Date</button>
+				<button id="edDPBCopyButton" onclick="copySelectButton('edDPBCopy', 'DPBLicense')" class="addBtn">DPB End Date</button>
+				<button id="statusDPBCopyButton" onclick="copySelectButton('statusDPBCopy', 'DPBLicense')" class="addBtn">DPB Status</button>
+				<button id="commentsDPBCopyButton" onclick="copySelectButton('commentsDPBCopy', 'DPBLicense')" class="addBtn">DPB Comments</button>
+				<button id="scDPBCopyButton" onclick="copySelectButton('scDPBCopy', 'DPBLicense')" class="addBtn">Source Code</button>
+			</div>
+		</div>
+		<div id="DPBLicenseContainer" class="minotron">
+			<table id="DPBLicenseResultsTable" class="resultsTable">
+				<tr></tr>
+			</table>
+		</div>
+	</div>
+	<div id="ARLicense" class="tabcontent">
+		<div class="copySelectDropdown">
+			<button id="ARLicensecopyButton" onclick="copy('ARLicense')" class="copyBtn" title="Copy fields">&#x1F4CB</button>
+			<button id="ARLicensecopySelectButton" onclick="showCopyDropdown('ARLicense')" class="copyBtn" title="Select fields to copy">+</button>
+			<div id="recordCountARLicenseResultsTable" class="recordCount"></div>
+			<div id="ARLicenseDropdown" class="copySelectDropdown-content">
+				<button id="mkARCopyButton" onclick="copySelectButton('mkARCopy', 'ARLicense')" class="addBtn">Member No.</button>
+				<button id="fnARCopyButton" onclick="copySelectButton('fnARCopy', 'ARLicense')" class="addBtn">Firm No.</button>
+				<button id="sdARCopyButton" onclick="copySelectButton('sdARCopy', 'ARLicense')" class="addBtn">AR Start Date</button>
+				<button id="statusARCopyButton" onclick="copySelectButton('statusARCopy', 'ARLicense')" class="addBtn">AR Status</button>
+				<button id="scARCopyButton" onclick="copySelectButton('scARCopy', 'ARLicense')" class="addBtn">Source Code</button>
+			</div>
+		</div>
+		<div id="ARLicenseContainer" class="minotron">
+			<table id="ARLicenseResultsTable" class="resultsTable">
+				<tr></tr>
+			</table>
+		</div>
+	</div>
+
+	<p id="clipboard" class="clipboard"></p>
+	<p id="queryResults" class="queryResults"></p>
+	<p id="queriesLoaded" class="queryResults"></p>
+</div>
+<script src="~/Scripts/moment.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="~/Scripts/lodashCore.js" type="text/javascript"></script>
+<script src="~/Scripts/common.js" type="text/javascript"></script>
+<script>
+	/*
+	Returns: A list of all input button names
+	Remarks: Button names must be in exact same position as its field name
+	in getClassNames();
+	*/
+	const getBtnNames = () =>["id", "mk", "forename", "middlename", "surname", "firmid", "firmno", "firmname", "desc", "at", "sc"];
+	/*
+	Inputs: The field names for the corresponding button
+	Remarks: These are the fields that users can search by
+	*/
+	const getClassNames = () =>["ID", "MAJOR_KEY", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME", "FIRM_ID", "FIRM_NO", "SORT_NAME", "DESCRIPTION", "ACTIVITY_TYPE", "SOURCE_CODE"];
+	/*
+	Inputs: table - A name of a table
+	Returns: The names of each of the copy buttons for that table
+	Remarks: Button names should be in same position as their corresponding
+	field name in getCopyFields()
+	*/
+	function getCopyBtnNames(table) {
+		switch (table) {
+			case "Customers": return ["idC", "mkC", "forenameC", "middlenameC", "surnameC"];
+			case "Firm": return ["mkF", "snF", "mfnF", "armF", "fyeF", "fedF", "aroF", "fnF"];
+			case "Activity": return ["mkA", "descA", "transA", "effA", "tdA", "noteA", "prodcodeA", "acttypeA"];
+			case "PIILicense": return ["mkPII", "fnPII", "sdPII", "edPII", "statusPII", "scPII"];
+			case "DPBLicense": return ["mkDPB", "fnDPB", "sdDPB", "edDPB", "statusDPB", "commentsDPB", "scDPB"];
+			case "ARLicense": return ["mkAR", "fnAR", "sdAR", "statusAR", "scAR"];
+				default: return [];
+			}
+	}
+	/*
+	Inputs: table - A name of a table
+	Returns: The names of each of the field names for that table
+	Remarks: Field names should be in the exact same position as its button name in 
+	getCopyBtnNames()
+	*/
+	function getCopyFields(table) {
+		switch (table) {
+			case "Customers": return ["IMIS_ID", "MEMBER_NO", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME"];
+			case "Firm": return ["MEMBER_NO", "SORT_NAME", "FIRM_NO", "AR_MONTH", "FINANCIAL_YEAR_END", "CA_LICENSED_END_DATE", "AROther", "FIRM_NOTES"]
+			case "Activity": return ["MEMBER_NO", "DESCRIPTION", "TRANSACTION_DATE", "EFFECTIVE_DATE", "THRU_DATE", "NOTE", "PRODUCT_CODE", "ACTIVITY_TYPE"];
+			case "PIILicense": return ["MEMBER_NO", "FIRM_NO", "PII_Start_Date", "PII_End_Date", "PII_Status", "SOURCE_CODE"];
+			case "DPBLicense": return ["MEMBER_NO", "FIRM_NO", "DPB_Start_Date", "DPB_End_Date", "DPB_Status", "DPB_COMMENTS", "SOURCE_CODE"];
+			case "ARLicense": return ["MEMBER_NO", "FIRM_NO", "AR_Start_Date", "AR_Status", "SOURCE_CODE"];
+			default: return [];
+		}
+	}
+	/*
+	Remarks: Construct the query object by reading the contents of text fields where the corresponding button is
+	green and send the query object to the LicenceController. 
+	*/
+	function processQuery() {
+		document.getElementById("loadingIcon").style.display = "block";
+		document.getElementById("queriesLoaded").innerHTML = 0;
+		let btnNames = getBtnNames();
+		let classNames = getClassNames();
+		let inputs = {}
+		let dateTypesObjects = $('input[type=date]').map(function () { return this.id; }).get();
+		for (let button in btnNames) {
+			if (document.getElementById(btnNames[button] + "InputButton").style.backgroundColor == "rgb(32, 166, 75)") {
+				if (dateTypesObjects.includes(btnNames[button] + "input")) {
+					inputs[classNames[button]] = moment(document.getElementById(btnNames[button] + "Input").value).format('YYYY-MM-DDT00:00:00');
+				}
+				else {
+					if (btnNames[button] + "Input")
+					inputs[classNames[button]] = document.getElementById(btnNames[button] + "Input").value;
+				}
+			}
+		}
+		let xhttp = new XMLHttpRequest();
+		xhttp.open("POST", '/api/Licence', true);
+		let MOCKqueryResults;
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				var queryResults = this.response
+				queryResults = $.parseJSON(queryResults);
+				console.log(queryResults);
+				document.getElementById("queriesLoaded").innerHTML = document.getElementById("queriesLoaded").innerHTML + 1
+				displayResults(queryResults);
+				document.getElementById("queryResults").innerHTML = JSON.stringify(queryResults);
+			}
+		};
+		xhttp.setRequestHeader('Content-Type', 'application/json');
+		xhttp.send(JSON.stringify(inputs));
+
+	}
+	/*
+	Inputs: inputs - The query results from the controller
+	Remarks: Calls the method to wipe the data in all the tables and then 
+	calls the method to populate the tables with the appropriate header fields
+	*/
+	function displayResults(inputs) {
+		document.getElementById("tabBar").style.display = "block";
+		document.getElementById("loadingIcon").style.display = "none";
+		tableDemolisherAndDisplayer("Customers");
+		tableDemolisherAndDisplayer("Firm");
+		tableDemolisherAndDisplayer("Activity");
+		tableDemolisherAndDisplayer("PIILicense");
+		tableDemolisherAndDisplayer("DPBLicense");
+		tableDemolisherAndDisplayer("ARLicense");
+
+		tableBuilder(inputs, "CustomersResultsTable", ["IMIS_ID", "MEMBER_NO", "FIRST_NAME", "MIDDLE_NAME", "LAST_NAME"]);
+		tableBuilder(inputs, "FirmResultsTable", ["FIRM_NO", "SORT_NAME", "MEMBER_NO", "FINANCIAL_YEAR_END", "CA_LICENSED_END_DATE", "AR_MONTH", "AROther", "FIRM_NOTES"]);
+		tableBuilder(inputs, "ActivityResultsTable", ["TRANSACTION_DATE", "MEMBER_NO", "ACTIVITY_TYPE", "PRODUCT_CODE", "DESCRIPTION", "NOTE", "THRU_DATE", "EFFECTIVE_DATE", ]);
+		tableBuilder(inputs, "PIILicenseResultsTable", ["MEMBER_NO", "FIRM_NO", "PII_Status", "PII_Start_Date", "PII_End_Date", "PII_COMMENTS", "SOURCE_CODE"]);
+		tableBuilder(inputs, "DPBLicenseResultsTable", ["MEMBER_NO", "FIRM_NO", "DPB_Status", "DPB_Start_Date", "DPB_End_Date", "DPB_COMMENTS", "SOURCE_CODE"]);
+		tableBuilder(inputs, "ARLicenseResultsTable", ["MEMBER_NO", "FIRM_NO", "AR_Status", "AR_Start_Date", "SOURCE_CODE"])
+
+	}
+</script>
