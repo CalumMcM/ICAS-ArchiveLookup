@@ -38,7 +38,6 @@ namespace ArchiveLookup.ICAS.com.Models
 						}
 						else if ((string)(properties[i].GetValue(this)) != "" && !began)
 						{
-							{
 							query = query + "WHERE " + this.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
 							began = true;
 						}
