@@ -41,6 +41,8 @@ namespace ArchiveLookup.ICAS.com.Controllers
 								,n.[Company]
 								,n.[LAST_FIRST]
 								,n.[STATUS]
+								,n.[PAID_THRU]
+								,n.[JOIN_DATE]
 								,a.[DESCRIPTION]
 								,a.[TRANSACTION_DATE]
 								,a.[EFFECTIVE_DATE]

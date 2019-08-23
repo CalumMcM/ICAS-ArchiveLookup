@@ -85,7 +85,7 @@ namespace ArchiveLookup.ICAS.com.Controllers
 		{
 			foreach (string username in GandalfApproved("Legal"))
 			{
-				if (_CurrentUsername.EndsWith(username))
+				if (!_CurrentUsername.EndsWith(username))
 				{
 					return View();
 				}
