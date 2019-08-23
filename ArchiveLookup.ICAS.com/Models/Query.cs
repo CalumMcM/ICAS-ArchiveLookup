@@ -24,7 +24,19 @@ namespace ArchiveLookup.ICAS.com.Models
 					var type = properties[i].GetValue(this);
 					if(type is string)
 					{
-						if ((string)(properties[i].GetValue(this)) != "" && !began)
+						if (properties[i].Name == "SORT_NAME")
+						{
+							if (!began)
+							{
+								query = query + "WHERE " + this.getDatabasePrefix(properties[i].Name) + properties[i].Name + " like '%'+@" + properties[i].Name + "+'%'";
+								began = true;
+							}
+							else
+							{
+								query = query + " AND " + this.getDatabasePrefix(properties[i].Name) + properties[i].Name + " like '%'+@" + properties[i].Name + "+'%'";
+							}
+						}
+						else if ((string)(properties[i].GetValue(this)) != "" && !began)
 						{
 							query = query + "WHERE " + this.getDatabasePrefix(properties[i].Name) + properties[i].Name + " = @" + properties[i].Name;
 							began = true;

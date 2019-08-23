@@ -20,7 +20,7 @@ namespace ArchiveLookup.ICAS.com.Models
 		public Nullable <DateTime> CONTRACT_START_DATE;
 		public Nullable<DateTime> CONTRACT_END_DATE;
 		public string FIRM_ID;
-		public string FIRM_NAME;
+		public string SORT_NAME;
 		public Nullable<DateTime> FINAL_CERTIFICATE_DATE;
 		public Nullable<DateTime> EXAM_CERTIFICATE_DATE;
 		public string BE_PASS;
@@ -71,7 +71,7 @@ namespace ArchiveLookup.ICAS.com.Models
 				CONTRACT_START_DATE = CONTRACT_START_DATE,
 				CONTRACT_END_DATE = CONTRACT_END_DATE,
 				FIRM_ID = FIRM_ID,
-				FIRM_NAME = FIRM_NAME,
+				SORT_NAME = SORT_NAME,
 				FINAL_CERTIFICATE_DATE = FINAL_CERTIFICATE_DATE,
 				EXAM_CERTIFICATE_DATE = EXAM_CERTIFICATE_DATE,
 				BE_PASS = BE_PASS,
@@ -136,7 +136,7 @@ namespace ArchiveLookup.ICAS.com.Models
 				case "CONTRACT_START_DATE": return "si.";
 				case "CONTRACT_END_DATE": return "si.";
 				case "FIRM_ID": return "si.";
-				case "FIRM_NAME": return "si.";
+				case "SORT_NAME": return "f.";
 				case "FINAL_CERTIFICATE_DATE": return "si.";
 				case "EXAM_CERTIFICATE_DATE": return "si.";
 				case "BE_PASS": return "si.";

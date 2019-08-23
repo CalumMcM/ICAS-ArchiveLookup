@@ -68,7 +68,7 @@ namespace ArchiveLookup.ICAS.com.Models
 		/*
 		 Returns: A string, in the SQL format, containing any criteria to filter the search 
 		*/
-		public virtual string queryGenerator()
+		public override string queryGenerator()
 		{
 			var properties = this.GetType().GetFields();
 			var query = "";
